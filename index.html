@@ -167,6 +167,10 @@
  <button class="map-ctrl-btn" id="btn-indoor" aria-pressed="false" aria-label="Show indoor floor plan">
  Indoor
  </button>
+ <span id="map-issues-indicator" class="map-issues-indicator" hidden aria-live="polite" title="Active barriers currently marked on the map">
+ <span class="issue-indicator-dot" aria-hidden="true"></span>
+ <span id="map-issues-count">0 Barriers</span>
+ </span>
  </div>
 
  <!-- FLOOR SELECTOR (shown when indoor) -->
@@ -516,10 +520,15 @@
  <div class="confirmation-icon" aria-hidden="true"></div>
  <h3>Report Submitted!</h3>
  <p id="confirmation-text"></p>
- <p>Affected routes have been updated. The issue has been flagged to campus facilities.</p>
+ <p>Affected routes have been updated and the reported barrier is now marked on the map. The issue has also been flagged to campus facilities.</p>
+ <div style="display:flex;gap:0.75rem;justify-content:center;margin-top:1.25rem;flex-wrap:wrap;">
+ <button class="btn btn-primary" id="view-reported-map-btn" aria-label="View reported barrier on map">
+ 🗺️ View Barrier on Map
+ </button>
  <button class="btn btn-outline" id="report-another-btn" aria-label="Submit another report">
  Report Another Issue
  </button>
+ </div>
  </div>
 
  <!-- ACTIVE REPORTS -->

@@ -15,8 +15,10 @@ const CampusMap = (() => {
  let map = null;
  let routeLayer = null;
  let markersLayer = null;
+ let issuesLayer = null;
  let currentRoutePolylines = [];
  let buildingMarkers = {};
+ let issueMarkers = {};
 
  // REAL BUILDING POSITIONS (approximate within campus) 
  // These are manually offset from the campus center to reflect
@@ -156,6 +158,7 @@ const CampusMap = (() => {
  // LAYERS 
  routeLayer = L.layerGroup().addTo(map);
  markersLayer = L.layerGroup().addTo(map);
+ issuesLayer = L.layerGroup().addTo(map);
 
  // Draw campus boundary
  drawCampusBoundary();
@@ -174,6 +177,11 @@ const CampusMap = (() => {
 
  // Add scale
  L.control.scale({ imperial: false }).addTo(map);
+
+ // Display any reported barrier markers
+ updateIssueMarkers();
+
+ CampusMap._map = map;
 
  // Keyboard focus handler for accessibility
  document.getElementById('campus-map').addEventListener('keydown', (e) => {
@@ -418,6 +426,172 @@ const CampusMap = (() => {
  addLandmarkMarkers();
  drawAccessiblePaths();
  addLiftMarkers();
+ updateIssueMarkers();
+ }
+
+ // ESCAPE HTML HELPER
+ function escapeHTML(str) {
+ return String(str || '')
+ .replace(/&/g, '&amp;')
+ .replace(/</g, '&lt;')
+ .replace(/>/g, '&gt;')
+ .replace(/"/g, '&quot;');
+ }
+
+ // DISPLAY & UPDATE REPORTED ISSUE BARRIER MARKERS ON MAP
+ function updateIssueMarkers(focusReportId = null) {
+ if (!map || !issuesLayer) return;
+ issuesLayer.clearLayers();
+ issueMarkers = {};
+
+ const activeReports = window.CampusData?.activeReports || [];
+
+ // Update map controls indicator if present
+ const indicator = document.getElementById('map-issues-indicator');
+ const countEl = document.getElementById('map-issues-count');
+ if (indicator && countEl) {
+ if (activeReports.length > 0) {
+ indicator.hidden = false;
+ countEl.textContent = `${activeReports.length} Barrier${activeReports.length > 1 ? 's' : ''}`;
+ } else {
+ indicator.hidden = true;
+ }
+ }
+
+ if (!activeReports.length) return;
+
+ const countByLocation = {};
+
+ activeReports.forEach((report) => {
+ const locKey = report.building || 'outdoor';
+ countByLocation[locKey] = (countByLocation[locKey] || 0) + 1;
+ const offsetIndex = countByLocation[locKey] - 1;
+
+ // Base coordinates
+ const base = BUILDING_COORDS[report.building];
+ let lat = base ? base.lat : 31.2542;
+ let lng = base ? base.lng : 75.7041;
+
+ // Slight offset if multiple issues at same location
+ if (base) {
+ const angle = (offsetIndex * 1.3) + 0.6;
+ const radius = 0.00035;
+ lat += radius * Math.cos(angle);
+ lng += radius * Math.sin(angle);
+ } else {
+ lat += (offsetIndex * 0.0002) - 0.0001;
+ lng += (offsetIndex * 0.0002) - 0.0001;
+ }
+
+ const typeIcons = {
+ 'lift-broken': '🛗',
+ 'ramp-blocked': '♿',
+ 'door-broken': '🚪',
+ 'tactile-damaged': '🦯',
+ 'toilet-closed': '🚻',
+ 'other': '⚠️'
+ };
+ const iconEmoji = typeIcons[report.type] || '⚠️';
+
+ const typeLabels = {
+ 'lift-broken': 'Lift Out of Service',
+ 'ramp-blocked': 'Ramp Blocked',
+ 'door-broken': 'Accessible Door Broken',
+ 'tactile-damaged': 'Tactile Path Damaged',
+ 'toilet-closed': 'Accessible Toilet Closed',
+ 'other': 'Accessibility Barrier'
+ };
+ const typeTitle = typeLabels[report.type] || 'Reported Barrier';
+
+ const buildingName = {
+ b32: 'Block 32',
+ b34: 'Block 34',
+ b36: 'Block 36',
+ outdoor: 'Outdoor / Campus'
+ }[report.building] || report.building;
+
+ const urgencyColor = report.urgency === 'high' ? '#d32f2f' : report.urgency === 'medium' ? '#e65100' : '#f57f17';
+
+ const customIcon = L.divIcon({
+ html: `
+ <div class="issue-map-pin ${report.urgency || 'medium'}" style="--urgency-clr:${urgencyColor};" title="Issue: ${typeTitle}">
+ <span class="issue-pin-ping"></span>
+ <span class="issue-pin-badge">${iconEmoji}</span>
+ <span class="issue-pin-warning-icon">⚠️</span>
+ </div>
+ `,
+ className: 'issue-marker-container',
+ iconSize: [40, 40],
+ iconAnchor: [20, 20],
+ popupAnchor: [0, -20]
+ });
+
+ const timeStr = report.timestamp ? new Date(report.timestamp).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '';
+
+ const popupWrapper = document.createElement('div');
+ popupWrapper.className = 'issue-popup-card';
+ popupWrapper.innerHTML = `
+ <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;border-bottom:1.5px solid #eee;padding-bottom:6px;">
+ <span style="font-size:1.6rem;line-height:1;">${iconEmoji}</span>
+ <div>
+ <div style="font-weight:700;color:${urgencyColor};font-size:1rem;line-height:1.2;">${typeTitle}</div>
+ <span style="display:inline-block;margin-top:2px;font-size:0.7rem;font-weight:800;color:white;background:${urgencyColor};padding:2px 6px;border-radius:4px;text-transform:uppercase;">
+ ${(report.urgency || 'medium').toUpperCase()} URGENCY
+ </span>
+ </div>
+ </div>
+ <div style="font-size:0.85rem;color:#2c3e50;margin-bottom:6px;">
+ <strong>📍 Location:</strong> ${buildingName}${report.floor ? ` · ${escapeHTML(report.floor)}` : ''}
+ </div>
+ ${report.description ? `<div style="font-size:0.8rem;background:#fff8e1;color:#5d4037;padding:6px 10px;border-radius:6px;margin-bottom:8px;border-left:3px solid ${urgencyColor};font-style:italic;">"${escapeHTML(report.description)}"</div>` : ''}
+ <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:6px;border-top:1px solid #f0f0f0;">
+ <span style="font-size:0.72rem;color:#78909c;">🕒 ${timeStr}</span>
+ <button class="issue-popup-resolve-btn" data-report-id="${report.id}" style="background:#2e7d32;color:white;border:none;border-radius:5px;padding:4px 10px;font-size:0.78rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px;">
+ <span>✓</span> Mark Resolved
+ </button>
+ </div>
+ `;
+
+ popupWrapper.querySelector('.issue-popup-resolve-btn').addEventListener('click', () => {
+ window.CampusData.dismissReport(report.id);
+ if (window.ReportSystem) {
+ window.ReportSystem.renderActiveReports();
+ window.ReportSystem.updateLiftStatusUI();
+ }
+ updateIssueMarkers();
+ refreshLiftMarkers();
+ });
+
+ const marker = L.marker([lat, lng], {
+ icon: customIcon,
+ alt: `Reported Barrier: ${typeTitle} at ${buildingName}`,
+ title: `Barrier: ${typeTitle}`,
+ keyboard: true
+ }).addTo(issuesLayer);
+
+ marker.bindPopup(popupWrapper, { maxWidth: 270 });
+ marker.bindTooltip(`⚠️ ${typeTitle} (${buildingName})`, { direction: 'top', className: 'route-tooltip' });
+
+ issueMarkers[report.id] = marker;
+
+ if (focusReportId && report.id === focusReportId) {
+ map.flyTo([lat, lng], 18, { animate: true, duration: 0.8 });
+ setTimeout(() => marker.openPopup(), 900);
+ }
+ });
+ }
+
+ // FOCUS ON A SPECIFIC REPORT ON MAP
+ function focusIssue(reportId) {
+ if (!map) return;
+ const marker = issueMarkers[reportId];
+ if (marker) {
+ const latLng = marker.getLatLng();
+ map.flyTo(latLng, 18, { animate: true, duration: 0.8 });
+ setTimeout(() => marker.openPopup(), 900);
+ } else {
+ updateIssueMarkers(reportId);
+ }
  }
 
  // FLY TO BUILDING 
@@ -444,7 +618,7 @@ const CampusMap = (() => {
  if (el) { el.textContent = ''; setTimeout(() => { el.textContent = msg; }, 50); }
  }
 
- return { init, drawRoute, clearRoute, refreshLiftMarkers, flyToBuilding, resetView, BUILDING_COORDS };
+ return { init, drawRoute, clearRoute, refreshLiftMarkers, updateIssueMarkers, focusIssue, flyToBuilding, resetView, BUILDING_COORDS, getMap: () => map, _map: null };
 
 })();
 

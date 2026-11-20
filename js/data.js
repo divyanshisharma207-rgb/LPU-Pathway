@@ -303,8 +303,22 @@ const GRAPH = {
 // 
 let activeReports = JSON.parse(sessionStorage.getItem('campusReports') || '[]');
 
+// Sync lift status with any persisted reports
+activeReports.forEach(report => {
+  if (report.type === 'lift-broken' && report.building) {
+    const liftKey = `${report.building}-lift`;
+    if (LIFTS[liftKey]) {
+      LIFTS[liftKey].operational = false;
+      LIFTS[liftKey].reportId = report.id;
+    }
+  }
+});
+
 function saveReports() {
  sessionStorage.setItem('campusReports', JSON.stringify(activeReports));
+ if (window.CampusData) {
+   window.CampusData.activeReports = activeReports;
+ }
 }
 
 function addReport(report) {
@@ -365,4 +379,13 @@ const BUILDINGS = {
 };
 
 // Export for other modules
-window.CampusData = { NODES, LIFTS, GRAPH, BUILDINGS, activeReports, addReport, dismissReport };
+window.CampusData = {
+  NODES,
+  LIFTS,
+  GRAPH,
+  BUILDINGS,
+  get activeReports() { return activeReports; },
+  set activeReports(val) { activeReports = val; },
+  addReport,
+  dismissReport
+};

@@ -125,6 +125,9 @@
  });
  });
 
+ // Expose switchTab globally so other components can navigate to tabs
+ window.switchAppTab = switchTab;
+
  // Handle hash on page load
  const hash = window.location.hash;
  const hashToTab = {

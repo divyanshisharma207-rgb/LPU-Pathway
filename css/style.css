@@ -1050,3 +1050,29 @@ input.form-control, textarea.form-control {
   .footer-inner { flex-direction: column; gap: var(--space-md); }
   .footer-note { margin-left: 0; }
 }
+
+
+/* ── REPORT ITEM ACTIONS ─────────────────────────────────────── */
+.report-item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.report-item-view-map {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-primary);
+  color: var(--clr-primary);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+.report-item-view-map:hover {
+  background: var(--clr-primary);
+  color: var(--clr-text-inverse);
+}

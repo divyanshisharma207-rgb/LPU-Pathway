@@ -7,6 +7,8 @@
 
 const ReportSystem = (() => {
 
+ let lastSubmittedReportId = null;
+
  // RENDER ACTIVE REPORTS 
  function renderActiveReports() {
  const { activeReports } = window.CampusData;
@@ -47,12 +49,31 @@ const ReportSystem = (() => {
  </div>
  ${report.description ? `<div style="font-size:0.8rem;margin-top:4px;color:var(--clr-text-muted)">${escapeHTML(report.description)}</div>` : ''}
  </div>
+ <div class="report-item-actions">
+ <button class="report-item-view-map" data-report-id="${report.id}"
+ aria-label="View on map: ${typeLabel} at ${buildingLabel}">
+ 🗺️ Map
+ </button>
  <button class="report-item-dismiss" data-report-id="${report.id}"
  aria-label="Dismiss report: ${typeLabel} at ${buildingLabel}">
  Resolved
  </button>
+ </div>
  </li>`;
  }).join('');
+
+ // Bind view on map buttons
+ list.querySelectorAll('.report-item-view-map').forEach(btn => {
+ btn.addEventListener('click', () => {
+ const id = btn.dataset.reportId;
+ if (window.switchAppTab) window.switchAppTab('navigate');
+ setTimeout(() => {
+ if (window.CampusMap && window.CampusMap.focusIssue) {
+ window.CampusMap.focusIssue(id);
+ }
+ }, 250);
+ });
+ });
 
  // Bind dismiss buttons
  list.querySelectorAll('.report-item-dismiss').forEach(btn => {
@@ -62,6 +83,7 @@ const ReportSystem = (() => {
  renderActiveReports();
  updateLiftStatusUI();
  CampusMap.refreshLiftMarkers();
+ if (CampusMap.updateIssueMarkers) CampusMap.updateIssueMarkers();
  announcePolite('Report marked as resolved. Lift status updated.');
 
  // Show alert banner if restored
@@ -138,10 +160,15 @@ const ReportSystem = (() => {
  // Add report
  const report = window.CampusData.addReport({ building, type, floor, description, urgency });
 
- // Update UI
+ lastSubmittedReportId = report.id;
+
+ // Update UI & map markers
  renderActiveReports();
  updateLiftStatusUI();
  CampusMap.refreshLiftMarkers();
+ if (CampusMap.updateIssueMarkers) {
+ CampusMap.updateIssueMarkers(report.id);
+ }
 
  // Show confirmation
  const confirmation = document.getElementById('report-confirmation');
@@ -206,6 +233,19 @@ const ReportSystem = (() => {
  if (closeAlert) {
  closeAlert.addEventListener('click', () => {
  document.getElementById('alert-banner').hidden = true;
+ });
+ }
+
+ // "View on map" confirmation button
+ const viewMapBtn = document.getElementById('view-reported-map-btn');
+ if (viewMapBtn) {
+ viewMapBtn.addEventListener('click', () => {
+ if (window.switchAppTab) window.switchAppTab('navigate');
+ setTimeout(() => {
+ if (window.CampusMap && window.CampusMap.focusIssue && lastSubmittedReportId) {
+ window.CampusMap.focusIssue(lastSubmittedReportId);
+ }
+ }, 300);
  });
  }
 
