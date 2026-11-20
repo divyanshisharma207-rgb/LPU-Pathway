@@ -7,6 +7,9 @@
 
 const CampusAutos = (() => {
 
+  // GOLF CART SVG VECTOR ICON
+  const GOLF_CART_SVG = `<svg class="golf-cart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1em" height="1em" aria-hidden="true"><path d="M7 5h17c1.1 0 2 .9 2 2v1.5H5V7c0-1.1.9-2 2-2z" fill="#2e7d32"/><line x1="8" y1="8" x2="8" y2="18" stroke="#2e7d32" stroke-width="2" stroke-linecap="round"/><line x1="23" y1="8" x2="20.5" y2="18" stroke="#2e7d32" stroke-width="2" stroke-linecap="round"/><polygon points="23,8 20.5,18 19.5,18 22,8" fill="#81d4fa" opacity="0.6"/><line x1="17.5" y1="18" x2="15.5" y2="13" stroke="#2e7d32" stroke-width="1.8" stroke-linecap="round"/><circle cx="15" cy="12" r="1.8" fill="none" stroke="#2e7d32" stroke-width="1.5"/><rect x="9" y="12.5" width="2.5" height="5.5" rx="1" fill="#2e7d32"/><rect x="9" y="16.5" width="6.5" height="2.5" rx="1" fill="#2e7d32"/><path d="M4 19h17.5l4 2.5v2H3v-2.5l1-2z" fill="#2e7d32"/><circle cx="8" cy="24.5" r="3.5" fill="#263238" stroke="#fff" stroke-width="1.2"/><circle cx="21" cy="24.5" r="3.5" fill="#263238" stroke="#fff" stroke-width="1.2"/><circle cx="8" cy="24.5" r="1.2" fill="#fff"/><circle cx="21" cy="24.5" r="1.2" fill="#fff"/></svg>`;
+
   // LPU CAMPUS AUTOS & E-CARTS FLEET
   const FLEET = [
     {
@@ -32,9 +35,9 @@ const CampusAutos = (() => {
     },
     {
       id: 'auto-ecart-1',
-      name: 'LPU Campus Green E-Cart #8',
+      name: 'LPU Campus Green Golf Cart #8',
       category: 'ecart',
-      vehicle: 'Campus Electric Passenger Shuttle',
+      vehicle: 'Campus Electric Golf Cart / Buggy',
       driver: 'Rajesh Kumar',
       phone: '+91 98123 45678',
       rating: 4.8,
@@ -49,7 +52,8 @@ const CampusAutos = (() => {
       wheelchairRamp: false,
       stepFree: true,
       capacity: '6 Passengers',
-      icon: '🚐'
+      icon: GOLF_CART_SVG,
+      textIcon: '⛳'
     },
     {
       id: 'auto-access-2',
@@ -117,9 +121,9 @@ const CampusAutos = (() => {
     },
     {
       id: 'auto-ecart-2',
-      name: 'LPU Campus Green E-Cart #12',
+      name: 'LPU Campus Green Golf Cart #12',
       category: 'ecart',
-      vehicle: '8-Seater High-Capacity E-Cart',
+      vehicle: '8-Seater Campus Electric Golf Cart',
       driver: 'Balwinder Singh',
       phone: '+91 98000 12345',
       rating: 4.9,
@@ -134,7 +138,8 @@ const CampusAutos = (() => {
       wheelchairRamp: false,
       stepFree: true,
       capacity: '8 Passengers',
-      icon: '🚐'
+      icon: GOLF_CART_SVG,
+      textIcon: '⛳'
     }
   ];
 
@@ -231,7 +236,7 @@ const CampusAutos = (() => {
               ${item.wheelchairRamp ? '<span class="auto-badge ramp">♿ Wheelchair Ramp</span>' : ''}
               ${item.stepFree && !item.wheelchairRamp ? '<span class="auto-badge">⬆ Level Step-Free</span>' : ''}
               ${item.foldableBoot ? '<span class="auto-badge">🧳 Wheelchair Storage</span>' : ''}
-              <span class="auto-badge ${isFree ? 'free' : ''}">${isFree ? '★ Free Campus Assist' : '🌱 Eco E-Cart'}</span>
+              <span class="auto-badge ${isFree ? 'free' : ''}">${isFree ? '★ Free Campus Assist' : '🌱 Eco Golf Cart'}</span>
               <span class="auto-badge">★ ${item.rating} (${item.rides}+ trips)</span>
             </div>
 
@@ -363,7 +368,8 @@ const CampusAutos = (() => {
       }).addTo(autosLayer);
 
       marker.bindPopup(popupHtml, { maxWidth: 260 });
-      marker.bindTooltip(`${item.icon} ${item.name} (${item.fare})`, { direction: 'top', className: 'route-tooltip' });
+      const tipIcon = item.textIcon || item.icon;
+      marker.bindTooltip(`${tipIcon} ${item.name} (${item.fare})`, { direction: 'top', className: 'route-tooltip' });
 
       autoMarkers[item.id] = marker;
     });

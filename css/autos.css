@@ -398,3 +398,22 @@
   0% { transform: scale(0.9); opacity: 0.6; }
   75%, 100% { transform: scale(1.8); opacity: 0; }
 }
+
+/* ── GOLF CART VECTOR ICON STYLES ────────────────────────────── */
+.golf-cart-icon {
+  display: inline-block;
+  vertical-align: -0.18em;
+  width: 1.15em;
+  height: 1.15em;
+  fill: currentColor;
+}
+
+.auto-card-icon .golf-cart-icon {
+  width: 2.3rem;
+  height: 2.3rem;
+}
+
+.auto-marker-badge .golf-cart-icon {
+  width: 24px;
+  height: 24px;
+}
