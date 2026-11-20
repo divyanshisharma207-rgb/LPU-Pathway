@@ -1,0 +1,121 @@
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-SWITCHING (SPA Tab System)
+   Added to convert scroll layout → tab layout
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Hide all page sections by default ───────────────────────── */
+.page-section {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* ── Active page visible ─────────────────────────────────────── */
+.page-section.active-page {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Navigate page has two sections stacked — keep both visible */
+.page-section.active-page[data-page="navigate"] {
+  display: block;
+}
+
+/* Map section shares the navigate page so flex works correctly */
+#map-section.active-page {
+  display: grid; /* preserve the grid layout */
+}
+
+/* ── Nav active indicator pill ───────────────────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: var(--clr-accent);
+  border-radius: 2px;
+}
+
+/* ── Page heading entrance animation ─────────────────────────── */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-section.active-page > * {
+  animation: pageEnter 0.3s ease both;
+}
+.page-section.active-page > *:nth-child(2) { animation-delay: 0.05s; }
+.page-section.active-page > *:nth-child(3) { animation-delay: 0.1s; }
+
+/* ── Mobile bottom nav bar ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .site-header .main-nav {
+    display: none; /* hide top nav on mobile */
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: var(--clr-surface);
+    border-top: 2px solid var(--clr-border);
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+  }
+
+  .mobile-bottom-nav a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 0.6rem 0.25rem;
+    color: var(--clr-text-muted);
+    text-decoration: none;
+    font-size: 0.65rem;
+    font-weight: 600;
+    border-top: 3px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-bottom-nav a .mob-icon { font-size: 1.3rem; line-height: 1; }
+
+  .mobile-bottom-nav a.active {
+    color: var(--clr-primary);
+    border-top-color: var(--clr-accent);
+    background: var(--clr-primary-light);
+  }
+
+  /* Pad main content so it doesn't hide behind bottom nav */
+  main#main-content {
+    padding-bottom: 72px;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-bottom-nav { display: none; }
+}
+
+/* ── Page transition for reduced motion ──────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .page-section,
+  .page-section.active-page > * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .page-section.active-page {
+    transform: none !important;
+  }
+}

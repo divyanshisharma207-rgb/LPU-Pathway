@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>LPU Pathway – Accessible Campus Navigation</title>
+ <meta name="description" content="LPU Pathway — step-free and accessible indoor-outdoor navigation for LPU campus buildings. Designed for wheelchair users and visually impaired students." />
+ <link rel="stylesheet" href="css/style.css" />
+ <link rel="stylesheet" href="css/accessibility.css" />
+ <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/directions.css" />
+ <!-- Leaflet.js for maps -->
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+ <!-- SKIP NAVIGATION (Screen Reader First) -->
+ <a href="#main-content" class="skip-link" id="skip-to-main">Skip to main content</a>
+ <a href="#route-panel" class="skip-link">Skip to route planner</a>
+
+ <!-- LIVE REGION for announcements -->
+ <div id="live-announcer" aria-live="assertive" aria-atomic="true" class="sr-only" role="status"></div>
+ <div id="polite-announcer" aria-live="polite" aria-atomic="true" class="sr-only" role="status"></div>
+
+ <!-- 
+ HEADER
+ -->
+ <header class="site-header" role="banner">
+ <div class="header-inner">
+  <div class="brand">
+   <div>
+    <h1 class="brand-name">LPU <span class="brand-accent">Pathway</span></h1>
+    <p class="brand-tagline">Accessible Campus Navigation</p>
+   </div>
+  </div>
+
+ <nav class="main-nav" aria-label="Primary navigation" role="navigation">
+ <ul role="list">
+ <li><a href="#" class="nav-link active" aria-current="page" data-tab="navigate"> Navigate</a></li>
+ <li><a href="#" class="nav-link" data-tab="buildings"> Buildings</a></li>
+ <li><a href="#" class="nav-link" data-tab="report"> Report Issue</a></li>
+ <li><a href="#" class="nav-link" data-tab="help"> Help</a></li>
+ </ul>
+ </nav>
+
+ </div>
+
+ <!-- ALERT BANNER for lift outages -->
+ <div id="alert-banner" class="alert-banner" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+ <span class="alert-icon" aria-hidden="true"></span>
+ <span id="alert-text"></span>
+ <button id="close-alert" aria-label="Dismiss alert" class="alert-close"></button>
+ </div>
+ </header>
+
+ <!-- 
+ MAIN CONTENT
+ -->
+ <main id="main-content" role="main">
+
+ <!-- ROUTE PLANNER PANEL -->
+ <section id="route-panel" class="route-panel page-section active-page" data-page="navigate" aria-labelledby="route-panel-heading">
+ <div class="panel-inner">
+ <h2 id="route-panel-heading" class="panel-title">
+ <span aria-hidden="true"></span> Plan Your Route
+ </h2>
+
+ <form id="route-form" aria-label="Route planning form" novalidate>
+
+ <!-- FROM -->
+ <div class="form-group">
+ <label for="from-select" class="form-label">
+ <span aria-hidden="true"></span> Starting Point
+ </label>
+ <select id="from-select" class="form-control" required aria-required="true"
+ aria-describedby="from-hint">
+ <option value="">— Choose your start location —</option>
+ <option value="b32-ground">Block 32 – Academic Block</option>
+ <option value="b34-ground">Block 34 – Library Block</option>
+ <option value="b36-ground">Block 36 – Student Centre</option>
+ </select>
+ <span id="from-hint" class="form-hint">Select where you are now</span>
+ </div>
+
+ <!-- TO -->
+ <div class="form-group">
+ <label for="to-select" class="form-label">
+ <span aria-hidden="true"></span> Destination
+ </label>
+ <select id="to-select" class="form-control" required aria-required="true"
+ aria-describedby="to-hint">
+ <option value="">— Choose your destination —</option>
+ <option value="b32-ground">Block 32 – Academic Block</option>
+ <option value="b34-ground">Block 34 – Library Block</option>
+ <option value="b36-ground">Block 36 – Student Centre</option>
+ </select>
+ <span id="to-hint" class="form-hint">Select where you want to go</span>
+
+ </div>
+
+ <!-- ROUTE TYPE -->
+ <fieldset class="form-group route-type-group" id="route-type-fieldset">
+ <legend class="form-label">Route Preference</legend>
+ <div class="radio-group" role="radiogroup" aria-label="Route type selection">
+ <label class="radio-option" for="fastest-route">
+ <input type="radio" id="fastest-route" name="routeType" value="fastest" checked
+ aria-describedby="fastest-desc" />
+ <span class="radio-custom" aria-hidden="true"></span>
+ <span class="radio-label">
+ <span class="route-icon" aria-hidden="true"></span>
+ <strong>Fastest</strong>
+ <span id="fastest-desc" class="route-desc">Shortest path, may include stairs</span>
+ </span>
+ </label>
+ <label class="radio-option" for="stepfree-route">
+ <input type="radio" id="stepfree-route" name="routeType" value="stepfree"
+ aria-describedby="stepfree-desc" />
+ <span class="radio-custom" aria-hidden="true"></span>
+ <span class="radio-label">
+ <span class="route-icon" aria-hidden="true"></span>
+ <strong>Step-Free</strong>
+ <span id="stepfree-desc" class="route-desc">Uses ramps &amp; lifts only. No stairs.</span>
+ </span>
+ </label>
+ </div>
+ </fieldset>
+
+ <!-- SUBMIT -->
+ <button type="submit" id="find-route-btn" class="btn btn-primary btn-large"
+ aria-label="Find route between selected locations">
+ <span aria-hidden="true"></span> Find Route
+ </button>
+ </form>
+
+  <!-- â”€â”€ DIRECTIONS OUTPUT (shown after Find Route) â”€â”€â”€â”€â”€â”€â”€â”€ -->
+  <div id="directions-output" class="directions-output" hidden aria-live="polite">
+
+    <!-- Route summary bar -->
+    <div id="route-summary" class="route-summary-bar">
+      <p id="route-summary-text" class="route-summary-text" aria-live="polite"></p>
+      <div id="route-badges" class="route-badges"></div>
+    </div>
+
+
+    <!-- Step-by-step list -->
+    <ol id="directions-list" class="directions-list-inline"
+        aria-label="Step-by-step route directions">
+    </ol>
+  </div>
+
+
+
+ </div>
+ </section>
+
+ <!-- MAP + DIRECTIONS AREA -->
+ <section id="map-section" class="map-section page-section active-page" data-page="navigate" aria-labelledby="map-heading">
+ <div class="map-container">
+
+ <!-- MAP HEADER -->
+ <div class="map-header" aria-hidden="false">
+ <h2 id="map-heading" class="sr-only">Campus Map</h2>
+ <div class="map-controls" role="toolbar" aria-label="Map view controls">
+ <button class="map-ctrl-btn" id="btn-outdoor" aria-pressed="true" aria-label="Show outdoor map view">
+ Outdoor
+ </button>
+ <button class="map-ctrl-btn" id="btn-indoor" aria-pressed="false" aria-label="Show indoor floor plan">
+ Indoor
+ </button>
+ </div>
+
+ <!-- FLOOR SELECTOR (shown when indoor) -->
+ <div id="floor-selector" class="floor-selector" hidden>
+ <label for="floor-select" class="sr-only">Select floor</label>
+ <select id="floor-select" class="form-control form-control--small" aria-label="Select floor to view">
+ <option value="0">Ground Floor</option>
+ <option value="1">Floor 1</option>
+ <option value="2">Floor 2</option>
+ <option value="3">Floor 3</option>
+ </select>
+ </div>
+
+ <!-- BUILDING SELECTOR (shown when indoor) -->
+ <div id="building-selector" class="building-selector" hidden>
+ <label for="building-select" class="sr-only">Select building</label>
+ <select id="building-select" class="form-control form-control--small" aria-label="Select building to view">
+ <option value="b32">Block 32 – Academic</option>
+ <option value="b34">Block 34 – Library</option>
+ <option value="b36">Block 36 – Student Centre</option>
+ </select>
+ </div>
+ </div>
+
+ <!-- ACTUAL MAP (Leaflet) – Centred on real LPU coordinates 31.2536°N 75.7037°E -->
+ <div id="campus-map" class="leaflet-map"
+ role="application"
+ aria-label="Interactive LPU Campus Map centred on Lovely Professional University, Phagwara, Punjab. Markers show Block 32, Block 34, Block 36, lifts and step-free paths. Use route planner for turn-by-turn directions."
+ tabindex="0"
+ aria-roledescription="Campus map — press Enter to re-centre">
+ </div>
+
+  <!-- READ ALOUD CONTROLS - below map -->
+  <div class="read-aloud-bar" id="below-map-audio-controls" style="margin:0.75rem 0;">
+   <button id="read-aloud-btn" class="btn btn-read-aloud"
+           aria-label="Read directions aloud using text-to-speech">
+    Read Aloud
+   </button>
+   <button id="stop-speech-btn" class="btn btn-stop-aloud" hidden
+           aria-label="Stop reading directions">
+    Stop Reading
+   </button>
+   <button id="share-route-btn" class="btn btn-outline btn-sm"
+           aria-label="Share this route link">
+    Share Route
+   </button>
+  </div>
+
+ <!-- INDOOR FLOOR PLAN OVERLAY -->
+ <div id="indoor-view" class="indoor-view" hidden aria-label="Indoor floor plan view">
+ <canvas id="indoor-canvas" aria-hidden="true"></canvas>
+ <div id="indoor-legend" class="indoor-legend" aria-label="Floor plan legend">
+ <h3 class="legend-title">Legend</h3>
+ <ul role="list" class="legend-list">
+ <li><span class="legend-icon ramp" aria-hidden="true">â¬†</span> Ramp</li>
+ <li><span class="legend-icon lift" aria-hidden="true"></span> Lift</li>
+ <li><span class="legend-icon stairs" aria-hidden="true"></span> Stairs</li>
+ <li><span class="legend-icon toilet" aria-hidden="true"></span> Accessible Toilet</li>
+ <li><span class="legend-icon route-sf" aria-hidden="true"></span> Step-Free Route</li>
+ <li><span class="legend-icon route-fast" aria-hidden="true"></span> Fastest Route</li>
+ </ul>
+ </div>
+ </div>
+
+ <!-- MAP ATTRIBUTION -->
+ <p class="map-credit">Map data Â© OpenStreetMap contributors</p>
+ </div>
+
+ </div>
+ </section>
+
+ <!-- 
+ BUILDINGS INFO SECTION
+ -->
+ <section id="buildings-section" class="buildings-section page-section" data-page="buildings" aria-labelledby="buildings-heading">
+ <div class="section-inner">
+ <h2 id="buildings-heading" class="section-title">
+ <span aria-hidden="true"></span> Campus Buildings – Accessibility Info
+ </h2>
+ <p class="section-subtitle">Detailed accessibility features for each building on the step-free network.</p>
+
+ <div class="buildings-grid" role="list">
+
+ <!-- BLOCK 32 -->
+ <article class="building-card" role="listitem" aria-labelledby="b32-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #1b5e20, #2e7d32);">
+ <span class="building-number" aria-hidden="true">32</span>
+ <div>
+ <h3 id="b32-title" class="building-title">Block 32</h3>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list" aria-label="Block 32 accessibility features">
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Passenger Lift <small>(Floors G–3)</small></span>
+ <span class="feature-status" id="b32-lift-status" aria-live="polite"> Operational</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Wheelchair ramp at main entrance</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Accessible toilet on each floor</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Tactile floor path in corridors</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Audio announcement system in lift</span>
+ </li>
+ <li class="feature-item feature-no">
+ <span aria-hidden="true"></span>
+ <span>Stairs at north entrance <small>(avoid on step-free route)</small></span>
+ </li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list" aria-label="Block 32 floor directory">
+ <li><strong>G:</strong> Reception, Admin Office, Ramp Entry</li>
+ <li><strong>1:</strong> Lecture Halls 101–110, Seminar Room A</li>
+ <li><strong>2:</strong> Computer Labs, Faculty Offices</li>
+ <li><strong>3:</strong> Conference Rooms, Research Labs</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" data-building="b32"
+ aria-label="View route to Block 32 ground floor"
+ onclick="quickNavigateTo('b32-ground')">
+ Navigate Here
+ </button>
+ </div>
+ </article>
+
+ <!-- BLOCK 34 -->
+ <article class="building-card" role="listitem" aria-labelledby="b34-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #1b5e20, #2e7d32);">
+ <span class="building-number" aria-hidden="true">34</span>
+ <div>
+ <h3 id="b34-title" class="building-title">Block 34</h3>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list" aria-label="Block 34 accessibility features">
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Passenger Lift <small>(Floors G–2)</small></span>
+ <span class="feature-status" id="b34-lift-status" aria-live="polite"> Operational</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Level entry — no steps at entrance</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Accessible toilet on Ground Floor</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Quiet study zones with good lighting</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Braille signage on lift buttons</span>
+ </li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list" aria-label="Block 34 floor directory">
+ <li><strong>G:</strong> Library Entry, Issue Counter, Accessible Toilets</li>
+ <li><strong>1:</strong> Reading Rooms, Reference Section</li>
+ <li><strong>2:</strong> Digital Library, Study Carrels</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" data-building="b34"
+ aria-label="View route to Block 34 ground floor library"
+ onclick="quickNavigateTo('b34-ground')">
+ Navigate Here
+ </button>
+ </div>
+ </article>
+
+ <!-- BLOCK 36 -->
+ <article class="building-card" role="listitem" aria-labelledby="b36-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #1b5e20, #2e7d32);">
+ <span class="building-number" aria-hidden="true">36</span>
+ <div>
+ <h3 id="b36-title" class="building-title">Block 36</h3>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list" aria-label="Block 36 accessibility features">
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Passenger Lift <small>(Floors G–2)</small></span>
+ <span class="feature-status" id="b36-lift-status" aria-live="polite"> Operational</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Dedicated accessible entrance (East side)</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Accessible toilet on Floor 1</span>
+ </li>
+ <li class="feature-item feature-yes">
+ <span aria-hidden="true"></span>
+ <span>Wheelchair seating in Seminar Hall</span>
+ </li>
+ <li class="feature-item feature-no">
+ <span aria-hidden="true"></span>
+ <span>West entrance has 2 steps — use East entrance</span>
+ </li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list" aria-label="Block 36 floor directory">
+ <li><strong>G:</strong> Reception, Cafeteria, Student Services</li>
+ <li><strong>1:</strong> Seminar Hall, Club Rooms</li>
+ <li><strong>2:</strong> Admin Offices, Counselling Centre</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" data-building="b36"
+ aria-label="View route to Block 36 ground floor student centre"
+ onclick="quickNavigateTo('b36-ground')">
+ Navigate Here
+ </button>
+ </div>
+ </article>
+
+ </div>
+ </div>
+ </section>
+
+ <!-- 
+ REPORT SECTION
+ -->
+ <section id="report-section" class="report-section page-section" data-page="report" aria-labelledby="report-heading">
+ <div class="section-inner section-inner--narrow">
+ <div class="report-icon" aria-hidden="true"></div>
+ <h2 id="report-heading" class="section-title">Report a Barrier</h2>
+ <p class="section-subtitle">
+ Found a broken lift, blocked ramp, or missing tactile path?
+ Report it here and we'll update routes immediately.
+ </p>
+
+ <form id="report-form" class="report-form" aria-label="Accessibility barrier report form" novalidate>
+
+ <div class="form-row">
+ <div class="form-group">
+ <label for="report-building" class="form-label">Building</label>
+ <select id="report-building" class="form-control" required aria-required="true">
+ <option value="">Select building</option>
+ <option value="b32">Block 32 – Academic Block</option>
+ <option value="b34">Block 34 – Library Block</option>
+ <option value="b36">Block 36 – Student Centre</option>
+ <option value="outdoor">Outdoor / General Campus</option>
+ </select>
+ </div>
+
+ <div class="form-group">
+ <label for="report-type" class="form-label">Issue Type</label>
+ <select id="report-type" class="form-control" required aria-required="true"
+ aria-describedby="report-type-hint">
+ <option value="">Select issue type</option>
+ <option value="lift-broken"> Lift not working</option>
+ <option value="ramp-blocked"> Ramp blocked</option>
+ <option value="door-broken"> Accessible door broken</option>
+ <option value="tactile-damaged"> Tactile path damaged</option>
+ <option value="toilet-closed"> Accessible toilet locked/closed</option>
+ <option value="other">Other barrier</option>
+ </select>
+ <span id="report-type-hint" class="form-hint">Select the type of accessibility barrier</span>
+ </div>
+ </div>
+
+ <div class="form-group">
+ <label for="report-floor" class="form-label">Floor / Location</label>
+ <input type="text" id="report-floor" class="form-control"
+ placeholder="e.g., Floor 2, near Lecture Hall 201"
+ aria-describedby="report-floor-hint" />
+ <span id="report-floor-hint" class="form-hint">Describe the exact location as precisely as possible</span>
+ </div>
+
+ <div class="form-group">
+ <label for="report-description" class="form-label">Additional Details</label>
+ <textarea id="report-description" class="form-control form-textarea"
+ placeholder="Describe the issue in more detail..."
+ rows="4"
+ aria-describedby="report-desc-hint"
+ maxlength="500"></textarea>
+ <span id="report-desc-hint" class="form-hint">
+ Optional. Max 500 characters.
+ <span id="char-count" aria-live="polite" aria-label="Character count">0 / 500</span>
+ </span>
+ </div>
+
+ <div class="form-group">
+ <label class="form-label" for="reporter-contact">Your Contact (Optional)</label>
+ <input type="email" id="reporter-contact" class="form-control"
+ placeholder="email@lpu.in"
+ aria-describedby="contact-hint" />
+ <span id="contact-hint" class="form-hint">We may contact you for more details</span>
+ </div>
+
+ <!-- URGENCY -->
+ <fieldset class="form-group">
+ <legend class="form-label">Urgency Level</legend>
+ <div class="radio-group radio-group--horizontal">
+ <label class="radio-option" for="urgency-high">
+ <input type="radio" id="urgency-high" name="urgency" value="high" />
+ <span class="radio-custom" aria-hidden="true"></span>
+ <span> High – completely blocks access</span>
+ </label>
+ <label class="radio-option" for="urgency-medium">
+ <input type="radio" id="urgency-medium" name="urgency" value="medium" checked />
+ <span class="radio-custom" aria-hidden="true"></span>
+ <span> Medium – workaround available</span>
+ </label>
+ <label class="radio-option" for="urgency-low">
+ <input type="radio" id="urgency-low" name="urgency" value="low" />
+ <span class="radio-custom" aria-hidden="true"></span>
+ <span> Low – minor inconvenience</span>
+ </label>
+ </div>
+ </fieldset>
+
+ <button type="submit" class="btn btn-danger btn-large" id="submit-report-btn"
+ aria-label="Submit accessibility barrier report">
+ <span aria-hidden="true"></span> Submit Report
+ </button>
+ </form>
+
+ <!-- REPORT CONFIRMATION -->
+ <div id="report-confirmation" class="report-confirmation" hidden role="alert" aria-live="assertive">
+ <div class="confirmation-icon" aria-hidden="true"></div>
+ <h3>Report Submitted!</h3>
+ <p id="confirmation-text"></p>
+ <p>Affected routes have been updated. The issue has been flagged to campus facilities.</p>
+ <button class="btn btn-outline" id="report-another-btn" aria-label="Submit another report">
+ Report Another Issue
+ </button>
+ </div>
+
+ <!-- ACTIVE REPORTS -->
+ <div class="active-reports" aria-labelledby="active-reports-heading">
+ <h3 id="active-reports-heading" class="active-reports-title">
+ <span aria-hidden="true"></span> Active Reports
+ </h3>
+ <ul id="active-reports-list" class="active-reports-list" aria-label="Currently active accessibility issues" aria-live="polite" role="list">
+ <!-- Populated by JS -->
+ </ul>
+ </div>
+
+ </div>
+ </section>
+
+ <!-- 
+ HELP SECTION
+ -->
+ <section id="help-section" class="help-section page-section" data-page="help" aria-labelledby="help-heading">
+ <div class="section-inner">
+ <h2 id="help-heading" class="section-title">
+ <span aria-hidden="true"></span> Help &amp; Accessibility Guide
+ </h2>
+
+ <div class="help-grid">
+
+ <div class="help-card">
+ <div class="help-card-icon" aria-hidden="true"></div>
+ <h3>Using with TalkBack (Android)</h3>
+ <ul>
+ <li>Swipe right/left to navigate between controls</li>
+ <li>Double-tap to activate buttons and links</li>
+ <li>Use the route form then swipe down to hear directions</li>
+ <li>Tap "Read Aloud" button to hear the full route</li>
+ <li>All map features have text alternatives</li>
+ </ul>
+ </div>
+
+ <div class="help-card">
+ <div class="help-card-icon" aria-hidden="true"></div>
+ <h3>Using with VoiceOver (iOS/Mac)</h3>
+ <ul>
+ <li>Swipe right to move forward through elements</li>
+ <li>Double-tap anywhere to activate focused item</li>
+ <li>Use the Rotor (two-finger rotation) for headings</li>
+ <li>Use the "Read Aloud" button for spoken directions</li>
+ <li>Live regions announce route updates automatically</li>
+ </ul>
+ </div>
+
+ <div class="help-card">
+ <div class="help-card-icon" aria-hidden="true"></div>
+ <h3>Keyboard Navigation</h3>
+ <ul>
+ <li><kbd>Tab</kbd> — Move to next interactive element</li>
+ <li><kbd>Shift + Tab</kbd> — Move to previous element</li>
+ <li><kbd>Enter</kbd> / <kbd>Space</kbd> — Activate buttons</li>
+ <li><kbd>Arrow keys</kbd> — Navigate radio button options</li>
+ <li>Skip links at the top take you to main areas</li>
+ </ul>
+ </div>
+
+ <div class="help-card">
+ <div class="help-card-icon" aria-hidden="true"></div>
+ <h3>Step-Free Route Guide</h3>
+ <ul>
+ <li>Always choose "Step-Free" if you use a wheelchair</li>
+ <li>Routes use ramps and lifts only — zero stairs</li>
+ <li>If a lift is broken, the route auto-updates</li>
+ <li>Accessible routes may be slightly longer in distance</li>
+ <li>Report a blocked ramp or lift using the Report tab</li>
+ </ul>
+ </div>
+
+ <div class="help-card">
+ <div class="help-card-icon" aria-hidden="true"></div>
+ <h3>Campus Accessibility Support</h3>
+ <ul>
+ <li><strong>Disability Support Cell:</strong> +91-1824-404040</li>
+ <li><strong>Campus Helpline:</strong> 1800-102-4431</li>
+ <li><strong>Email:</strong> accessibility@lpu.in</li>
+ <li><strong>Hours:</strong> Mon–Sat, 8:00 AM – 6:00 PM</li>
+ <li>Emergency assistance is available 24/7 at the security desk</li>
+ </ul>
+ </div>
+
+ <div class="help-card">
+ <div class="help-card-icon" aria-hidden="true"></div>
+ <h3>Display Settings</h3>
+ <ul>
+ <li>Use the <strong>A+</strong> button in the header to increase text size</li>
+ <li>High-contrast mode respects your OS settings</li>
+ <li>All colour is backed by icons and text labels</li>
+ <li>Zoom up to 400% with no content loss</li>
+ <li>Works with browser font size settings</li>
+ </ul>
+ </div>
+
+ </div>
+ </div>
+ </section>
+
+ </main>
+
+ <!-- 
+ FOOTER
+ -->
+ <footer class="site-footer" role="contentinfo">
+ <div class="footer-inner">
+ <div class="footer-brand">
+ <strong>LPU Pathway</strong> — Accessible Campus Navigation
+ </div>
+ <p class="footer-note">
+ WCAG 2.1 AA Compliant &nbsp;|&nbsp;
+ <a href="mailto:accessibility@lpu.in">Feedback</a>
+ </p>
+ </div>
+ </footer>
+
+ <!-- MOBILE BOTTOM NAV (shown on small screens instead of top nav) -->
+ <nav class="mobile-bottom-nav" aria-label="Mobile page navigation" role="navigation">
+ <a href="#" data-tab="navigate" class="active" aria-current="page" aria-label="Navigate page">
+ <span class="mob-icon" aria-hidden="true"></span>
+ <span>Navigate</span>
+ </a>
+ <a href="#" data-tab="buildings" aria-label="Buildings page">
+ <span class="mob-icon" aria-hidden="true"></span>
+ <span>Buildings</span>
+ </a>
+ <a href="#" data-tab="report" aria-label="Report Issue page">
+ <span class="mob-icon" aria-hidden="true"></span>
+ <span>Report</span>
+ </a>
+ <a href="#" data-tab="help" aria-label="Help page">
+ <span class="mob-icon" aria-hidden="true"></span>
+ <span>Help</span>
+ </a>
+ </nav>
+
+ <!-- 
+ SCRIPTS
+ -->
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+ <script src="js/data.js"></script>
+ <script src="js/routeEngine.js"></script>
+ <script src="js/map.js"></script>
+ <script src="js/directions.js"></script>
+ <script src="js/report.js"></script>
+ <script src="js/app.js"></script>
+</body>
+</html>
+
