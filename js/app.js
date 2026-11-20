@@ -43,6 +43,9 @@
  // 9. Update lift status display
  ReportSystem.updateLiftStatusUI();
 
+ // 10. Init Autos & E-Carts transit feature
+ if (window.CampusAutos) CampusAutos.init();
+
  console.log('[LPU Pathway] Accessible navigation ready ');
  });
 
@@ -90,6 +93,7 @@
  const hashMap = {
  navigate: '#navigate',
  buildings: '#buildings',
+ autos: '#autos',
  report: '#report',
  help: '#help',
  };
@@ -99,6 +103,7 @@
  const pageNames = {
  navigate: 'Navigate — Route Planner',
  buildings: 'Buildings — Accessibility Info',
+ autos: 'Nearest Autos & E-Carts',
  report: 'Report Issue',
  help: 'Help & Guide',
  };
@@ -133,6 +138,7 @@
  const hashToTab = {
  '#navigate': 'navigate',
  '#buildings': 'buildings',
+ '#autos': 'autos',
  '#report': 'report',
  '#help': 'help',
  // Legacy anchor support

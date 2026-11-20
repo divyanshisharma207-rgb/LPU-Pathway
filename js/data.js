@@ -1,4 +1,4 @@
-﻿/**
+/**
  * data.js – Campus Navigation Data Store
  * LPU Pathway – 3 Buildings: Block 32, 34, 36
  */

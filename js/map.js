@@ -1,4 +1,4 @@
-﻿/**
+/**
  * map.js – LPU Campus Map using Leaflet.js
  * Real LPU campus coordinates: 31.2536°N, 75.7037°E
  */

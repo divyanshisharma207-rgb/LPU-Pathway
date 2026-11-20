@@ -9,6 +9,7 @@
  <link rel="stylesheet" href="css/accessibility.css" />
  <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/directions.css" />
+  <link rel="stylesheet" href="css/autos.css" />
  <!-- Leaflet.js for maps -->
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
@@ -38,6 +39,7 @@
  <ul role="list">
  <li><a href="#" class="nav-link active" aria-current="page" data-tab="navigate"> Navigate</a></li>
  <li><a href="#" class="nav-link" data-tab="buildings"> Buildings</a></li>
+ <li><a href="#" class="nav-link" data-tab="autos">🛺 Autos &amp; E-Carts</a></li>
  <li><a href="#" class="nav-link" data-tab="report"> Report Issue</a></li>
  <li><a href="#" class="nav-link" data-tab="help"> Help</a></li>
  </ul>
@@ -166,6 +168,9 @@
  </button>
  <button class="map-ctrl-btn" id="btn-indoor" aria-pressed="false" aria-label="Show indoor floor plan">
  Indoor
+ </button>
+ <button class="map-ctrl-btn active" id="btn-toggle-autos" aria-pressed="true" aria-label="Toggle live autos and e-carts on map">
+ 🛺 Autos &amp; E-Carts
  </button>
  <span id="map-issues-indicator" class="map-issues-indicator" hidden aria-live="polite" title="Active barriers currently marked on the map">
  <span class="issue-indicator-dot" aria-hidden="true"></span>
@@ -544,7 +549,83 @@
  </div>
  </section>
 
- <!-- 
+ 
+  <!-- 
+  AUTOS & E-CARTS TRANSIT SECTION
+  -->
+  <section id="autos-section" class="autos-section page-section" data-page="autos" aria-labelledby="autos-heading">
+    <div class="section-inner">
+      <div class="autos-header-banner">
+        <div>
+          <h2 id="autos-heading" class="autos-header-title">
+            <span aria-hidden="true">🛺</span> Nearest Autos &amp; E-Carts
+          </h2>
+          <p class="autos-header-subtitle">
+            Live accessible campus mobility golf carts, battery e-rickshaws, and auto-rickshaws with ramp support across LPU.
+          </p>
+        </div>
+        <div class="autos-emergency-box">
+          <span aria-hidden="true">♿</span>
+          <div>
+            <strong>Disability Assist Transit:</strong>
+            <a href="tel:+911824404040">+91-1824-404040</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PICKUP & FILTER CONTROLS -->
+      <div class="autos-controls-bar">
+        <div class="autos-pickup-row">
+          <label for="autos-pickup-select" class="autos-pickup-label">
+            <span aria-hidden="true">📍</span> Your Pickup:
+          </label>
+          <div class="autos-pickup-select-wrapper">
+            <select id="autos-pickup-select" class="form-control" aria-label="Select pickup location">
+              <!-- Populated by JS -->
+            </select>
+            <button id="btn-autos-gps" class="btn btn-outline btn-sm" aria-label="Detect nearest campus pickup spot" title="Detect nearest campus pickup spot">
+              📍 Near You
+            </button>
+          </div>
+        </div>
+
+        <div class="autos-filter-chips" role="radiogroup" aria-label="Filter transit vehicle type">
+          <button class="auto-chip active" data-filter="all" role="radio" aria-checked="true">
+            All Vehicles (6)
+          </button>
+          <button class="auto-chip" data-filter="accessible" role="radio" aria-checked="false">
+            ♿ Wheelchair Ramp E-Carts
+          </button>
+          <button class="auto-chip" data-filter="ecart" role="radio" aria-checked="false">
+            ⚡ Campus E-Carts (₹10)
+          </button>
+          <button class="auto-chip" data-filter="auto" role="radio" aria-checked="false">
+            🛺 Auto-Rickshaws
+          </button>
+        </div>
+      </div>
+
+      <!-- LIST OF AUTOS AND E-CARTS -->
+      <div id="autos-list" class="autos-grid" role="list" aria-label="List of available autos and e-carts">
+        <!-- Populated dynamically by autos.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTO & E-CART BOOKING / ASSIST MODAL -->
+  <div id="auto-booking-modal" class="auto-modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="auto-modal-title">
+    <div class="auto-modal">
+      <div class="auto-modal-header">
+        <h3 id="auto-modal-title" class="auto-modal-title">🛺 Request Auto / E-Cart</h3>
+        <button id="auto-modal-close-btn" class="auto-modal-close" aria-label="Close dialog">&times;</button>
+      </div>
+      <div id="auto-modal-body">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 
  HELP SECTION
  -->
  <section id="help-section" class="help-section page-section" data-page="help" aria-labelledby="help-heading">
@@ -658,6 +739,10 @@
  <span class="mob-icon" aria-hidden="true"></span>
  <span>Buildings</span>
  </a>
+ <a href="#" data-tab="autos" aria-label="Nearest Autos and E-Carts page">
+ <span class="mob-icon" aria-hidden="true">🛺</span>
+ <span>Autos</span>
+ </a>
  <a href="#" data-tab="report" aria-label="Report Issue page">
  <span class="mob-icon" aria-hidden="true"></span>
  <span>Report</span>
@@ -676,6 +761,7 @@
  <script src="js/routeEngine.js"></script>
  <script src="js/map.js"></script>
  <script src="js/directions.js"></script>
+ <script src="js/autos.js"></script>
  <script src="js/report.js"></script>
  <script src="js/app.js"></script>
 </body>
