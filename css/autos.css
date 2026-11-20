@@ -364,6 +364,11 @@
   transform: scale(1.15);
 }
 
+.auto-marker-badge.ecart {
+  border-color: #2e7d32;
+  background: #e8f5e9;
+}
+
 .auto-marker-badge.accessible {
   border-color: #1b5e20;
   background: #e8f5e9;

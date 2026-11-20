@@ -49,7 +49,7 @@ const CampusAutos = (() => {
       wheelchairRamp: false,
       stepFree: true,
       capacity: '6 Passengers',
-      icon: '⚡'
+      icon: '🚐'
     },
     {
       id: 'auto-access-2',
@@ -134,7 +134,7 @@ const CampusAutos = (() => {
       wheelchairRamp: false,
       stepFree: true,
       capacity: '8 Passengers',
-      icon: '⚡'
+      icon: '🚐'
     }
   ];
 
@@ -231,7 +231,7 @@ const CampusAutos = (() => {
               ${item.wheelchairRamp ? '<span class="auto-badge ramp">♿ Wheelchair Ramp</span>' : ''}
               ${item.stepFree && !item.wheelchairRamp ? '<span class="auto-badge">⬆ Level Step-Free</span>' : ''}
               ${item.foldableBoot ? '<span class="auto-badge">🧳 Wheelchair Storage</span>' : ''}
-              <span class="auto-badge ${isFree ? 'free' : ''}">${isFree ? '★ Free Campus Assist' : '⚡ Live Available'}</span>
+              <span class="auto-badge ${isFree ? 'free' : ''}">${isFree ? '★ Free Campus Assist' : '🌱 Eco E-Cart'}</span>
               <span class="auto-badge">★ ${item.rating} (${item.rides}+ trips)</span>
             </div>
 
