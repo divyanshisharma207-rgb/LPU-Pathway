@@ -164,13 +164,14 @@ ul, ol { list-style: none; }
   width: 260px;
   height: 100vh;
   z-index: 1000;
-  background: linear-gradient(180deg, #0b224e 0%, #0d2e6b 50%, #081d45 100%);
+  background: #2E8B57;
+  background: linear-gradient(180deg, #32995f 0%, #2E8B57 50%, #236c43 100%);
   color: var(--clr-text-inverse, #ffffff);
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -206,7 +207,7 @@ ul, ol { list-style: none; }
 .sidebar-brand .brand-tagline {
   font-size: 0.74rem;
   opacity: 0.88;
-  color: #bae6fd;
+  color: #d1fae5;
   margin: 3px 0 0;
 }
 
@@ -335,7 +336,7 @@ ul, ol { list-style: none; }
     gap: 12px;
     height: 56px;
     padding: 0 1rem;
-    background: #0b224e;
+    background: #2E8B57;
     color: #ffffff;
     position: sticky;
     top: 0;
