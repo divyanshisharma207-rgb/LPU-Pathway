@@ -1,0 +1,834 @@
+/* ══════════════════════════════════════════════════════════════
+   smart-campus.css – Smart Campus Features:
+   1. Parking Availability (Staff & Student)
+   2. Crowd Heatmap (Library, Food Court, Gates)
+   3. Exam Hall Finder (Roll No., Hall, Seat, Route)
+   4. Event Navigation (Society Fests, Seminars, Reminders)
+   5. Visitor Mode (Guided Tours for Parents & Admissions)
+   6. Emergency Map Layer (Medical, Security, Fire Exits)
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── QUICK-ACCESS SMART CAMPUS LAUNCHER (Navigate Page) ──────── */
+.smart-tools-section {
+  margin: 1.5rem 0 1rem;
+  padding-top: 1.25rem;
+  border-top: 2px dashed var(--clr-border, #e5e7eb);
+}
+
+.smart-tools-heading {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--clr-text, #1f2937);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.smart-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.smart-tool-card {
+  background: var(--clr-surface, #ffffff);
+  border: 1.5px solid var(--clr-border, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--clr-text, #1f2937);
+  text-decoration: none;
+}
+
+.smart-tool-card:hover,
+.smart-tool-card:focus-visible {
+  border-color: var(--clr-primary, #1565c0);
+  background: var(--clr-primary-light, #e3f2fd);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.smart-tool-card .tool-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.smart-tool-card .tool-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.smart-tool-card .tool-desc {
+  font-size: 0.68rem;
+  color: var(--clr-text-muted, #64748b);
+  line-height: 1.2;
+}
+
+/* ── MAP TOOLBAR SMART BUTTONS ───────────────────────────────── */
+.map-ctrl-btn.active-layer {
+  background: var(--clr-primary, #1565c0) !important;
+  color: #ffffff !important;
+  border-color: var(--clr-primary, #1565c0) !important;
+  box-shadow: 0 2px 6px rgba(21, 101, 192, 0.35);
+}
+
+.map-ctrl-btn.active-emergency {
+  background: #ef6351 !important;
+  color: #ffffff !important;
+  border-color: #ef6351 !important;
+  box-shadow: 0 2px 6px rgba(239, 99, 81, 0.4);
+}
+
+/* ── FEATURE PAGE LAYOUTS ────────────────────────────────────── */
+.smart-page-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.smart-page-header {
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--clr-border, #e5e7eb);
+  padding-bottom: 1rem;
+}
+
+.smart-page-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--clr-text, #1f2937);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 0.4rem;
+}
+
+.smart-page-subtitle {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted, #64748b);
+  margin: 0;
+}
+
+/* ── 1. PARKING AVAILABILITY ─────────────────────────────────── */
+.parking-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.filter-chip {
+  background: var(--clr-surface, #ffffff);
+  border: 1.5px solid var(--clr-border, #e5e7eb);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--clr-text, #1f2937);
+}
+
+.filter-chip.active,
+.filter-chip:hover {
+  background: var(--clr-primary, #1565c0);
+  color: #ffffff;
+  border-color: var(--clr-primary, #1565c0);
+}
+
+.parking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.parking-card {
+  background: var(--clr-surface, #ffffff);
+  border: 1.5px solid var(--clr-border, #e5e7eb);
+  border-radius: var(--radius-md, 10px);
+  padding: 1.15rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.parking-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  border-color: var(--clr-primary, #1565c0);
+}
+
+.parking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.parking-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--clr-text, #1f2937);
+  margin: 0 0 2px;
+}
+
+.parking-location {
+  font-size: 0.8rem;
+  color: var(--clr-text-muted, #64748b);
+}
+
+.parking-status-badge {
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.parking-status-badge.available {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.parking-status-badge.filling {
+  background: #fff8e1;
+  color: #f57f17;
+  border: 1px solid #ffe082;
+}
+
+.parking-status-badge.full {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+.parking-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  background: #f8fafc;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.85rem;
+  text-align: center;
+}
+
+.slot-stat .slot-num {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--clr-text, #1f2937);
+  display: block;
+}
+
+.slot-stat .slot-label {
+  font-size: 0.68rem;
+  color: var(--clr-text-muted, #64748b);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.btn-route-parking {
+  width: 100%;
+  background: var(--clr-primary, #1565c0);
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+
+.btn-route-parking:hover {
+  background: #0d47a1;
+}
+
+/* ── 2. CROWD HEATMAP ────────────────────────────────────────── */
+.heatmap-status-banner {
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.heatmap-legend {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-dot.low { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+.legend-dot.moderate { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
+.legend-dot.peak { background: #ef4444; box-shadow: 0 0 6px #ef4444; }
+
+.crowd-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem;
+}
+
+.crowd-card {
+  background: var(--clr-surface, #ffffff);
+  border: 1.5px solid var(--clr-border, #e5e7eb);
+  border-radius: 10px;
+  padding: 1.15rem;
+  border-left: 6px solid #22c55e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.crowd-card.moderate { border-left-color: #f59e0b; }
+.crowd-card.peak { border-left-color: #ef4444; }
+
+.crowd-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.crowd-zone-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.crowd-density-meter {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.crowd-density-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.crowd-density-fill.low { background: #22c55e; }
+.crowd-density-fill.moderate { background: #f59e0b; }
+.crowd-density-fill.peak { background: #ef4444; }
+
+.crowd-metrics {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--clr-text-muted, #64748b);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.crowd-tip {
+  font-size: 0.8rem;
+  background: #f8fafc;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  color: #334155;
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+
+/* ── 3. EXAM HALL FINDER ─────────────────────────────────────── */
+.exam-search-box {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+}
+
+.exam-search-label {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #14532d;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.exam-input-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.exam-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #86efac;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.exam-input:focus {
+  outline: 3px solid #22c55e;
+  border-color: #15803d;
+}
+
+.btn-exam-search {
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+
+.btn-exam-search:hover {
+  background: #15803d;
+}
+
+.exam-card-result {
+  background: #ffffff;
+  border: 2px solid #16a34a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  margin-top: 1.25rem;
+  animation: pageEnter 0.3s ease;
+}
+
+.exam-card-header {
+  background: linear-gradient(135deg, #15803d, #16a34a);
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exam-card-body {
+  padding: 1.25rem;
+}
+
+.exam-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.exam-detail-item {
+  background: #f8fafc;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.exam-detail-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.exam-detail-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.exam-seat-callout {
+  background: #fef3c7;
+  border: 2px solid #fde047;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.exam-seat-callout .seat-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.exam-seat-callout .seat-number {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #78350f;
+  margin: 4px 0;
+}
+
+/* ── 4. EVENT NAVIGATION ─────────────────────────────────────── */
+.events-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.events-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.15rem;
+}
+
+.event-card {
+  background: #ffffff;
+  border: 1.5px solid var(--clr-border, #e5e7eb);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-color: #6366f1;
+}
+
+.event-card-banner {
+  height: 90px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+}
+
+.event-badge {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.event-card-body {
+  padding: 1.15rem;
+  flex: 1;
+}
+
+.event-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.4rem;
+}
+
+.event-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-bottom: 0.35rem;
+}
+
+.event-desc {
+  font-size: 0.85rem;
+  color: #334155;
+  line-height: 1.4;
+  margin: 0.75rem 0;
+}
+
+.event-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1.15rem 1.15rem;
+}
+
+.btn-event-remind {
+  flex: 1;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 0.55rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.btn-event-remind:hover {
+  background: #e2e8f0;
+}
+
+.btn-event-route {
+  flex: 1.2;
+  background: #4f46e5;
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-decoration: none;
+}
+
+.btn-event-route:hover {
+  background: #4338ca;
+}
+
+/* ── 5. VISITOR MODE GUIDED TOURS ────────────────────────────── */
+.visitor-tours-nav {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.visitor-tour-pill {
+  flex: 1;
+  min-width: 240px;
+  background: #ffffff;
+  border: 2px solid var(--clr-border, #e5e7eb);
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.visitor-tour-pill.active {
+  border-color: #0284c7;
+  background: #f0f9ff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+}
+
+.visitor-tour-pill .tour-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+  display: block;
+}
+
+.visitor-tour-pill .tour-stops-count {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.visitor-hud-card {
+  background: #ffffff;
+  border: 2px solid #0284c7;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.12);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.visitor-hud-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.tour-step-badge {
+  background: #0284c7;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.visitor-hud-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.5rem;
+}
+
+.visitor-hud-desc {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.visitor-hud-controls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.btn-tour-nav {
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+}
+
+.btn-tour-prev { background: #f1f5f9; color: #334155; }
+.btn-tour-prev:hover { background: #e2e8f0; }
+
+.btn-tour-next { background: #0284c7; color: #ffffff; }
+.btn-tour-next:hover { background: #0369a1; }
+
+.btn-tour-audio { background: #e0f2fe; color: #0369a1; border: 1.5px solid #bae6fd; }
+.btn-tour-audio:hover { background: #bae6fd; }
+
+/* ── 6. EMERGENCY MAP LAYER & SAFE HAVENS ─────────────────────── */
+.emergency-hub-banner {
+  background: #fff5f5;
+  border: 2px solid #ef6351;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.emergency-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.emergency-post-card {
+  background: #ffffff;
+  border: 1.5px solid var(--clr-border, #e5e7eb);
+  border-radius: 10px;
+  padding: 1.15rem;
+  border-left: 6px solid #ef6351;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.emergency-post-card.security { border-left-color: #3b82f6; }
+.emergency-post-card.assembly { border-left-color: #22c55e; }
+
+.btn-emergency-route-safe {
+  width: 100%;
+  background: #ef6351;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 0.75rem;
+}
+
+.btn-emergency-route-safe:hover {
+  background: #dc2626;
+}
+
+/* ── LEAFLET CUSTOM MARKERS & HEATMAP CIRCLES ────────────────── */
+.smart-map-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+  font-size: 1.1rem;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.smart-map-marker:hover {
+  transform: scale(1.15);
+}
+
+.smart-map-marker.parking { background: #1565c0; color: #ffffff; }
+.smart-map-marker.emergency { background: #ef6351; color: #ffffff; animation: sosPulse 2s infinite; }
+.smart-map-marker.event { background: #7c3aed; color: #ffffff; }
+.smart-map-marker.tour { background: #0284c7; color: #ffffff; }
+
+.smart-map-popup {
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+.smart-map-popup h4 {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.smart-map-popup p {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.smart-map-popup .popup-btn {
+  display: inline-block;
+  background: #1565c0;
+  color: #ffffff !important;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}

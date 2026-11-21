@@ -51,6 +51,9 @@
   // 12. Init 1-Tap Campus Emergency & Medical SOS
   if (window.CampusSOS) CampusSOS.init();
 
+  // 13. Init Smart Campus Hub (Parking, Heatmap, Exams, Events, Visitor, Emergency)
+  if (window.CampusSmartHub) CampusSmartHub.init();
+
  console.log('[LPU Pathway] Accessible navigation ready ');
  });
 
@@ -69,7 +72,8 @@
  // All page sections
  const allPages = document.querySelectorAll('.page-section');
 
- function switchTab(tabId, triggerEl) {
+ window.switchTabTo = switchTab;
+  function switchTab(tabId, triggerEl) {
     if (tabId === 'gps') {
       switchTab('navigate');
       setTimeout(() => {
@@ -109,6 +113,12 @@
  navigate: '#navigate',
  buildings: '#buildings',
  autos: '#autos',
+ parking: '#parking',
+ heatmap: '#heatmap',
+ exams: '#exams',
+ events: '#events',
+ visitor: '#visitor',
+ emergency: '#emergency',
  report: '#report',
  help: '#help',
  };
@@ -119,6 +129,12 @@
  navigate: 'Navigate — Route Planner',
  buildings: 'Buildings — Accessibility Info',
  autos: 'Nearest Autos & E-Carts',
+ parking: 'Campus Parking Availability',
+ heatmap: 'Live Crowd Heatmap & Queues',
+ exams: 'Exam Hall & Seat Finder',
+ events: 'Campus Society Events & Fests',
+ visitor: 'Visitor Guided Tours',
+ emergency: 'Emergency Safe Havens',
  report: 'Report Issue',
  help: 'Help & Guide',
  };
