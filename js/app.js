@@ -124,6 +124,9 @@
  events: '#events',
  visitor: '#visitor',
  emergency: '#emergency',
+ indoor: '#indoor',
+ queues: '#queues',
+ stories: '#stories',
  report: '#report',
  help: '#help',
  };
@@ -140,6 +143,9 @@
  events: 'Campus Society Events & Fests',
  visitor: 'Visitor Guided Tours',
  emergency: 'Emergency Safe Haven',
+ indoor: 'Indoor Floor-by-Floor Navigation',
+ queues: 'Campus Queue Estimates & Wait Times',
+ stories: 'Campus Stories & Orientation',
  report: 'Report Issue',
  help: 'Help & Guide',
  };

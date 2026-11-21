@@ -49,6 +49,9 @@
  <li><a href="#" class="nav-link" data-tab="exams">Exam Hall</a></li>
  <li><a href="#" class="nav-link" data-tab="events">Events</a></li>
  <li><a href="#" class="nav-link" data-tab="visitor">Visitor Tour</a></li>
+ <li><a href="#" class="nav-link" data-tab="indoor">Indoor Nav</a></li>
+ <li><a href="#" class="nav-link" data-tab="queues">Queue Times</a></li>
+ <li><a href="#" class="nav-link" data-tab="stories">Campus Stories</a></li>
  <li><a href="#" class="nav-link" data-tab="report">Report Issue</a></li>
  <li><a href="#" class="nav-link" data-tab="help">Help</a></li>
  </ul>
@@ -263,6 +266,18 @@
       <a href="#" class="smart-tool-card" data-smart-launch="emergency" title="Nearest emergency medical center and security posts">
         <span class="tool-title">Safe Haven</span>
         <span class="tool-desc">Medical &amp; Security</span>
+      </a>
+      <a href="#" class="smart-tool-card" data-smart-launch="indoor" title="Floor-by-floor indoor guidance and lift advice">
+        <span class="tool-title">Indoor Nav</span>
+        <span class="tool-desc">Lifts &amp; Rooms</span>
+      </a>
+      <a href="#" class="smart-tool-card" data-smart-launch="queues" title="Live queue wait times for fee, admin, and hospital">
+        <span class="tool-title">Queue Times</span>
+        <span class="tool-desc">Counters &amp; OPD</span>
+      </a>
+      <a href="#" class="smart-tool-card" data-smart-launch="stories" title="Visual orientation tours of famous campus spots">
+        <span class="tool-title">Stories</span>
+        <span class="tool-desc">Landmark Tours</span>
       </a>
     </div>
   </div>
@@ -1442,6 +1457,52 @@
    </div>
  </section>
 
+ 
+ <!-- ══════════════════════════════════════════════════════════════
+      INDOOR NAVIGATION (FLOOR-BY-FLOOR) SECTION
+      ══════════════════════════════════════════════════════════════ -->
+ <section id="indoor-section" class="indoor-section page-section" data-page="indoor" aria-labelledby="indoor-heading">
+   <div class="smart-page-container">
+     <header class="smart-page-header">
+       <h2 id="indoor-heading" class="smart-page-title">
+         Indoor Floor-by-Floor Navigation
+       </h2>
+       <p class="smart-page-subtitle">Turn-by-turn guidance inside major blocks (e.g., Block 32, 5th Floor, Room 502) including specific lift, staircase, and ramp routing.</p>
+     </header>
+     <div id="indoor-container"></div>
+   </div>
+ </section>
+
+ <!-- ══════════════════════════════════════════════════════════════
+      QUEUE ESTIMATES (LIVE WAIT TIMES) SECTION
+      ══════════════════════════════════════════════════════════════ -->
+ <section id="queues-section" class="queues-section page-section" data-page="queues" aria-labelledby="queues-heading">
+   <div class="smart-page-container">
+     <header class="smart-page-header">
+       <h2 id="queues-heading" class="smart-page-title">
+         Campus Queue Estimates &amp; Live Wait Times
+       </h2>
+       <p class="smart-page-subtitle">Live wait times, active counters, and current tokens for student fee clearance, admin offices, examination cells, and Uni-Hospital.</p>
+     </header>
+     <div id="queues-container"></div>
+   </div>
+ </section>
+
+ <!-- ══════════════════════════════════════════════════════════════
+      CAMPUS STORIES & VISUAL ORIENTATION SECTION
+      ══════════════════════════════════════════════════════════════ -->
+ <section id="stories-section" class="stories-section page-section" data-page="stories" aria-labelledby="stories-heading">
+   <div class="smart-page-container">
+     <header class="smart-page-header">
+       <h2 id="stories-heading" class="smart-page-title">
+         Campus Stories &amp; Visual Orientation
+       </h2>
+       <p class="smart-page-subtitle">Photo tours, architectural highlights, and essential navigation tips for famous LPU spots to help new students feel oriented.</p>
+     </header>
+     <div id="stories-container"></div>
+   </div>
+ </section>
+
  </main>
 
  <!-- 
@@ -1587,6 +1648,12 @@
         </div>
       </div>
     </div>
+  </div>
+
+
+  <!-- CAMPUS STORIES PLAYER MODAL -->
+  <div id="story-modal-overlay" class="story-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="story-player-card" aria-hidden="true">
+    <div id="story-player-card" class="story-player-card"></div>
   </div>
 
 </body>

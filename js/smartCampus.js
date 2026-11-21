@@ -550,6 +550,9 @@ window.CampusSmartHub = (() => {
     renderEventsSection();
     renderVisitorSection();
     renderEmergencySection();
+    renderIndoorSection();
+    renderQueuesSection();
+    renderStoriesSection();
     wireMapToolbarButtons();
     wireQuickLaunchers();
     console.log('[CampusSmartHub] Smart Campus features initialized.');
@@ -1168,6 +1171,15 @@ window.CampusSmartHub = (() => {
           case 'visitor':
             window.switchTabTo ? window.switchTabTo('visitor') : document.querySelector('[data-tab="visitor"]')?.click();
             break;
+          case 'indoor':
+            window.switchTabTo ? window.switchTabTo('indoor') : document.querySelector('[data-tab="indoor"]')?.click();
+            break;
+          case 'queues':
+            window.switchTabTo ? window.switchTabTo('queues') : document.querySelector('[data-tab="queues"]')?.click();
+            break;
+          case 'stories':
+            window.switchTabTo ? window.switchTabTo('stories') : document.querySelector('[data-tab="stories"]')?.click();
+            break;
           case 'emergency':
             // Toggle emergency layer on map and switch to map view
             window.switchTabTo ? window.switchTabTo('navigate') : document.querySelector('[data-tab="navigate"]')?.click();
@@ -1307,7 +1319,710 @@ window.CampusSmartHub = (() => {
       const dist = Math.hypot(post.lat - userLat, post.lng - userLng);
       if (dist < minDist) {
         minDist = dist;
-        closestPost = post;
+        closestPost = post
+  // ═════════════════════════════════════════════════════════════════
+  // 7. INDOOR NAVIGATION SYSTEM (Floor-by-Floor & Rooms)
+  // ═════════════════════════════════════════════════════════════════
+  const INDOOR_BLOCKS = {
+    'b32': {
+      id: 'b32',
+      name: 'Block 32 – Academic Block (CSE & Tech)',
+      nodeId: 'b32-ground',
+      floors: [0, 1, 2, 3, 4, 5],
+      lifts: [
+        { id: 'L-32A', name: 'Lift L-32A (North Wing)', status: 'Operational', floors: [0, 1, 2, 3, 4, 5], accessible: true, notes: 'Voice announcements and Braille buttons.' },
+        { id: 'L-32B', name: 'Lift L-32B (South Wing)', status: 'Operational', floors: [0, 1, 2, 3, 4, 5], accessible: true, notes: 'High-speed passenger lift.' }
+      ],
+      stairs: [
+        { id: 'S-32-1', name: 'Central Grand Staircase', floors: [0, 1, 2, 3, 4, 5], notes: 'Wide flight with dual handrails.' },
+        { id: 'S-32-2', name: 'East Wing Stairwell', floors: [0, 1, 2, 3, 4, 5], notes: 'Direct access to engineering labs.' }
+      ],
+      rooms: [
+        { floor: 0, code: '001', name: 'Dean’s Secretariat & Executive Boardroom', wing: 'East Wing', side: 'Right' },
+        { floor: 0, code: '004', name: 'Student Counseling & Faculty Advisors Cell', wing: 'West Wing', side: 'Left' },
+        { floor: 0, code: '012', name: 'Central Academic Auditorium & Seminar Foyer', wing: 'Central Plaza', side: 'Straight' },
+        { floor: 1, code: '102', name: 'Robotics & Embedded Systems Laboratory', wing: 'North Wing', side: 'Right' },
+        { floor: 1, code: '105', name: 'Faculty Cabins & Research Mentors', wing: 'East Wing', side: 'Left' },
+        { floor: 1, code: '110', name: 'Smart Classroom & Audio-Visual Studio', wing: 'West Wing', side: 'Right' },
+        { floor: 2, code: '204', name: 'CSE Computer Lab 4 (High Performance Computing)', wing: 'North Wing', side: 'Left' },
+        { floor: 2, code: '208', name: 'Database Management Systems Testing Lab', wing: 'East Wing', side: 'Right' },
+        { floor: 2, code: '214', name: 'Lecture Hall 214 (Tiered Seating)', wing: 'South Wing', side: 'Left' },
+        { floor: 3, code: '302', name: 'Software Engineering Studio & Project Hub', wing: 'North Wing', side: 'Right' },
+        { floor: 3, code: '305', name: 'Cloud Computing & Distributed Systems Lab', wing: 'East Wing', side: 'Left' },
+        { floor: 3, code: '310', name: 'Lecture Hall 310 (Interactive Smart Board)', wing: 'South Wing', side: 'Right' },
+        { floor: 4, code: '401', name: 'Data Science & Big Data Research Unit', wing: 'North Wing', side: 'Left' },
+        { floor: 4, code: '406', name: 'Machine Learning & Cyber Security Lab', wing: 'East Wing', side: 'Right' },
+        { floor: 4, code: '412', name: 'Lecture Hall 412', wing: 'South Wing', side: 'Left' },
+        { floor: 5, code: '502', name: 'Advanced AI & Deep Learning Lab', wing: 'North Wing', side: 'Right' },
+        { floor: 5, code: '505', name: 'Ph.D. Research Scholar Suites', wing: 'East Wing', side: 'Left' },
+        { floor: 5, code: '508', name: 'Executive Conference Room & Colloquium Hall', wing: 'South Wing', side: 'Right' }
+      ]
+    },
+    'b34': {
+      id: 'b34',
+      name: 'Block 34 – Shanti Devi Mittal Central Library',
+      nodeId: 'b34-ground',
+      floors: [0, 1, 2, 3, 4],
+      lifts: [
+        { id: 'L-34', name: 'Central Library Glass Lift', status: 'Operational', floors: [0, 1, 2, 3, 4], accessible: true, notes: 'Spacious glass elevator with wheelchair priority.' }
+      ],
+      stairs: [
+        { id: 'S-34-1', name: 'Library Spiral Staircase', floors: [0, 1, 2, 3, 4], notes: 'Iconic central spiral staircase.' }
+      ],
+      rooms: [
+        { floor: 0, code: '001', name: 'Circulation Desk & RFID Self-Checkout', wing: 'Ground Lobby', side: 'Straight' },
+        { floor: 1, code: '101', name: 'Undergraduate Sciences & Engineering Stacks', wing: 'Main Reading Floor', side: 'Left' },
+        { floor: 2, code: '201', name: 'Quiet Study Pods & Research Archives', wing: 'Quiet Zone', side: 'Right' },
+        { floor: 3, code: '301', name: 'Digital Library & International Journal Lab', wing: 'Tech Wing', side: 'Left' },
+        { floor: 4, code: '401', name: 'Post-Graduate Scholars & Theses Repository', wing: 'Silent Zone', side: 'Right' }
+      ]
+    },
+    'b36': {
+      id: 'b36',
+      name: 'Block 36 – Student Centre & Welfare',
+      nodeId: 'b36-ground',
+      floors: [0, 1, 2, 3],
+      lifts: [
+        { id: 'L-36', name: 'Student Centre Lift', status: 'Operational', floors: [0, 1, 2, 3], accessible: true, notes: 'Direct access to auditorium and clubs.' }
+      ],
+      stairs: [
+        { id: 'S-36', name: 'Main Broad Staircase', floors: [0, 1, 2, 3], notes: 'High traffic central staircase.' }
+      ],
+      rooms: [
+        { floor: 0, code: '001', name: 'Fee Accounts & Student Billing Counter', wing: 'Front Lobby', side: 'Left' },
+        { floor: 0, code: '005', name: 'Examination Transcript & Migration Cell', wing: 'Front Lobby', side: 'Right' },
+        { floor: 1, code: '102', name: 'Division of Student Welfare & Clubs Office', wing: 'Cultural Wing', side: 'Left' },
+        { floor: 2, code: '201', name: 'Student Council Secretariat & NSS Office', wing: 'Activity Floor', side: 'Right' },
+        { floor: 3, code: '301', name: 'Multi-Purpose Rehearsal Hall & Club Studios', wing: 'Top Auditorium', side: 'Straight' }
+      ]
+    }
+  };
+
+  // ═════════════════════════════════════════════════════════════════
+  // 8. QUEUE ESTIMATES (Live Wait Times & Tokens)
+  // ═════════════════════════════════════════════════════════════════
+  const QUEUE_POINTS = [
+    {
+      id: 'q-fee',
+      name: 'Fee Clearance & Accounts Cell',
+      location: 'Block 36 Ground Floor, Counter 1–5',
+      nodeId: 'b36-ground',
+      currentToken: 142,
+      inQueue: 14,
+      avgWaitMins: 11,
+      openCounters: '4 of 5 Active',
+      status: 'moderate',
+      services: ['Semester Tuition Fees', 'Hostel Dues', 'No-Dues Clearance', 'Bus Pass Validation'],
+      peakTime: '11:30 AM – 02:00 PM'
+    },
+    {
+      id: 'q-admin',
+      name: 'Admissions & Document Verification Cell',
+      location: 'Block 32 Central Atrium, Desk A–H',
+      nodeId: 'b32-ground',
+      currentToken: 210,
+      inQueue: 18,
+      avgWaitMins: 16,
+      openCounters: '6 of 8 Active',
+      status: 'busy',
+      services: ['Original Certificate Verification', 'Migration Submission', 'Scholarship Approval', 'ID Card Issuance'],
+      peakTime: '10:00 AM – 03:30 PM'
+    },
+    {
+      id: 'q-med-opd',
+      name: 'Uni-Hospital Medical Center – General OPD',
+      location: 'Uni-Hospital South Wing, Ground Floor',
+      nodeId: 'uni-hospital',
+      currentToken: 45,
+      inQueue: 6,
+      avgWaitMins: 8,
+      openCounters: '3 Doctors On-Duty',
+      status: 'low',
+      services: ['General Physician Consultation', 'Vital Signs Check', 'Doctor Prescription', 'First-Aid'],
+      peakTime: '09:00 AM – 11:30 AM'
+    },
+    {
+      id: 'q-med-pharm',
+      name: 'Uni-Hospital Pharmacy & Dispensary',
+      location: 'Uni-Hospital Ground Floor Entrance',
+      nodeId: 'uni-hospital',
+      currentToken: 78,
+      inQueue: 3,
+      avgWaitMins: 3,
+      openCounters: '2 Dispensers Open',
+      status: 'low',
+      services: ['Subsidized Student Medication', 'First-Aid Supplies', 'Prescription Fulfillment'],
+      peakTime: '12:00 PM – 02:00 PM'
+    },
+    {
+      id: 'q-exam',
+      name: 'Examination Cell & Transcripts',
+      location: 'Block 36 Ground Floor, Counter 6–8',
+      nodeId: 'b36-ground',
+      currentToken: 89,
+      inQueue: 7,
+      avgWaitMins: 6,
+      openCounters: '3 of 3 Active',
+      status: 'low',
+      services: ['Grade Sheet Re-Issue', 'Provisional Degree', 'Attestation', 'Exam Hall Correction'],
+      peakTime: '02:00 PM – 04:30 PM'
+    },
+    {
+      id: 'q-hostel',
+      name: 'Hostel Administration & Warden Registry',
+      location: 'BH-South Admin Block Office',
+      nodeId: 'bh-south',
+      currentToken: 34,
+      inQueue: 5,
+      avgWaitMins: 4,
+      openCounters: '2 Desks Open',
+      status: 'low',
+      services: ['Room Allocation', 'Hostel Leave Pass', 'Maintenance Complaints', 'Guest Pass'],
+      peakTime: '05:00 PM – 07:00 PM'
+    }
+  ];
+
+  // ═════════════════════════════════════════════════════════════════
+  // 9. CAMPUS STORIES & VISUAL ORIENTATION
+  // ═════════════════════════════════════════════════════════════════
+  const CAMPUS_STORIES = [
+    {
+      id: 'story-unipolis',
+      title: 'Baldev Raj Mittal Unipolis',
+      tagline: 'The Amphitheatre of Dreams',
+      category: 'Student Life',
+      duration: '45s Tour',
+      nodeId: 'unipolis',
+      bannerGradient: 'linear-gradient(135deg, #1e3a8a, #3b82f6)',
+      storyText: 'Baldev Raj Mittal Unipolis is LPU’s iconic 10,000-capacity open amphitheatre. It hosts our star-studded Youth Vibe concerts, celebrity nights, and cultural convocations. Its wide paved ramps make it 100% accessible from all sides.',
+      orientationTip: 'The central boulevard passing through Unipolis is the smoothest, step-free walking route between academic blocks and student hostels.',
+      audioText: 'Welcome to Baldev Raj Mittal Unipolis. With a capacity of ten thousand, this magnificent open amphitheatre is the beating heart of campus entertainment and student convocations.'
+    },
+    {
+      id: 'story-library',
+      title: 'Shanti Devi Mittal Central Library',
+      tagline: 'Northern India’s 5-Storey Knowledge Citadel',
+      category: 'Academics',
+      duration: '50s Tour',
+      nodeId: 'b34-ground',
+      bannerGradient: 'linear-gradient(135deg, #065f46, #059669)',
+      storyText: 'Spanning five immense floors, the Central Library houses over 1.5 million volumes, RFID automated checkout kiosks, soundproof discussion pods, and peaceful air-conditioned reading halls.',
+      orientationTip: 'Need absolute silence for exam preparation? Head straight to the quiet reading rooms on Floors 2 and 3.',
+      audioText: 'You are viewing the Shanti Devi Mittal Central Library. Five stories of academic resources, automated self-issue kiosks, and serene study zones.'
+    },
+    {
+      id: 'story-unimall',
+      title: 'Uni-Mall Shopping & Food Plaza',
+      tagline: 'The Campus Downtown & Social Hub',
+      category: 'Dining & Retail',
+      duration: '40s Tour',
+      nodeId: 'uni-mall-entrance',
+      bannerGradient: 'linear-gradient(135deg, #9a3412, #ea580c)',
+      storyText: 'Uni-Mall brings multi-cuisine food courts, Domino’s, Subway, national bank branches, ATMs, stationery superstores, and student boutiques together in an air-conditioned lifestyle complex.',
+      orientationTip: 'During summer heat or monsoon showers, use the covered ground corridor connecting Block 34 directly into Uni-Mall.',
+      audioText: 'Welcome to Uni-Mall, the student lifestyle and dining hub of LPU, complete with banks, restaurants, and shopping stores.'
+    },
+    {
+      id: 'story-stadium',
+      title: 'Indoor Sports Stadium',
+      tagline: 'Olympic-Standard Athletic Marvel',
+      category: 'Sports & Fitness',
+      duration: '45s Tour',
+      nodeId: 'indoor-stadium',
+      bannerGradient: 'linear-gradient(135deg, #0e7490, #06b6d4)',
+      storyText: 'Features an Olympic-size heated swimming pool, 12 professional wooden badminton courts, glass-back squash arenas, an indoor shooting range, and modern gyms.',
+      orientationTip: 'Students can access the gym and pool free during scheduled university sports timings with their student ID.',
+      audioText: 'The Shanti Devi Mittal Indoor Sports Stadium houses Olympic-grade athletic facilities, including a heated swimming pool and international badminton courts.'
+    },
+    {
+      id: 'story-gate1',
+      title: 'Main Gate 1 & Sandstone Boulevard',
+      tagline: 'The Gateway to Lovely Professional University',
+      category: 'Campus Entry',
+      duration: '35s Tour',
+      nodeId: 'main-gate',
+      bannerGradient: 'linear-gradient(135deg, #831843, #db2777)',
+      storyText: 'The grand red sandstone archway stands proudly on the Grand Trunk (GT) Road. It features dedicated transit bays for university buses, e-rickshaws, and free accessible wheelchair golf carts.',
+      orientationTip: 'Free university wheelchair carts depart from Gate 1 every three minutes directly to classroom blocks.',
+      audioText: 'Main Gate 1 is our flagship campus entrance on the Grand Trunk Road, featuring visitor reception and eco-friendly golf cart transit.'
+    },
+    {
+      id: 'story-techquad',
+      title: 'Block 32 & 34 Tech Quadrangle',
+      tagline: 'The Innovation & Coding Powerhouse',
+      category: 'Technology',
+      duration: '50s Tour',
+      nodeId: 'b32-ground',
+      bannerGradient: 'linear-gradient(135deg, #4338ca, #6366f1)',
+      storyText: 'The computing epicenter of campus, housing advanced AI laboratories, autonomous robotics clusters, iOS development centres, and 24/7 student hackathon incubators.',
+      orientationTip: 'Lift L-32A on the north side is equipped with voice floor announcements and provides step-free access to all 5 floors.',
+      audioText: 'The Tech Quadrangle is home to our cutting-edge computer science labs, robotics workshops, and artificial intelligence research centres.'
+    }
+  ];
+
+  let currentStoryIdx = 0;
+  let storyAutoTimer = null;
+
+  // ─────────────────────────────────────────────────────────────────
+  // INDOOR NAVIGATION HANDLERS & RENDERER
+  // ─────────────────────────────────────────────────────────────────
+  function renderIndoorSection() {
+    const container = document.getElementById('indoor-container');
+    if (!container) return;
+
+    container.innerHTML = `
+      <div class="indoor-navigator-card">
+        <h3 style="margin:0 0 0.5rem; font-size:1.2rem; font-weight:800;">Floor-by-Floor Indoor Guidance</h3>
+        <p style="font-size:0.85rem; color:#64748b; margin:0 0 1.25rem;">
+          Select any university block, floor, and target room (e.g. Block 32, Floor 5, Room 502) to receive step-by-step guidance including which lift or staircase to take.
+        </p>
+
+        <div class="indoor-controls-grid">
+          <div class="indoor-control-group">
+            <label for="indoor-block-select">Select Building / Block</label>
+            <select id="indoor-block-select">
+              <option value="b32">Block 32 – Academic Block (CSE &amp; Tech)</option>
+              <option value="b34">Block 34 – Central Library</option>
+              <option value="b36">Block 36 – Student Centre</option>
+            </select>
+          </div>
+
+          <div class="indoor-control-group">
+            <label for="indoor-floor-select">Select Target Floor</label>
+            <select id="indoor-floor-select">
+              <option value="0">Ground Floor</option>
+              <option value="1">Floor 1</option>
+              <option value="2">Floor 2</option>
+              <option value="3">Floor 3</option>
+              <option value="4">Floor 4</option>
+              <option value="5" selected>Floor 5</option>
+            </select>
+          </div>
+
+          <div class="indoor-control-group">
+            <label for="indoor-room-select">Target Room / Facility</label>
+            <select id="indoor-room-select"></select>
+          </div>
+        </div>
+
+        <div style="margin-bottom:0.6rem; font-size:0.82rem; font-weight:700;">Transit Preference (Lift vs Stairs)</div>
+        <div class="transit-toggle-group">
+          <button type="button" class="transit-chip active" data-transit="lift" id="chip-lift">
+            Lift Only (Step-Free &amp; Accessible)
+          </button>
+          <button type="button" class="transit-chip" data-transit="stairs" id="chip-stairs">
+            Staircase (Fastest Walk)
+          </button>
+        </div>
+
+        <button type="button" id="btn-calculate-indoor" class="btn btn-primary" style="width:100%; padding:0.75rem; font-weight:800; font-size:0.95rem;">
+          Get Indoor Turn-by-Turn Guidance
+        </button>
+
+        <div id="indoor-route-output" style="margin-top:1.25rem;"></div>
+      </div>
+    `;
+
+    const bldSelect = container.querySelector('#indoor-block-select');
+    const floorSelect = container.querySelector('#indoor-floor-select');
+    const roomSelect = container.querySelector('#indoor-room-select');
+    const chipLift = container.querySelector('#chip-lift');
+    const chipStairs = container.querySelector('#chip-stairs');
+    const calcBtn = container.querySelector('#btn-calculate-indoor');
+
+    let currentTransit = 'lift';
+
+    function populateRooms() {
+      const bldKey = bldSelect.value;
+      const floorNum = parseInt(floorSelect.value, 10);
+      const bld = INDOOR_BLOCKS[bldKey];
+      if (!bld) return;
+
+      const matchingRooms = bld.rooms.filter(r => r.floor === floorNum);
+      if (matchingRooms.length > 0) {
+        roomSelect.innerHTML = matchingRooms.map(r => `<option value="${r.code}">${r.code} – ${r.name}</option>`).join('');
+      } else {
+        roomSelect.innerHTML = `<option value="101">Room ${floorNum}01 – Lecture Hall</option><option value="102">Room ${floorNum}02 – Faculty Room</option>`;
+      }
+    }
+
+    bldSelect.addEventListener('change', () => {
+      // update floors
+      const bld = INDOOR_BLOCKS[bldSelect.value];
+      if (bld) {
+        floorSelect.innerHTML = bld.floors.map(f => `<option value="${f}">${f === 0 ? 'Ground Floor' : 'Floor ' + f}</option>`).join('');
+        floorSelect.value = bld.floors[bld.floors.length - 1]; // pick top floor default
+        populateRooms();
+      }
+    });
+
+    floorSelect.addEventListener('change', populateRooms);
+
+    chipLift.addEventListener('click', () => {
+      chipLift.classList.add('active');
+      chipStairs.classList.remove('active');
+      currentTransit = 'lift';
+    });
+
+    chipStairs.addEventListener('click', () => {
+      chipStairs.classList.add('active');
+      chipLift.classList.remove('active');
+      currentTransit = 'stairs';
+    });
+
+    calcBtn.addEventListener('click', () => {
+      calculateIndoorGuidance(bldSelect.value, parseInt(floorSelect.value, 10), roomSelect.value, currentTransit);
+    });
+
+    // Initial populate & run
+    populateRooms();
+    calculateIndoorGuidance('b32', 5, '502', 'lift');
+  }
+
+  function calculateIndoorGuidance(blockKey, targetFloor, roomCode, transitMode) {
+    const output = document.getElementById('indoor-route-output');
+    if (!output) return;
+
+    const bld = INDOOR_BLOCKS[blockKey] || INDOOR_BLOCKS.b32;
+    const room = bld.rooms.find(r => r.code === roomCode && r.floor === targetFloor) || {
+      code: roomCode,
+      name: `Room ${roomCode}`,
+      wing: 'North Wing',
+      side: 'Right'
+    };
+
+    const isGround = targetFloor === 0;
+    const lift = bld.lifts[0];
+    const stairs = bld.stairs[0];
+
+    const transitName = transitMode === 'lift' ? lift.name : stairs.name;
+    const transitNotes = transitMode === 'lift' ? lift.notes : stairs.notes;
+
+    const steps = [
+      `Enter ${bld.name} through the East Ramped Ground Entrance (equipped with automatic double doors).`,
+      `Proceed straight 20 metres down the central ground corridor past the reception security checkpoint.`
+    ];
+
+    if (!isGround) {
+      if (transitMode === 'lift') {
+        steps.push(`Take <strong>${lift.name}</strong> on your left to <strong>Floor ${targetFloor}</strong>. (${lift.status} • ${lift.notes})`);
+      } else {
+        steps.push(`Take <strong>${stairs.name}</strong> on the right flight up to <strong>Floor ${targetFloor}</strong>. (${stairs.notes})`);
+      }
+      steps.push(`Exit at Floor ${targetFloor} into the ${room.wing} atrium.`);
+    }
+
+    steps.push(`Follow the corridor signs towards <strong>Room ${room.code}</strong> (${room.name}).`);
+    steps.push(`Arrive at <strong>Room ${room.code}</strong> on your ${room.side}. Tactile Braille room plate is installed at 1.4m height beside the door.`);
+
+    output.innerHTML = `
+      <div class="indoor-route-result">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+          <div>
+            <strong style="font-size:1.05rem; color:#14532d;">Indoor Route: ${bld.name} · Floor ${targetFloor} · Room ${room.code}</strong>
+            <div style="font-size:0.8rem; color:#475569;">Destination: ${room.name} (${room.wing})</div>
+          </div>
+          <span style="background:#dcfce7; color:#166534; font-weight:800; font-size:0.75rem; padding:4px 10px; border-radius:999px;">
+            ${transitMode === 'lift' ? 'Lift / Step-Free' : 'Staircase Route'}
+          </span>
+        </div>
+
+        <ul class="indoor-steps-list">
+          ${steps.map((st, i) => `
+            <li class="indoor-step-item">
+              <span class="step-num-badge">${i + 1}</span>
+              <div>${st}</div>
+            </li>
+          `).join('')}
+        </ul>
+
+        <div style="margin-top:1rem; display:flex; gap:0.5rem;">
+          <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.navigateToNode('${bld.nodeId}', '${bld.name}')">
+            Route Outside to ${bld.name}
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.viewFloorPlan('${bld.id}', ${targetFloor})">
+            View Graphical Floor Plan
+          </button>
+        </div>
+      </div>
+    `;
+
+    if (window.announce) announce(`Indoor guidance generated for Room ${room.code} on Floor ${targetFloor}`, false);
+  }
+
+  function viewFloorPlan(bldId, floorNum) {
+    const navTab = document.querySelector('[data-tab="navigate"]');
+    if (navTab) navTab.click();
+
+    setTimeout(() => {
+      const btnIndoor = document.getElementById('btn-indoor');
+      if (btnIndoor) btnIndoor.click();
+
+      const bldSel = document.getElementById('building-select');
+      const floorSel = document.getElementById('floor-select');
+      if (bldSel) {
+        bldSel.value = bldId;
+        bldSel.dispatchEvent(new Event('change'));
+      }
+      if (floorSel) {
+        floorSel.value = floorNum.toString();
+        floorSel.dispatchEvent(new Event('change'));
+      }
+    }, 200);
+  }
+
+  // ─────────────────────────────────────────────────────────────────
+  // QUEUE ESTIMATES HANDLERS & RENDERER
+  // ─────────────────────────────────────────────────────────────────
+  function renderQueuesSection() {
+    const container = document.getElementById('queues-container');
+    if (!container) return;
+
+    let html = `
+      <div class="heatmap-status-banner">
+        <div>
+          <strong style="color:#0369a1;">Live Campus Queue Tracker &amp; Wait Estimates</strong>
+          <div style="font-size:0.8rem; color:#475569;">Real-time token dispension &amp; counter pacing for fee billing, student welfare, admissions, and Uni-Hospital</div>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" style="background:#fff;" onclick="CampusSmartHub.refreshQueues()">
+          Refresh Live Queues
+        </button>
+      </div>
+
+      <div class="queues-grid">
+    `;
+
+    QUEUE_POINTS.forEach(q => {
+      const statusBadge = q.status === 'low' ? 'available' : (q.status === 'moderate' ? 'filling' : 'full');
+      html += `
+        <div class="queue-card" data-queue-id="${q.id}">
+          <div>
+            <div class="queue-card-header">
+              <div>
+                <h4 class="queue-title">${q.name}</h4>
+                <div class="queue-location">${q.location}</div>
+              </div>
+              <span class="parking-status-badge ${statusBadge}">${q.status.toUpperCase()} WAIT</span>
+            </div>
+
+            <div class="queue-wait-display">
+              <span class="queue-wait-num">${q.avgWaitMins}</span>
+              <span class="queue-wait-unit">mins est. wait</span>
+            </div>
+
+            <div class="queue-stats-row">
+              <span>Now Serving: <strong>#${q.currentToken}</strong></span>
+              <span>In Queue: <strong>${q.inQueue} ahead</strong></span>
+              <span>${q.openCounters}</span>
+            </div>
+
+            <div style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem;">
+              <strong>Services:</strong> ${q.services.join(', ')}<br>
+              <strong>Peak Hours:</strong> ${q.peakTime}
+            </div>
+          </div>
+
+          <div class="queue-token-action">
+            <button type="button" class="btn btn-outline btn-sm" style="flex:1;" onclick="CampusSmartHub.takeVirtualToken('${q.id}')">
+              Get Token #${q.currentToken + q.inQueue + 1}
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.navigateToNode('${q.nodeId}', '${q.name}')">
+              Navigate to Desk
+            </button>
+          </div>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+    container.innerHTML = html;
+  }
+
+  function takeVirtualToken(queueId) {
+    const q = QUEUE_POINTS.find(item => item.id === queueId);
+    if (!q) return;
+
+    const myToken = q.currentToken + q.inQueue + 1;
+    q.inQueue += 1;
+    alert(`Token Booked Successfully!
+
+Service: ${q.name}
+Your Token Number: #${myToken}
+Estimated Call Time: In approx. ${q.avgWaitMins + 2} minutes
+Location: ${q.location}
+
+Please proceed to the counter lounge.`);
+    renderQueuesSection();
+    if (window.announce) announce(`Token #${myToken} booked for ${q.name}`, true);
+  }
+
+  function refreshQueues() {
+    QUEUE_POINTS.forEach(q => {
+      // small simulation fluctuation
+      q.currentToken += Math.floor(Math.random() * 2);
+      q.inQueue = Math.max(2, q.inQueue + (Math.floor(Math.random() * 3) - 1));
+      q.avgWaitMins = Math.max(3, Math.round(q.inQueue * 0.8));
+    });
+    renderQueuesSection();
+    if (window.announce) announce('Queue wait times updated.', false);
+  }
+
+  // ─────────────────────────────────────────────────────────────────
+  // CAMPUS STORIES HANDLERS & RENDERER
+  // ─────────────────────────────────────────────────────────────────
+  function renderStoriesSection() {
+    const container = document.getElementById('stories-container');
+    if (!container) return;
+
+    let html = `
+      <div style="margin-bottom:1.25rem;">
+        <h3 style="margin:0 0 0.35rem; font-size:1.15rem; font-weight:800;">Visual Orientation &amp; Landmark Stories</h3>
+        <p style="font-size:0.85rem; color:#64748b; margin:0;">
+          Short visual tours and architectural highlights of famous LPU landmarks to help new students and visitors feel at home.
+        </p>
+      </div>
+
+      <div class="stories-grid">
+    `;
+
+    CAMPUS_STORIES.forEach((story, idx) => {
+      html += `
+        <div class="story-card" onclick="CampusSmartHub.openStory(${idx})">
+          <div class="story-media-banner" style="background:${story.bannerGradient}">
+            <span class="story-tag-pill">${story.category}</span>
+            <div>
+              <span style="font-size:0.75rem; font-weight:700; opacity:0.9;">${story.duration}</span>
+              <h4 style="margin:0; font-size:1.15rem; font-weight:800;">${story.title}</h4>
+            </div>
+          </div>
+          <div class="story-card-body">
+            <div>
+              <div class="story-tagline">"${story.tagline}"</div>
+              <p style="font-size:0.82rem; color:#334155; line-height:1.4; margin:0 0 0.75rem;">
+                ${story.storyText}
+              </p>
+              <div class="story-tip-box">
+                <strong>Orientation Tip:</strong> ${story.orientationTip}
+              </div>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" style="width:100%; font-weight:700;">
+              Watch Orientation Story →
+            </button>
+          </div>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+    container.innerHTML = html;
+  }
+
+  function openStory(index) {
+    currentStoryIdx = index;
+    const modal = document.getElementById('story-modal-overlay');
+    if (!modal) return;
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    updateStoryModalView();
+  }
+
+  function closeStory() {
+    const modal = document.getElementById('story-modal-overlay');
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+  }
+
+  function updateStoryModalView() {
+    const story = CAMPUS_STORIES[currentStoryIdx];
+    if (!story) return;
+
+    const total = CAMPUS_STORIES.length;
+    const container = document.getElementById('story-player-card');
+    if (!container) return;
+
+    // Build segments
+    const progressHtml = CAMPUS_STORIES.map((_, i) => `
+      <div class="story-bar-segment">
+        <div class="story-bar-fill" style="width: ${i < currentStoryIdx ? '100%' : (i === currentStoryIdx ? '100%' : '0%')}"></div>
+      </div>
+    `).join('');
+
+    container.innerHTML = `
+      <div class="story-progress-container">${progressHtml}</div>
+
+      <div class="story-player-header">
+        <span style="font-size:0.8rem; font-weight:800; background:rgba(0,0,0,0.5); padding:4px 10px; border-radius:999px;">
+          Story ${currentStoryIdx + 1} of ${total} • ${story.category}
+        </span>
+        <button type="button" class="sos-close-btn" onclick="CampusSmartHub.closeStory()" aria-label="Close story">✕</button>
+      </div>
+
+      <div class="story-player-body" style="background:${story.bannerGradient}">
+        <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1; text-transform:uppercase; letter-spacing:0.5px;">
+          ${story.duration}
+        </span>
+        <h3 style="font-size:1.6rem; font-weight:900; margin:4px 0 6px; text-shadow:0 2px 4px rgba(0,0,0,0.4);">
+          ${story.title}
+        </h3>
+        <div style="font-size:0.95rem; font-style:italic; opacity:0.95; margin-bottom:1rem;">
+          "${story.tagline}"
+        </div>
+        <p style="font-size:0.9rem; line-height:1.5; color:#f1f5f9; text-shadow:0 1px 2px rgba(0,0,0,0.4); margin-bottom:1rem;">
+          ${story.storyText}
+        </p>
+        <div style="background:rgba(0,0,0,0.45); backdrop-filter:blur(6px); border-radius:8px; padding:0.75rem 1rem; margin-bottom:1.25rem; font-size:0.82rem; border-left:4px solid #38bdf8;">
+          <strong>Orientation Tip:</strong> ${story.orientationTip}
+        </div>
+
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.readCurrentStoryAudio()">
+            Listen Audio Tour
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" style="flex:1; background:#ffffff; color:#0f172a;" onclick="CampusSmartHub.closeStory(); CampusSmartHub.navigateToNode('${story.nodeId}', '${story.title}')">
+            Route to Spot
+          </button>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:1rem;">
+          <button type="button" class="btn-tour-nav btn-tour-prev" style="padding:4px 10px; font-size:0.8rem;" ${currentStoryIdx === 0 ? 'disabled style="opacity:0.4;"' : ''} onclick="CampusSmartHub.prevStory()">
+            ← Previous
+          </button>
+          <button type="button" class="btn-tour-nav btn-tour-next" style="padding:4px 10px; font-size:0.8rem;" ${currentStoryIdx === total - 1 ? 'disabled style="opacity:0.4;"' : ''} onclick="CampusSmartHub.nextStory()">
+            Next Story →
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function nextStory() {
+    if (currentStoryIdx < CAMPUS_STORIES.length - 1) {
+      currentStoryIdx++;
+      updateStoryModalView();
+    }
+  }
+
+  function prevStory() {
+    if (currentStoryIdx > 0) {
+      currentStoryIdx--;
+      updateStoryModalView();
+    }
+  }
+
+  function readCurrentStoryAudio() {
+    const story = CAMPUS_STORIES[currentStoryIdx];
+    if (!story || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(story.audioText);
+    utterance.rate = 0.95;
+    window.speechSynthesis.speak(utterance);
+    if (window.announce) announce(`Reading story narration for ${story.title}`, false);
+  }
+
+;
       }
     });
 
@@ -1327,6 +2042,21 @@ window.CampusSmartHub = (() => {
     toggleHeatmapLayer,
     toggleParkingLayer,
     toggleEmergencyLayer,
+    renderIndoorSection,
+    renderQueuesSection,
+    renderStoriesSection,
+    calculateIndoorGuidance,
+    viewFloorPlan,
+    takeVirtualToken,
+    refreshQueues,
+    openStory,
+    closeStory,
+    nextStory,
+    prevStory,
+    readCurrentStoryAudio,
+    INDOOR_BLOCKS,
+    QUEUE_POINTS,
+    CAMPUS_STORIES,
     PARKING_LOTS,
     HEATMAP_HOTSPOTS,
     CAMPUS_EVENTS,
