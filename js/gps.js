@@ -373,7 +373,7 @@ const CampusGPS = (() => {
     const popupHtml = `
       <div style="font-family:'Segoe UI',sans-serif;padding:4px;max-width:240px;">
         <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-          <span style="font-size:1.4rem;">📍</span>
+          <span style="font-size:1.4rem;">📡</span>
           <div>
             <strong style="color:#1976d2;font-size:0.95rem;display:block;">
               ${coords.simulated ? 'Simulated Live Walk' : 'Your Live Location'}
@@ -390,7 +390,7 @@ const CampusGPS = (() => {
         </div>
         <button onclick="CampusGPS.setAsStartingPoint()"
                 style="width:100%;background:#1976d2;color:white;border:none;border-radius:4px;padding:5px 8px;font-size:0.8rem;font-weight:700;cursor:pointer;">
-          📍 Use as Route Starting Point
+          Use as Route Starting Point
         </button>
       </div>
     `;
@@ -519,7 +519,7 @@ const CampusGPS = (() => {
       if (!fromSelect.querySelector('option[value="live-gps"]')) {
         const opt = document.createElement('option');
         opt.value = 'live-gps';
-        opt.textContent = '📍 My Live GPS Location';
+        opt.textContent = 'My Live GPS Location';
         fromSelect.insertBefore(opt, fromSelect.children[1]);
       }
       fromSelect.value = 'live-gps';

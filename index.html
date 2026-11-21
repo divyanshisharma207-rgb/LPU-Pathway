@@ -41,7 +41,7 @@
  <li><a href="#" class="nav-link active" aria-current="page" data-tab="navigate"> Navigate</a></li>
  <li><a href="#" class="nav-link" data-tab="buildings"> Buildings</a></li>
  <li><a href="#" class="nav-link" data-tab="autos">🛺 Autos &amp; E-Carts</a></li>
- <li><a href="#" class="nav-link" data-tab="gps">📍 Live GPS</a></li>
+ <li><a href="#" class="nav-link" data-tab="gps">Live GPS</a></li>
  <li><a href="#" class="nav-link" data-tab="report"> Report Issue</a></li>
  <li><a href="#" class="nav-link" data-tab="help"> Help</a></li>
  </ul>
@@ -74,7 +74,7 @@
  <!-- FROM -->
  <div class="form-group">
  <label for="from-select" class="form-label">
- <span aria-hidden="true">📍</span> Starting Point
+ Starting Point
  </label>
  <select id="from-select" class="form-control" required aria-required="true"
  aria-describedby="from-hint">
@@ -132,7 +132,7 @@
  <!-- SUBMIT -->
  <div class="route-gps-shortcut" style="margin-bottom: 0.85rem;">
  <button type="button" id="btn-use-gps-start" class="btn btn-outline" style="width:100%; display:inline-flex; align-items:center; justify-content:center; gap:6px; font-weight:600; padding:0.55rem 0.75rem; border:1.5px solid var(--clr-primary, #1565c0); color:var(--clr-primary, #1565c0);" title="Use your current live location as the starting point">
- <span aria-hidden="true">📍</span> Use My Live GPS as Starting Point
+ Use My Live GPS as Starting Point
  </button>
  </div>
  <button type="submit" id="find-route-btn" class="btn btn-primary btn-large"
@@ -215,16 +215,11 @@
  aria-roledescription="Campus map — press Enter to re-centre">
  </div>
 
-  <!-- FLOATING GPS FAB BUTTON ON MAP -->
-  <button id="btn-gps-fab" class="gps-fab-btn" aria-label="Toggle Live GPS Location Tracking" title="Locate me / Live GPS tracking">
-    <span class="gps-fab-icon" aria-hidden="true">📍</span>
-  </button>
-
   <!-- LIVE GPS OPTION & TRACKING PANEL -->
   <div id="gps-panel" class="gps-panel-card" role="region" aria-label="Live GPS Location Tracking">
     <div class="gps-panel-idle" id="gps-panel-idle">
       <div class="gps-panel-idle-content">
-        <div class="gps-panel-icon-wrap" aria-hidden="true">📍</div>
+        <div class="gps-panel-icon-wrap" aria-hidden="true">📡</div>
         <div class="gps-panel-text">
           <div class="gps-panel-title">Live GPS Location Tracking</div>
           <div class="gps-panel-desc">Track your real-time position on campus pathways with turn-by-turn step-free guidance.</div>
@@ -272,7 +267,7 @@
             🚶 Demo Walk
           </button>
           <button id="btn-gps-route-from" class="btn btn-sm btn-primary" title="Plan route from current GPS position">
-            📍 Route From Here
+            Route From Here
           </button>
           <button id="btn-gps-stop" class="btn btn-sm btn-stop-aloud" title="Stop GPS tracking">
             ✕ Stop
@@ -825,7 +820,7 @@
  <span>Autos</span>
  </a>
  <a href="#" data-tab="gps" aria-label="Live GPS location and tracking">
- <span class="mob-icon" aria-hidden="true">📍</span>
+ <span class="mob-icon" aria-hidden="true">📡</span>
  <span>Live GPS</span>
  </a>
  <a href="#" data-tab="report" aria-label="Report Issue page">

@@ -259,7 +259,7 @@
     currentMode = stepFree ? 'stepfree' : 'fastest';
 
     const directions = RouteEngine.buildDirections(route, stepFree);
-    const fromNode = NODES[fromId] || (fromId === 'live-gps' ? { label: '📍 My Live GPS Location' } : null);
+    const fromNode = NODES[fromId] || (fromId === 'live-gps' ? { label: 'My Live GPS Location' } : null);
     const toNode = NODES[toId];
 
     DirectionsPanel.render(directions, {
