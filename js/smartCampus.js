@@ -461,7 +461,7 @@ window.CampusSmartHub = (() => {
   let currentTourStopIdx = 0;
 
   // ═════════════════════════════════════════════════════════════════
-  // 6. EMERGENCY MAP LAYER & SAFE HAVENS
+  // 6. EMERGENCY MAP LAYER & SAFE HEAVENS
   // ═════════════════════════════════════════════════════════════════
   const EMERGENCY_POSTS = [
     {
@@ -946,10 +946,10 @@ window.CampusSmartHub = (() => {
           <h3 style="margin:0; font-size:1.25rem; font-weight:800; color:#991b1b;">Campus Safety, Emergency Posts &amp; Evacuation Assembly</h3>
         </div>
         <p style="font-size:0.85rem; color:#7f1d1d; margin:0 0 0.85rem;">
-          In case of fire, medical trauma, or campus hazard, head immediately to the nearest designated Safe Haven below.
+          In case of fire, medical trauma, or campus hazard, head immediately to the nearest designated Safe Heaven below.
         </p>
         <button type="button" class="btn btn-outline" style="background:#fff; border-color:#ef6351; color:#ef6351; font-weight:800;" onclick="CampusSmartHub.routeToNearestEmergency()">
-          Find &amp; Route to Nearest Safe Haven From My Position
+          Find &amp; Route to Nearest Safe Heaven From My Position
         </button>
       </div>
 
@@ -974,7 +974,7 @@ window.CampusSmartHub = (() => {
             Direct Line: <a href="tel:${post.phone}" style="color:#ef6351;">${post.phone}</a>
           </div>
           <button type="button" class="btn-emergency-route-safe" onclick="CampusSmartHub.navigateToNode('${post.nodeId}', '${post.name}')">
-            Route to This Safe Haven
+            Route to This Safe Heaven
           </button>
         </div>
       `;
@@ -1142,7 +1142,7 @@ window.CampusSmartHub = (() => {
 
     if (show) {
       map.addLayer(emergencyLayerGroup);
-      if (window.announce) announce('Emergency Medical & Security Safe Haven layer active.', false);
+      if (window.announce) announce('Emergency Medical & Security Safe Heaven layer active.', false);
     } else {
       map.removeLayer(emergencyLayerGroup);
     }

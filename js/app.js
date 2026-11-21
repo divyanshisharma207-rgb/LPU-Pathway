@@ -143,7 +143,7 @@
  exams: 'Exam Hall & Seat Finder',
  events: 'Campus Society Events & Fests',
  visitor: 'Visitor Guided Tours',
- emergency: 'Emergency Safe Haven',
+ emergency: 'Emergency Safe Heaven',
  indoor: 'Indoor Floor-by-Floor Navigation',
  queues: 'Campus Queue Estimates & Wait Times',
  stories: 'Campus Stories & Orientation',
