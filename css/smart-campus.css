@@ -2172,3 +2172,186 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(4px);
 }
+
+/* Placement Mega Showcase Banner */
+.placement-showcase-banner {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  border: 1.5px solid #059669;
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.15);
+}
+
+.placement-showcase-image-box {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  background: #064e3b;
+}
+
+.placement-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.8);
+}
+
+.placement-showcase-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 78, 59, 0.35) 0%, rgba(6, 78, 59, 0.94) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem 1.45rem;
+  color: #ffffff;
+}
+
+.placement-showcase-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #a7f3d0;
+  margin-bottom: 0.25rem;
+}
+
+.placement-showcase-title {
+  font-size: 1.28rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem;
+  color: #ffffff;
+}
+
+.placement-showcase-desc {
+  font-size: 0.82rem;
+  color: #d1fae5;
+  line-height: 1.4;
+  margin: 0 0 0.75rem;
+  max-width: 740px;
+}
+
+.placement-showcase-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.placement-showcase-pills .showcase-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.25);
+  border: 1px solid rgba(110, 231, 183, 0.45);
+  color: #f0fdf4;
+  padding: 3px 9px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+/* Interview & Placement Selection Stages Spotlight */
+.placement-interview-spotlight {
+  margin-top: 2rem;
+  background: #ffffff;
+  border: 1.5px solid var(--clr-border, #e5e7eb);
+  border-radius: 14px;
+  padding: 1.35rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.placement-spotlight-header {
+  margin-bottom: 1.15rem;
+}
+
+.placement-spotlight-title {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #065f46;
+  margin: 0 0 0.25rem;
+}
+
+.placement-spotlight-subtitle {
+  font-size: 0.82rem;
+  color: #475569;
+  margin: 0;
+}
+
+.placement-stages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.placement-stage-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.placement-stage-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(5, 150, 105, 0.12);
+  border-color: #059669;
+}
+
+.placement-stage-img-box {
+  position: relative;
+  width: 100%;
+  height: 135px;
+  overflow: hidden;
+  background: #064e3b;
+}
+
+.placement-stage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.placement-stage-card:hover .placement-stage-img {
+  transform: scale(1.05);
+}
+
+.placement-stage-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(6, 78, 59, 0.9);
+  color: #86efac;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(134, 239, 172, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.placement-stage-body {
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.placement-stage-name {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.35rem;
+}
+
+.placement-stage-desc {
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.38;
+  margin: 0;
+}

@@ -2992,8 +2992,8 @@ Please proceed to the counter lounge.`);
       rounds: 'Round 1: Coding Assessment > Round 2: Tech Interview > Round 3: HR Discussion',
       documents: '3 hard copies of updated resume, student ID card, valid Govt ID (Aadhar/Passport), 2 passport photos, and fully charged laptop with charger for coding test.',
       eligibility: 'B.Tech CSE / IT (CGPA >= 7.5, No active backlogs)',
-      image: 'images/tour/academic_complex.jpg',
-      imageAlt: 'LPU Block 38 Mittal School of Business Auditorium Venue'
+      image: 'images/placements/google_recruitment.jpg',
+      imageAlt: 'Google Campus Placement Drive & Technical Interview Hall at LPU'
     },
     {
       id: 'drive-microsoft',
@@ -3015,8 +3015,8 @@ Please proceed to the counter lounge.`);
       rounds: 'Round 1: Cognitive Assessment > Round 2: Tech Architecture Review > Round 3: Values Fit',
       documents: '2 copies of resume, student ID card, government photo ID, project portfolio GitHub links on flash drive.',
       eligibility: 'B.Tech CSE / IT / ECE & MCA (CGPA >= 7.0)',
-      image: 'images/tour/admission_block.jpg',
-      imageAlt: 'LPU Block 25 IT & Computer Labs Venue'
+      image: 'images/placements/interview_panel.jpg',
+      imageAlt: 'Microsoft Executive Interview Panel & Architecture Evaluation'
     },
     {
       id: 'drive-amazon',
@@ -3038,8 +3038,8 @@ Please proceed to the counter lounge.`);
       rounds: 'Round 1: Online Assessment > Round 2: Linux & Networking Diagnostics > Round 3: Leadership Interview',
       documents: '3 copies of resume, printout of Amazon candidate portal registration pass, college ID, and government ID proof.',
       eligibility: 'All Engineering Streams & MCA (CGPA >= 6.5)',
-      image: 'images/tour/sports_complex.jpg',
-      imageAlt: 'LPU Shanti Devi Mittal Indoor Stadium & Auditorium'
+      image: 'images/placements/amazon_drive.jpg',
+      imageAlt: 'Amazon Recruitment Drive & Pre-Placement Talk Arena at LPU'
     },
     {
       id: 'drive-deloitte',
@@ -3061,8 +3061,8 @@ Please proceed to the counter lounge.`);
       rounds: 'Round 1: Versant Test > Round 2: Group Case Study Discussion > Round 3: Partner Interview',
       documents: '2 hard copies of verified resume, 10th/12th/B.Tech grade transcripts, college ID card.',
       eligibility: 'B.Tech All Branches & MBA (CGPA >= 6.5)',
-      image: 'images/tour/academic_complex.jpg',
-      imageAlt: 'LPU Block 32 Executive Lecture Theatre'
+      image: 'images/placements/technical_interview.jpg',
+      imageAlt: 'Deloitte 1-on-1 Case Interview & Technical Assessment'
     },
     {
       id: 'drive-bosch',
@@ -3084,8 +3084,8 @@ Please proceed to the counter lounge.`);
       rounds: 'Round 1: C/C++ Embedded Coding > Round 2: Microcontroller Interfacing > Round 3: Technical HR',
       documents: '2 resume copies, college ID card, certified training/internship certificates in Embedded/IoT.',
       eligibility: 'B.Tech ECE / EEE / Mechanical / Mechatronics (CGPA >= 6.8)',
-      image: 'images/tour/academic_complex.jpg',
-      imageAlt: 'LPU Block 28 Engineering Workshops & Labs'
+      image: 'images/placements/problem_solving_round.jpg',
+      imageAlt: 'Bosch Embedded Systems & Diagnostic Problem Solving Interview'
     },
     {
       id: 'drive-cognizant',
@@ -3107,7 +3107,8 @@ Please proceed to the counter lounge.`);
       rounds: 'Round 1: Advanced Coding > Round 2: Tech Interview > Round 3: HR Discussion',
       documents: '2 copies of resume, government ID card, university ID card.',
       eligibility: 'B.Tech / M.Tech / MCA (CGPA >= 6.0)',
-      image: 'images/tour/library.webp',
+      image: 'images/placements/joint_placement_drive.jpg',
+      imageAlt: 'Cognizant GenC Digital Specialist Coding & Interview Hall',
       imageAlt: 'LPU Central Library Digital Carrels Hall'
     }
   ];
