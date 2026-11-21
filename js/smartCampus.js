@@ -1184,6 +1184,9 @@ window.CampusSmartHub = (() => {
           case 'placements':
             window.switchTabTo ? window.switchTabTo('placements') : document.querySelector('[data-tab="placements"]')?.click();
             break;
+          case 'chatbot':
+            if (window.CampusChatbot) window.CampusChatbot.openWindow();
+            break;
           case 'emergency':
             // Toggle emergency layer on map and switch to map view
             window.switchTabTo ? window.switchTabTo('navigate') : document.querySelector('[data-tab="navigate"]')?.click();

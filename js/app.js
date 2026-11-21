@@ -54,6 +54,9 @@
   // 13. Init Smart Campus Hub (Parking, Heatmap, Exams, Events, Visitor, Emergency)
   if (window.CampusSmartHub) CampusSmartHub.init();
 
+  // 14. Init Campus AI Chatbot
+  if (window.CampusChatbot) CampusChatbot.init();
+
  console.log('[LPU Pathway] Accessible navigation ready ');
  });
 
@@ -76,6 +79,11 @@
   function switchTab(tabId, triggerEl) {
     if (tabId === 'sos') {
       if (window.CampusSOS) window.CampusSOS.openModal();
+      return;
+    }
+
+    if (tabId === 'chatbot') {
+      if (window.CampusChatbot) window.CampusChatbot.openWindow();
       return;
     }
 
