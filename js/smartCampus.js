@@ -267,7 +267,7 @@ window.CampusSmartHub = (() => {
       desc: 'National inter-university battle of bands, celebrity live concert, fashion choreography and 40+ street dance showdowns.',
       entry: 'Free for All Students (LPU ID Required)',
       badge: 'Major Fest',
-      bannerGradient: 'linear-gradient(135deg, #7c3aed, #ec4899)'
+      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)'
     },
     {
       id: 'event-techx',
@@ -281,7 +281,7 @@ window.CampusSmartHub = (() => {
       desc: '36-hour hackathon tackling smart mobility, accessible campus tools, and Generative AI agents. ₹2.5 Lakh prize pool.',
       entry: 'Registered Participants & Spectators',
       badge: 'Hackathon',
-      bannerGradient: 'linear-gradient(135deg, #2563eb, #06b6d4)'
+      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)'
     },
     {
       id: 'event-oneworld',
@@ -309,7 +309,7 @@ window.CampusSmartHub = (() => {
       desc: 'Keynote panels with Fortune 500 venture capitalists, Angel investors, and successful student startup founders.',
       entry: 'Pre-Registration on LPU Touch',
       badge: 'Conclave',
-      bannerGradient: 'linear-gradient(135deg, #d97706, #f59e0b)'
+      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)'
     },
     {
       id: 'event-moot',
@@ -323,7 +323,7 @@ window.CampusSmartHub = (() => {
       desc: 'Constitutional law debates, mock trials judged by sitting High Court judges and senior legal counsel.',
       entry: 'Open Spectator Seating',
       badge: 'Competition',
-      bannerGradient: 'linear-gradient(135deg, #4f46e5, #6366f1)'
+      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)'
     }
   ];
 

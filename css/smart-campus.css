@@ -529,13 +529,13 @@
 
 .event-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border-color: #6366f1;
+  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.16);
+  border-color: #059669;
 }
 
 .event-card-banner {
   height: 90px;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  background: linear-gradient(135deg, #059669, #10b981);
   color: #ffffff;
   padding: 1rem;
   display: flex;
@@ -610,7 +610,7 @@
 
 .btn-event-route {
   flex: 1.2;
-  background: #4f46e5;
+  background: #059669;
   color: #ffffff;
   border: none;
   padding: 0.55rem;
@@ -623,10 +623,11 @@
   justify-content: center;
   gap: 5px;
   text-decoration: none;
+  transition: background 0.15s ease;
 }
 
 .btn-event-route:hover {
-  background: #4338ca;
+  background: #047857;
 }
 
 /* ── 5. VISITOR MODE GUIDED TOURS ────────────────────────────── */
