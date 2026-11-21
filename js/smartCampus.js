@@ -566,11 +566,11 @@ window.CampusSmartHub = (() => {
     let html = `
       <div class="parking-filter-bar">
         <button class="filter-chip active" data-filter="all">All Lots (${PARKING_LOTS.length})</button>
-        <button class="filter-chip" data-filter="student">🎓 Student Lots</button>
-        <button class="filter-chip" data-filter="staff">👨‍🏫 Staff Only</button>
-        <button class="filter-chip" data-filter="ev">⚡ EV Charging</button>
-        <button class="filter-chip" data-filter="2w">🏍️ 2-Wheeler</button>
-        <button class="filter-chip" data-filter="4w">🚗 4-Wheeler</button>
+        <button class="filter-chip" data-filter="student">Student Lots</button>
+        <button class="filter-chip" data-filter="staff">Staff Only</button>
+        <button class="filter-chip" data-filter="ev">EV Charging</button>
+        <button class="filter-chip" data-filter="2w">2-Wheeler</button>
+        <button class="filter-chip" data-filter="4w">4-Wheeler</button>
       </div>
       <div class="parking-grid" id="parking-cards-grid">
     `;
@@ -586,8 +586,8 @@ window.CampusSmartHub = (() => {
           <div>
             <div class="parking-header">
               <div>
-                <h3 class="parking-title">🅿️ ${lot.name}</h3>
-                <div class="parking-location">📍 ${lot.location}</div>
+                <h3 class="parking-title">${lot.name}</h3>
+                <div class="parking-location">${lot.location}</div>
               </div>
               <span class="parking-status-badge ${statusClass}">${statusText}</span>
             </div>
@@ -601,14 +601,14 @@ window.CampusSmartHub = (() => {
                 <span class="slot-label">Student 2W</span>
               </div>
               <div class="slot-stat">
-                <span class="slot-num">${lot.slots.ev} ⚡</span>
+                <span class="slot-num">${lot.slots.ev}</span>
                 <span class="slot-label">EV Ports</span>
               </div>
             </div>
             <p style="font-size:0.75rem; color:#64748b; margin:0 0 0.85rem;"><strong>Access:</strong> ${lot.rates}</p>
           </div>
-          <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('${lot.nodeId}', '🅿️ ${lot.name}')">
-            <span>📍</span> Navigate to Parking
+          <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('${lot.nodeId}', '${lot.name}')">
+            Navigate to Parking
           </button>
         </div>
       `;
@@ -676,10 +676,10 @@ window.CampusSmartHub = (() => {
             <span>Capacity Status: <strong>${spot.status.toUpperCase()}</strong></span>
           </div>
           <div class="crowd-tip">
-            <strong>💡 Crowd Tip:</strong> ${spot.tip}
+            <strong>Crowd Tip:</strong> ${spot.tip}
           </div>
           <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="CampusSmartHub.navigateToNode('${spot.nodeId}', '${spot.name}')">
-            <span>🗺️</span> View on Map / Route Here
+            View on Map / Route Here
           </button>
         </div>
       `;
@@ -696,7 +696,7 @@ window.CampusSmartHub = (() => {
     container.innerHTML = `
       <div class="exam-search-box">
         <label for="exam-roll-input" class="exam-search-label">
-          🎓 Enter Your LPU Registration / Roll Number
+          Enter Your LPU Registration / Roll Number
         </label>
         <p style="font-size:0.85rem; color:#166534; margin:0 0 0.85rem;">
           Get your exact allocated Examination Block, Floor, Room, Seat Number, and step-free navigation route.
@@ -704,7 +704,7 @@ window.CampusSmartHub = (() => {
         <div class="exam-input-group">
           <input type="text" id="exam-roll-input" class="exam-input" placeholder="e.g. 12201948 or 12104523" value="12201948" aria-label="LPU Roll Number" />
           <button type="button" id="btn-search-exam" class="btn-exam-search">
-            <span>🔍</span> Find My Exam Hall
+            Find My Exam Hall
           </button>
         </div>
         <div style="font-size:0.75rem; color:#4b7c59; margin-top:0.5rem;">
@@ -731,7 +731,7 @@ window.CampusSmartHub = (() => {
     if (!resultArea) return;
 
     if (!roll) {
-      resultArea.innerHTML = `<div class="alert-banner" role="alert" style="display:flex;"><span class="alert-icon">⚠️</span><span>Please enter your 8-digit LPU Roll Number.</span></div>`;
+      resultArea.innerHTML = `<div class="alert-banner" role="alert" style="display:flex;"><span>Please enter your 8-digit LPU Roll Number.</span></div>`;
       return;
     }
 
@@ -779,7 +779,7 @@ window.CampusSmartHub = (() => {
       <div class="exam-card-result">
         <div class="exam-card-header">
           <div>
-            <h3 style="margin:0; font-size:1.15rem; font-weight:800;">📝 Official LPU Examination Allocation</h3>
+            <h3 style="margin:0; font-size:1.15rem; font-weight:800;">Official LPU Examination Allocation</h3>
             <span style="font-size:0.8rem; opacity:0.9;">Roll No: <strong>${exam.roll}</strong> • ${exam.name}</span>
           </div>
           <span style="background:rgba(255,255,255,0.25); padding:4px 10px; border-radius:999px; font-size:0.75rem; font-weight:700;">
@@ -806,13 +806,13 @@ window.CampusSmartHub = (() => {
             </div>
             <div class="exam-detail-item">
               <div class="exam-detail-label">Step-Free Accessibility</div>
-              <div class="exam-detail-val" style="color:#16a34a;">♿ Step-Free Lift Verified</div>
+              <div class="exam-detail-val" style="color:#16a34a;">Step-Free Lift Verified</div>
               <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">${exam.stepFreeNote}</div>
             </div>
           </div>
 
           <button type="button" class="btn btn-primary btn-large" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="CampusSmartHub.routeToExam('${exam.block}', '${exam.hall}')">
-            <span>📍</span> Route to My Exam Hall (${exam.blockLabel})
+            Route to My Exam Hall (${exam.blockLabel})
           </button>
         </div>
       </div>
@@ -826,9 +826,9 @@ window.CampusSmartHub = (() => {
     let html = `
       <div class="events-filter-bar">
         <button class="filter-chip active" data-filter="all">All Events (${CAMPUS_EVENTS.length})</button>
-        <button class="filter-chip" data-filter="cultural">🎭 Cultural &amp; Fests</button>
-        <button class="filter-chip" data-filter="technical">💻 Tech &amp; AI</button>
-        <button class="filter-chip" data-filter="academic">📚 Conclaves &amp; Seminars</button>
+        <button class="filter-chip" data-filter="cultural">Cultural &amp; Fests</button>
+        <button class="filter-chip" data-filter="technical">Tech &amp; AI</button>
+        <button class="filter-chip" data-filter="academic">Conclaves &amp; Seminars</button>
       </div>
       <div class="events-list-grid" id="events-cards-grid">
     `;
@@ -839,31 +839,31 @@ window.CampusSmartHub = (() => {
           <div>
             <div class="event-card-banner" style="background:${ev.bannerGradient}">
               <span class="event-badge">${ev.badge}</span>
-              <span style="font-size:0.8rem; font-weight:700;">📅 ${ev.date}</span>
+              <span style="font-size:0.8rem; font-weight:700;">${ev.date}</span>
             </div>
             <div class="event-card-body">
               <h3 class="event-title">${ev.title}</h3>
               <div class="event-meta-line">
-                <span>📍</span> <strong>${ev.venue}</strong>
+                <strong>Venue:</strong> ${ev.venue}
               </div>
               <div class="event-meta-line">
-                <span>⏰</span> <span>${ev.time}</span>
+                <strong>Time:</strong> ${ev.time}
               </div>
               <div class="event-meta-line">
-                <span>🏛️</span> <span style="font-size:0.78rem;">${ev.society}</span>
+                <strong>Organized by:</strong> <span style="font-size:0.78rem;">${ev.society}</span>
               </div>
               <p class="event-desc">${ev.desc}</p>
               <div style="font-size:0.75rem; color:#475569; font-weight:600;">
-                🎟️ ${ev.entry}
+                Entry: ${ev.entry}
               </div>
             </div>
           </div>
           <div class="event-actions">
             <button type="button" class="btn-event-remind" onclick="CampusSmartHub.addEventReminder('${ev.id}')">
-              <span>🔔</span> Set Reminder
+              Set Reminder
             </button>
             <button type="button" class="btn-event-route" onclick="CampusSmartHub.navigateToNode('${ev.nodeId}', '${ev.title}')">
-              <span>🚀</span> Take Me There
+              Take Me There
             </button>
           </div>
         </div>
@@ -896,7 +896,7 @@ window.CampusSmartHub = (() => {
       <div class="visitor-tours-nav">
         ${GUIDED_TOURS.map(t => `
           <div class="visitor-tour-pill ${t.id === currentTourId ? 'active' : ''}" onclick="CampusSmartHub.selectTour('${t.id}')">
-            <span class="tour-name">🏛️ ${t.title}</span>
+            <span class="tour-name">${t.title}</span>
             <span class="tour-stops-count">${t.stops.length} Guided Stops • ${t.subtitle}</span>
           </div>
         `).join('')}
@@ -905,19 +905,19 @@ window.CampusSmartHub = (() => {
       <div class="visitor-hud-card">
         <div class="visitor-hud-progress">
           <span class="tour-step-badge">Stop ${stop.index} of ${tour.stops.length}</span>
-          <span style="font-size:0.82rem; font-weight:700; color:#0284c7;">⏱️ Walk Time: ${stop.walkTime}</span>
+          <span style="font-size:0.82rem; font-weight:700; color:#0284c7;">Walk Time: ${stop.walkTime}</span>
         </div>
         <h3 class="visitor-hud-title">${stop.name}</h3>
         <p class="visitor-hud-desc">${stop.highlights}</p>
         <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1.25rem; font-size:0.85rem; color:#0369a1;">
-          <strong>🔊 Audio Tour Guide:</strong> "${stop.audioText}"
+          <strong>Audio Tour Guide:</strong> "${stop.audioText}"
         </div>
         <div class="visitor-hud-controls">
           <button type="button" class="btn-tour-nav btn-tour-audio" onclick="CampusSmartHub.readTourStop()">
-            <span>🔊</span> Listen Audio Guide
+            Listen Audio Guide
           </button>
           <button type="button" class="btn-tour-nav" style="background:#0284c7; color:#fff;" onclick="CampusSmartHub.navigateToNode('${stop.nodeId}', '${stop.name}')">
-            <span>🗺️</span> View Stop on Map
+            View Stop on Map
           </button>
           <div style="margin-left:auto; display:flex; gap:0.5rem;">
             <button type="button" class="btn-tour-nav btn-tour-prev" ${currentTourStopIdx === 0 ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''} onclick="CampusSmartHub.prevTourStop()">
@@ -1045,7 +1045,7 @@ window.CampusSmartHub = (() => {
 
         const popupContent = `
           <div class="smart-map-popup">
-            <h4>🔥 ${spot.name}</h4>
+            <h4>${spot.name}</h4>
             <p><strong>Crowd Density:</strong> ${spot.density}% (${spot.status.toUpperCase()})<br>
             <strong>Queue Wait:</strong> ~${spot.waitMinutes} mins<br>
             <em>${spot.tip}</em></p>
@@ -1076,7 +1076,7 @@ window.CampusSmartHub = (() => {
       parkingLayerGroup = L.layerGroup();
       PARKING_LOTS.forEach(lot => {
         const freeSlots = lot.totalSlots - lot.occupied;
-        const iconHtml = `<div class="smart-map-marker parking" title="${lot.name}">🅿️</div>`;
+        const iconHtml = `<div class="smart-map-marker parking" title="${lot.name}">P</div>`;
         const icon = L.divIcon({
           html: iconHtml,
           className: '',
@@ -1087,9 +1087,9 @@ window.CampusSmartHub = (() => {
         const marker = L.marker([lot.lat, lot.lng], { icon });
         const popupContent = `
           <div class="smart-map-popup">
-            <h4>🅿️ ${lot.name}</h4>
+            <h4>${lot.name}</h4>
             <p><strong>Available:</strong> ${freeSlots} / ${lot.totalSlots} Slots Free<br>
-            Staff 4W: ${lot.slots.staff4w} | Student 2W: ${lot.slots.student2w} | EV: ${lot.slots.ev} ⚡<br>
+            Staff 4W: ${lot.slots.staff4w} | Student 2W: ${lot.slots.student2w} | EV: ${lot.slots.ev} ports<br>
             <em>${lot.rates}</em></p>
             <button class="popup-btn" onclick="CampusSmartHub.navigateToNode('${lot.nodeId}', '${lot.name}')">Navigate to Lot</button>
           </div>
