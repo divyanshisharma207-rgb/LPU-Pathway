@@ -1503,7 +1503,8 @@ window.CampusSmartHub = (() => {
       category: 'Student Life',
       duration: '45s Tour',
       nodeId: 'unipolis',
-      bannerGradient: 'linear-gradient(135deg, #065f46, #059669)',
+      imageUrl: 'images/stories/unipolis.jpg',
+      bannerGradient: 'linear-gradient(180deg, rgba(6, 95, 70, 0.25) 0%, rgba(6, 95, 70, 0.92) 100%), url("images/stories/unipolis.jpg") center/cover no-repeat',
       storyText: 'Baldev Raj Mittal Unipolis is LPU’s iconic 10,000-capacity open amphitheatre. It hosts our star-studded Youth Vibe concerts, celebrity nights, and cultural convocations. Its wide paved ramps make it 100% accessible from all sides.',
       orientationTip: 'The central boulevard passing through Unipolis is the smoothest, step-free walking route between academic blocks and student hostels.',
       audioText: 'Welcome to Baldev Raj Mittal Unipolis. With a capacity of ten thousand, this magnificent open amphitheatre is the beating heart of campus entertainment and student convocations.'
@@ -1515,7 +1516,8 @@ window.CampusSmartHub = (() => {
       category: 'Academics',
       duration: '50s Tour',
       nodeId: 'b34-ground',
-      bannerGradient: 'linear-gradient(135deg, #065f46, #059669)',
+      imageUrl: 'images/stories/library.jpg',
+      bannerGradient: 'linear-gradient(180deg, rgba(6, 95, 70, 0.25) 0%, rgba(6, 95, 70, 0.92) 100%), url("images/stories/library.jpg") center/cover no-repeat',
       storyText: 'Spanning five immense floors, the Central Library houses over 1.5 million volumes, RFID automated checkout kiosks, soundproof discussion pods, and peaceful air-conditioned reading halls.',
       orientationTip: 'Need absolute silence for exam preparation? Head straight to the quiet reading rooms on Floors 2 and 3.',
       audioText: 'You are viewing the Shanti Devi Mittal Central Library. Five stories of academic resources, automated self-issue kiosks, and serene study zones.'
@@ -1527,7 +1529,8 @@ window.CampusSmartHub = (() => {
       category: 'Dining & Retail',
       duration: '40s Tour',
       nodeId: 'uni-mall-entrance',
-      bannerGradient: 'linear-gradient(135deg, #065f46, #059669)',
+      imageUrl: 'images/stories/unimall.jpg',
+      bannerGradient: 'linear-gradient(180deg, rgba(6, 95, 70, 0.25) 0%, rgba(6, 95, 70, 0.92) 100%), url("images/stories/unimall.jpg") center/cover no-repeat',
       storyText: 'Uni-Mall brings multi-cuisine food courts, Domino’s, Subway, national bank branches, ATMs, stationery superstores, and student boutiques together in an air-conditioned lifestyle complex.',
       orientationTip: 'During summer heat or monsoon showers, use the covered ground corridor connecting Block 34 directly into Uni-Mall.',
       audioText: 'Welcome to Uni-Mall, the student lifestyle and dining hub of LPU, complete with banks, restaurants, and shopping stores.'
@@ -1539,7 +1542,8 @@ window.CampusSmartHub = (() => {
       category: 'Sports & Fitness',
       duration: '45s Tour',
       nodeId: 'indoor-stadium',
-      bannerGradient: 'linear-gradient(135deg, #065f46, #059669)',
+      imageUrl: 'images/stories/stadium.jpg',
+      bannerGradient: 'linear-gradient(180deg, rgba(6, 95, 70, 0.25) 0%, rgba(6, 95, 70, 0.92) 100%), url("images/stories/stadium.jpg") center/cover no-repeat',
       storyText: 'Features an Olympic-size heated swimming pool, 12 professional wooden badminton courts, glass-back squash arenas, an indoor shooting range, and modern gyms.',
       orientationTip: 'Students can access the gym and pool free during scheduled university sports timings with their student ID.',
       audioText: 'The Shanti Devi Mittal Indoor Sports Stadium and Auditorium houses Olympic-grade athletic facilities, including a heated swimming pool and international badminton courts.'
@@ -1551,7 +1555,8 @@ window.CampusSmartHub = (() => {
       category: 'Campus Entry',
       duration: '35s Tour',
       nodeId: 'main-gate',
-      bannerGradient: 'linear-gradient(135deg, #065f46, #059669)',
+      imageUrl: 'images/stories/maingate.jpg',
+      bannerGradient: 'linear-gradient(180deg, rgba(6, 95, 70, 0.25) 0%, rgba(6, 95, 70, 0.92) 100%), url("images/stories/maingate.jpg") center/cover no-repeat',
       storyText: 'The grand red sandstone archway stands proudly on the Grand Trunk (GT) Road. It features dedicated transit bays for university buses, e-rickshaws, and free accessible wheelchair golf carts.',
       orientationTip: 'Free university wheelchair carts depart from Gate 1 every three minutes directly to classroom blocks.',
       audioText: 'Main Gate 1 is our flagship campus entrance on the Grand Trunk Road, featuring visitor reception and eco-friendly golf cart transit.'
@@ -1563,7 +1568,8 @@ window.CampusSmartHub = (() => {
       category: 'Technology',
       duration: '50s Tour',
       nodeId: 'b32-ground',
-      bannerGradient: 'linear-gradient(135deg, #065f46, #059669)',
+      imageUrl: 'images/stories/techquad.jpg',
+      bannerGradient: 'linear-gradient(180deg, rgba(6, 95, 70, 0.25) 0%, rgba(6, 95, 70, 0.92) 100%), url("images/stories/techquad.jpg") center/cover no-repeat',
       storyText: 'The computing epicenter of campus, housing advanced AI laboratories, autonomous robotics clusters, iOS development centres, and 24/7 student hackathon incubators.',
       orientationTip: 'Lift L-32A on the north side is equipped with voice floor announcements and provides step-free access to all 5 floors.',
       audioText: 'The Tech Quadrangle is home to our cutting-edge computer science labs, robotics workshops, and artificial intelligence research centres.'
@@ -2070,7 +2076,7 @@ Please proceed to the counter lounge.`);
         <button type="button" class="sos-close-btn" onclick="CampusSmartHub.closeStory()" aria-label="Close story">✕</button>
       </div>
 
-      <div class="story-player-body" style="background:${story.bannerGradient}">
+      <div class="story-player-body" style="background:linear-gradient(to top, rgba(15, 23, 42, 0.95) 45%, rgba(6, 95, 70, 0.5) 80%, rgba(0, 0, 0, 0.3) 100%), url('${story.imageUrl}') center/cover no-repeat;">
         <span style="font-size:0.85rem; font-weight:700; color:#cbd5e1; text-transform:uppercase; letter-spacing:0.5px;">
           ${story.duration}
         </span>
