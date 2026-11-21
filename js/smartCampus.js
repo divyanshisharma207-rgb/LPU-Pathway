@@ -473,7 +473,7 @@ window.CampusSmartHub = (() => {
       lng: 75.7065,
       phone: '+91 1824 404040',
       badge: '24/7 Ambulance Bay',
-      icon: '🚑',
+      icon: '',
       desc: 'Immediate emergency triage, ICU, medical doctor on-duty, wheelchair access, trauma treatment.'
     },
     {
@@ -485,7 +485,7 @@ window.CampusSmartHub = (() => {
       lng: 75.7048,
       phone: '+91 1824 404040',
       badge: 'Patrol Dispatch',
-      icon: '🛡️',
+      icon: '',
       desc: 'Central security surveillance, 24/7 emergency patrol vehicle dispatch, gate control.'
     },
     {
@@ -497,7 +497,7 @@ window.CampusSmartHub = (() => {
       lng: 75.6980,
       phone: '+91 1824 404040',
       badge: 'Security Post',
-      icon: '🛡️',
+      icon: '',
       desc: 'West campus security post, night escort support, quick assistance.'
     },
     {
@@ -509,7 +509,7 @@ window.CampusSmartHub = (() => {
       lng: 75.7053,
       phone: '+91 1824 404040',
       badge: 'First-Aid Post',
-      icon: '🩺',
+      icon: '',
       desc: 'Defibrillator (AED), medical stretcher, certified nursing assistance, first-aid kits.'
     },
     {
@@ -521,7 +521,7 @@ window.CampusSmartHub = (() => {
       lng: 75.7040,
       phone: 'N/A (Evacuation Zone)',
       badge: 'Safe Assembly Area',
-      icon: '🟢',
+      icon: '',
       desc: 'Wide open green lawns designated for building evacuation during earthquake or fire alarms.'
     },
     {
@@ -533,7 +533,7 @@ window.CampusSmartHub = (() => {
       lng: 75.7048,
       phone: 'N/A (Evacuation Zone)',
       badge: 'Safe Assembly Area',
-      icon: '🟢',
+      icon: '',
       desc: 'South sector open athletic field for hostel and indoor complex evacuation.'
     }
   ];
@@ -1319,7 +1319,13 @@ window.CampusSmartHub = (() => {
       const dist = Math.hypot(post.lat - userLat, post.lng - userLng);
       if (dist < minDist) {
         minDist = dist;
-        closestPost = post
+        closestPost = post;
+      }
+    });
+
+    navigateToNode(closestPost.nodeId, closestPost.name);
+  }
+
   // ═════════════════════════════════════════════════════════════════
   // 7. INDOOR NAVIGATION SYSTEM (Floor-by-Floor & Rooms)
   // ═════════════════════════════════════════════════════════════════
@@ -2020,13 +2026,6 @@ Please proceed to the counter lounge.`);
     utterance.rate = 0.95;
     window.speechSynthesis.speak(utterance);
     if (window.announce) announce(`Reading story narration for ${story.title}`, false);
-  }
-
-;
-      }
-    });
-
-    navigateToNode(closestPost.nodeId, closestPost.name);
   }
 
   return {

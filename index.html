@@ -1378,7 +1378,143 @@
        </h2>
        <p class="smart-page-subtitle">Real-time parking capacity for staff and student 2-wheelers, 4-wheelers &amp; EV charging stations across LPU campus.</p>
      </header>
-     <div id="parking-container"></div>
+     <div id="parking-container">
+        <div class="parking-filter-bar">
+          <button class="filter-chip active" data-filter="all">All Lots (6)</button>
+          <button class="filter-chip" data-filter="student">Student Lots</button>
+          <button class="filter-chip" data-filter="staff">Staff Only</button>
+          <button class="filter-chip" data-filter="ev">EV Charging</button>
+          <button class="filter-chip" data-filter="2w">2-Wheeler</button>
+          <button class="filter-chip" data-filter="4w">4-Wheeler</button>
+        </div>
+        <div class="parking-grid" id="parking-cards-grid">
+          <div class="parking-card" data-lot-id="lot-p1" data-category="staff" data-ev="true">
+            <div>
+              <div class="parking-header">
+                <div>
+                  <h3 class="parking-title">Gate 1 Faculty &amp; Visitor Parking (P1)</h3>
+                  <div class="parking-location">Near Main Gate 1 &amp; University Admin Block</div>
+                </div>
+                <span class="parking-status-badge available">42 Slots Free</span>
+              </div>
+              <div class="parking-slots-grid">
+                <div class="slot-stat"><span class="slot-num">18</span><span class="slot-label">Staff 4W</span></div>
+                <div class="slot-stat"><span class="slot-num">24</span><span class="slot-label">Student 2W</span></div>
+                <div class="slot-stat"><span class="slot-num">4</span><span class="slot-label">EV Ports</span></div>
+              </div>
+              <p style="font-size:0.75rem; color:#64748b; margin:0 0 0.85rem;"><strong>Access:</strong> Free for Faculty &amp; Registered Visitors</p>
+            </div>
+            <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('main-gate', 'Gate 1 Faculty &amp; Visitor Parking (P1)')">
+              Navigate to Parking
+            </button>
+          </div>
+
+          <div class="parking-card" data-lot-id="lot-p2" data-category="student" data-ev="true">
+            <div>
+              <div class="parking-header">
+                <div>
+                  <h3 class="parking-title">Central Multi-Level Parking Block 34-38 (P2)</h3>
+                  <div class="parking-location">Adjacent to Central Library &amp; Mittal School of Business</div>
+                </div>
+                <span class="parking-status-badge available">156 Slots Free</span>
+              </div>
+              <div class="parking-slots-grid">
+                <div class="slot-stat"><span class="slot-num">42</span><span class="slot-label">Staff 4W</span></div>
+                <div class="slot-stat"><span class="slot-num">110</span><span class="slot-label">Student 2W</span></div>
+                <div class="slot-stat"><span class="slot-num">8</span><span class="slot-label">EV Ports</span></div>
+              </div>
+              <p style="font-size:0.75rem; color:#64748b; margin:0 0 0.85rem;"><strong>Access:</strong> Student RFID &amp; Staff Access</p>
+            </div>
+            <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('b34-ground', 'Central Multi-Level Parking Block 34-38 (P2)')">
+              Navigate to Parking
+            </button>
+          </div>
+
+          <div class="parking-card" data-lot-id="lot-p3" data-category="student" data-ev="true">
+            <div>
+              <div class="parking-header">
+                <div>
+                  <h3 class="parking-title">Uni-Mall Shoppers &amp; Dining Parking (P3)</h3>
+                  <div class="parking-location">Behind Uni-Mall Commercial &amp; Food Plaza</div>
+                </div>
+                <span class="parking-status-badge filling">45 Slots Free</span>
+              </div>
+              <div class="parking-slots-grid">
+                <div class="slot-stat"><span class="slot-num">12</span><span class="slot-label">Staff 4W</span></div>
+                <div class="slot-stat"><span class="slot-num">33</span><span class="slot-label">Student 2W</span></div>
+                <div class="slot-stat"><span class="slot-num">2</span><span class="slot-label">EV Ports</span></div>
+              </div>
+              <p style="font-size:0.75rem; color:#64748b; margin:0 0 0.85rem;"><strong>Access:</strong> Standard Campus Parking Rules</p>
+            </div>
+            <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('uni-mall-entrance', 'Uni-Mall Shoppers &amp; Dining Parking (P3)')">
+              Navigate to Parking
+            </button>
+          </div>
+
+          <div class="parking-card" data-lot-id="lot-p4" data-category="student" data-ev="true">
+            <div>
+              <div class="parking-header">
+                <div>
+                  <h3 class="parking-title">BH-South Student 2-Wheeler Lot (P4)</h3>
+                  <div class="parking-location">Boys Hostel 1–4 Complex Avenue</div>
+                </div>
+                <span class="parking-status-badge available">95 Slots Free</span>
+              </div>
+              <div class="parking-slots-grid">
+                <div class="slot-stat"><span class="slot-num">0</span><span class="slot-label">Staff 4W</span></div>
+                <div class="slot-stat"><span class="slot-num">95</span><span class="slot-label">Student 2W</span></div>
+                <div class="slot-stat"><span class="slot-num">12</span><span class="slot-label">EV Ports</span></div>
+              </div>
+              <p style="font-size:0.75rem; color:#64748b; margin:0 0 0.85rem;"><strong>Access:</strong> Hostel Resident 2-Wheeler Permit</p>
+            </div>
+            <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('bh-south', 'BH-South Student 2-Wheeler Lot (P4)')">
+              Navigate to Parking
+            </button>
+          </div>
+
+          <div class="parking-card" data-lot-id="lot-p5" data-category="staff" data-ev="true">
+            <div>
+              <div class="parking-header">
+                <div>
+                  <h3 class="parking-title">Gate 2 West Campus Parking (P5)</h3>
+                  <div class="parking-location">Near Law &amp; Business Wing (Gate 2 West)</div>
+                </div>
+                <span class="parking-status-badge available">54 Slots Free</span>
+              </div>
+              <div class="parking-slots-grid">
+                <div class="slot-stat"><span class="slot-num">22</span><span class="slot-label">Staff 4W</span></div>
+                <div class="slot-stat"><span class="slot-num">32</span><span class="slot-label">Student 2W</span></div>
+                <div class="slot-stat"><span class="slot-num">3</span><span class="slot-label">EV Ports</span></div>
+              </div>
+              <p style="font-size:0.75rem; color:#64748b; margin:0 0 0.85rem;"><strong>Access:</strong> Open for West Sector Commuters</p>
+            </div>
+            <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('gate-2', 'Gate 2 West Campus Parking (P5)')">
+              Navigate to Parking
+            </button>
+          </div>
+
+          <div class="parking-card" data-lot-id="lot-p6" data-category="emergency" data-ev="false">
+            <div>
+              <div class="parking-header">
+                <div>
+                  <h3 class="parking-title">Uni-Hospital Emergency Patient Lot (P6)</h3>
+                  <div class="parking-location">Uni-Hospital South Gate Emergency Wing</div>
+                </div>
+                <span class="parking-status-badge filling">12 Slots Free</span>
+              </div>
+              <div class="parking-slots-grid">
+                <div class="slot-stat"><span class="slot-num">8</span><span class="slot-label">Staff 4W</span></div>
+                <div class="slot-stat"><span class="slot-num">4</span><span class="slot-label">Student 2W</span></div>
+                <div class="slot-stat"><span class="slot-num">0</span><span class="slot-label">EV Ports</span></div>
+              </div>
+              <p style="font-size:0.75rem; color:#64748b; margin:0 0 0.85rem;"><strong>Access:</strong> Emergency Patients &amp; Ambulance Priority</p>
+            </div>
+            <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('uni-hospital', 'Uni-Hospital Emergency Patient Lot (P6)')">
+              Navigate to Parking
+            </button>
+          </div>
+        </div>
+</div>
    </div>
  </section>
 
@@ -1393,7 +1529,122 @@
        </h2>
        <p class="smart-page-subtitle">Live foot-traffic density and wait times at Central Library, Uni-Mall food courts, transit gates &amp; academic lift hubs.</p>
      </header>
-     <div id="heatmap-container"></div>
+     <div id="heatmap-container">
+        <div class="heatmap-status-banner">
+          <div>
+            <strong style="color:#1e3a8a;">Live LPU Foot Traffic &amp; Queue Estimator</strong>
+            <div style="font-size:0.8rem; color:#475569;">Updated every 5 mins based on Wi-Fi density &amp; counter check-ins</div>
+          </div>
+          <div class="heatmap-legend">
+            <div class="legend-item"><span class="legend-dot low"></span> Low (&lt;40%)</div>
+            <div class="legend-item"><span class="legend-dot moderate"></span> Moderate (40-75%)</div>
+            <div class="legend-item"><span class="legend-dot peak"></span> Peak Rush (&gt;75%)</div>
+          </div>
+        </div>
+        <div class="crowd-cards-grid">
+          <div class="crowd-card peak">
+            <div class="crowd-card-header">
+              <div>
+                <h3 class="crowd-zone-title">Central Library (Block 34)</h3>
+                <span style="font-size:0.75rem; color:#64748b;">Peak Hours: 11:00 AM – 04:30 PM</span>
+              </div>
+              <span class="parking-status-badge full">84% Busy</span>
+            </div>
+            <div class="crowd-density-meter"><div class="crowd-density-fill peak" style="width: 84%"></div></div>
+            <div class="crowd-metrics">
+              <span>Estimated Queue: <strong>8 mins</strong></span>
+              <span>Capacity Status: <strong>PEAK</strong></span>
+            </div>
+            <div class="crowd-tip"><strong>Crowd Tip:</strong> Head to Floor 2 for faster seating and quieter study environment.</div>
+            <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="CampusSmartHub.navigateToNode('b34-ground', 'Central Library (Block 34)')">View on Map / Route Here</button>
+          </div>
+
+          <div class="crowd-card peak">
+            <div class="crowd-card-header">
+              <div>
+                <h3 class="crowd-zone-title">Uni-Mall Food Court &amp; Plaza</h3>
+                <span style="font-size:0.75rem; color:#64748b;">Peak Hours: 12:30 PM – 02:30 PM</span>
+              </div>
+              <span class="parking-status-badge full">92% Busy</span>
+            </div>
+            <div class="crowd-density-meter"><div class="crowd-density-fill peak" style="width: 92%"></div></div>
+            <div class="crowd-metrics">
+              <span>Estimated Queue: <strong>18 mins</strong></span>
+              <span>Capacity Status: <strong>PEAK</strong></span>
+            </div>
+            <div class="crowd-tip"><strong>Crowd Tip:</strong> Order via campus takeaway apps or visit Block 36 Food Outlet for under 5-min queue.</div>
+            <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="CampusSmartHub.navigateToNode('uni-mall-entrance', 'Uni-Mall Food Court &amp; Plaza')">View on Map / Route Here</button>
+          </div>
+
+          <div class="crowd-card moderate">
+            <div class="crowd-card-header">
+              <div>
+                <h3 class="crowd-zone-title">Main Gate 1 Turnstiles &amp; Auto Stand</h3>
+                <span style="font-size:0.75rem; color:#64748b;">Peak Hours: 08:30 AM – 09:30 AM</span>
+              </div>
+              <span class="parking-status-badge filling">72% Busy</span>
+            </div>
+            <div class="crowd-density-meter"><div class="crowd-density-fill moderate" style="width: 72%"></div></div>
+            <div class="crowd-metrics">
+              <span>Estimated Queue: <strong>6 mins</strong></span>
+              <span>Capacity Status: <strong>MODERATE</strong></span>
+            </div>
+            <div class="crowd-tip"><strong>Crowd Tip:</strong> Pedestrian turnstiles 4 &amp; 5 (Wheelchair wide lane) currently have zero wait.</div>
+            <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="CampusSmartHub.navigateToNode('main-gate', 'Main Gate 1 Turnstiles &amp; Auto Stand')">View on Map / Route Here</button>
+          </div>
+
+          <div class="crowd-card moderate">
+            <div class="crowd-card-header">
+              <div>
+                <h3 class="crowd-zone-title">Student Centre &amp; DSW (Block 36)</h3>
+                <span style="font-size:0.75rem; color:#64748b;">Peak Hours: 10:30 AM – 03:00 PM</span>
+              </div>
+              <span class="parking-status-badge filling">64% Busy</span>
+            </div>
+            <div class="crowd-density-meter"><div class="crowd-density-fill moderate" style="width: 64%"></div></div>
+            <div class="crowd-metrics">
+              <span>Estimated Queue: <strong>7 mins</strong></span>
+              <span>Capacity Status: <strong>MODERATE</strong></span>
+            </div>
+            <div class="crowd-tip"><strong>Crowd Tip:</strong> Use LPU Touch app for online requests to bypass physical counter lines.</div>
+            <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="CampusSmartHub.navigateToNode('b36-ground', 'Student Centre &amp; DSW (Block 36)')">View on Map / Route Here</button>
+          </div>
+
+          <div class="crowd-card peak">
+            <div class="crowd-card-header">
+              <div>
+                <h3 class="crowd-zone-title">Block 32 CSE Atrium &amp; Elevator Hub</h3>
+                <span style="font-size:0.75rem; color:#64748b;">Peak Hours: Between lecture intervals</span>
+              </div>
+              <span class="parking-status-badge full">88% Busy</span>
+            </div>
+            <div class="crowd-density-meter"><div class="crowd-density-fill peak" style="width: 88%"></div></div>
+            <div class="crowd-metrics">
+              <span>Estimated Queue: <strong>10 mins</strong></span>
+              <span>Capacity Status: <strong>PEAK</strong></span>
+            </div>
+            <div class="crowd-tip"><strong>Crowd Tip:</strong> Step-free gentle central ramp is faster than waiting 2 cycles for Lift L1.</div>
+            <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="CampusSmartHub.navigateToNode('b32-ground', 'Block 32 CSE Atrium')">View on Map / Route Here</button>
+          </div>
+
+          <div class="crowd-card low">
+            <div class="crowd-card-header">
+              <div>
+                <h3 class="crowd-zone-title">Baldev Raj Mittal Unipolis</h3>
+                <span style="font-size:0.75rem; color:#64748b;">Peak Hours: Festival days &amp; concerts</span>
+              </div>
+              <span class="parking-status-badge available">28% Busy</span>
+            </div>
+            <div class="crowd-density-meter"><div class="crowd-density-fill low" style="width: 28%"></div></div>
+            <div class="crowd-metrics">
+              <span>Estimated Queue: <strong>0 mins</strong></span>
+              <span>Capacity Status: <strong>LOW</strong></span>
+            </div>
+            <div class="crowd-tip"><strong>Crowd Tip:</strong> Fastest step-free outdoor pathway currently between engineering and hostel sectors.</div>
+            <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="CampusSmartHub.navigateToNode('unipolis', 'Baldev Raj Mittal Unipolis')">View on Map / Route Here</button>
+          </div>
+        </div>
+</div>
    </div>
  </section>
 
@@ -1408,7 +1659,63 @@
        </h2>
        <p class="smart-page-subtitle">Enter your LPU registration number to look up your allocated examination block, floor, hall, seat number, and step-free directions.</p>
      </header>
-     <div id="exams-container"></div>
+     <div id="exams-container">
+        <div class="exam-search-box">
+          <label for="exam-roll-input" class="exam-search-label">
+            Enter Your LPU Registration / Roll Number
+          </label>
+          <p style="font-size:0.85rem; color:#166534; margin:0 0 0.85rem;">
+            Get your exact allocated Examination Block, Floor, Room, Seat Number, and step-free navigation route.
+          </p>
+          <div class="exam-input-group">
+            <input type="text" id="exam-roll-input" class="exam-input" placeholder="e.g. 12201948 or 12104523" value="12201948" aria-label="LPU Roll Number" />
+            <button type="button" id="btn-search-exam" class="btn-exam-search" onclick="CampusSmartHub.lookupExamHall(document.getElementById('exam-roll-input').value.trim())">
+              Find My Exam Hall
+            </button>
+          </div>
+          <div style="font-size:0.75rem; color:#4b7c59; margin-top:0.5rem;">
+            Try sample roll numbers: <a href="#" onclick="document.getElementById('exam-roll-input').value='12201948'; document.getElementById('btn-search-exam').click(); return false;">12201948</a>, <a href="#" onclick="document.getElementById('exam-roll-input').value='12104523'; document.getElementById('btn-search-exam').click(); return false;">12104523</a>, or <a href="#" onclick="document.getElementById('exam-roll-input').value='12308911'; document.getElementById('btn-search-exam').click(); return false;">12308911</a>
+          </div>
+        </div>
+        <div id="exam-result-area">
+          <div class="exam-card-result">
+            <div class="exam-card-header">
+              <div>
+                <h3 style="margin:0; font-size:1.15rem; font-weight:800;">Official LPU Examination Allocation</h3>
+                <span style="font-size:0.8rem; opacity:0.9;">Roll No: <strong>12201948</strong> • Aryan Varma</span>
+              </div>
+              <span style="background:rgba(255,255,255,0.25); padding:4px 10px; border-radius:999px; font-size:0.75rem; font-weight:700;">Today</span>
+            </div>
+            <div class="exam-card-body">
+              <div class="exam-seat-callout">
+                <div class="seat-title">YOUR ASSIGNED EXAM HALL &amp; DESK</div>
+                <div class="seat-number">Hall 204 (West Wing) • Row C - Desk 14 (Window Side)</div>
+                <div style="font-weight:700; color:#92400e; font-size:0.95rem;">Block 32 – Academic Block (Floor 2)</div>
+              </div>
+              <div class="exam-details-grid">
+                <div class="exam-detail-item">
+                  <div class="exam-detail-label">Course / Subject</div>
+                  <div class="exam-detail-val">CSE316</div>
+                  <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Operating Systems &amp; System Architecture</div>
+                </div>
+                <div class="exam-detail-item">
+                  <div class="exam-detail-label">Reporting Shift</div>
+                  <div class="exam-detail-val">Afternoon (01:30 PM – 04:30 PM)</div>
+                  <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Gates close 15 mins prior</div>
+                </div>
+                <div class="exam-detail-item">
+                  <div class="exam-detail-label">Step-Free Accessibility</div>
+                  <div class="exam-detail-val" style="color:#16a34a;">Step-Free Lift Verified</div>
+                  <div style="font-size:0.78rem; color:#64748b; margin-top:2px;">Use Lift L-32A (operational) to Floor 2, turn left for Hall 204.</div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary btn-large" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="CampusSmartHub.routeToExam('b32-ground', 'Hall 204')">
+                Route to My Exam Hall (Block 32 – Academic Block)
+              </button>
+            </div>
+          </div>
+        </div>
+</div>
    </div>
  </section>
 
@@ -1423,7 +1730,120 @@
        </h2>
        <p class="smart-page-subtitle">Discover university festivals, tech hackathons, society seminars, set reminders and get direct step-free navigation to the venue.</p>
      </header>
-     <div id="events-container"></div>
+     <div id="events-container">
+        <div class="events-filter-bar">
+          <button class="filter-chip active" data-filter="all">All Events (5)</button>
+          <button class="filter-chip" data-filter="cultural">Cultural &amp; Fests</button>
+          <button class="filter-chip" data-filter="technical">Tech &amp; AI</button>
+          <button class="filter-chip" data-filter="academic">Conclaves &amp; Seminars</button>
+        </div>
+        <div class="events-list-grid" id="events-cards-grid">
+          <div class="event-card" data-category="cultural">
+            <div>
+              <div class="event-card-banner" style="background:linear-gradient(135deg, #059669, #10b981)">
+                <span class="event-badge">Major Fest</span>
+                <span style="font-size:0.8rem; font-weight:700;">Nov 24 – Nov 26, 2026</span>
+              </div>
+              <div class="event-card-body">
+                <h3 class="event-title">Youth Vibe 2026 – Mega Cultural &amp; Arts Festival</h3>
+                <div class="event-meta-line"><strong>Venue:</strong> Baldev Raj Mittal Unipolis Arena</div>
+                <div class="event-meta-line"><strong>Time:</strong> 10:00 AM Onwards</div>
+                <div class="event-meta-line"><strong>Organized by:</strong> <span style="font-size:0.78rem;">LPU Student Welfare &amp; Cultural Affairs</span></div>
+                <p class="event-desc">National inter-university battle of bands, celebrity live concert, fashion choreography and 40+ street dance showdowns.</p>
+                <div style="font-size:0.75rem; color:#475569; font-weight:600;">Entry: Free for All Students (LPU ID Required)</div>
+              </div>
+            </div>
+            <div class="event-actions">
+              <button type="button" class="btn-event-remind" onclick="CampusSmartHub.addEventReminder('event-yv')">Set Reminder</button>
+              <button type="button" class="btn-event-route" onclick="CampusSmartHub.navigateToNode('unipolis', 'Youth Vibe 2026')">Take Me There</button>
+            </div>
+          </div>
+
+          <div class="event-card" data-category="technical">
+            <div>
+              <div class="event-card-banner" style="background:linear-gradient(135deg, #059669, #10b981)">
+                <span class="event-badge">Hackathon</span>
+                <span style="font-size:0.8rem; font-weight:700;">Tomorrow</span>
+              </div>
+              <div class="event-card-body">
+                <h3 class="event-title">TechXplore AI &amp; Autonomous Robotics Hackathon</h3>
+                <div class="event-meta-line"><strong>Venue:</strong> Block 25 IT Auditorium &amp; Innovation Labs</div>
+                <div class="event-meta-line"><strong>Time:</strong> 09:00 AM – 06:00 PM</div>
+                <div class="event-meta-line"><strong>Organized by:</strong> <span style="font-size:0.78rem;">Google Developer Student Club &amp; Robotics Wing</span></div>
+                <p class="event-desc">36-hour hackathon tackling smart mobility, accessible campus tools, and Generative AI agents. ₹2.5 Lakh prize pool.</p>
+                <div style="font-size:0.75rem; color:#475569; font-weight:600;">Entry: Registered Participants &amp; Spectators</div>
+              </div>
+            </div>
+            <div class="event-actions">
+              <button type="button" class="btn-event-remind" onclick="CampusSmartHub.addEventReminder('event-techx')">Set Reminder</button>
+              <button type="button" class="btn-event-route" onclick="CampusSmartHub.navigateToNode('b25-ground', 'TechXplore AI Hackathon')">Take Me There</button>
+            </div>
+          </div>
+
+          <div class="event-card" data-category="cultural">
+            <div>
+              <div class="event-card-banner" style="background:linear-gradient(135deg, #059669, #10b981)">
+                <span class="event-badge">Global Fest</span>
+                <span style="font-size:0.8rem; font-weight:700;">Nov 28, 2026</span>
+              </div>
+              <div class="event-card-body">
+                <h3 class="event-title">One World International Culture Carnival</h3>
+                <div class="event-meta-line"><strong>Venue:</strong> Shanti Devi Mittal Indoor Sports Stadium</div>
+                <div class="event-meta-line"><strong>Time:</strong> 11:00 AM – 07:00 PM</div>
+                <div class="event-meta-line"><strong>Organized by:</strong> <span style="font-size:0.78rem;">Division of International Affairs</span></div>
+                <p class="event-desc">Students from 50+ nations showcase traditional attires, international street foods, cultural dances and country pavilions.</p>
+                <div style="font-size:0.75rem; color:#475569; font-weight:600;">Entry: Open to All Students &amp; Visitors</div>
+              </div>
+            </div>
+            <div class="event-actions">
+              <button type="button" class="btn-event-remind" onclick="CampusSmartHub.addEventReminder('event-oneworld')">Set Reminder</button>
+              <button type="button" class="btn-event-route" onclick="CampusSmartHub.navigateToNode('indoor-stadium', 'One World International Carnival')">Take Me There</button>
+            </div>
+          </div>
+
+          <div class="event-card" data-category="academic">
+            <div>
+              <div class="event-card-banner" style="background:linear-gradient(135deg, #059669, #10b981)">
+                <span class="event-badge">Conclave</span>
+                <span style="font-size:0.8rem; font-weight:700;">Dec 02, 2026</span>
+              </div>
+              <div class="event-card-body">
+                <h3 class="event-title">Global Business &amp; Startup Conclave 2026</h3>
+                <div class="event-meta-line"><strong>Venue:</strong> Block 38 MSB Auditorium</div>
+                <div class="event-meta-line"><strong>Time:</strong> 02:00 PM – 05:30 PM</div>
+                <div class="event-meta-line"><strong>Organized by:</strong> <span style="font-size:0.78rem;">Mittal School of Business (MSB)</span></div>
+                <p class="event-desc">Keynote panels with Fortune 500 venture capitalists, Angel investors, and successful student startup founders.</p>
+                <div style="font-size:0.75rem; color:#475569; font-weight:600;">Entry: Pre-Registration on LPU Touch</div>
+              </div>
+            </div>
+            <div class="event-actions">
+              <button type="button" class="btn-event-remind" onclick="CampusSmartHub.addEventReminder('event-msb')">Set Reminder</button>
+              <button type="button" class="btn-event-route" onclick="CampusSmartHub.navigateToNode('b38-ground', 'Global Business Conclave')">Take Me There</button>
+            </div>
+          </div>
+
+          <div class="event-card" data-category="academic">
+            <div>
+              <div class="event-card-banner" style="background:linear-gradient(135deg, #059669, #10b981)">
+                <span class="event-badge">Competition</span>
+                <span style="font-size:0.8rem; font-weight:700;">Dec 05, 2026</span>
+              </div>
+              <div class="event-card-body">
+                <h3 class="event-title">All-India National Moot Court Competition</h3>
+                <div class="event-meta-line"><strong>Venue:</strong> Block 37 Moot Court Hall</div>
+                <div class="event-meta-line"><strong>Time:</strong> 10:00 AM – 04:00 PM</div>
+                <div class="event-meta-line"><strong>Organized by:</strong> <span style="font-size:0.78rem;">School of Law &amp; Moot Court Society</span></div>
+                <p class="event-desc">Constitutional law debates, mock trials judged by sitting High Court judges and senior legal counsel.</p>
+                <div style="font-size:0.75rem; color:#475569; font-weight:600;">Entry: Open Spectator Seating</div>
+              </div>
+            </div>
+            <div class="event-actions">
+              <button type="button" class="btn-event-remind" onclick="CampusSmartHub.addEventReminder('event-moot')">Set Reminder</button>
+              <button type="button" class="btn-event-route" onclick="CampusSmartHub.navigateToNode('b37-ground', 'National Moot Court Competition')">Take Me There</button>
+            </div>
+          </div>
+        </div>
+</div>
    </div>
  </section>
 
@@ -1438,7 +1858,38 @@
        </h2>
        <p class="smart-page-subtitle">Interactive guided walkthrough with audio narration for parents, prospective admissions, and first-year student orientation.</p>
      </header>
-     <div id="visitor-container"></div>
+     <div id="visitor-container">
+        <div class="visitor-tours-nav">
+          <div class="visitor-tour-pill active" onclick="CampusSmartHub.selectTour('tour-admission')">
+            <span class="tour-name">Parent &amp; New Admission Campus Tour</span>
+            <span class="tour-stops-count">6 Guided Stops • Complete orientation covering university admissions, central facilities, library &amp; hospital</span>
+          </div>
+          <div class="visitor-tour-pill" onclick="CampusSmartHub.selectTour('tour-firstyear')">
+            <span class="tour-name">First-Year Student Orientation Walkthrough</span>
+            <span class="tour-stops-count">5 Guided Stops • Essential daily navigation for engineering, computing, law &amp; hostel residents</span>
+          </div>
+        </div>
+
+        <div class="visitor-hud-card">
+          <div class="visitor-hud-progress">
+            <span class="tour-step-badge">Stop 1 of 6</span>
+            <span style="font-size:0.82rem; font-weight:700; color:#0284c7;">Walk Time: 0 min (Starting Point)</span>
+          </div>
+          <h3 class="visitor-hud-title">Main Gate 1 &amp; University Reception</h3>
+          <p class="visitor-hud-desc">Grand GT Road entrance, visitor pass desk, wheelchair assistance point, electric campus buggy station.</p>
+          <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1.25rem; font-size:0.85rem; color:#0369a1;">
+            <strong>Audio Tour Guide:</strong> "Welcome to Lovely Professional University. Main Gate 1 is our flagship entrance on the Grand Trunk Road. Here parents and new admissions can obtain campus passes and board our accessible electric buggies."
+          </div>
+          <div class="visitor-hud-controls">
+            <button type="button" class="btn-tour-nav btn-tour-audio" onclick="CampusSmartHub.readTourStop()">Listen Audio Guide</button>
+            <button type="button" class="btn-tour-nav" style="background:#0284c7; color:#fff;" onclick="CampusSmartHub.navigateToNode('main-gate', 'Main Gate 1')">View Stop on Map</button>
+            <div style="margin-left:auto; display:flex; gap:0.5rem;">
+              <button type="button" class="btn-tour-nav btn-tour-prev" disabled style="opacity:0.5; cursor:not-allowed;" onclick="CampusSmartHub.prevTourStop()">← Previous Stop</button>
+              <button type="button" class="btn-tour-nav btn-tour-next" onclick="CampusSmartHub.nextTourStop()">Next Stop →</button>
+            </div>
+          </div>
+        </div>
+</div>
    </div>
  </section>
 
@@ -1453,7 +1904,81 @@
        </h2>
        <p class="smart-page-subtitle">Nearest 24/7 medical trauma hubs, campus security stations, AED first-aid points and open fire assembly grounds.</p>
      </header>
-     <div id="emergency-container"></div>
+     <div id="emergency-container">
+        <div class="emergency-hub-banner">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.4rem;">
+            <h3 style="margin:0; font-size:1.25rem; font-weight:800; color:#991b1b;">Campus Safety, Emergency Posts &amp; Evacuation Assembly</h3>
+          </div>
+          <p style="font-size:0.85rem; color:#7f1d1d; margin:0 0 0.85rem;">
+            In case of fire, medical trauma, or campus hazard, head immediately to the nearest designated Safe Haven below.
+          </p>
+          <button type="button" class="btn btn-outline" style="background:#fff; border-color:#ef6351; color:#ef6351; font-weight:800;" onclick="CampusSmartHub.routeToNearestEmergency()">
+            Find &amp; Route to Nearest Safe Haven From My Position
+          </button>
+        </div>
+
+        <div class="emergency-posts-grid">
+          <div class="emergency-post-card medical">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem;">
+              <h4 style="margin:0; font-size:1.05rem; font-weight:800;">Uni-Hospital 24/7 Trauma &amp; Emergency ICU</h4>
+              <span class="parking-status-badge available" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">24/7 Ambulance Bay</span>
+            </div>
+            <p style="font-size:0.82rem; color:#475569; margin:0 0 0.75rem; line-height:1.4;">Immediate emergency triage, ICU, medical doctor on-duty, wheelchair access, trauma treatment.</p>
+            <div style="font-size:0.78rem; color:#1e293b; font-weight:700; margin-bottom:0.5rem;">Direct Line: <a href="tel:+911824404040" style="color:#ef6351;">+91 1824 404040</a></div>
+            <button type="button" class="btn-emergency-route-safe" onclick="CampusSmartHub.navigateToNode('uni-hospital', 'Uni-Hospital Trauma Center')">Route to This Safe Haven</button>
+          </div>
+
+          <div class="emergency-post-card security">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem;">
+              <h4 style="margin:0; font-size:1.05rem; font-weight:800;">Chief Security Control Room &amp; Quick Response Team</h4>
+              <span class="parking-status-badge available" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">Patrol Dispatch</span>
+            </div>
+            <p style="font-size:0.82rem; color:#475569; margin:0 0 0.75rem; line-height:1.4;">Central security surveillance, 24/7 emergency patrol vehicle dispatch, gate control.</p>
+            <div style="font-size:0.78rem; color:#1e293b; font-weight:700; margin-bottom:0.5rem;">Direct Line: <a href="tel:+911824404040" style="color:#ef6351;">+91 1824 404040</a></div>
+            <button type="button" class="btn-emergency-route-safe" onclick="CampusSmartHub.navigateToNode('main-gate', 'Chief Security Control Room')">Route to This Safe Haven</button>
+          </div>
+
+          <div class="emergency-post-card security">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem;">
+              <h4 style="margin:0; font-size:1.05rem; font-weight:800;">Gate 2 West Sector Security Post</h4>
+              <span class="parking-status-badge available" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">Security Post</span>
+            </div>
+            <p style="font-size:0.82rem; color:#475569; margin:0 0 0.75rem; line-height:1.4;">West campus security post, night escort support, quick assistance.</p>
+            <div style="font-size:0.78rem; color:#1e293b; font-weight:700; margin-bottom:0.5rem;">Direct Line: <a href="tel:+911824404040" style="color:#ef6351;">+91 1824 404040</a></div>
+            <button type="button" class="btn-emergency-route-safe" onclick="CampusSmartHub.navigateToNode('gate-2', 'Gate 2 Security Post')">Route to This Safe Haven</button>
+          </div>
+
+          <div class="emergency-post-card medical">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem;">
+              <h4 style="margin:0; font-size:1.05rem; font-weight:800;">Student Centre First-Aid &amp; AED Station</h4>
+              <span class="parking-status-badge available" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">First-Aid Post</span>
+            </div>
+            <p style="font-size:0.82rem; color:#475569; margin:0 0 0.75rem; line-height:1.4;">Defibrillator (AED), medical stretcher, certified nursing assistance, first-aid kits.</p>
+            <div style="font-size:0.78rem; color:#1e293b; font-weight:700; margin-bottom:0.5rem;">Direct Line: <a href="tel:+911824404040" style="color:#ef6351;">+91 1824 404040</a></div>
+            <button type="button" class="btn-emergency-route-safe" onclick="CampusSmartHub.navigateToNode('b36-ground', 'Student Centre First-Aid Station')">Route to This Safe Haven</button>
+          </div>
+
+          <div class="emergency-post-card assembly">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem;">
+              <h4 style="margin:0; font-size:1.05rem; font-weight:800;">Fire Safe Assembly Area 1 (Central Plaza Lawn)</h4>
+              <span class="parking-status-badge available" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">Safe Assembly Area</span>
+            </div>
+            <p style="font-size:0.82rem; color:#475569; margin:0 0 0.75rem; line-height:1.4;">Wide open green lawns designated for building evacuation during earthquake or fire alarms.</p>
+            <div style="font-size:0.78rem; color:#1e293b; font-weight:700; margin-bottom:0.5rem;">Evacuation Assembly Point</div>
+            <button type="button" class="btn-emergency-route-safe" onclick="CampusSmartHub.navigateToNode('food-court', 'Fire Safe Assembly Area 1')">Route to This Safe Haven</button>
+          </div>
+
+          <div class="emergency-post-card assembly">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem;">
+              <h4 style="margin:0; font-size:1.05rem; font-weight:800;">Fire Safe Assembly Area 2 (South Sports Ground)</h4>
+              <span class="parking-status-badge available" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">Safe Assembly Area</span>
+            </div>
+            <p style="font-size:0.82rem; color:#475569; margin:0 0 0.75rem; line-height:1.4;">South sector open athletic field for hostel and indoor complex evacuation.</p>
+            <div style="font-size:0.78rem; color:#1e293b; font-weight:700; margin-bottom:0.5rem;">Evacuation Assembly Point</div>
+            <button type="button" class="btn-emergency-route-safe" onclick="CampusSmartHub.navigateToNode('indoor-stadium', 'Fire Safe Assembly Area 2')">Route to This Safe Haven</button>
+          </div>
+        </div>
+</div>
    </div>
  </section>
 
@@ -1469,7 +1994,98 @@
        </h2>
        <p class="smart-page-subtitle">Turn-by-turn guidance inside major blocks (e.g., Block 32, 5th Floor, Room 502) including specific lift, staircase, and ramp routing.</p>
      </header>
-     <div id="indoor-container"></div>
+     <div id="indoor-container">
+        <div class="indoor-navigator-card">
+          <h3 style="margin:0 0 0.5rem; font-size:1.2rem; font-weight:800;">Floor-by-Floor Indoor Guidance</h3>
+          <p style="font-size:0.85rem; color:#64748b; margin:0 0 1.25rem;">
+            Select any university block, floor, and target room (e.g. Block 32, Floor 5, Room 502) to receive step-by-step guidance including which lift or staircase to take.
+          </p>
+          <div class="indoor-controls-grid">
+            <div class="indoor-control-group">
+              <label for="indoor-block-select">Select Building / Block</label>
+              <select id="indoor-block-select">
+                <option value="b32">Block 32 – Academic Block (CSE &amp; Tech)</option>
+                <option value="b34">Block 34 – Central Library</option>
+                <option value="b36">Block 36 – Student Centre</option>
+              </select>
+            </div>
+            <div class="indoor-control-group">
+              <label for="indoor-floor-select">Select Target Floor</label>
+              <select id="indoor-floor-select">
+                <option value="0">Ground Floor</option>
+                <option value="1">Floor 1</option>
+                <option value="2">Floor 2</option>
+                <option value="3">Floor 3</option>
+                <option value="4">Floor 4</option>
+                <option value="5" selected>Floor 5</option>
+              </select>
+            </div>
+            <div class="indoor-control-group">
+              <label for="indoor-room-select">Target Room / Facility</label>
+              <select id="indoor-room-select">
+                <option value="502" selected>502 – Advanced AI &amp; Deep Learning Lab</option>
+                <option value="505">505 – Ph.D. Research Scholar Suites</option>
+                <option value="508">508 – Executive Conference Room &amp; Colloquium Hall</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-bottom:0.6rem; font-size:0.82rem; font-weight:700;">Transit Preference (Lift vs Stairs)</div>
+          <div class="transit-toggle-group">
+            <button type="button" class="transit-chip active" data-transit="lift" id="chip-lift">
+              Lift Only (Step-Free &amp; Accessible)
+            </button>
+            <button type="button" class="transit-chip" data-transit="stairs" id="chip-stairs">
+              Staircase (Fastest Walk)
+            </button>
+          </div>
+          <button type="button" id="btn-calculate-indoor" class="btn btn-primary" style="width:100%; padding:0.75rem; font-weight:800; font-size:0.95rem;">
+            Get Indoor Turn-by-Turn Guidance
+          </button>
+          <div id="indoor-route-output" style="margin-top:1.25rem;">
+            <div class="indoor-route-result">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <div>
+                  <strong style="font-size:1.05rem; color:#14532d;">Indoor Route: Block 32 – Academic Block · Floor 5 · Room 502</strong>
+                  <div style="font-size:0.8rem; color:#475569;">Destination: Advanced AI &amp; Deep Learning Lab (North Wing)</div>
+                </div>
+                <span style="background:#dcfce7; color:#166534; font-weight:800; font-size:0.75rem; padding:4px 10px; border-radius:999px;">
+                  Lift / Step-Free
+                </span>
+              </div>
+              <ul class="indoor-steps-list">
+                <li class="indoor-step-item">
+                  <span class="step-num-badge">1</span>
+                  <div>Enter Block 32 – Academic Block through the East Ramped Ground Entrance (equipped with automatic double doors).</div>
+                </li>
+                <li class="indoor-step-item">
+                  <span class="step-num-badge">2</span>
+                  <div>Proceed straight 20 metres down the central ground corridor past the reception security checkpoint.</div>
+                </li>
+                <li class="indoor-step-item">
+                  <span class="step-num-badge">3</span>
+                  <div>Take <strong>Lift L-32A (North Wing)</strong> on your left to <strong>Floor 5</strong>. (Operational • Voice announcements and Braille buttons).</div>
+                </li>
+                <li class="indoor-step-item">
+                  <span class="step-num-badge">4</span>
+                  <div>Exit at Floor 5 into the North Wing atrium.</div>
+                </li>
+                <li class="indoor-step-item">
+                  <span class="step-num-badge">5</span>
+                  <div>Follow the corridor signs towards <strong>Room 502</strong> (Advanced AI &amp; Deep Learning Lab).</div>
+                </li>
+                <li class="indoor-step-item">
+                  <span class="step-num-badge">6</span>
+                  <div>Arrive at <strong>Room 502</strong> on your Right. Tactile Braille room plate is installed at 1.4m height beside the door.</div>
+                </li>
+              </ul>
+              <div style="margin-top:1rem; display:flex; gap:0.5rem;">
+                <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.navigateToNode('b32-ground', 'Block 32')">Route Outside to Block 32</button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.viewFloorPlan('b32', 5)">View Graphical Floor Plan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
    </div>
  </section>
 
@@ -1484,7 +2100,190 @@
        </h2>
        <p class="smart-page-subtitle">Live wait times, active counters, and current tokens for student fee clearance, admin offices, examination cells, and Uni-Hospital.</p>
      </header>
-     <div id="queues-container"></div>
+     <div id="queues-container">
+        <div class="heatmap-status-banner">
+          <div>
+            <strong style="color:#0369a1;">Live Campus Queue Tracker &amp; Wait Estimates</strong>
+            <div style="font-size:0.8rem; color:#475569;">Real-time token dispension &amp; counter pacing for fee billing, student welfare, admissions, and Uni-Hospital</div>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" style="background:#fff;" onclick="CampusSmartHub.refreshQueues()">Refresh Live Queues</button>
+        </div>
+        <div class="queues-grid">
+          <div class="queue-card" data-queue-id="q-fee">
+            <div>
+              <div class="queue-card-header">
+                <div>
+                  <h4 class="queue-title">Fee Clearance &amp; Accounts Cell</h4>
+                  <div class="queue-location">Block 36 Ground Floor, Counter 1–5</div>
+                </div>
+                <span class="parking-status-badge filling">MODERATE WAIT</span>
+              </div>
+              <div class="queue-wait-display">
+                <span class="queue-wait-num">11</span>
+                <span class="queue-wait-unit">mins est. wait</span>
+              </div>
+              <div class="queue-stats-row">
+                <span>Now Serving: <strong>#142</strong></span>
+                <span>In Queue: <strong>14 ahead</strong></span>
+                <span>4 of 5 Active</span>
+              </div>
+              <div style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem;">
+                <strong>Services:</strong> Semester Tuition Fees, Hostel Dues, No-Dues Clearance, Bus Pass Validation<br>
+                <strong>Peak Hours:</strong> 11:30 AM – 02:00 PM
+              </div>
+            </div>
+            <div class="queue-token-action">
+              <button type="button" class="btn btn-outline btn-sm" style="flex:1;" onclick="CampusSmartHub.takeVirtualToken('q-fee')">Get Token #157</button>
+              <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.navigateToNode('b36-ground', 'Fee Clearance Cell')">Navigate to Desk</button>
+            </div>
+          </div>
+
+          <div class="queue-card" data-queue-id="q-admin">
+            <div>
+              <div class="queue-card-header">
+                <div>
+                  <h4 class="queue-title">Admissions &amp; Document Verification Cell</h4>
+                  <div class="queue-location">Block 32 Central Atrium, Desk A–H</div>
+                </div>
+                <span class="parking-status-badge full">BUSY WAIT</span>
+              </div>
+              <div class="queue-wait-display">
+                <span class="queue-wait-num">16</span>
+                <span class="queue-wait-unit">mins est. wait</span>
+              </div>
+              <div class="queue-stats-row">
+                <span>Now Serving: <strong>#210</strong></span>
+                <span>In Queue: <strong>18 ahead</strong></span>
+                <span>6 of 8 Active</span>
+              </div>
+              <div style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem;">
+                <strong>Services:</strong> Original Certificate Verification, Migration Submission, Scholarship Approval, ID Card Issuance<br>
+                <strong>Peak Hours:</strong> 10:00 AM – 03:30 PM
+              </div>
+            </div>
+            <div class="queue-token-action">
+              <button type="button" class="btn btn-outline btn-sm" style="flex:1;" onclick="CampusSmartHub.takeVirtualToken('q-admin')">Get Token #229</button>
+              <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.navigateToNode('b32-ground', 'Admissions Cell')">Navigate to Desk</button>
+            </div>
+          </div>
+
+          <div class="queue-card" data-queue-id="q-med-opd">
+            <div>
+              <div class="queue-card-header">
+                <div>
+                  <h4 class="queue-title">Uni-Hospital Medical Center – General OPD</h4>
+                  <div class="queue-location">Uni-Hospital South Wing, Ground Floor</div>
+                </div>
+                <span class="parking-status-badge available">LOW WAIT</span>
+              </div>
+              <div class="queue-wait-display">
+                <span class="queue-wait-num">8</span>
+                <span class="queue-wait-unit">mins est. wait</span>
+              </div>
+              <div class="queue-stats-row">
+                <span>Now Serving: <strong>#45</strong></span>
+                <span>In Queue: <strong>6 ahead</strong></span>
+                <span>3 Doctors On-Duty</span>
+              </div>
+              <div style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem;">
+                <strong>Services:</strong> General Physician Consultation, Vital Signs Check, Doctor Prescription, First-Aid<br>
+                <strong>Peak Hours:</strong> 09:00 AM – 11:30 AM
+              </div>
+            </div>
+            <div class="queue-token-action">
+              <button type="button" class="btn btn-outline btn-sm" style="flex:1;" onclick="CampusSmartHub.takeVirtualToken('q-med-opd')">Get Token #52</button>
+              <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.navigateToNode('uni-hospital', 'Uni-Hospital General OPD')">Navigate to Desk</button>
+            </div>
+          </div>
+
+          <div class="queue-card" data-queue-id="q-med-pharm">
+            <div>
+              <div class="queue-card-header">
+                <div>
+                  <h4 class="queue-title">Uni-Hospital Pharmacy &amp; Dispensary</h4>
+                  <div class="queue-location">Uni-Hospital Ground Floor Entrance</div>
+                </div>
+                <span class="parking-status-badge available">LOW WAIT</span>
+              </div>
+              <div class="queue-wait-display">
+                <span class="queue-wait-num">3</span>
+                <span class="queue-wait-unit">mins est. wait</span>
+              </div>
+              <div class="queue-stats-row">
+                <span>Now Serving: <strong>#78</strong></span>
+                <span>In Queue: <strong>3 ahead</strong></span>
+                <span>2 Dispensers Open</span>
+              </div>
+              <div style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem;">
+                <strong>Services:</strong> Subsidized Student Medication, First-Aid Supplies, Prescription Fulfillment<br>
+                <strong>Peak Hours:</strong> 12:00 PM – 02:00 PM
+              </div>
+            </div>
+            <div class="queue-token-action">
+              <button type="button" class="btn btn-outline btn-sm" style="flex:1;" onclick="CampusSmartHub.takeVirtualToken('q-med-pharm')">Get Token #82</button>
+              <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.navigateToNode('uni-hospital', 'Uni-Hospital Pharmacy')">Navigate to Desk</button>
+            </div>
+          </div>
+
+          <div class="queue-card" data-queue-id="q-exam">
+            <div>
+              <div class="queue-card-header">
+                <div>
+                  <h4 class="queue-title">Examination Cell &amp; Transcripts</h4>
+                  <div class="queue-location">Block 36 Ground Floor, Counter 6–8</div>
+                </div>
+                <span class="parking-status-badge available">LOW WAIT</span>
+              </div>
+              <div class="queue-wait-display">
+                <span class="queue-wait-num">6</span>
+                <span class="queue-wait-unit">mins est. wait</span>
+              </div>
+              <div class="queue-stats-row">
+                <span>Now Serving: <strong>#89</strong></span>
+                <span>In Queue: <strong>7 ahead</strong></span>
+                <span>3 of 3 Active</span>
+              </div>
+              <div style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem;">
+                <strong>Services:</strong> Grade Sheet Re-Issue, Provisional Degree, Attestation, Exam Hall Correction<br>
+                <strong>Peak Hours:</strong> 02:00 PM – 04:30 PM
+              </div>
+            </div>
+            <div class="queue-token-action">
+              <button type="button" class="btn btn-outline btn-sm" style="flex:1;" onclick="CampusSmartHub.takeVirtualToken('q-exam')">Get Token #97</button>
+              <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.navigateToNode('b36-ground', 'Examination Cell')">Navigate to Desk</button>
+            </div>
+          </div>
+
+          <div class="queue-card" data-queue-id="q-hostel">
+            <div>
+              <div class="queue-card-header">
+                <div>
+                  <h4 class="queue-title">Hostel Administration &amp; Warden Registry</h4>
+                  <div class="queue-location">BH-South Admin Block Office</div>
+                </div>
+                <span class="parking-status-badge available">LOW WAIT</span>
+              </div>
+              <div class="queue-wait-display">
+                <span class="queue-wait-num">4</span>
+                <span class="queue-wait-unit">mins est. wait</span>
+              </div>
+              <div class="queue-stats-row">
+                <span>Now Serving: <strong>#34</strong></span>
+                <span>In Queue: <strong>5 ahead</strong></span>
+                <span>2 Desks Open</span>
+              </div>
+              <div style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem;">
+                <strong>Services:</strong> Room Allocation, Hostel Leave Pass, Maintenance Complaints, Guest Pass<br>
+                <strong>Peak Hours:</strong> 05:00 PM – 07:00 PM
+              </div>
+            </div>
+            <div class="queue-token-action">
+              <button type="button" class="btn btn-outline btn-sm" style="flex:1;" onclick="CampusSmartHub.takeVirtualToken('q-hostel')">Get Token #40</button>
+              <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.navigateToNode('bh-south', 'Hostel Admin')">Navigate to Desk</button>
+            </div>
+          </div>
+        </div>
+</div>
    </div>
  </section>
 
@@ -1499,7 +2298,147 @@
        </h2>
        <p class="smart-page-subtitle">Photo tours, architectural highlights, and essential navigation tips for famous LPU spots to help new students feel oriented.</p>
      </header>
-     <div id="stories-container"></div>
+     <div id="stories-container">
+        <div style="margin-bottom:1.25rem;">
+          <h3 style="margin:0 0 0.35rem; font-size:1.15rem; font-weight:800;">Visual Orientation &amp; Landmark Stories</h3>
+          <p style="font-size:0.85rem; color:#64748b; margin:0;">
+            Short visual tours and architectural highlights of famous LPU landmarks to help new students and visitors feel at home.
+          </p>
+        </div>
+        <div class="stories-grid">
+          <div class="story-card" onclick="CampusSmartHub.openStory(0)">
+            <div class="story-media-banner" style="background:linear-gradient(135deg, #1e3a8a, #3b82f6)">
+              <span class="story-tag-pill">Student Life</span>
+              <div>
+                <span style="font-size:0.75rem; font-weight:700; opacity:0.9;">45s Tour</span>
+                <h4 style="margin:0; font-size:1.15rem; font-weight:800;">Baldev Raj Mittal Unipolis</h4>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div>
+                <div class="story-tagline">"The Amphitheatre of Dreams"</div>
+                <p style="font-size:0.82rem; color:#334155; line-height:1.4; margin:0 0 0.75rem;">
+                  Baldev Raj Mittal Unipolis is LPU’s iconic 10,000-capacity open amphitheatre. It hosts our star-studded Youth Vibe concerts, celebrity nights, and cultural convocations. Its wide paved ramps make it 100% accessible from all sides.
+                </p>
+                <div class="story-tip-box">
+                  <strong>Orientation Tip:</strong> The central boulevard passing through Unipolis is the smoothest, step-free walking route between academic blocks and student hostels.
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm" style="width:100%; font-weight:700;">Watch Orientation Story →</button>
+            </div>
+          </div>
+
+          <div class="story-card" onclick="CampusSmartHub.openStory(1)">
+            <div class="story-media-banner" style="background:linear-gradient(135deg, #065f46, #059669)">
+              <span class="story-tag-pill">Academics</span>
+              <div>
+                <span style="font-size:0.75rem; font-weight:700; opacity:0.9;">50s Tour</span>
+                <h4 style="margin:0; font-size:1.15rem; font-weight:800;">Shanti Devi Mittal Central Library</h4>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div>
+                <div class="story-tagline">"Northern India’s 5-Storey Knowledge Citadel"</div>
+                <p style="font-size:0.82rem; color:#334155; line-height:1.4; margin:0 0 0.75rem;">
+                  Spanning five immense floors, the Central Library houses over 1.5 million volumes, RFID automated checkout kiosks, soundproof discussion pods, and peaceful air-conditioned reading halls.
+                </p>
+                <div class="story-tip-box">
+                  <strong>Orientation Tip:</strong> Need absolute silence for exam preparation? Head straight to the quiet reading rooms on Floors 2 and 3.
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm" style="width:100%; font-weight:700;">Watch Orientation Story →</button>
+            </div>
+          </div>
+
+          <div class="story-card" onclick="CampusSmartHub.openStory(2)">
+            <div class="story-media-banner" style="background:linear-gradient(135deg, #9a3412, #ea580c)">
+              <span class="story-tag-pill">Dining &amp; Retail</span>
+              <div>
+                <span style="font-size:0.75rem; font-weight:700; opacity:0.9;">40s Tour</span>
+                <h4 style="margin:0; font-size:1.15rem; font-weight:800;">Uni-Mall Shopping &amp; Food Plaza</h4>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div>
+                <div class="story-tagline">"The Campus Downtown &amp; Social Hub"</div>
+                <p style="font-size:0.82rem; color:#334155; line-height:1.4; margin:0 0 0.75rem;">
+                  Uni-Mall brings multi-cuisine food courts, Domino’s, Subway, national bank branches, ATMs, stationery superstores, and student boutiques together in an air-conditioned lifestyle complex.
+                </p>
+                <div class="story-tip-box">
+                  <strong>Orientation Tip:</strong> During summer heat or monsoon showers, use the covered ground corridor connecting Block 34 directly into Uni-Mall.
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm" style="width:100%; font-weight:700;">Watch Orientation Story →</button>
+            </div>
+          </div>
+
+          <div class="story-card" onclick="CampusSmartHub.openStory(3)">
+            <div class="story-media-banner" style="background:linear-gradient(135deg, #0e7490, #06b6d4)">
+              <span class="story-tag-pill">Sports &amp; Fitness</span>
+              <div>
+                <span style="font-size:0.75rem; font-weight:700; opacity:0.9;">45s Tour</span>
+                <h4 style="margin:0; font-size:1.15rem; font-weight:800;">Indoor Sports Stadium</h4>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div>
+                <div class="story-tagline">"Olympic-Standard Athletic Marvel"</div>
+                <p style="font-size:0.82rem; color:#334155; line-height:1.4; margin:0 0 0.75rem;">
+                  Features an Olympic-size heated swimming pool, 12 professional wooden badminton courts, glass-back squash arenas, an indoor shooting range, and modern gyms.
+                </p>
+                <div class="story-tip-box">
+                  <strong>Orientation Tip:</strong> Students can access the gym and pool free during scheduled university sports timings with their student ID.
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm" style="width:100%; font-weight:700;">Watch Orientation Story →</button>
+            </div>
+          </div>
+
+          <div class="story-card" onclick="CampusSmartHub.openStory(4)">
+            <div class="story-media-banner" style="background:linear-gradient(135deg, #831843, #db2777)">
+              <span class="story-tag-pill">Campus Entry</span>
+              <div>
+                <span style="font-size:0.75rem; font-weight:700; opacity:0.9;">35s Tour</span>
+                <h4 style="margin:0; font-size:1.15rem; font-weight:800;">Main Gate 1 &amp; Sandstone Boulevard</h4>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div>
+                <div class="story-tagline">"The Gateway to Lovely Professional University"</div>
+                <p style="font-size:0.82rem; color:#334155; line-height:1.4; margin:0 0 0.75rem;">
+                  The grand red sandstone archway stands proudly on the Grand Trunk (GT) Road. It features dedicated transit bays for university buses, e-rickshaws, and free accessible wheelchair golf carts.
+                </p>
+                <div class="story-tip-box">
+                  <strong>Orientation Tip:</strong> Free university wheelchair carts depart from Gate 1 every three minutes directly to classroom blocks.
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm" style="width:100%; font-weight:700;">Watch Orientation Story →</button>
+            </div>
+          </div>
+
+          <div class="story-card" onclick="CampusSmartHub.openStory(5)">
+            <div class="story-media-banner" style="background:linear-gradient(135deg, #4338ca, #6366f1)">
+              <span class="story-tag-pill">Technology</span>
+              <div>
+                <span style="font-size:0.75rem; font-weight:700; opacity:0.9;">50s Tour</span>
+                <h4 style="margin:0; font-size:1.15rem; font-weight:800;">Block 32 &amp; 34 Tech Quadrangle</h4>
+              </div>
+            </div>
+            <div class="story-card-body">
+              <div>
+                <div class="story-tagline">"The Innovation &amp; Coding Powerhouse"</div>
+                <p style="font-size:0.82rem; color:#334155; line-height:1.4; margin:0 0 0.75rem;">
+                  The computing epicenter of campus, housing advanced AI laboratories, autonomous robotics clusters, iOS development centres, and 24/7 student hackathon incubators.
+                </p>
+                <div class="story-tip-box">
+                  <strong>Orientation Tip:</strong> Lift L-32A on the north side is equipped with voice floor announcements and provides step-free access to all 5 floors.
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm" style="width:100%; font-weight:700;">Watch Orientation Story →</button>
+            </div>
+          </div>
+        </div>
+</div>
    </div>
  </section>
 
