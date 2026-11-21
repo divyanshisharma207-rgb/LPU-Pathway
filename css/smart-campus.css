@@ -442,9 +442,20 @@
   background: var(--clr-surface, #ffffff);
   border: 1.5px solid var(--clr-border, #e5e7eb);
   border-radius: 10px;
-  padding: 1.15rem;
+  padding: 0;
+  overflow: hidden;
   border-left: 6px solid #22c55e;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crowd-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+}
+
+.crowd-card-body {
+  padding: 1rem 1.15rem 1.15rem;
 }
 
 .crowd-card.moderate { border-left-color: #f59e0b; }
@@ -1434,12 +1445,21 @@
   background: var(--clr-surface, #ffffff);
   border: 1.5px solid var(--clr-border, #e5e7eb);
   border-radius: 12px;
-  padding: 1.25rem;
+  padding: 0;
+  overflow: hidden;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.queue-card-body {
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .queue-card:hover {
@@ -1817,4 +1837,338 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   SMART CAMPUS REAL LPU MEDIA STYLES
+   Heatmap, Exam Hall, Events, Queue Times & Placements
+   ───────────────────────────────────────────────────────────────── */
+
+/* 1. Heatmap / Crowd Cards */
+.crowd-image-box {
+  position: relative;
+  width: 100%;
+  height: 155px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.crowd-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.crowd-card:hover .crowd-card-img {
+  transform: scale(1.05);
+}
+
+.crowd-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.72) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.65rem 0.85rem;
+  pointer-events: none;
+}
+
+.crowd-status-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.crowd-status-pill.low { background: #22c55e; color: #ffffff; }
+.crowd-status-pill.moderate { background: #f59e0b; color: #ffffff; }
+.crowd-status-pill.peak { background: #ef4444; color: #ffffff; }
+
+.crowd-wait-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+/* 2. Exam Hall & Seat Finder */
+.exam-showcase-banner {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  border: 1.5px solid #86efac;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.12);
+}
+
+.exam-showcase-image-box {
+  position: relative;
+  width: 100%;
+  height: 165px;
+  overflow: hidden;
+  background: #064e3b;
+}
+
+.exam-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85);
+}
+
+.exam-showcase-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 78, 59, 0.4) 0%, rgba(6, 78, 59, 0.92) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.15rem 1.35rem;
+  color: #ffffff;
+}
+
+.exam-showcase-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #86efac;
+  margin-bottom: 0.25rem;
+}
+
+.exam-showcase-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem;
+  color: #ffffff;
+}
+
+.exam-showcase-desc {
+  font-size: 0.82rem;
+  color: #dcfce7;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 680px;
+}
+
+.exam-result-image-box {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.exam-result-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.exam-result-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.75) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.75rem 1rem;
+  pointer-events: none;
+}
+
+.exam-venue-tag {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: rgba(22, 163, 74, 0.92);
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.exam-seat-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+/* 3. Campus Events */
+.event-image-box {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  background: #064e3b;
+}
+
+.event-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.event-card:hover .event-card-img {
+  transform: scale(1.05);
+}
+
+.event-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.78) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.75rem 0.9rem;
+  pointer-events: none;
+}
+
+.event-category-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #059669;
+  color: #ffffff;
+  padding: 3px 9px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.event-date-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+/* 4. Queue Times */
+.queue-image-box {
+  position: relative;
+  width: 100%;
+  height: 145px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.queue-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.queue-card:hover .queue-card-img {
+  transform: scale(1.05);
+}
+
+.queue-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.75) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.65rem 0.85rem;
+  pointer-events: none;
+}
+
+.queue-image-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.queue-image-badge.low { background: #22c55e; color: #ffffff; }
+.queue-image-badge.moderate { background: #f59e0b; color: #ffffff; }
+.queue-image-badge.high { background: #ef4444; color: #ffffff; }
+
+.queue-wait-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+/* 5. Placements */
+.placement-image-box {
+  position: relative;
+  width: 100%;
+  height: 155px;
+  overflow: hidden;
+  background: #064e3b;
+}
+
+.placement-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.placement-card:hover .placement-card-img {
+  transform: scale(1.05);
+}
+
+.placement-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.78) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.75rem 0.95rem;
+  pointer-events: none;
+}
+
+.placement-package-pill {
+  background: #10b981;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.placement-status-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  padding: 4px 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
 }

@@ -147,7 +147,9 @@ window.CampusSmartHub = (() => {
       waitMinutes: 8,
       peakHours: '11:00 AM – 04:30 PM',
       desc: 'Ground & 1st Floor reading tables near 90% full. 2nd & 3rd Floor quiet zones have 60+ open cubicles.',
-      tip: 'Head to Floor 2 for faster seating and quieter study environment.'
+      tip: 'Head to Floor 2 for faster seating and quieter study environment.',
+      image: 'images/tour/library.webp',
+      imageAlt: 'LPU Central Library Block 34 Reading Halls'
     },
     {
       id: 'heat-foodcourt',
@@ -160,7 +162,9 @@ window.CampusSmartHub = (() => {
       waitMinutes: 18,
       peakHours: '12:30 PM – 02:30 PM & 05:00 PM – 07:30 PM',
       desc: 'High rush at central billing counters and Domino’s / Subway outlets.',
-      tip: 'Order via campus takeaway apps or visit Block 36 Food Outlet for under 5-min queue.'
+      tip: 'Order via campus takeaway apps or visit Block 36 Food Outlet for under 5-min queue.',
+      image: 'images/tour/unimall.jpg',
+      imageAlt: 'LPU Uni-Mall Food Court and Shopping Plaza'
     },
     {
       id: 'heat-gate1',
@@ -173,7 +177,9 @@ window.CampusSmartHub = (() => {
       waitMinutes: 6,
       peakHours: '08:30 AM – 09:30 AM & 04:45 PM – 05:45 PM',
       desc: 'Steady flow of day scholars arriving/departing via GT Road buses and campus e-rickshaws.',
-      tip: 'Pedestrian turnstiles 4 & 5 (Wheelchair wide lane) currently have zero wait.'
+      tip: 'Pedestrian turnstiles 4 & 5 (Wheelchair wide lane) currently have zero wait.',
+      image: 'images/tour/main_gate.jpg',
+      imageAlt: 'LPU Main Gate 1 GT Road Entrance and Turnstiles'
     },
     {
       id: 'heat-b36',
@@ -186,7 +192,9 @@ window.CampusSmartHub = (() => {
       waitMinutes: 7,
       peakHours: '10:30 AM – 03:00 PM',
       desc: 'Moderate student queue for fee clearance and ID card replacements.',
-      tip: 'Use LPU Touch app for online requests to bypass physical counter lines.'
+      tip: 'Use LPU Touch app for online requests to bypass physical counter lines.',
+      image: 'images/tour/student_centre.webp',
+      imageAlt: 'LPU Block 36 Student Centre and DSW'
     },
     {
       id: 'heat-b32-lifts',
@@ -199,7 +207,9 @@ window.CampusSmartHub = (() => {
       waitMinutes: 10,
       peakHours: 'Between 10-minute lecture intervals',
       desc: 'High elevator demand between classes for floors 2–4.',
-      tip: 'Step-free gentle central ramp is faster than waiting 2 cycles for Lift L1.'
+      tip: 'Step-free gentle central ramp is faster than waiting 2 cycles for Lift L1.',
+      image: 'images/tour/academic_complex.jpg',
+      imageAlt: 'LPU Block 32 Academic Complex and CSE Atrium'
     },
     {
       id: 'heat-unipolis',
@@ -212,7 +222,9 @@ window.CampusSmartHub = (() => {
       waitMinutes: 0,
       peakHours: 'Festival days & evening concerts',
       desc: 'Plaza is open, pleasant and clear of crowd congestion.',
-      tip: 'Fastest step-free outdoor pathway currently between engineering and hostel sectors.'
+      tip: 'Fastest step-free outdoor pathway currently between engineering and hostel sectors.',
+      image: 'images/tour/unipolis.jpg',
+      imageAlt: 'Baldev Raj Mittal Unipolis Amphitheater Arena'
     }
   ];
 
@@ -236,7 +248,9 @@ window.CampusSmartHub = (() => {
       hall: 'Hall 204 (West Wing)',
       row: 'Row C',
       seat: 'Desk 14 (Window Side)',
-      stepFreeNote: 'Use Lift L-32A (operational) to Floor 2, turn left for Hall 204.'
+      stepFreeNote: 'Use Lift L-32A (operational) to Floor 2, turn left for Hall 204.',
+      image: 'images/tour/admission_block.jpg',
+      imageAlt: 'LPU Block 32 Academic Examination Block'
     },
     '12104523': {
       roll: '12104523',
@@ -252,7 +266,9 @@ window.CampusSmartHub = (() => {
       hall: 'Executive Hall 102',
       row: 'Row B',
       seat: 'Desk 08',
-      stepFreeNote: 'Ground ramp connects directly to central corridor lift.'
+      stepFreeNote: 'Ground ramp connects directly to central corridor lift.',
+      image: 'images/tour/academic_complex.jpg',
+      imageAlt: 'LPU Block 38 Mittal School of Business Examination Wing'
     },
     '12308911': {
       roll: '12308911',
@@ -268,7 +284,9 @@ window.CampusSmartHub = (() => {
       hall: 'Exam Hall 308',
       row: 'Row E',
       seat: 'Desk 22',
-      stepFreeNote: 'Block 26-27 covered skywalk has elevator access to Floor 3.'
+      stepFreeNote: 'Block 26-27 covered skywalk has elevator access to Floor 3.',
+      image: 'images/tour/academic_complex.jpg',
+      imageAlt: 'LPU Block 27 ECE & Tech Examination Complex'
     }
   };
 
@@ -288,7 +306,9 @@ window.CampusSmartHub = (() => {
       desc: 'National inter-university battle of bands, celebrity live concert, fashion choreography and 40+ street dance showdowns.',
       entry: 'Free for All Students (LPU ID Required)',
       badge: 'Major Fest',
-      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)'
+      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)',
+      image: 'images/tour/unipolis.jpg',
+      imageAlt: 'Baldev Raj Mittal Unipolis Amphitheater Arena'
     },
     {
       id: 'event-techx',
@@ -302,7 +322,9 @@ window.CampusSmartHub = (() => {
       desc: '36-hour hackathon tackling smart mobility, accessible campus tools, and Generative AI agents. ₹2.5 Lakh prize pool.',
       entry: 'Registered Participants & Spectators',
       badge: 'Hackathon',
-      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)'
+      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)',
+      image: 'images/tour/academic_complex.jpg',
+      imageAlt: 'LPU Block 25 IT Auditorium and Labs'
     },
     {
       id: 'event-oneworld',
@@ -316,7 +338,9 @@ window.CampusSmartHub = (() => {
       desc: 'Students from 50+ nations showcase traditional attires, international street foods, cultural dances and country pavilions.',
       entry: 'Open to All Students & Visitors',
       badge: 'Global Fest',
-      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)'
+      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)',
+      image: 'images/tour/sports_complex.jpg',
+      imageAlt: 'Shanti Devi Mittal Indoor Sports Stadium'
     },
     {
       id: 'event-msb',
@@ -330,7 +354,9 @@ window.CampusSmartHub = (() => {
       desc: 'Keynote panels with Fortune 500 venture capitalists, Angel investors, and successful student startup founders.',
       entry: 'Pre-Registration on LPU Touch',
       badge: 'Conclave',
-      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)'
+      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)',
+      image: 'images/tour/admission_block.jpg',
+      imageAlt: 'LPU Block 38 Mittal School of Business Auditorium'
     },
     {
       id: 'event-moot',
@@ -344,7 +370,9 @@ window.CampusSmartHub = (() => {
       desc: 'Constitutional law debates, mock trials judged by sitting High Court judges and senior legal counsel.',
       entry: 'Open Spectator Seating',
       badge: 'Competition',
-      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)'
+      bannerGradient: 'linear-gradient(135deg, #059669, #10b981)',
+      image: 'images/tour/student_centre.webp',
+      imageAlt: 'LPU Block 37 Moot Court Hall'
     }
   ];
 
@@ -754,28 +782,34 @@ window.CampusSmartHub = (() => {
       const fillClass = spot.status === 'peak' ? 'peak' : (spot.status === 'moderate' ? 'moderate' : 'low');
       html += `
         <div class="crowd-card ${fillClass}">
-          <div class="crowd-card-header">
-            <div>
-              <h3 class="crowd-zone-title">${spot.name}</h3>
-              <span style="font-size:0.75rem; color:#64748b;">Peak Hours: ${spot.peakHours}</span>
+          <div class="crowd-image-box">
+            <img src="${spot.image}" alt="${escapeHTML(spot.imageAlt || spot.name)}" class="crowd-card-img" loading="eager" />
+            <div class="crowd-image-overlay">
+              <span class="crowd-status-pill ${fillClass}">${spot.status.toUpperCase()} (${spot.density}%)</span>
+              <span class="crowd-wait-pill">${spot.waitMinutes} min queue</span>
             </div>
-            <span class="parking-status-badge ${spot.status === 'low' ? 'available' : (spot.status === 'moderate' ? 'filling' : 'full')}">
-              ${spot.density}% Busy
-            </span>
           </div>
-          <div class="crowd-density-meter">
-            <div class="crowd-density-fill ${fillClass}" style="width: ${spot.density}%"></div>
+          <div class="crowd-card-body">
+            <div class="crowd-card-header">
+              <div>
+                <h3 class="crowd-zone-title">${spot.name}</h3>
+                <span style="font-size:0.75rem; color:#64748b;">Peak Hours: ${spot.peakHours}</span>
+              </div>
+            </div>
+            <div class="crowd-density-meter">
+              <div class="crowd-density-fill ${fillClass}" style="width: ${spot.density}%"></div>
+            </div>
+            <div class="crowd-metrics">
+              <span>Estimated Queue: <strong>${spot.waitMinutes} mins</strong></span>
+              <span>Capacity Status: <strong>${spot.status.toUpperCase()}</strong></span>
+            </div>
+            <div class="crowd-tip">
+              <strong>Crowd Tip:</strong> ${spot.tip}
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" style="width:100%; margin-top:0.5rem;" onclick="CampusSmartHub.navigateToNode('${spot.nodeId}', '${spot.name}')">
+              View on Map / Route Here
+            </button>
           </div>
-          <div class="crowd-metrics">
-            <span>Estimated Queue: <strong>${spot.waitMinutes} mins</strong></span>
-            <span>Capacity Status: <strong>${spot.status.toUpperCase()}</strong></span>
-          </div>
-          <div class="crowd-tip">
-            <strong>Crowd Tip:</strong> ${spot.tip}
-          </div>
-          <button type="button" class="btn btn-outline btn-sm" style="width:100%;" onclick="CampusSmartHub.navigateToNode('${spot.nodeId}', '${spot.name}')">
-            View on Map / Route Here
-          </button>
         </div>
       `;
     });
@@ -789,6 +823,17 @@ window.CampusSmartHub = (() => {
     if (!container) return;
 
     container.innerHTML = `
+      <div class="exam-showcase-banner">
+        <div class="exam-showcase-image-box">
+          <img src="images/tour/academic_complex.jpg" alt="LPU Central Academic Complex Exam Halls" class="exam-showcase-img" loading="eager" />
+          <div class="exam-showcase-overlay">
+            <span class="exam-showcase-tag">Official LPU Examination Wing</span>
+            <h3 class="exam-showcase-title">Central Academic Blocks &amp; Examination Halls</h3>
+            <p class="exam-showcase-desc">Direct room allocation, desk assignment, and step-free lift paths for Blocks 32, 34, 38 &amp; 25–28.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="exam-search-box">
         <label for="exam-roll-input" class="exam-search-label">
           Enter Your LPU Registration / Roll Number
@@ -837,6 +882,7 @@ window.CampusSmartHub = (() => {
       const num = parseInt(roll.replace(/\D/g, '') || '12345678', 10);
       const blocks = ['b32-ground', 'b25-ground', 'b26-ground', 'b27-ground', 'b33-ground', 'b37-ground', 'b38-ground'];
       const blockLabels = ['Block 32 – Academic', 'Block 25 – Computer App', 'Block 26 – CSE', 'Block 27 – ECE', 'Block 33 – Agriculture', 'Block 37 – Law', 'Block 38 – MSB'];
+      const blockImages = ['images/tour/admission_block.jpg', 'images/tour/academic_complex.jpg', 'images/tour/academic_complex.jpg', 'images/tour/academic_complex.jpg', 'images/tour/library.webp', 'images/tour/student_centre.webp', 'images/tour/academic_complex.jpg'];
       const bIdx = num % blocks.length;
       const floorNum = (num % 3) + 1;
       const roomNum = floorNum * 100 + (num % 18) + 1;
@@ -866,12 +912,23 @@ window.CampusSmartHub = (() => {
         hall: `Hall ${roomNum}`,
         row: `Row ${row}`,
         seat: `Desk ${seatNum < 10 ? '0' + seatNum : seatNum}`,
-        stepFreeNote: `Accessible via Central Lift to Floor ${floorNum}. Step-free corridor ramps verified.`
+        stepFreeNote: `Accessible via Central Lift to Floor ${floorNum}. Step-free corridor ramps verified.`,
+        image: blockImages[bIdx],
+        imageAlt: `${blockLabels[bIdx]} Examination Hall`
       };
     }
 
+    const examImg = exam.image || 'images/tour/academic_complex.jpg';
+
     resultArea.innerHTML = `
       <div class="exam-card-result">
+        <div class="exam-result-image-box">
+          <img src="${examImg}" alt="${escapeHTML(exam.blockLabel)} Exam Venue" class="exam-result-img" loading="eager" />
+          <div class="exam-result-image-overlay">
+            <span class="exam-venue-tag">${exam.blockLabel} • ${exam.floor}</span>
+            <span class="exam-seat-pill">${exam.hall} • Row ${exam.row} - ${exam.seat}</span>
+          </div>
+        </div>
         <div class="exam-card-header">
           <div>
             <h3 style="margin:0; font-size:1.15rem; font-weight:800;">Official LPU Examination Allocation</h3>
@@ -932,9 +989,12 @@ window.CampusSmartHub = (() => {
       html += `
         <div class="event-card" data-category="${ev.category}">
           <div>
-            <div class="event-card-banner" style="background:${ev.bannerGradient}">
-              <span class="event-badge">${ev.badge}</span>
-              <span style="font-size:0.8rem; font-weight:700;">${ev.date}</span>
+            <div class="event-image-box">
+              <img src="${ev.image}" alt="${escapeHTML(ev.title)}" class="event-card-img" loading="eager" />
+              <div class="event-image-overlay">
+                <span class="event-badge">${ev.badge}</span>
+                <span class="event-date-chip">${ev.date}</span>
+              </div>
             </div>
             <div class="event-card-body">
               <h3 class="event-title">${ev.title}</h3>
@@ -1570,7 +1630,9 @@ window.CampusSmartHub = (() => {
       openCounters: '4 of 5 Active',
       status: 'moderate',
       services: ['Semester Tuition Fees', 'Hostel Dues', 'No-Dues Clearance', 'Bus Pass Validation'],
-      peakTime: '11:30 AM – 02:00 PM'
+      peakTime: '11:30 AM – 02:00 PM',
+      image: 'images/tour/student_centre.webp',
+      imageAlt: 'LPU Block 36 Student Centre Accounts Cell'
     },
     {
       id: 'q-admin',
@@ -1583,7 +1645,9 @@ window.CampusSmartHub = (() => {
       openCounters: '6 of 8 Active',
       status: 'busy',
       services: ['Original Certificate Verification', 'Migration Submission', 'Scholarship Approval', 'ID Card Issuance'],
-      peakTime: '10:00 AM – 03:30 PM'
+      peakTime: '10:00 AM – 03:30 PM',
+      image: 'images/tour/admission_block.jpg',
+      imageAlt: 'LPU Block 32 Admissions and Verification Cell'
     },
     {
       id: 'q-med-opd',
@@ -1596,7 +1660,9 @@ window.CampusSmartHub = (() => {
       openCounters: '3 Doctors On-Duty',
       status: 'low',
       services: ['General Physician Consultation', 'Vital Signs Check', 'Doctor Prescription', 'First-Aid'],
-      peakTime: '09:00 AM – 11:30 AM'
+      peakTime: '09:00 AM – 11:30 AM',
+      image: 'images/tour/hospital.jpg',
+      imageAlt: 'LPU Uni-Hospital Medical Center OPD'
     },
     {
       id: 'q-med-pharm',
@@ -1609,7 +1675,9 @@ window.CampusSmartHub = (() => {
       openCounters: '2 Dispensers Open',
       status: 'low',
       services: ['Subsidized Student Medication', 'First-Aid Supplies', 'Prescription Fulfillment'],
-      peakTime: '12:00 PM – 02:00 PM'
+      peakTime: '12:00 PM – 02:00 PM',
+      image: 'images/tour/hospital.jpg',
+      imageAlt: 'LPU Uni-Hospital Pharmacy and Dispensary'
     },
     {
       id: 'q-exam',
@@ -1622,7 +1690,9 @@ window.CampusSmartHub = (() => {
       openCounters: '3 of 3 Active',
       status: 'low',
       services: ['Grade Sheet Re-Issue', 'Provisional Degree', 'Attestation', 'Exam Hall Correction'],
-      peakTime: '02:00 PM – 04:30 PM'
+      peakTime: '02:00 PM – 04:30 PM',
+      image: 'images/tour/student_centre.webp',
+      imageAlt: 'LPU Block 36 Examination Cell Counter'
     },
     {
       id: 'q-hostel',
@@ -1635,7 +1705,9 @@ window.CampusSmartHub = (() => {
       openCounters: '2 Desks Open',
       status: 'low',
       services: ['Room Allocation', 'Hostel Leave Pass', 'Maintenance Complaints', 'Guest Pass'],
-      peakTime: '05:00 PM – 07:00 PM'
+      peakTime: '05:00 PM – 07:00 PM',
+      image: 'images/tour/hostel_zone.jpg',
+      imageAlt: 'LPU Boys Hostel Complex Admin Registry'
     }
   ];
 
@@ -2660,39 +2732,47 @@ window.CampusSmartHub = (() => {
       const statusBadge = q.status === 'low' ? 'available' : (q.status === 'moderate' ? 'filling' : 'full');
       html += `
         <div class="queue-card" data-queue-id="${q.id}">
-          <div>
-            <div class="queue-card-header">
-              <div>
-                <h4 class="queue-title">${q.name}</h4>
-                <div class="queue-location">${q.location}</div>
-              </div>
-              <span class="parking-status-badge ${statusBadge}">${q.status.toUpperCase()} WAIT</span>
-            </div>
-
-            <div class="queue-wait-display">
-              <span class="queue-wait-num">${q.avgWaitMins}</span>
-              <span class="queue-wait-unit">mins est. wait</span>
-            </div>
-
-            <div class="queue-stats-row">
-              <span>Now Serving: <strong>#${q.currentToken}</strong></span>
-              <span>In Queue: <strong>${q.inQueue} ahead</strong></span>
-              <span>${q.openCounters}</span>
-            </div>
-
-            <div style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem;">
-              <strong>Services:</strong> ${q.services.join(', ')}<br>
-              <strong>Peak Hours:</strong> ${q.peakTime}
+          <div class="queue-image-box">
+            <img src="${q.image}" alt="${escapeHTML(q.name)}" class="queue-card-img" loading="eager" />
+            <div class="queue-image-overlay">
+              <span class="queue-image-badge ${q.status}">${q.status.toUpperCase()} WAIT</span>
+              <span class="queue-wait-chip">${q.avgWaitMins} min wait</span>
             </div>
           </div>
+          <div class="queue-card-body">
+            <div>
+              <div class="queue-card-header">
+                <div>
+                  <h4 class="queue-title">${q.name}</h4>
+                  <div class="queue-location">${q.location}</div>
+                </div>
+              </div>
 
-          <div class="queue-token-action">
-            <button type="button" class="btn btn-outline btn-sm" style="flex:1;" onclick="CampusSmartHub.takeVirtualToken('${q.id}')">
-              Get Token #${q.currentToken + q.inQueue + 1}
-            </button>
-            <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.navigateToNode('${q.nodeId}', '${q.name}')">
-              Navigate to Desk
-            </button>
+              <div class="queue-wait-display">
+                <span class="queue-wait-num">${q.avgWaitMins}</span>
+                <span class="queue-wait-unit">mins est. wait</span>
+              </div>
+
+              <div class="queue-stats-row">
+                <span>Now Serving: <strong>#${q.currentToken}</strong></span>
+                <span>In Queue: <strong>${q.inQueue} ahead</strong></span>
+                <span>${q.openCounters}</span>
+              </div>
+
+              <div style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem;">
+                <strong>Services:</strong> ${q.services.join(', ')}<br>
+                <strong>Peak Hours:</strong> ${q.peakTime}
+              </div>
+            </div>
+
+            <div class="queue-token-action">
+              <button type="button" class="btn btn-outline btn-sm" style="flex:1;" onclick="CampusSmartHub.takeVirtualToken('${q.id}')">
+                Get Token #${q.currentToken + q.inQueue + 1}
+              </button>
+              <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="CampusSmartHub.navigateToNode('${q.nodeId}', '${q.name}')">
+                Navigate to Desk
+              </button>
+            </div>
           </div>
         </div>
       `;
@@ -2911,7 +2991,9 @@ Please proceed to the counter lounge.`);
       dressCode: 'Formal Business Suit / Blazer with matching pressed trousers and polished leather shoes. University RFID ID card with blue lanyard compulsory. Jeans, casual footwear, and sneakers are strictly prohibited.',
       rounds: 'Round 1: Coding Assessment > Round 2: Tech Interview > Round 3: HR Discussion',
       documents: '3 hard copies of updated resume, student ID card, valid Govt ID (Aadhar/Passport), 2 passport photos, and fully charged laptop with charger for coding test.',
-      eligibility: 'B.Tech CSE / IT (CGPA >= 7.5, No active backlogs)'
+      eligibility: 'B.Tech CSE / IT (CGPA >= 7.5, No active backlogs)',
+      image: 'images/tour/academic_complex.jpg',
+      imageAlt: 'LPU Block 38 Mittal School of Business Auditorium Venue'
     },
     {
       id: 'drive-microsoft',
@@ -2932,7 +3014,9 @@ Please proceed to the counter lounge.`);
       dressCode: 'Formal Corporate Attire: Pressed light-colored formal shirt, dark trousers, formal tie, and formal dress shoes. LPU Identity Card must be displayed around the neck.',
       rounds: 'Round 1: Cognitive Assessment > Round 2: Tech Architecture Review > Round 3: Values Fit',
       documents: '2 copies of resume, student ID card, government photo ID, project portfolio GitHub links on flash drive.',
-      eligibility: 'B.Tech CSE / IT / ECE & MCA (CGPA >= 7.0)'
+      eligibility: 'B.Tech CSE / IT / ECE & MCA (CGPA >= 7.0)',
+      image: 'images/tour/admission_block.jpg',
+      imageAlt: 'LPU Block 25 IT & Computer Labs Venue'
     },
     {
       id: 'drive-amazon',
@@ -2953,7 +3037,9 @@ Please proceed to the counter lounge.`);
       dressCode: 'Formal Business Suit or Formal Shirt & Trousers with leather shoes. University RFID ID Card mandatory for barcode turnstile scan at auditorium gate.',
       rounds: 'Round 1: Online Assessment > Round 2: Linux & Networking Diagnostics > Round 3: Leadership Interview',
       documents: '3 copies of resume, printout of Amazon candidate portal registration pass, college ID, and government ID proof.',
-      eligibility: 'All Engineering Streams & MCA (CGPA >= 6.5)'
+      eligibility: 'All Engineering Streams & MCA (CGPA >= 6.5)',
+      image: 'images/tour/sports_complex.jpg',
+      imageAlt: 'LPU Shanti Devi Mittal Indoor Stadium & Auditorium'
     },
     {
       id: 'drive-deloitte',
@@ -2974,7 +3060,9 @@ Please proceed to the counter lounge.`);
       dressCode: 'Formal Western Corporate Wear: Tailored formal trousers, collared shirt, blazer/jacket, formal shoes. Hair neatly groomed. Strict no-casuals policy.',
       rounds: 'Round 1: Versant Test > Round 2: Group Case Study Discussion > Round 3: Partner Interview',
       documents: '2 hard copies of verified resume, 10th/12th/B.Tech grade transcripts, college ID card.',
-      eligibility: 'B.Tech All Branches & MBA (CGPA >= 6.5)'
+      eligibility: 'B.Tech All Branches & MBA (CGPA >= 6.5)',
+      image: 'images/tour/academic_complex.jpg',
+      imageAlt: 'LPU Block 32 Executive Lecture Theatre'
     },
     {
       id: 'drive-bosch',
@@ -2995,7 +3083,9 @@ Please proceed to the counter lounge.`);
       dressCode: 'Full Formal Shirt and Trousers with leather shoes. Closed-toe formal shoes mandatory for workshop entry due to lab safety regulations.',
       rounds: 'Round 1: C/C++ Embedded Coding > Round 2: Microcontroller Interfacing > Round 3: Technical HR',
       documents: '2 resume copies, college ID card, certified training/internship certificates in Embedded/IoT.',
-      eligibility: 'B.Tech ECE / EEE / Mechanical / Mechatronics (CGPA >= 6.8)'
+      eligibility: 'B.Tech ECE / EEE / Mechanical / Mechatronics (CGPA >= 6.8)',
+      image: 'images/tour/academic_complex.jpg',
+      imageAlt: 'LPU Block 28 Engineering Workshops & Labs'
     },
     {
       id: 'drive-cognizant',
@@ -3016,7 +3106,9 @@ Please proceed to the counter lounge.`);
       dressCode: 'Formal Shirt and Trousers with belt and formal shoes. University RFID ID card must be worn visibly with lanyard.',
       rounds: 'Round 1: Advanced Coding > Round 2: Tech Interview > Round 3: HR Discussion',
       documents: '2 copies of resume, government ID card, university ID card.',
-      eligibility: 'B.Tech / M.Tech / MCA (CGPA >= 6.0)'
+      eligibility: 'B.Tech / M.Tech / MCA (CGPA >= 6.0)',
+      image: 'images/tour/library.webp',
+      imageAlt: 'LPU Central Library Digital Carrels Hall'
     }
   ];
 
