@@ -58,10 +58,6 @@
 
 /* ── Mobile bottom nav bar ───────────────────────────────────── */
 @media (max-width: 768px) {
-  .site-header .main-nav {
-    display: none; /* hide top nav on mobile */
-  }
-
   .mobile-bottom-nav {
     display: flex;
     position: fixed;

@@ -31,40 +31,65 @@
   <div id="polite-announcer" aria-live="polite" aria-atomic="true" class="sr-only" role="status"></div>
 
   <!-- 
- HEADER
- -->
-  <header class="site-header" role="banner">
-    <div class="header-inner">
+  SIDEBAR NAVIGATION (Shifted from Top Navbar)
+  -->
+  <header class="site-header site-sidebar" id="site-sidebar" role="banner">
+    <div class="sidebar-brand">
       <div class="brand">
         <div>
           <h1 class="brand-name">LPU <span class="brand-accent">Pathway</span></h1>
           <p class="brand-tagline">Accessible Campus Navigation</p>
         </div>
       </div>
-
-      <nav class="main-nav" aria-label="Primary navigation" role="navigation">
-        <ul role="list">
-          <li><a href="#" class="nav-link active" aria-current="page" data-tab="navigate">Navigate</a></li>
-          <li><a href="#" class="nav-link" data-tab="buildings">Buildings</a></li>
-          <li><a href="#" class="nav-link" data-tab="autos">Autos &amp; E-Carts</a></li>
-          <li><a href="#" class="nav-link" data-tab="gps">Live GPS</a></li>
-          <li><a href="#" class="nav-link" data-tab="parking">Parking</a></li>
-          <li><a href="#" class="nav-link" data-tab="heatmap">Heatmap</a></li>
-          <li><a href="#" class="nav-link" data-tab="exams">Exam Hall</a></li>
-          <li><a href="#" class="nav-link" data-tab="events">Events</a></li>
-          <li><a href="#" class="nav-link" data-tab="visitor">Visitor Tour</a></li>
-          <li><a href="#" class="nav-link" data-tab="indoor">Indoor Nav</a></li>
-          <li><a href="#" class="nav-link" data-tab="queues">Queue Times</a></li>
-          <li><a href="#" class="nav-link" data-tab="stories">Campus Stories</a></li>
-          <li><a href="#" class="nav-link" data-tab="placements">Placements</a></li>
-          <li><a href="#" class="nav-link" data-tab="chatbot" title="Chat with LPU Campus AI Assistant">Campus AI</a>
-          </li>
-          <li><a href="#" class="nav-link" data-tab="report">Report Issue</a></li>
-          <li><a href="#" class="nav-link" data-tab="help">Help</a></li>
-        </ul>
-      </nav>
-
+      <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close navigation sidebar">✕</button>
     </div>
+
+    <nav class="main-nav" aria-label="Primary navigation" role="navigation">
+      <ul role="list">
+        <li><a href="#" class="nav-link active" aria-current="page" data-tab="navigate">Navigate</a></li>
+        <li><a href="#" class="nav-link" data-tab="buildings">Buildings</a></li>
+        <li><a href="#" class="nav-link" data-tab="autos">Autos &amp; E-Carts</a></li>
+        <li><a href="#" class="nav-link" data-tab="gps">Live GPS</a></li>
+        <li><a href="#" class="nav-link" data-tab="parking">Parking</a></li>
+        <li><a href="#" class="nav-link" data-tab="heatmap">Heatmap</a></li>
+        <li><a href="#" class="nav-link" data-tab="exams">Exam Hall</a></li>
+        <li><a href="#" class="nav-link" data-tab="events">Events</a></li>
+        <li><a href="#" class="nav-link" data-tab="visitor">Visitor Tour</a></li>
+        <li><a href="#" class="nav-link" data-tab="indoor">Indoor Nav</a></li>
+        <li><a href="#" class="nav-link" data-tab="queues">Queue Times</a></li>
+        <li><a href="#" class="nav-link" data-tab="stories">Campus Stories</a></li>
+        <li><a href="#" class="nav-link" data-tab="placements">Placements</a></li>
+        <li><a href="#" class="nav-link" data-tab="chatbot" title="Chat with LPU Campus AI Assistant">Campus AI</a>
+        </li>
+        <li><a href="#" class="nav-link" data-tab="report">Report Issue</a></li>
+        <li><a href="#" class="nav-link" data-tab="help">Help</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="sidebar-badge">LPU Pathway Accessible Hub</span>
+    </div>
+  </header>
+
+  <!-- Mobile Top Bar for small screens -->
+  <div class="mobile-top-bar" id="mobile-top-bar">
+    <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation sidebar" aria-expanded="false" aria-controls="site-sidebar">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+    <div class="mobile-brand">
+      <span class="mobile-brand-title">LPU <span class="brand-accent">Pathway</span></span>
+    </div>
+  </div>
+
+  <!-- Mobile Overlay Backdrop -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+  <!-- 
+  MAIN CONTENT
+  -->
+  <main id="main-content" role="main">
 
     <!-- ALERT BANNER for lift outages -->
     <div id="alert-banner" class="alert-banner" role="alert" aria-live="assertive" aria-atomic="true" hidden>
@@ -72,12 +97,6 @@
       <span id="alert-text"></span>
       <button id="close-alert" aria-label="Dismiss alert" class="alert-close"></button>
     </div>
-  </header>
-
-  <!-- 
- MAIN CONTENT
- -->
-  <main id="main-content" role="main">
 
     <!-- ROUTE PLANNER PANEL -->
     <section id="route-panel" class="route-panel page-section active-page" data-page="navigate"

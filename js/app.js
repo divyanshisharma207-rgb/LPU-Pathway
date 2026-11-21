@@ -185,6 +185,36 @@
  // Expose switchTab globally so other components can navigate to tabs
  window.switchAppTab = switchTab;
 
+ // Mobile sidebar drawer handlers
+ const menuBtn = document.getElementById('mobile-menu-btn');
+ const sidebar = document.getElementById('site-sidebar');
+ const closeBtn = document.getElementById('sidebar-close-btn');
+ const backdrop = document.getElementById('sidebar-backdrop');
+
+ function openMobileSidebar() {
+   if (sidebar) sidebar.classList.add('sidebar-open');
+   if (backdrop) backdrop.classList.add('active');
+   if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+ }
+
+ function closeMobileSidebar() {
+   if (sidebar) sidebar.classList.remove('sidebar-open');
+   if (backdrop) backdrop.classList.remove('active');
+   if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+ }
+
+ if (menuBtn) menuBtn.addEventListener('click', openMobileSidebar);
+ if (closeBtn) closeBtn.addEventListener('click', closeMobileSidebar);
+ if (backdrop) backdrop.addEventListener('click', closeMobileSidebar);
+
+ if (sidebar) {
+   sidebar.querySelectorAll('.nav-link').forEach(link => {
+     link.addEventListener('click', () => {
+       if (window.innerWidth < 900) closeMobileSidebar();
+     });
+   });
+ }
+
  // Handle hash on page load
  const hash = window.location.hash;
  const hashToTab = {
