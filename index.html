@@ -1882,14 +1882,19 @@
         </div>
 
         <div class="visitor-hud-card">
-          <div class="visitor-hud-progress">
-            <span class="tour-step-badge">Stop 1 of 6</span>
-            <span style="font-size:0.82rem; font-weight:700; color:#0284c7;">Walk Time: 0 min (Starting Point)</span>
+          <!-- REAL CAMPUS IMAGE SHOWCASE -->
+          <div class="visitor-image-container">
+            <img src="images/tour/main_gate.jpg" alt="LPU Main Gate 1 &amp; University Reception on GT Road" class="visitor-hud-image" loading="lazy" />
+            <div class="visitor-image-overlay">
+              <span class="tour-step-badge">Stop 1 of 6</span>
+              <span class="visitor-walk-time-chip">Walk Time: 0 min (Starting Point)</span>
+            </div>
           </div>
+
           <h3 class="visitor-hud-title">Main Gate 1 &amp; University Reception</h3>
           <p class="visitor-hud-desc">Grand GT Road entrance, visitor pass desk, wheelchair assistance point, electric campus buggy station.</p>
           <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1.25rem; font-size:0.85rem; color:#0369a1;">
-            <strong>Audio Tour Guide:</strong> "Welcome to Lovely Professional University. Main Gate 1 is our flagship entrance on the Grand Trunk Road. Here parents and new admissions can obtain campus passes and board our accessible electric buggies."
+            <strong style="color:#0284c7; display:block; margin-bottom:4px;">Audio Tour Guide:</strong> "Welcome to Lovely Professional University. Main Gate 1 is our flagship entrance on the Grand Trunk Road. Here parents and new admissions can obtain campus passes and board our accessible electric buggies."
           </div>
           <div class="visitor-hud-controls">
             <button type="button" class="btn-tour-nav btn-tour-audio" onclick="CampusSmartHub.readTourStop()">Listen Audio Guide</button>
@@ -1897,6 +1902,55 @@
             <div style="margin-left:auto; display:flex; gap:0.5rem;">
               <button type="button" class="btn-tour-nav btn-tour-prev" disabled style="opacity:0.5; cursor:not-allowed;" onclick="CampusSmartHub.prevTourStop()">← Previous Stop</button>
               <button type="button" class="btn-tour-nav btn-tour-next" onclick="CampusSmartHub.nextTourStop()">Next Stop →</button>
+            </div>
+          </div>
+
+          <!-- STOPS AT A GLANCE FILMSTRIP -->
+          <div class="visitor-stops-gallery">
+            <h4 class="visitor-gallery-title">Tour Stops at a Glance (Click to Preview)</h4>
+            <div class="visitor-stops-grid">
+              <div class="visitor-stop-thumb-card active" onclick="CampusSmartHub.jumpToTourStop(0)" title="Click to view Main Gate 1 &amp; University Reception">
+                <img src="images/tour/main_gate.jpg" alt="Main Gate 1" class="stop-thumb-img" loading="lazy" />
+                <div class="stop-thumb-info">
+                  <span class="stop-thumb-num">Stop 1</span>
+                  <span class="stop-thumb-name">Main Gate 1 &amp; University Reception</span>
+                </div>
+              </div>
+              <div class="visitor-stop-thumb-card" onclick="CampusSmartHub.jumpToTourStop(1)" title="Click to view Division of Student Welfare &amp; Admission Cell">
+                <img src="images/tour/admission_block.jpg" alt="Block 32 Admission Cell" class="stop-thumb-img" loading="lazy" />
+                <div class="stop-thumb-info">
+                  <span class="stop-thumb-num">Stop 2</span>
+                  <span class="stop-thumb-name">Division of Student Welfare &amp; Admission Cell</span>
+                </div>
+              </div>
+              <div class="visitor-stop-thumb-card" onclick="CampusSmartHub.jumpToTourStop(2)" title="Click to view Shanti Devi Mittal Central Library">
+                <img src="images/tour/library.webp" alt="Central Library" class="stop-thumb-img" loading="lazy" />
+                <div class="stop-thumb-info">
+                  <span class="stop-thumb-num">Stop 3</span>
+                  <span class="stop-thumb-name">Shanti Devi Mittal Central Library</span>
+                </div>
+              </div>
+              <div class="visitor-stop-thumb-card" onclick="CampusSmartHub.jumpToTourStop(3)" title="Click to view Uni-Mall Student Life &amp; Food Hub">
+                <img src="images/tour/unimall.jpg" alt="Uni-Mall" class="stop-thumb-img" loading="lazy" />
+                <div class="stop-thumb-info">
+                  <span class="stop-thumb-num">Stop 4</span>
+                  <span class="stop-thumb-name">Uni-Mall Student Life &amp; Food Hub</span>
+                </div>
+              </div>
+              <div class="visitor-stop-thumb-card" onclick="CampusSmartHub.jumpToTourStop(4)" title="Click to view Uni-Hospital 24/7 Healthcare">
+                <img src="images/tour/hospital.jpg" alt="Uni-Hospital" class="stop-thumb-img" loading="lazy" />
+                <div class="stop-thumb-info">
+                  <span class="stop-thumb-num">Stop 5</span>
+                  <span class="stop-thumb-name">Uni-Hospital 24/7 Super-Specialty</span>
+                </div>
+              </div>
+              <div class="visitor-stop-thumb-card" onclick="CampusSmartHub.jumpToTourStop(5)" title="Click to view Indoor Sports Complex">
+                <img src="images/tour/sports_complex.jpg" alt="Sports Complex" class="stop-thumb-img" loading="lazy" />
+                <div class="stop-thumb-info">
+                  <span class="stop-thumb-num">Stop 6</span>
+                  <span class="stop-thumb-name">Shanti Devi Mittal Indoor Sports Complex</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -735,6 +735,136 @@
 .btn-tour-audio { background: #e0f2fe; color: #0369a1; border: 1.5px solid #bae6fd; }
 .btn-tour-audio:hover { background: #bae6fd; }
 
+/* ── VISITOR TOUR IMAGES & FILMSTRIP ────────────────────────── */
+.visitor-image-container {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  background: #0f172a;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.visitor-hud-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.visitor-hud-image:hover {
+  transform: scale(1.02);
+}
+
+.visitor-image-overlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.visitor-walk-time-chip {
+  background: rgba(15, 23, 42, 0.85);
+  color: #38bdf8;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.visitor-stops-gallery {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1.5px solid var(--clr-border, #e5e7eb);
+}
+
+.visitor-gallery-title {
+  margin: 0 0 0.85rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.visitor-stops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.visitor-stop-thumb-card {
+  background: #ffffff;
+  border: 2px solid var(--clr-border, #e5e7eb);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.visitor-stop-thumb-card:hover {
+  border-color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+}
+
+.visitor-stop-thumb-card.active {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.35);
+  background: #f0f9ff;
+}
+
+.stop-thumb-img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  display: block;
+}
+
+.stop-thumb-info {
+  padding: 0.5rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stop-thumb-num {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0284c7;
+  text-transform: uppercase;
+}
+
+.stop-thumb-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .visitor-image-container {
+    height: 220px;
+  }
+  .visitor-stops-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* ── 6. EMERGENCY MAP LAYER & SAFE HEAVENS ─────────────────────── */
 .emergency-hub-banner {
   background: #fff5f5;

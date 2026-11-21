@@ -343,6 +343,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2558,
           lng: 75.7051,
           walkTime: '0 min (Starting Point)',
+          image: 'images/tour/main_gate.jpg',
+          imageAlt: 'LPU Main Gate 1 & University Reception on GT Road',
           highlights: 'Grand GT Road entrance, visitor pass desk, wheelchair assistance point, electric campus buggy station.',
           audioText: 'Welcome to Lovely Professional University. Main Gate 1 is our flagship entrance on the Grand Trunk Road. Here parents and new admissions can obtain campus passes and board our accessible electric buggies.'
         },
@@ -353,6 +355,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2538,
           lng: 75.7028,
           walkTime: '4 min walk',
+          image: 'images/tour/admission_block.jpg',
+          imageAlt: 'Division of Student Welfare & Admission Cell Block 32',
           highlights: 'Central admission verification, student counseling, career guidance, step-free access and ramps.',
           audioText: 'Block 32 is the university academic hub. On the ground floor is the Division of Student Welfare and Admissions Cell, offering step-free access and friendly counselors.'
         },
@@ -363,6 +367,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2544,
           lng: 75.7036,
           walkTime: '3 min walk',
+          image: 'images/tour/library.webp',
+          imageAlt: 'Shanti Devi Mittal Central Library Block 34',
           highlights: '5-storey library, 1.5 million+ book volumes, automated RFID kiosk, digital research labs.',
           audioText: 'Now arriving at the Shanti Devi Mittal Central Library. Spanning five floors, it is one of the largest academic libraries in northern India with air-conditioned reading halls and digital repositories.'
         },
@@ -373,6 +379,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2542,
           lng: 75.7046,
           walkTime: '2 min walk',
+          image: 'images/tour/unimall.jpg',
+          imageAlt: 'Uni-Mall Student Life Shopping & Dining Hub',
           highlights: 'Shopping arcade, food court, banks, ATMs, stationery stores, salon and student amenities.',
           audioText: 'Next is Uni-Mall, the lifestyle and commercial heartbeat of campus, featuring multi-cuisine dining, national banks, and convenience stores.'
         },
@@ -383,6 +391,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2512,
           lng: 75.7065,
           walkTime: '5 min walk',
+          image: 'images/tour/hospital.jpg',
+          imageAlt: 'Uni-Hospital 24/7 Super-Specialty Healthcare Center',
           highlights: '24/7 emergency casualty, ICU, resident medical doctors, subsidized pharmacy, trauma care.',
           audioText: 'Uni-Hospital provides round-the-clock medical care for students and faculty, staffed with 24-hour doctors and ambulance response teams.'
         },
@@ -393,6 +403,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2498,
           lng: 75.7052,
           walkTime: '3 min walk',
+          image: 'images/tour/sports_complex.jpg',
+          imageAlt: 'Shanti Devi Mittal Indoor Sports Complex & Stadium',
           highlights: 'Olympic swimming pool, badminton arenas, shooting range, bowling alley, gyms.',
           audioText: 'Our tour concludes at the Indoor Sports Complex, housing an all-weather Olympic swimming pool and world-class athletic facilities.'
         }
@@ -410,6 +422,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2558,
           lng: 75.7051,
           walkTime: '0 min',
+          image: 'images/tour/main_gate_transit.jpg',
+          imageAlt: 'Main Gate Campus E-Cart & Electric Buggy Transit Station',
           highlights: 'Hop on free accessible carts or flat ₹10 student e-rickshaws to reach any classroom block.',
           audioText: 'Welcome freshers! The Main Gate transit bay is where campus e-rickshaws and free wheelchair carts depart every three minutes.'
         },
@@ -420,6 +434,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2539,
           lng: 75.7053,
           walkTime: '4 min walk',
+          image: 'images/tour/student_centre.webp',
+          imageAlt: 'Student Welfare & Cultural Clubs Centre Block 36',
           highlights: 'Student organizations, cultural clubs, NSS, NCC, ID card printing, fee counters.',
           audioText: 'Block 36 is where university student clubs, sports federations, and the department of student welfare reside.'
         },
@@ -430,6 +446,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2546,
           lng: 75.7018,
           walkTime: '5 min walk',
+          image: 'images/tour/academic_complex.jpg',
+          imageAlt: 'Academic Complex Engineering & Computing Blocks 25 to 29',
           highlights: 'CSE, IT, ECE, Aerospace & Mechanical blocks connected via covered, step-free corridors.',
           audioText: 'Blocks 25 through 29 form the engineering quadrangle, interconnected by shaded all-weather covered walkways.'
         },
@@ -440,6 +458,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2530,
           lng: 75.7035,
           walkTime: '3 min walk',
+          image: 'images/tour/unipolis.jpg',
+          imageAlt: 'Baldev Raj Mittal Unipolis Arena Amphitheatre',
           highlights: '10,000-seat amphitheatre, Youth Vibe concerts, fresher welcome parties, outdoor dining.',
           audioText: 'Unipolis is LPU’s iconic open amphitheatre where thousands gather for cultural fests and concerts.'
         },
@@ -450,6 +470,8 @@ window.CampusSmartHub = (() => {
           lat: 31.2505,
           lng: 75.7035,
           walkTime: '4 min walk',
+          image: 'images/tour/hostel_zone.jpg',
+          imageAlt: 'Hostel Residential Zone Campus Grounds',
           highlights: 'Hostel wardens, study rooms, night canteens, laundromats, step-free ramps.',
           audioText: 'Finally, the residential hostel avenues provide night cafeterias, automated laundries, and secure living spaces.'
         }
@@ -907,14 +929,19 @@ window.CampusSmartHub = (() => {
       </div>
 
       <div class="visitor-hud-card">
-        <div class="visitor-hud-progress">
-          <span class="tour-step-badge">Stop ${stop.index} of ${tour.stops.length}</span>
-          <span style="font-size:0.82rem; font-weight:700; color:#0284c7;">Walk Time: ${stop.walkTime}</span>
+        <!-- REAL CAMPUS IMAGE SHOWCASE -->
+        <div class="visitor-image-container">
+          <img src="${stop.image}" alt="${stop.imageAlt || stop.name}" class="visitor-hud-image" loading="lazy" />
+          <div class="visitor-image-overlay">
+            <span class="tour-step-badge">Stop ${stop.index} of ${tour.stops.length}</span>
+            <span class="visitor-walk-time-chip">Walk Time: ${stop.walkTime}</span>
+          </div>
         </div>
+
         <h3 class="visitor-hud-title">${stop.name}</h3>
         <p class="visitor-hud-desc">${stop.highlights}</p>
         <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1.25rem; font-size:0.85rem; color:#0369a1;">
-          <strong>Audio Tour Guide:</strong> "${stop.audioText}"
+          <strong style="color:#0284c7; display:block; margin-bottom:4px;">Audio Tour Guide:</strong> "${stop.audioText}"
         </div>
         <div class="visitor-hud-controls">
           <button type="button" class="btn-tour-nav btn-tour-audio" onclick="CampusSmartHub.readTourStop()">
@@ -930,6 +957,22 @@ window.CampusSmartHub = (() => {
             <button type="button" class="btn-tour-nav btn-tour-next" ${currentTourStopIdx === tour.stops.length - 1 ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''} onclick="CampusSmartHub.nextTourStop()">
               Next Stop →
             </button>
+          </div>
+        </div>
+
+        <!-- STOPS AT A GLANCE FILMSTRIP -->
+        <div class="visitor-stops-gallery">
+          <h4 class="visitor-gallery-title">Tour Stops at a Glance (Click to Preview)</h4>
+          <div class="visitor-stops-grid">
+            ${tour.stops.map((s, idx) => `
+              <div class="visitor-stop-thumb-card ${idx === currentTourStopIdx ? 'active' : ''}" onclick="CampusSmartHub.jumpToTourStop(${idx})" title="Click to view ${s.name}">
+                <img src="${s.image}" alt="${s.name}" class="stop-thumb-img" loading="lazy" />
+                <div class="stop-thumb-info">
+                  <span class="stop-thumb-num">Stop ${s.index}</span>
+                  <span class="stop-thumb-name">${s.name}</span>
+                </div>
+              </div>
+            `).join('')}
           </div>
         </div>
       </div>
@@ -1238,6 +1281,13 @@ window.CampusSmartHub = (() => {
   function selectTour(tourId) {
     currentTourId = tourId;
     currentTourStopIdx = 0;
+    renderVisitorSection();
+  }
+
+  function jumpToTourStop(idx) {
+    const tour = GUIDED_TOURS.find(t => t.id === currentTourId);
+    if (!tour || typeof idx !== 'number' || idx < 0 || idx >= tour.stops.length) return;
+    currentTourStopIdx = idx;
     renderVisitorSection();
   }
 
@@ -3043,6 +3093,7 @@ Please proceed to the counter lounge.`);
     navigateToNode,
     routeToExam,
     selectTour,
+    jumpToTourStop,
     nextTourStop,
     prevTourStop,
     readTourStop,
