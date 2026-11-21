@@ -378,20 +378,22 @@ const CampusMap = (() => {
 
   if (coords.length < 2) return;
 
- const color = stepFree ? '#2e7d32' : '#1565c0';
- const label = stepFree ? ' Step-Free Route' : ' Fastest Route';
- const weight = 7;
+  const isCovered = (stepFree === 'covered');
+  const isStepFree = (stepFree === true || stepFree === 'stepfree');
+  const color = isCovered ? '#00897b' : (isStepFree ? '#2e7d32' : '#1565c0');
+  const label = isCovered ? '☂️ Covered / Shaded Route' : (isStepFree ? '♿ Step-Free Route' : '⚡ Fastest Route');
+  const weight = 7;
 
- // Main route line
- const routeLine = L.polyline(coords, {
- color,
- weight,
- opacity: 0.9,
- lineJoin: 'round',
- lineCap: 'round',
- })
- .addTo(routeLayer)
- .bindTooltip(label, { sticky: true, className: `route-tooltip ${stepFree ? 'stepfree' : ''}` });
+  // Main route line
+  const routeLine = L.polyline(coords, {
+    color,
+    weight,
+    opacity: 0.9,
+    lineJoin: 'round',
+    lineCap: 'round',
+  })
+  .addTo(routeLayer)
+  .bindTooltip(label, { sticky: true, className: `route-tooltip ${isCovered ? 'covered' : (isStepFree ? 'stepfree' : '')}` });
 
  currentRoutePolylines.push(routeLine);
 

@@ -434,19 +434,19 @@ const LIFTS = {
 // Every node is connected with both step-free and standard paths
 const GRAPH = {
   'main-gate': [
-    { to: 'uni-mall-entrance', weight: 80, stepFreeWeight: 80, stepFree: true, type: 'outdoor', desc: 'Walk along Central Avenue past green lawn', landmark: 'Pass security booth onto paved main pathway' },
+    { to: 'uni-mall-entrance', weight: 80, stepFreeWeight: 80, stepFree: true, type: 'outdoor', shaded: true, desc: 'Walk along tree-shaded Central Avenue', landmark: 'Shaded tree canopy along central avenue' },
     { to: 'b32-ground', weight: 110, stepFreeWeight: 120, stepFree: true, type: 'outdoor', desc: 'Walk straight towards Block 32 Academic Block', landmark: 'Follow signage for Academic Block 32' },
     { to: 'food-court', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk south-east towards Central Food Court', landmark: 'Follow path past central fountain' },
     { to: 'unipolis', weight: 75, stepFreeWeight: 80, stepFree: true, type: 'outdoor', desc: 'Walk towards Unipolis cultural arena', landmark: 'Unipolis open stage visible on right' },
     { to: 'b14-ground', weight: 90, stepFreeWeight: 95, stepFree: true, type: 'outdoor', desc: 'Walk south-west towards Block 14 (Humanities)', landmark: 'Follow western perimeter avenue' },
-    { to: 'uni-hospital', weight: 120, stepFreeWeight: 120, stepFree: true, type: 'outdoor', desc: 'Follow accessible path to University Hospital', landmark: 'Hospital signage and red cross visible' },
+    { to: 'uni-hospital', weight: 120, stepFreeWeight: 120, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk via covered medical walkway to Uni-Hospital', landmark: 'Covered patient walkway to hospital' },
     { to: 'bh-south', weight: 190, stepFreeWeight: 200, stepFree: true, type: 'outdoor', desc: 'Walk towards Boys Hostel 1-4 complex', landmark: 'Follow southern avenue towards residential zone' }
   ],
 
   'uni-mall-entrance': [
-    { to: 'main-gate', weight: 80, stepFreeWeight: 80, stepFree: true, type: 'outdoor', desc: 'Walk towards Main Gate', landmark: 'Follow Central Avenue past security booth' },
-    { to: 'b34-ground', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', desc: 'Walk to Block 34 (Central Library)', landmark: 'Block 34 level glass entrance on your left' },
-    { to: 'b36-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk to Block 36 Student Centre', landmark: 'Follow eastern ramped path to Block 36' },
+    { to: 'main-gate', weight: 80, stepFreeWeight: 80, stepFree: true, type: 'outdoor', shaded: true, desc: 'Walk towards Main Gate via tree-shaded avenue', landmark: 'Tree-lined shaded path to Main Gate' },
+    { to: 'b34-ground', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk via covered glass arcade to Block 34', landmark: 'Covered canopy to Library entrance' },
+    { to: 'b36-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk via covered promenade to Block 36', landmark: 'Sheltered arcade to Block 36' },
     { to: 'unipolis', weight: 45, stepFreeWeight: 45, stepFree: true, type: 'outdoor', desc: 'Walk to Unipolis arena', landmark: 'Adjacent to Uni-Mall plaza' },
     { to: 'food-court', weight: 50, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk to Food Court dining area', landmark: 'Food court is next to Uni-Mall' },
     { to: 'b33-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk towards Block 33 Agriculture', landmark: 'Pass between Uni-Mall and Block 32' },
@@ -480,32 +480,32 @@ const GRAPH = {
 
   'b25-ground': [
     { to: 'b14-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk south to Block 14', landmark: 'Follow western avenue' },
-    { to: 'b26-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk north to Block 26 (CSE)', landmark: 'Block 26 is directly adjacent' },
+    { to: 'b26-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered engineering corridor to Block 26', landmark: 'Covered interconnecting corridor' },
     { to: 'b32-ground', weight: 75, stepFreeWeight: 80, stepFree: true, type: 'outdoor', desc: 'Cross walkway east to Block 32', landmark: 'Direct connecting bridge and ramp' }
   ],
 
   'b26-ground': [
-    { to: 'b25-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk south to Block 25', landmark: 'Adjacent computer science block' },
-    { to: 'b27-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk north to Block 27 (ECE)', landmark: 'Follow paved corridor north' },
+    { to: 'b25-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered engineering corridor to Block 25', landmark: 'Covered interconnecting corridor' },
+    { to: 'b27-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered corridor north to Block 27', landmark: 'Continuous sheltered corridor' },
     { to: 'b32-ground', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', desc: 'Walk east to Block 32', landmark: 'Cross accessible walkway to Block 32 south entrance' }
   ],
 
   'b27-ground': [
-    { to: 'b26-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk south to Block 26', landmark: 'Adjacent block' },
-    { to: 'b28-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk north to Block 28 (Mechanical)', landmark: 'Follow engineering walkway' },
+    { to: 'b26-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered corridor south to Block 26', landmark: 'Continuous sheltered corridor' },
+    { to: 'b28-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered corridor to Block 28', landmark: 'Covered walkway to Block 28' },
     { to: 'b32-ground', weight: 65, stepFreeWeight: 70, stepFree: true, type: 'outdoor', desc: 'Walk south-east to Block 32', landmark: 'Connecting avenue' },
     { to: 'b33-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk east to Block 33', landmark: 'Paved cross-campus avenue' }
   ],
 
   'b28-ground': [
-    { to: 'b27-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk south to Block 27', landmark: 'Adjacent engineering block' },
-    { to: 'b29-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk north to Block 29 (Civil Engg)', landmark: 'Follow paved avenue' },
+    { to: 'b27-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered corridor to Block 27', landmark: 'Covered corridor to Block 27' },
+    { to: 'b29-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered corridor to Block 29', landmark: 'Covered civil engineering corridor' },
     { to: 'b33-ground', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', desc: 'Walk east to Block 33', landmark: 'Cross-pathway towards Agriculture block' },
     { to: 'b55-ground', weight: 90, stepFreeWeight: 95, stepFree: true, type: 'outdoor', desc: 'Walk north-east towards Block 55 Pharmacy', landmark: 'Follow northern research ring road' }
   ],
 
   'b29-ground': [
-    { to: 'b28-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk south to Block 28', landmark: 'Mechanical engineering wing' },
+    { to: 'b28-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered corridor to Block 28', landmark: 'Covered engineering corridor' },
     { to: 'b55-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk east to Block 55 (Pharmacy)', landmark: 'Northern corridor with gentle ramp' },
     { to: 'bh-north', weight: 85, stepFreeWeight: 90, stepFree: true, type: 'outdoor', desc: 'Walk north to Boys Hostel 5–8', landmark: 'Follow northern residential pathway' }
   ],
@@ -515,7 +515,7 @@ const GRAPH = {
     { to: 'unipolis', weight: 55, stepFreeWeight: 60, stepFree: true, type: 'outdoor', desc: 'Walk south to Unipolis arena', landmark: 'Level paved promenade' },
     { to: 'uni-mall-entrance', weight: 80, stepFreeWeight: 85, stepFree: true, type: 'outdoor', desc: 'Walk east to Uni-Mall', landmark: 'Follow path past water fountain' },
     { to: 'b26-ground', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', desc: 'Walk west to Block 26 (CSE)', landmark: 'Cross walkway west' },
-    { to: 'b33-ground', weight: 50, stepFreeWeight: 55, stepFree: true, type: 'outdoor', desc: 'Walk north-east to Block 33', landmark: 'Adjacent building pathway' },
+    { to: 'b33-ground', weight: 50, stepFreeWeight: 55, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered central walkway to Block 33', landmark: 'Covered connecting walkway' },
     { to: 'b34-ground', weight: 75, stepFreeWeight: 80, stepFree: true, type: 'outdoor', desc: 'Walk north-east to Block 34 (Library)', landmark: 'Library block is adjacent to the east' },
     { to: 'b32-f1', weight: 35, stepFreeWeight: 50, stepFree: true, type: 'lift', lift: 'b32-lift', desc: 'Take lift up to Floor 1', landmark: 'Central corridor lift' }
   ],
@@ -531,18 +531,18 @@ const GRAPH = {
   ],
 
   'b33-ground': [
-    { to: 'b32-ground', weight: 50, stepFreeWeight: 55, stepFree: true, type: 'outdoor', desc: 'Walk southwest to Block 32', landmark: 'Direct connecting avenue' },
-    { to: 'b34-ground', weight: 50, stepFreeWeight: 55, stepFree: true, type: 'outdoor', desc: 'Walk east to Block 34 (Library)', landmark: 'Level garden walkway' },
+    { to: 'b32-ground', weight: 50, stepFreeWeight: 55, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered walkway to Block 32', landmark: 'Covered connecting walkway' },
+    { to: 'b34-ground', weight: 50, stepFreeWeight: 55, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered walkway to Central Library', landmark: 'Covered canopy path' },
     { to: 'b27-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk west to Block 27 (ECE)', landmark: 'Crossway to engineering blocks' },
     { to: 'b28-ground', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', desc: 'Walk west to Block 28 (Mechanical)', landmark: 'Paved western connector' },
     { to: 'b55-ground', weight: 65, stepFreeWeight: 70, stepFree: true, type: 'outdoor', desc: 'Walk north to Block 55 (Pharmacy)', landmark: 'Northern academic pathway' }
   ],
 
   'b34-ground': [
-    { to: 'uni-mall-entrance', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', desc: 'Walk south to Uni-Mall', landmark: 'Level path past library gardens' },
+    { to: 'uni-mall-entrance', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk via covered canopy south to Uni-Mall', landmark: 'Sheltered arcade to Uni-Mall plaza' },
     { to: 'b32-ground', weight: 75, stepFreeWeight: 80, stepFree: true, type: 'outdoor', desc: 'Walk southwest to Block 32', landmark: 'Paved campus promenade' },
-    { to: 'b33-ground', weight: 50, stepFreeWeight: 55, stepFree: true, type: 'outdoor', desc: 'Walk west to Block 33', landmark: 'Adjacent building' },
-    { to: 'b35-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk north to Block 35 (Architecture)', landmark: 'Direct northern promenade' },
+    { to: 'b33-ground', weight: 50, stepFreeWeight: 55, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered canopy path to Block 33', landmark: 'Covered connecting canopy' },
+    { to: 'b35-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered corridor to Block 35', landmark: 'Covered promenade to Architecture' },
     { to: 'b36-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk south-east to Block 36 Student Centre', landmark: 'Paved route with accessible ramps' },
     { to: 'b56-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk north to Block 56 (Bio-Sciences)', landmark: 'Northern garden walk' },
     { to: 'b34-f1', weight: 35, stepFreeWeight: 50, stepFree: true, type: 'lift', lift: 'b34-lift', desc: 'Take library lift up to Floor 1', landmark: 'Main atrium lift' }
@@ -553,16 +553,16 @@ const GRAPH = {
   ],
 
   'b35-ground': [
-    { to: 'b34-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk south to Block 34 (Library)', landmark: 'Central Library promenade' },
+    { to: 'b34-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered corridor to Central Library', landmark: 'Covered walkway to Library' },
     { to: 'b56-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk north to Block 56', landmark: 'Bio-Sciences wing' },
     { to: 'b38-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk south-east to Block 38 (Business School)', landmark: 'East campus connection' },
     { to: 'gh-east', weight: 85, stepFreeWeight: 90, stepFree: true, type: 'outdoor', desc: 'Walk east to Girls Hostel 4–6', landmark: 'Residential avenue' }
   ],
 
   'b36-ground': [
-    { to: 'uni-mall-entrance', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk west to Uni-Mall', landmark: 'Pass fountain plaza' },
+    { to: 'uni-mall-entrance', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk via covered arcade west to Uni-Mall', landmark: 'Sheltered arcade past plaza' },
     { to: 'b34-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk northwest to Block 34 (Library)', landmark: 'Step-free garden path' },
-    { to: 'b37-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk east to Block 37 (School of Law)', landmark: 'Adjacent building with level walkway' },
+    { to: 'b37-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered colonnade to Block 37 (Law)', landmark: 'Sheltered colonnade arcade' },
     { to: 'indoor-stadium', weight: 65, stepFreeWeight: 70, stepFree: true, type: 'outdoor', desc: 'Walk south to Indoor Sports Complex', landmark: 'Sports stadium promenade' },
     { to: 'gh-west', weight: 80, stepFreeWeight: 85, stepFree: true, type: 'outdoor', desc: 'Walk south to Girls Hostel 1–3', landmark: 'Hostel security checkpost' },
     { to: 'b36-f1', weight: 35, stepFreeWeight: 50, stepFree: true, type: 'lift', lift: 'b36-lift', desc: 'Take east wing lift to Floor 1', landmark: 'East wing accessible lift' }
@@ -573,14 +573,14 @@ const GRAPH = {
   ],
 
   'b37-ground': [
-    { to: 'b36-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk west to Block 36 Student Centre', landmark: 'Direct level connector' },
-    { to: 'b38-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk north-east to Block 38 (Business School)', landmark: 'Paved avenue past lawn' },
+    { to: 'b36-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered colonnade to Block 36', landmark: 'Sheltered colonnade arcade' },
+    { to: 'b38-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered arcade to Mittal School of Business', landmark: 'Covered arcade to MSB' },
     { to: 'gate-2', weight: 75, stepFreeWeight: 80, stepFree: true, type: 'outdoor', desc: 'Walk east to Gate 2', landmark: 'Follow road to Gate 2 security entrance' },
     { to: 'gh-west', weight: 85, stepFreeWeight: 90, stepFree: true, type: 'outdoor', desc: 'Walk south to Girls Hostel 1–3', landmark: 'Southern residential pathway' }
   ],
 
   'b38-ground': [
-    { to: 'b37-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', desc: 'Walk southwest to Block 37 (Law)', landmark: 'Adjacent block' },
+    { to: 'b37-ground', weight: 45, stepFreeWeight: 50, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk through covered arcade to Block 37 (Law)', landmark: 'Covered arcade' },
     { to: 'b35-ground', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk northwest to Block 35 (Architecture)', landmark: 'Cross campus avenue' },
     { to: 'gate-2', weight: 55, stepFreeWeight: 60, stepFree: true, type: 'outdoor', desc: 'Walk east to Gate 2', landmark: 'Main approach road to Gate 2' },
     { to: 'gh-east', weight: 75, stepFreeWeight: 80, stepFree: true, type: 'outdoor', desc: 'Walk north to Girls Hostel 4–6', landmark: 'Paved residential route' }
@@ -603,7 +603,7 @@ const GRAPH = {
   ],
 
   'uni-hospital': [
-    { to: 'main-gate', weight: 120, stepFreeWeight: 120, stepFree: true, type: 'outdoor', desc: 'Walk north to Main Gate', landmark: 'Emergency road to campus gate' },
+    { to: 'main-gate', weight: 120, stepFreeWeight: 120, stepFree: true, type: 'outdoor', covered: true, desc: 'Walk north via covered walkway to Main Gate', landmark: 'Covered walkway towards Main Gate' },
     { to: 'food-court', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', desc: 'Walk north to Food Court', landmark: 'Paved garden path' },
     { to: 'b14-ground', weight: 60, stepFreeWeight: 65, stepFree: true, type: 'outdoor', desc: 'Walk north-west to Block 14', landmark: 'Follow western avenue' },
     { to: 'bh-south', weight: 70, stepFreeWeight: 75, stepFree: true, type: 'outdoor', desc: 'Walk south to Boys Hostel 1–4', landmark: 'Direct residential access' },

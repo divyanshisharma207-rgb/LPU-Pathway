@@ -54,11 +54,19 @@ const DirectionsPanel = (() => {
     if (routeMeta) {
       const timeStr = RouteEngine.formatTime(routeMeta.totalTime);
       summaryText.textContent = `${routeMeta.fromLabel} → ${routeMeta.toLabel} · ${timeStr}`;
+      
+      let modeBadgeHTML = '';
+      if (routeMeta.mode === 'covered') {
+        modeBadgeHTML = '<span class="route-badge route-badge--covered">☂️ Covered &amp; Shaded</span>';
+      } else if (routeMeta.stepFree) {
+        modeBadgeHTML = '<span class="route-badge route-badge--stepfree">♿ Step-Free</span>';
+      } else {
+        modeBadgeHTML = '<span class="route-badge route-badge--fastest">⚡ Fastest</span>';
+      }
+
       badges.innerHTML = `
-        <span class="route-badge ${routeMeta.stepFree ? 'route-badge--stepfree' : 'route-badge--fastest'}">
-          ${routeMeta.stepFree ? 'Step-Free' : 'Fastest'}
-        </span>
-        <span class="route-badge route-badge--time">${timeStr}</span>`;
+        ${modeBadgeHTML}
+        <span class="route-badge route-badge--time">⏱️ ${timeStr}</span>`;
     }
 
     // Show output, hide placeholder

@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/directions.css" />
   <link rel="stylesheet" href="css/autos.css" />
   <link rel="stylesheet" href="css/gps.css" />
+  <link rel="stylesheet" href="css/sos.css" />
  <!-- Leaflet.js for maps -->
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
@@ -183,9 +184,19 @@
  aria-describedby="stepfree-desc" />
  <span class="radio-custom" aria-hidden="true"></span>
  <span class="radio-label">
- <span class="route-icon" aria-hidden="true"></span>
+ <span class="route-icon" aria-hidden="true">♿</span>
  <strong>Step-Free</strong>
  <span id="stepfree-desc" class="route-desc">Uses ramps &amp; lifts only. No stairs.</span>
+ </span>
+ </label>
+ <label class="radio-option" for="covered-route">
+ <input type="radio" id="covered-route" name="routeType" value="covered"
+ aria-describedby="covered-desc" />
+ <span class="radio-custom" aria-hidden="true"></span>
+ <span class="radio-label">
+ <span class="route-icon" aria-hidden="true">☂️</span>
+ <strong>Covered / Shaded</strong>
+ <span id="covered-desc" class="route-desc">Summer &amp; Rain route (corridors &amp; canopy)</span>
  </span>
  </label>
  </div>
@@ -1350,7 +1361,97 @@
  <script src="js/gps.js"></script>
  <script src="js/autos.js"></script>
  <script src="js/report.js"></script>
+ <script src="js/sos.js"></script>
  <script src="js/app.js"></script>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       1-TAP CAMPUS EMERGENCY & MEDICAL SOS
+       ══════════════════════════════════════════════════════════════ -->
+  <button id="btn-emergency-sos" class="btn-emergency-sos" aria-label="Campus Emergency &amp; Medical SOS" title="1-Tap Emergency &amp; Medical Assistance">
+    <span class="sos-icon" aria-hidden="true">🚨</span>
+    <span class="sos-text">SOS Emergency</span>
+  </button>
+
+  <!-- CAMPUS EMERGENCY ASSISTANCE MODAL -->
+  <div id="sos-modal-overlay" class="sos-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="sos-title" aria-hidden="true">
+    <div class="sos-modal-card">
+      <div class="sos-modal-header">
+        <h2 id="sos-title" class="sos-modal-title">
+          <span aria-hidden="true">🚨</span> Campus Emergency &amp; Medical SOS
+        </h2>
+        <button type="button" id="btn-close-sos" class="sos-close-btn" aria-label="Close emergency modal">✕</button>
+      </div>
+      <div class="sos-modal-body">
+        <!-- Live Location Banner -->
+        <div class="sos-location-banner">
+          <div class="sos-loc-label">Your Current Location</div>
+          <div class="sos-loc-name" id="sos-loc-name">Locating on LPU campus...</div>
+          <div class="sos-loc-coords" id="sos-loc-coords">31.2536°N, 75.7037°E</div>
+          <button type="button" id="btn-copy-sos-loc" class="sos-copy-btn">
+            📋 Copy Location Coordinates
+          </button>
+        </div>
+
+        <!-- 1-Click WhatsApp Dispatch -->
+        <a id="sos-whatsapp-btn" class="sos-whatsapp-btn" href="#" target="_blank" rel="noopener">
+          <span aria-hidden="true">💬</span> Send SOS via WhatsApp with Location
+        </a>
+
+        <!-- 1-Click Direct Call Options -->
+        <div class="sos-call-grid">
+          <a href="tel:+911824404040" id="sos-call-ambulance" class="sos-call-card ambulance">
+            <div class="sos-call-info">
+              <span class="sos-call-icon" aria-hidden="true">🚑</span>
+              <div>
+                <div class="sos-call-title">Uni-Hospital Medical Emergency</div>
+                <div class="sos-call-sub">24/7 Campus Ambulance &amp; Trauma Care</div>
+              </div>
+            </div>
+            <span class="sos-call-action">Call 24/7</span>
+          </a>
+
+          <a href="tel:+911824404040" class="sos-call-card security">
+            <div class="sos-call-info">
+              <span class="sos-call-icon" aria-hidden="true">🛡️</span>
+              <div>
+                <div class="sos-call-title">Campus Security Control Room</div>
+                <div class="sos-call-sub">Quick Response Team &amp; Main Gate Patrol</div>
+              </div>
+            </div>
+            <span class="sos-call-action">Call Now</span>
+          </a>
+
+          <a href="tel:+911824404040" class="sos-call-card disability">
+            <div class="sos-call-info">
+              <span class="sos-call-icon" aria-hidden="true">♿</span>
+              <div>
+                <div class="sos-call-title">Disability Support &amp; Mobility Cell</div>
+                <div class="sos-call-sub">Emergency Wheelchair &amp; Cart Assist</div>
+              </div>
+            </div>
+            <span class="sos-call-action">Call Assist</span>
+          </a>
+
+          <a href="tel:1091" class="sos-call-card women">
+            <div class="sos-call-info">
+              <span class="sos-call-icon" aria-hidden="true">👮</span>
+              <div>
+                <div class="sos-call-title">Women's Safety &amp; State Helpline</div>
+                <div class="sos-call-sub">24/7 Dedicated Support Helpline</div>
+              </div>
+            </div>
+            <span class="sos-call-action">Dial 1091</span>
+          </a>
+        </div>
+
+        <!-- Quick Emergency Note -->
+        <div class="sos-tips">
+          <strong>Tip:</strong> Uni-Hospital is located near South Gate with immediate emergency reception. Each academic block ground floor is equipped with first-aid kits and security reception.
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
 

@@ -14,10 +14,12 @@ const RouteEngine = (() => {
    * @param {boolean} stepFree – if true, only use stepFree edges
    * @returns {{ path: string[], edges: object[], totalTime: number } | null}
    */
-  function findRoute(startId, endId, stepFree = false) {
+  function findRoute(startId, endId, mode = 'fastest') {
     if (startId === endId) return null;
 
     const { GRAPH, NODES, LIFTS } = window.CampusData;
+    const isStepFree = (mode === true || mode === 'stepfree' || mode === 'covered');
+    const isCovered = (mode === 'covered');
 
     // Distance map
     const dist = {};
@@ -44,30 +46,37 @@ const RouteEngine = (() => {
 
       const edges = GRAPH[current] || [];
       for (const edge of edges) {
-        // If step-free mode: skip non-stepFree edges
-        if (stepFree && !edge.stepFree) continue;
+        // Step-free or covered mode: skip non-stepFree edges (covered route is also accessible)
+        if (isStepFree && !edge.stepFree) continue;
 
-        // If step-free mode: skip edges using broken lifts
-        if (stepFree && edge.lift) {
+        // Skip broken lifts
+        if (isStepFree && edge.lift) {
           const lift = LIFTS[edge.lift];
-          if (lift && !lift.operational) continue; // avoid broken lift
+          if (lift && !lift.operational) continue;
         }
 
-        // Choose weight
-        let edgeWeight = stepFree
+        // Base edge weight
+        let edgeWeight = isStepFree
           ? (edge.stepFreeWeight ?? edge.weight)
           : edge.weight;
 
-        if (edgeWeight == null) continue;
+        // If covered mode: heavily favor covered/sheltered corridors and shaded tree avenues!
+        if (isCovered) {
+          if (edge.covered || edge.type === 'indoor' || edge.type === 'lift') {
+            edgeWeight = edgeWeight * 0.45; // 55% discount for sheltered corridor
+          } else if (edge.shaded) {
+            edgeWeight = edgeWeight * 0.75; // 25% discount for shaded tree canopy
+          } else {
+            edgeWeight = edgeWeight * 2.8;  // High penalty for open sun/heavy rain
+          }
+        }
 
-        const newDist = dist[current] + edgeWeight;
-        if (newDist < dist[edge.to]) {
-          dist[edge.to] = newDist;
+        const alt = dist[current] + edgeWeight;
+        if (alt < dist[edge.to]) {
+          dist[edge.to] = alt;
           prev[edge.to] = current;
           prevEdge[edge.to] = edge;
-          if (!visited.has(edge.to)) {
-            queue.push({ id: edge.to, cost: newDist });
-          }
+          queue.push({ id: edge.to, cost: alt });
         }
       }
     }
@@ -84,11 +93,15 @@ const RouteEngine = (() => {
       cur = prev[cur];
     }
 
+    // Calculate actual real walking time
+    const actualTime = edges.reduce((acc, e) => acc + (isStepFree ? (e.stepFreeWeight ?? e.weight) : e.weight), 0);
+
     return {
       path,
       edges,
-      totalTime: dist[endId],
-      stepFree,
+      totalTime: actualTime,
+      stepFree: isStepFree,
+      mode: isCovered ? 'covered' : (isStepFree ? 'stepfree' : 'fastest')
     };
   }
 
@@ -98,7 +111,10 @@ const RouteEngine = (() => {
    * @param {boolean} stepFreeMode
    * @returns {Array<{step, icon, instruction, landmark, type, accessTag, distance}>}
    */
-  function buildDirections(route, stepFreeMode) {
+  function buildDirections(route, mode) {
+    if (!route) return [];
+
+    const isCoveredMode = (mode === 'covered' || route.mode === 'covered');
     if (!route) return [];
 
     const { NODES, LIFTS } = window.CampusData;
