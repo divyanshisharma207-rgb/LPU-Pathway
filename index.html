@@ -52,6 +52,7 @@
  <li><a href="#" class="nav-link" data-tab="indoor">Indoor Nav</a></li>
  <li><a href="#" class="nav-link" data-tab="queues">Queue Times</a></li>
  <li><a href="#" class="nav-link" data-tab="stories">Campus Stories</a></li>
+ <li><a href="#" class="nav-link" data-tab="placements">Placements</a></li>
  <li><a href="#" class="nav-link" data-tab="report">Report Issue</a></li>
  <li><a href="#" class="nav-link" data-tab="help">Help</a></li>
  </ul>
@@ -278,6 +279,10 @@
       <a href="#" class="smart-tool-card" data-smart-launch="stories" title="Visual orientation tours of famous campus spots">
         <span class="tool-title">Stories</span>
         <span class="tool-desc">Landmark Tours</span>
+      </a>
+      <a href="#" class="smart-tool-card" data-smart-launch="placements" title="Company visits, venue, reporting time, and dress-code navigation">
+        <span class="tool-title">Placements</span>
+        <span class="tool-desc">Drives &amp; Venues</span>
       </a>
     </div>
   </div>
@@ -2444,7 +2449,413 @@
    </div>
  </section>
 
- </main>
+ 
+  <!-- ══════════════════════════════════════════════════════════════
+       PLACEMENT DRIVE NAVIGATION & COMPANY VISITS SECTION
+       ══════════════════════════════════════════════════════════════ -->
+  <section id="placements-section" class="placements-section page-section" data-page="placements" aria-labelledby="placements-heading">
+    <div class="smart-page-container">
+      <header class="smart-page-header">
+        <h2 id="placements-heading" class="smart-page-title">
+          Placement Drive Navigation &amp; Company Visits
+        </h2>
+        <p class="smart-page-subtitle">Real-time drive venues, reporting time, strict dress-code reminders, required credentials, and outdoor + indoor step-free routes for ongoing and upcoming campus recruitments.</p>
+      </header>
+
+      <div class="heatmap-status-banner" style="margin-bottom:1.25rem;">
+        <div>
+          <strong style="color:#065f46;">LPU Career Services &amp; Placement Cell Protocol</strong>
+          <div style="font-size:0.8rem; color:#475569;">
+            Corporate recruitment rules enforced: reporting venue closes 15 minutes before pre-placement talks. Formal business attire and physical university RFID ID card are strictly mandatory across all assessment halls.
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" style="background:#fff; color:#065f46; border-color:#059669; font-weight:700;" onclick="CampusSmartHub.refreshPlacements()">
+          Refresh Drives
+        </button>
+      </div>
+
+      <div id="placements-container">
+        <div class="placement-filter-bar">
+          <button class="filter-chip active" data-filter="all" onclick="CampusSmartHub.filterPlacementDrives('all')">All Visits (6)</button>
+          <button class="filter-chip" data-filter="live" onclick="CampusSmartHub.filterPlacementDrives('live')">Active Today (3)</button>
+          <button class="filter-chip" data-filter="upcoming" onclick="CampusSmartHub.filterPlacementDrives('upcoming')">Tomorrow (3)</button>
+          <button class="filter-chip" data-filter="tech" onclick="CampusSmartHub.filterPlacementDrives('tech')">Software &amp; Cloud</button>
+          <button class="filter-chip" data-filter="consulting" onclick="CampusSmartHub.filterPlacementDrives('consulting')">Consulting &amp; Analytics</button>
+          <button class="filter-chip" data-filter="core" onclick="CampusSmartHub.filterPlacementDrives('core')">Core Engineering</button>
+        </div>
+
+        <div class="placements-grid" id="placements-cards-grid">
+          <!-- CARD 1: Google India -->
+          <div class="placement-card" data-drive-id="drive-google" data-status="live" data-category="tech">
+            <div class="placement-banner">
+              <div class="placement-top-row">
+                <div>
+                  <h3 class="placement-company-name">Google India</h3>
+                  <div class="placement-role">Software Development Engineer (SDE-1)</div>
+                </div>
+                <span class="placement-package-badge">₹32.5 LPA</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem; font-size:0.75rem;">
+                <span style="opacity:0.9;">Today, Nov 21 · Technical Round</span>
+                <span style="background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:999px; font-weight:700;">Active Today</span>
+              </div>
+            </div>
+            <div class="placement-body">
+              <div>
+                <div class="placement-info-grid">
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Reporting Time</span>
+                    <span class="placement-info-val" style="color:#b91c1c;">08:30 AM Sharp (Reporting Lounge closes 08:45 AM)</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Drive Venue &amp; Hall</span>
+                    <span class="placement-info-val">Block 38 – Mittal School of Business Auditorium (Floor 0, Room 012)</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Selection Process</span>
+                    <span class="placement-info-val" style="font-size:0.8rem; font-weight:600; color:#475569;">Round 1: Coding Assessment &gt; Round 2: Tech Interview &gt; Round 3: HR Discussion</span>
+                  </div>
+                </div>
+
+                <div class="dress-code-reminder-box">
+                  <div class="dress-code-reminder-title">Dress-Code Reminder (Strictly Enforced)</div>
+                  <p class="dress-code-reminder-text">
+                    Formal Business Suit / Blazer with matching pressed trousers and polished leather shoes. University RFID ID card with blue lanyard compulsory. Jeans, casual footwear, and sneakers are strictly prohibited.
+                  </p>
+                </div>
+
+                <div class="placement-checklist-box">
+                  <strong>Mandatory Checklist:</strong> 3 hard copies of updated resume, student ID card, valid Govt ID (Aadhar/Passport), 2 passport photos, and fully charged laptop with charger for coding test.
+                </div>
+              </div>
+
+              <div class="placement-actions-grid">
+                <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.routeToPlacementVenue('b38-ground', 'Google Drive (Block 38 Auditorium)')">
+                  Route to Venue
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.guideToPlacementIndoor('b38', 0, '012')">
+                  Indoor Hall Guide
+                </button>
+                <button type="button" class="btn btn-read-aloud btn-sm" onclick="CampusSmartHub.readPlacementDriveAloud('drive-google')">
+                  Read Details Aloud
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.downloadPlacementReminder('drive-google')">
+                  Save Reminder
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: Microsoft -->
+          <div class="placement-card" data-drive-id="drive-microsoft" data-status="live" data-category="tech">
+            <div class="placement-banner">
+              <div class="placement-top-row">
+                <div>
+                  <h3 class="placement-company-name">Microsoft</h3>
+                  <div class="placement-role">Cloud Solution Architect &amp; Support Engineer</div>
+                </div>
+                <span class="placement-package-badge">₹28.0 LPA</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem; font-size:0.75rem;">
+                <span style="opacity:0.9;">Today, Nov 21 · Aptitude &amp; Lab Test</span>
+                <span style="background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:999px; font-weight:700;">Active Today</span>
+              </div>
+            </div>
+            <div class="placement-body">
+              <div>
+                <div class="placement-info-grid">
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Reporting Time</span>
+                    <span class="placement-info-val" style="color:#b91c1c;">09:15 AM Sharp</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Drive Venue &amp; Hall</span>
+                    <span class="placement-info-val">Block 25 – Computer Applications &amp; IT Labs (Floor 1, Lab 102)</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Selection Process</span>
+                    <span class="placement-info-val" style="font-size:0.8rem; font-weight:600; color:#475569;">Round 1: Cognitive Assessment &gt; Round 2: Tech Architecture Review &gt; Round 3: Values Fit</span>
+                  </div>
+                </div>
+
+                <div class="dress-code-reminder-box">
+                  <div class="dress-code-reminder-title">Dress-Code Reminder (Strictly Enforced)</div>
+                  <p class="dress-code-reminder-text">
+                    Formal Corporate Attire: Pressed light-colored formal shirt, dark trousers, formal tie, and formal dress shoes. LPU Identity Card must be displayed around the neck.
+                  </p>
+                </div>
+
+                <div class="placement-checklist-box">
+                  <strong>Mandatory Checklist:</strong> 2 copies of resume, student ID card, government photo ID, project portfolio GitHub links on flash drive.
+                </div>
+              </div>
+
+              <div class="placement-actions-grid">
+                <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.routeToPlacementVenue('b25-ground', 'Microsoft Drive (Block 25 Labs)')">
+                  Route to Venue
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.guideToPlacementIndoor('b25', 1, '102')">
+                  Indoor Hall Guide
+                </button>
+                <button type="button" class="btn btn-read-aloud btn-sm" onclick="CampusSmartHub.readPlacementDriveAloud('drive-microsoft')">
+                  Read Details Aloud
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.downloadPlacementReminder('drive-microsoft')">
+                  Save Reminder
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: Amazon Web Services -->
+          <div class="placement-card" data-drive-id="drive-amazon" data-status="live" data-category="tech">
+            <div class="placement-banner">
+              <div class="placement-top-row">
+                <div>
+                  <h3 class="placement-company-name">Amazon Web Services (AWS)</h3>
+                  <div class="placement-role">Cloud Support Associate &amp; DevOps Trainee</div>
+                </div>
+                <span class="placement-package-badge">₹22.0 LPA</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem; font-size:0.75rem;">
+                <span style="opacity:0.9;">Today, Nov 21 · Pre-Placement Talk &amp; Test</span>
+                <span style="background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:999px; font-weight:700;">Active Today</span>
+              </div>
+            </div>
+            <div class="placement-body">
+              <div>
+                <div class="placement-info-grid">
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Reporting Time</span>
+                    <span class="placement-info-val" style="color:#b91c1c;">11:00 AM Sharp</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Drive Venue &amp; Hall</span>
+                    <span class="placement-info-val">Shanti Devi Mittal Indoor Stadium &amp; Auditorium (Ground Floor Main Hall)</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Selection Process</span>
+                    <span class="placement-info-val" style="font-size:0.8rem; font-weight:600; color:#475569;">Round 1: Online Assessment &gt; Round 2: Linux &amp; Networking Diagnostics &gt; Round 3: Leadership Interview</span>
+                  </div>
+                </div>
+
+                <div class="dress-code-reminder-box">
+                  <div class="dress-code-reminder-title">Dress-Code Reminder (Strictly Enforced)</div>
+                  <p class="dress-code-reminder-text">
+                    Formal Business Suit or Formal Shirt &amp; Trousers with leather shoes. University RFID ID Card mandatory for barcode turnstile scan at auditorium gate.
+                  </p>
+                </div>
+
+                <div class="placement-checklist-box">
+                  <strong>Mandatory Checklist:</strong> 3 copies of resume, printout of Amazon candidate portal registration pass, college ID, and government ID proof.
+                </div>
+              </div>
+
+              <div class="placement-actions-grid">
+                <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.routeToPlacementVenue('indoor-stadium', 'Amazon AWS Drive (Shanti Devi Mittal Stadium & Auditorium)')">
+                  Route to Venue
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.guideToPlacementIndoor('indoorstadium', 0, 'AUDI-1')">
+                  Indoor Hall Guide
+                </button>
+                <button type="button" class="btn btn-read-aloud btn-sm" onclick="CampusSmartHub.readPlacementDriveAloud('drive-amazon')">
+                  Read Details Aloud
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.downloadPlacementReminder('drive-amazon')">
+                  Save Reminder
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4: Deloitte USI -->
+          <div class="placement-card" data-drive-id="drive-deloitte" data-status="upcoming" data-category="consulting">
+            <div class="placement-banner">
+              <div class="placement-top-row">
+                <div>
+                  <h3 class="placement-company-name">Deloitte USI</h3>
+                  <div class="placement-role">Technology Analyst &amp; Risk Consultant</div>
+                </div>
+                <span class="placement-package-badge">₹14.5 LPA</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem; font-size:0.75rem;">
+                <span style="opacity:0.9;">Tomorrow, Nov 22 · Case Studies &amp; GD</span>
+                <span style="background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:999px; font-weight:700;">Tomorrow</span>
+              </div>
+            </div>
+            <div class="placement-body">
+              <div>
+                <div class="placement-info-grid">
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Reporting Time</span>
+                    <span class="placement-info-val" style="color:#b91c1c;">08:45 AM Sharp</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Drive Venue &amp; Hall</span>
+                    <span class="placement-info-val">Block 32 – Academic Block (Floor 1, Lecture Theatre 101)</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Selection Process</span>
+                    <span class="placement-info-val" style="font-size:0.8rem; font-weight:600; color:#475569;">Round 1: Versant Test &gt; Round 2: Group Case Study Discussion &gt; Round 3: Partner Interview</span>
+                  </div>
+                </div>
+
+                <div class="dress-code-reminder-box">
+                  <div class="dress-code-reminder-title">Dress-Code Reminder (Strictly Enforced)</div>
+                  <p class="dress-code-reminder-text">
+                    Formal Western Corporate Wear: Tailored formal trousers, collared shirt, blazer/jacket, formal shoes. Hair neatly groomed. Strict no-casuals policy.
+                  </p>
+                </div>
+
+                <div class="placement-checklist-box">
+                  <strong>Mandatory Checklist:</strong> 2 hard copies of verified resume, 10th/12th/B.Tech grade transcripts, college ID card.
+                </div>
+              </div>
+
+              <div class="placement-actions-grid">
+                <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.routeToPlacementVenue('b32-ground', 'Deloitte Drive (Block 32)')">
+                  Route to Venue
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.guideToPlacementIndoor('b32', 1, '101')">
+                  Indoor Hall Guide
+                </button>
+                <button type="button" class="btn btn-read-aloud btn-sm" onclick="CampusSmartHub.readPlacementDriveAloud('drive-deloitte')">
+                  Read Details Aloud
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.downloadPlacementReminder('drive-deloitte')">
+                  Save Reminder
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 5: Bosch Global Software -->
+          <div class="placement-card" data-drive-id="drive-bosch" data-status="upcoming" data-category="core">
+            <div class="placement-banner">
+              <div class="placement-top-row">
+                <div>
+                  <h3 class="placement-company-name">Bosch Global Software Technologies</h3>
+                  <div class="placement-role">Embedded Systems &amp; Autonomous Driving Engineer</div>
+                </div>
+                <span class="placement-package-badge">₹12.0 LPA</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem; font-size:0.75rem;">
+                <span style="opacity:0.9;">Tomorrow, Nov 22 · Hardware Lab Assessment</span>
+                <span style="background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:999px; font-weight:700;">Tomorrow</span>
+              </div>
+            </div>
+            <div class="placement-body">
+              <div>
+                <div class="placement-info-grid">
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Reporting Time</span>
+                    <span class="placement-info-val" style="color:#b91c1c;">10:00 AM Sharp</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Drive Venue &amp; Hall</span>
+                    <span class="placement-info-val">Block 28 – Mechanical &amp; Aerospace Workshops (Floor 2, CAD Room 204)</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Selection Process</span>
+                    <span class="placement-info-val" style="font-size:0.8rem; font-weight:600; color:#475569;">Round 1: C/C++ Embedded Coding &gt; Round 2: Microcontroller Interfacing &gt; Round 3: Technical HR</span>
+                  </div>
+                </div>
+
+                <div class="dress-code-reminder-box">
+                  <div class="dress-code-reminder-title">Dress-Code Reminder (Strictly Enforced)</div>
+                  <p class="dress-code-reminder-text">
+                    Full Formal Shirt and Trousers with leather shoes. Closed-toe formal shoes mandatory for workshop entry due to lab safety regulations.
+                  </p>
+                </div>
+
+                <div class="placement-checklist-box">
+                  <strong>Mandatory Checklist:</strong> 2 resume copies, college ID card, certified training/internship certificates in Embedded/IoT.
+                </div>
+              </div>
+
+              <div class="placement-actions-grid">
+                <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.routeToPlacementVenue('b28-ground', 'Bosch Drive (Block 28 Workshop)')">
+                  Route to Venue
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.guideToPlacementIndoor('b28', 2, '204')">
+                  Indoor Hall Guide
+                </button>
+                <button type="button" class="btn btn-read-aloud btn-sm" onclick="CampusSmartHub.readPlacementDriveAloud('drive-bosch')">
+                  Read Details Aloud
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.downloadPlacementReminder('drive-bosch')">
+                  Save Reminder
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 6: Cognizant Technology Solutions -->
+          <div class="placement-card" data-drive-id="drive-cognizant" data-status="upcoming" data-category="tech">
+            <div class="placement-banner">
+              <div class="placement-top-row">
+                <div>
+                  <h3 class="placement-company-name">Cognizant Technology Solutions</h3>
+                  <div class="placement-role">GenC Next Digital Specialist Programmer</div>
+                </div>
+                <span class="placement-package-badge">₹9.5 - ₹12.0 LPA</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem; font-size:0.75rem;">
+                <span style="opacity:0.9;">Tomorrow, Nov 22 · Full-Stack Coding Assessment</span>
+                <span style="background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:999px; font-weight:700;">Tomorrow</span>
+              </div>
+            </div>
+            <div class="placement-body">
+              <div>
+                <div class="placement-info-grid">
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Reporting Time</span>
+                    <span class="placement-info-val" style="color:#b91c1c;">01:30 PM Sharp</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Drive Venue &amp; Hall</span>
+                    <span class="placement-info-val">Block 34 – Central Library (Floor 2, Digital Library Carrels)</span>
+                  </div>
+                  <div class="placement-info-item">
+                    <span class="placement-info-label">Selection Process</span>
+                    <span class="placement-info-val" style="font-size:0.8rem; font-weight:600; color:#475569;">Round 1: Advanced Coding &gt; Round 2: Tech Interview &gt; Round 3: HR Discussion</span>
+                  </div>
+                </div>
+
+                <div class="dress-code-reminder-box">
+                  <div class="dress-code-reminder-title">Dress-Code Reminder (Strictly Enforced)</div>
+                  <p class="dress-code-reminder-text">
+                    Formal Shirt and Trousers with belt and formal shoes. University RFID ID card must be worn visibly with lanyard.
+                  </p>
+                </div>
+
+                <div class="placement-checklist-box">
+                  <strong>Mandatory Checklist:</strong> 2 copies of resume, government ID card, university ID card.
+                </div>
+              </div>
+
+              <div class="placement-actions-grid">
+                <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.routeToPlacementVenue('b34-ground', 'Cognizant Drive (Block 34 Library)')">
+                  Route to Venue
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.guideToPlacementIndoor('b34', 2, '201')">
+                  Indoor Hall Guide
+                </button>
+                <button type="button" class="btn btn-read-aloud btn-sm" onclick="CampusSmartHub.readPlacementDriveAloud('drive-cognizant')">
+                  Read Details Aloud
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.downloadPlacementReminder('drive-cognizant')">
+                  Save Reminder
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
 
  <!-- 
  FOOTER

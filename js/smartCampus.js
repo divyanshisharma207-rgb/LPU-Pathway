@@ -553,6 +553,7 @@ window.CampusSmartHub = (() => {
     renderIndoorSection();
     renderQueuesSection();
     renderStoriesSection();
+    renderPlacementsSection();
     wireMapToolbarButtons();
     wireQuickLaunchers();
     console.log('[CampusSmartHub] Smart Campus features initialized.');
@@ -1180,6 +1181,9 @@ window.CampusSmartHub = (() => {
           case 'stories':
             window.switchTabTo ? window.switchTabTo('stories') : document.querySelector('[data-tab="stories"]')?.click();
             break;
+          case 'placements':
+            window.switchTabTo ? window.switchTabTo('placements') : document.querySelector('[data-tab="placements"]')?.click();
+            break;
           case 'emergency':
             // Toggle emergency layer on map and switch to map view
             window.switchTabTo ? window.switchTabTo('navigate') : document.querySelector('[data-tab="navigate"]')?.click();
@@ -1774,13 +1778,16 @@ window.CampusSmartHub = (() => {
     const stopBtn = document.getElementById('btn-stop-indoor-steps');
     if (readBtn) {
       readBtn.textContent = 'Read Aloud';
-      readBtn.classList.remove('reading');
-      readBtn.style.display = '';
+      if (readBtn.classList) readBtn.classList.remove('reading');
+      if (readBtn.style) readBtn.style.display = '';
     }
-    if (stopBtn) {
+    if (stopBtn && stopBtn.style) {
       stopBtn.style.display = 'none';
     }
-    document.querySelectorAll('.indoor-step-item').forEach(el => el.classList.remove('reading-active'));
+    const stepItems = document.querySelectorAll('.indoor-step-item');
+    if (stepItems && stepItems.forEach) {
+      stepItems.forEach(el => el.classList && el.classList.remove('reading-active'));
+    }
   }
 
   function readIndoorDirections() {
@@ -1810,10 +1817,10 @@ window.CampusSmartHub = (() => {
     isIndoorSpeaking = true;
     if (readBtn) {
       readBtn.textContent = 'Reading...';
-      readBtn.classList.add('reading');
-      readBtn.style.display = 'none';
+      if (readBtn.classList) readBtn.classList.add('reading');
+      if (readBtn.style) readBtn.style.display = 'none';
     }
-    if (stopBtn) {
+    if (stopBtn && stopBtn.style) {
       stopBtn.style.display = '';
     }
 
@@ -2125,6 +2132,278 @@ Please proceed to the counter lounge.`);
     if (window.announce) announce(`Reading story narration for ${story.title}`, false);
   }
 
+  
+  // ═════════════════════════════════════════════════════════════════
+  // 10. PLACEMENT DRIVE NAVIGATION SYSTEM
+  // ═════════════════════════════════════════════════════════════════
+
+  const PLACEMENT_DRIVES = [
+    {
+      id: 'drive-google',
+      company: 'Google India',
+      role: 'Software Development Engineer (SDE-1)',
+      package: '₹32.5 LPA',
+      category: 'tech',
+      date: 'Today, Nov 21',
+      status: 'Active Today',
+      statusType: 'live',
+      reportingTime: '08:30 AM Sharp (Reporting Lounge closes 08:45 AM)',
+      venue: 'Block 38 – Mittal School of Business Auditorium (Floor 0, Room 012)',
+      nodeId: 'b38-ground',
+      blockId: 'b38',
+      floor: 0,
+      roomCode: '012',
+      roomName: 'Central Academic Auditorium & Seminar Foyer',
+      dressCode: 'Formal Business Suit / Blazer with matching pressed trousers and polished leather shoes. University RFID ID card with blue lanyard compulsory. Jeans, casual footwear, and sneakers are strictly prohibited.',
+      rounds: 'Round 1: Coding Assessment > Round 2: Tech Interview > Round 3: HR Discussion',
+      documents: '3 hard copies of updated resume, student ID card, valid Govt ID (Aadhar/Passport), 2 passport photos, and fully charged laptop with charger for coding test.',
+      eligibility: 'B.Tech CSE / IT (CGPA >= 7.5, No active backlogs)'
+    },
+    {
+      id: 'drive-microsoft',
+      company: 'Microsoft',
+      role: 'Cloud Solution Architect & Support Engineer',
+      package: '₹28.0 LPA',
+      category: 'tech',
+      date: 'Today, Nov 21',
+      status: 'Active Today',
+      statusType: 'live',
+      reportingTime: '09:15 AM Sharp',
+      venue: 'Block 25 – Computer Applications & IT Labs (Floor 1, Lab 102)',
+      nodeId: 'b25-ground',
+      blockId: 'b25',
+      floor: 1,
+      roomCode: '102',
+      roomName: 'Advanced Database & Cloud Computing Lab',
+      dressCode: 'Formal Corporate Attire: Pressed light-colored formal shirt, dark trousers, formal tie, and formal dress shoes. LPU Identity Card must be displayed around the neck.',
+      rounds: 'Round 1: Cognitive Assessment > Round 2: Tech Architecture Review > Round 3: Values Fit',
+      documents: '2 copies of resume, student ID card, government photo ID, project portfolio GitHub links on flash drive.',
+      eligibility: 'B.Tech CSE / IT / ECE & MCA (CGPA >= 7.0)'
+    },
+    {
+      id: 'drive-amazon',
+      company: 'Amazon Web Services (AWS)',
+      role: 'Cloud Support Associate & DevOps Trainee',
+      package: '₹22.0 LPA',
+      category: 'tech',
+      date: 'Today, Nov 21',
+      status: 'Active Today',
+      statusType: 'live',
+      reportingTime: '11:00 AM Sharp',
+      venue: 'Shanti Devi Mittal Indoor Stadium & Auditorium (Ground Floor Main Hall)',
+      nodeId: 'indoor-stadium',
+      blockId: 'indoorstadium',
+      floor: 0,
+      roomCode: 'AUDI-1',
+      roomName: 'Grand Central Auditorium Foyer',
+      dressCode: 'Formal Business Suit or Formal Shirt & Trousers with leather shoes. University RFID ID Card mandatory for barcode turnstile scan at auditorium gate.',
+      rounds: 'Round 1: Online Assessment > Round 2: Linux & Networking Diagnostics > Round 3: Leadership Interview',
+      documents: '3 copies of resume, printout of Amazon candidate portal registration pass, college ID, and government ID proof.',
+      eligibility: 'All Engineering Streams & MCA (CGPA >= 6.5)'
+    },
+    {
+      id: 'drive-deloitte',
+      company: 'Deloitte USI',
+      role: 'Technology Analyst & Risk Consultant',
+      package: '₹14.5 LPA',
+      category: 'consulting',
+      date: 'Tomorrow, Nov 22',
+      status: 'Tomorrow',
+      statusType: 'upcoming',
+      reportingTime: '08:45 AM Sharp',
+      venue: 'Block 32 – Academic Block (Floor 1, Lecture Theatre 101)',
+      nodeId: 'b32-ground',
+      blockId: 'b32',
+      floor: 1,
+      roomCode: '101',
+      roomName: 'Executive Lecture Theatre 101',
+      dressCode: 'Formal Western Corporate Wear: Tailored formal trousers, collared shirt, blazer/jacket, formal shoes. Hair neatly groomed. Strict no-casuals policy.',
+      rounds: 'Round 1: Versant Test > Round 2: Group Case Study Discussion > Round 3: Partner Interview',
+      documents: '2 hard copies of verified resume, 10th/12th/B.Tech grade transcripts, college ID card.',
+      eligibility: 'B.Tech All Branches & MBA (CGPA >= 6.5)'
+    },
+    {
+      id: 'drive-bosch',
+      company: 'Bosch Global Software Technologies',
+      role: 'Embedded Systems & Autonomous Driving Engineer',
+      package: '₹12.0 LPA',
+      category: 'core',
+      date: 'Tomorrow, Nov 22',
+      status: 'Tomorrow',
+      statusType: 'upcoming',
+      reportingTime: '10:00 AM Sharp',
+      venue: 'Block 28 – Mechanical & Aerospace Workshops (Floor 2, CAD Room 204)',
+      nodeId: 'b28-ground',
+      blockId: 'b28',
+      floor: 2,
+      roomCode: '204',
+      roomName: 'Embedded Simulation & Control Lab',
+      dressCode: 'Full Formal Shirt and Trousers with leather shoes. Closed-toe formal shoes mandatory for workshop entry due to lab safety regulations.',
+      rounds: 'Round 1: C/C++ Embedded Coding > Round 2: Microcontroller Interfacing > Round 3: Technical HR',
+      documents: '2 resume copies, college ID card, certified training/internship certificates in Embedded/IoT.',
+      eligibility: 'B.Tech ECE / EEE / Mechanical / Mechatronics (CGPA >= 6.8)'
+    },
+    {
+      id: 'drive-cognizant',
+      company: 'Cognizant Technology Solutions',
+      role: 'GenC Next Digital Specialist Programmer',
+      package: '₹9.5 - ₹12.0 LPA',
+      category: 'tech',
+      date: 'Tomorrow, Nov 22',
+      status: 'Tomorrow',
+      statusType: 'upcoming',
+      reportingTime: '01:30 PM Sharp',
+      venue: 'Block 34 – Central Library (Floor 2, Digital Library Carrels)',
+      nodeId: 'b34-ground',
+      blockId: 'b34',
+      floor: 2,
+      roomCode: '201',
+      roomName: 'Digital Examination Carrels',
+      dressCode: 'Formal Shirt and Trousers with belt and formal shoes. University RFID ID card must be worn visibly with lanyard.',
+      rounds: 'Round 1: Advanced Coding > Round 2: Tech Interview > Round 3: HR Discussion',
+      documents: '2 copies of resume, government ID card, university ID card.',
+      eligibility: 'B.Tech / M.Tech / MCA (CGPA >= 6.0)'
+    }
+  ];
+
+  let currentPlacementFilter = 'all';
+
+  function renderPlacementsSection() {
+    const container = document.getElementById('placements-container');
+    if (!container) return;
+
+    // Attach click handlers to any filter chips
+    const chips = container.querySelectorAll('.placement-filter-bar .filter-chip');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        filterPlacementDrives(chip.dataset.filter);
+      });
+    });
+  }
+
+  function filterPlacementDrives(filterType) {
+    currentPlacementFilter = filterType;
+    const cards = document.querySelectorAll('.placement-card');
+    cards.forEach(card => {
+      const status = card.dataset.status;
+      const cat = card.dataset.category;
+
+      let show = false;
+      if (filterType === 'all') {
+        show = true;
+      } else if (filterType === 'live') {
+        show = status === 'live';
+      } else if (filterType === 'upcoming') {
+        show = status === 'upcoming';
+      } else if (filterType === cat) {
+        show = true;
+      }
+
+      card.style.display = show ? 'flex' : 'none';
+    });
+
+    if (window.announce) announce(`Filtered placement drives by ${filterType}`, false);
+  }
+
+  function routeToPlacementVenue(nodeId, label) {
+    navigateToNode(nodeId, label);
+  }
+
+  function guideToPlacementIndoor(blockKey, floor, roomCode) {
+    // Switch to indoor nav tab
+    const indoorTab = document.querySelector('[data-tab="indoor"]');
+    if (indoorTab) indoorTab.click();
+
+    setTimeout(() => {
+      const bldSelect = document.getElementById('indoor-block-select');
+      const floorSelect = document.getElementById('indoor-floor-select');
+      const roomSelect = document.getElementById('indoor-room-select');
+
+      if (bldSelect) {
+        bldSelect.value = blockKey;
+        bldSelect.dispatchEvent(new Event('change'));
+      }
+      if (floorSelect) {
+        floorSelect.value = floor.toString();
+        floorSelect.dispatchEvent(new Event('change'));
+      }
+      if (roomSelect) {
+        roomSelect.value = roomCode;
+      }
+
+      // Calculate guidance
+      calculateIndoorGuidance(blockKey, floor, roomCode, 'lift');
+
+      const out = document.getElementById('indoor-route-output');
+      if (out) out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 250);
+  }
+
+  function readPlacementDriveAloud(driveId) {
+    const drive = PLACEMENT_DRIVES.find(d => d.id === driveId);
+    if (!drive) return;
+
+    if (!('speechSynthesis' in window)) {
+      alert('Speech synthesis is not supported in this browser.');
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const narration = `Placement visit for ${drive.company}. Role offered: ${drive.role}. CTC Package: ${drive.package}. Reporting schedule: ${drive.reportingTime}. Venue location: ${drive.venue}. Dress code reminder: ${drive.dressCode}. Required documents: ${drive.documents}.`;
+
+    const utterance = new SpeechSynthesisUtterance(narration);
+    utterance.lang = 'en-IN';
+    utterance.rate = 0.92;
+    utterance.pitch = 1.0;
+
+    window.speechSynthesis.speak(utterance);
+    if (window.announce) announce(`Reading drive details for ${drive.company}`, false);
+  }
+
+  function stopPlacementSpeech() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  }
+
+  function downloadPlacementReminder(driveId) {
+    const drive = PLACEMENT_DRIVES.find(d => d.id === driveId);
+    if (!drive) return;
+
+    const icsData = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//LPU Pathway//Placement Drive Reminder//EN',
+      'BEGIN:VEVENT',
+      `SUMMARY:Placement Visit: ${drive.company} - ${drive.role}`,
+      `DESCRIPTION:${drive.reportingTime} | Venue: ${drive.venue} | Dress Code: Formal Business Suit Mandatory. Required: ${drive.documents}`,
+      `LOCATION:${drive.venue}, Lovely Professional University, Phagwara`,
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${drive.id}-reminder.ics`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    if (window.announce) announce(`Placement reminder saved for ${drive.company}. Event file downloaded.`, true);
+  }
+
+  function refreshPlacements() {
+    filterPlacementDrives('all');
+    if (window.announce) announce('Placement drives refreshed. Showing latest schedule.', true);
+  }
+
   return {
     init,
     navigateToNode,
@@ -2145,6 +2424,15 @@ Please proceed to the counter lounge.`);
     readIndoorDirections,
     stopIndoorSpeech,
     viewFloorPlan,
+    renderPlacementsSection,
+    filterPlacementDrives,
+    routeToPlacementVenue,
+    guideToPlacementIndoor,
+    readPlacementDriveAloud,
+    stopPlacementSpeech,
+    downloadPlacementReminder,
+    refreshPlacements,
+    PLACEMENT_DRIVES,
     takeVirtualToken,
     refreshQueues,
     openStory,

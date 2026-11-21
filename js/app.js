@@ -127,6 +127,7 @@
  indoor: '#indoor',
  queues: '#queues',
  stories: '#stories',
+ placements: '#placements',
  report: '#report',
  help: '#help',
  };
@@ -146,6 +147,7 @@
  indoor: 'Indoor Floor-by-Floor Navigation',
  queues: 'Campus Queue Estimates & Wait Times',
  stories: 'Campus Stories & Orientation',
+ placements: 'Placement Drive Navigation & Company Visits',
  report: 'Report Issue',
  help: 'Help & Guide',
  };
@@ -181,6 +183,7 @@
  '#navigate': 'navigate',
  '#buildings': 'buildings',
  '#autos': 'autos',
+ '#placements': 'placements',
  '#report': 'report',
  '#help': 'help',
  // Legacy anchor support
