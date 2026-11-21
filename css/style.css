@@ -868,7 +868,14 @@ input.form-control, textarea.form-control {
   border-top: 2px solid var(--clr-border);
 }
 .report-section .section-inner {
-  text-align: center;
+  text-align: left;
+}
+.report-section .section-title {
+  text-align: left;
+  justify-content: flex-start;
+}
+.report-section .section-subtitle {
+  text-align: left;
 }
 .report-icon { font-size: 3rem; margin-bottom: var(--space-md); }
 .report-form { text-align: left; margin-top: var(--space-xl); }
