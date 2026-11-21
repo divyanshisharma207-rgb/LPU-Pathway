@@ -30,7 +30,9 @@ window.CampusSmartHub = (() => {
       occupied: 78,
       slots: { staff4w: 18, student2w: 24, ev: 4 },
       evCharging: true,
-      rates: 'Free for Faculty & Registered Visitors'
+      rates: 'Free for Faculty & Registered Visitors',
+      image: 'images/parking/p1_gate1.jpg',
+      imageAlt: 'Gate 1 Faculty and Visitor Parking near University Admin Block'
     },
     {
       id: 'lot-p2',
@@ -45,7 +47,9 @@ window.CampusSmartHub = (() => {
       occupied: 194,
       slots: { staff4w: 42, student2w: 110, ev: 8 },
       evCharging: true,
-      rates: 'Student RFID & Staff Access'
+      rates: 'Student RFID & Staff Access',
+      image: 'images/parking/p2_multilevel.jpg',
+      imageAlt: 'Central Multi-Level Parking structure near Block 34 Library and Block 38'
     },
     {
       id: 'lot-p3',
@@ -60,7 +64,9 @@ window.CampusSmartHub = (() => {
       occupied: 135,
       slots: { staff4w: 12, student2w: 33, ev: 2 },
       evCharging: true,
-      rates: 'Standard Campus Parking Rules'
+      rates: 'Standard Campus Parking Rules',
+      image: 'images/parking/p3_unimall.jpg',
+      imageAlt: 'Uni-Mall Shoppers and Dining outdoor commercial parking plaza'
     },
     {
       id: 'lot-p4',
@@ -75,7 +81,9 @@ window.CampusSmartHub = (() => {
       occupied: 165,
       slots: { staff4w: 0, student2w: 95, ev: 12 },
       evCharging: true,
-      rates: 'Hostel Resident 2-Wheeler Permit'
+      rates: 'Hostel Resident 2-Wheeler Permit',
+      image: 'images/parking/p4_two_wheeler.jpg',
+      imageAlt: 'BH-South Student 2-Wheeler scooter and motorcycle parking lot'
     },
     {
       id: 'lot-p5',
@@ -90,7 +98,9 @@ window.CampusSmartHub = (() => {
       occupied: 86,
       slots: { staff4w: 22, student2w: 32, ev: 3 },
       evCharging: true,
-      rates: 'Open for West Sector Commuters'
+      rates: 'Open for West Sector Commuters',
+      image: 'images/parking/p5_west_campus.jpg',
+      imageAlt: 'Gate 2 West Campus open commuter parking area'
     },
     {
       id: 'lot-p6',
@@ -105,7 +115,9 @@ window.CampusSmartHub = (() => {
       occupied: 28,
       slots: { staff4w: 8, student2w: 4, ev: 0 },
       evCharging: false,
-      rates: 'Emergency Patients & Ambulance Priority'
+      rates: 'Emergency Patients & Ambulance Priority',
+      image: 'images/parking/p6_hospital.jpg',
+      imageAlt: 'Uni-Hospital South Gate Emergency Patient and Ambulance Priority Parking'
     }
   ];
 
@@ -609,33 +621,39 @@ window.CampusSmartHub = (() => {
 
       html += `
         <div class="parking-card" data-lot-id="${lot.id}" data-category="${lot.category}" data-ev="${lot.evCharging}">
-          <div>
-            <div class="parking-header">
-              <div>
-                <h3 class="parking-title">${lot.name}</h3>
-                <div class="parking-location">${lot.location}</div>
-              </div>
-              <span class="parking-status-badge ${statusClass}">${statusText}</span>
-            </div>
-            <div class="parking-slots-grid">
-              <div class="slot-stat">
-                <span class="slot-num">${lot.slots.staff4w}</span>
-                <span class="slot-label">Staff 4W</span>
-              </div>
-              <div class="slot-stat">
-                <span class="slot-num">${lot.slots.student2w}</span>
-                <span class="slot-label">Student 2W</span>
-              </div>
-              <div class="slot-stat">
-                <span class="slot-num">${lot.slots.ev}</span>
-                <span class="slot-label">EV Ports</span>
-              </div>
-            </div>
-            <p style="font-size:0.75rem; color:#64748b; margin:0 0 0.85rem;"><strong>Access:</strong> ${lot.rates}</p>
+          <div class="parking-image-wrapper">
+            <img src="${lot.image}" alt="${escapeHTML(lot.imageAlt || lot.name)}" class="parking-card-img" loading="lazy" />
+            <span class="parking-image-tag">${lot.evCharging ? 'EV Charging' : 'Standard Lot'}</span>
           </div>
-          <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('${lot.nodeId}', '${lot.name}')">
-            Navigate to Parking
-          </button>
+          <div class="parking-card-body">
+            <div>
+              <div class="parking-header">
+                <div>
+                  <h3 class="parking-title">${lot.name}</h3>
+                  <div class="parking-location">${lot.location}</div>
+                </div>
+                <span class="parking-status-badge ${statusClass}">${statusText}</span>
+              </div>
+              <div class="parking-slots-grid">
+                <div class="slot-stat">
+                  <span class="slot-num">${lot.slots.staff4w}</span>
+                  <span class="slot-label">Staff 4W</span>
+                </div>
+                <div class="slot-stat">
+                  <span class="slot-num">${lot.slots.student2w}</span>
+                  <span class="slot-label">Student 2W</span>
+                </div>
+                <div class="slot-stat">
+                  <span class="slot-num">${lot.slots.ev}</span>
+                  <span class="slot-label">EV Ports</span>
+                </div>
+              </div>
+              <p class="parking-access-note"><strong>Access:</strong> ${lot.rates}</p>
+            </div>
+            <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('${lot.nodeId}', '${lot.name}')">
+              Navigate to Parking
+            </button>
+          </div>
         </div>
       `;
     });
@@ -1133,6 +1151,7 @@ window.CampusSmartHub = (() => {
         const marker = L.marker([lot.lat, lot.lng], { icon });
         const popupContent = `
           <div class="smart-map-popup">
+            <img src="${lot.image}" alt="${escapeHTML(lot.imageAlt || lot.name)}" style="width:100%;height:95px;object-fit:cover;border-radius:6px;margin-bottom:6px;display:block;" />
             <h4>${lot.name}</h4>
             <p><strong>Available:</strong> ${freeSlots} / ${lot.totalSlots} Slots Free<br>
             Staff 4W: ${lot.slots.staff4w} | Student 2W: ${lot.slots.student2w} | EV: ${lot.slots.ev} ports<br>
