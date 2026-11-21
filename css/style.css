@@ -164,8 +164,8 @@ ul, ol { list-style: none; }
   width: 260px;
   height: 100vh;
   z-index: 1000;
-  background: #2E8B57;
-  background: linear-gradient(180deg, #32995f 0%, #2E8B57 50%, #236c43 100%);
+  background: #6a994e;
+  background: linear-gradient(180deg, #79ad58 0%, #6a994e 50%, #567e3e 100%);
   color: var(--clr-text-inverse, #ffffff);
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
   display: flex;
@@ -206,8 +206,8 @@ ul, ol { list-style: none; }
 
 .sidebar-brand .brand-tagline {
   font-size: 0.74rem;
-  opacity: 0.88;
-  color: #d1fae5;
+  opacity: 0.92;
+  color: #e9f5db;
   margin: 3px 0 0;
 }
 
@@ -336,7 +336,7 @@ ul, ol { list-style: none; }
     gap: 12px;
     height: 56px;
     padding: 0 1rem;
-    background: #2E8B57;
+    background: #6a994e;
     color: #ffffff;
     position: sticky;
     top: 0;
