@@ -24,10 +24,30 @@ const CampusMap = (() => {
  // These are manually offset from the campus center to reflect
  // known layout: Block 32 (academic), 34 (library), 36 (student)
  const BUILDING_COORDS = {
- b32: { lat: 31.2545, lng: 75.7030, label: 'Block 32', subtitle: 'Academic Block', color: '#1a237e' },
- b34: { lat: 31.2552, lng: 75.7048, label: 'Block 34', subtitle: 'Library Block', color: '#1b5e20' },
- b36: { lat: 31.2538, lng: 75.7055, label: 'Block 36', subtitle: 'Student Centre', color: '#880e4f' },
- };
+  b14: { lat: 31.2528, lng: 75.7028, label: 'Block 14', subtitle: 'Humanities & Social Sciences', color: '#3949ab', pinText: '14' },
+  b25: { lat: 31.2539, lng: 75.7018, label: 'Block 25', subtitle: 'Computer Applications & IT', color: '#0288d1', pinText: '25' },
+  b26: { lat: 31.2543, lng: 75.7020, label: 'Block 26', subtitle: 'Computer Science & Engg', color: '#0097a7', pinText: '26' },
+  b27: { lat: 31.2547, lng: 75.7022, label: 'Block 27', subtitle: 'Electronics & Comm (ECE)', color: '#00796b', pinText: '27' },
+  b28: { lat: 31.2551, lng: 75.7024, label: 'Block 28', subtitle: 'Mechanical & Aerospace', color: '#388e3c', pinText: '28' },
+  b29: { lat: 31.2555, lng: 75.7026, label: 'Block 29', subtitle: 'Civil Engg & Biotech', color: '#689f38', pinText: '29' },
+  b32: { lat: 31.2545, lng: 75.7030, label: 'Block 32', subtitle: 'Academic Block (CSE & Tech)', color: '#1a237e', pinText: '32' },
+  b33: { lat: 31.2549, lng: 75.7038, label: 'Block 33', subtitle: 'Agriculture & Food Tech', color: '#afb42b', pinText: '33' },
+  b34: { lat: 31.2552, lng: 75.7048, label: 'Block 34', subtitle: 'Central Library', color: '#1b5e20', pinText: '34' },
+  b35: { lat: 31.2556, lng: 75.7052, label: 'Block 35', subtitle: 'School of Architecture', color: '#f57c00', pinText: '35' },
+  b36: { lat: 31.2538, lng: 75.7055, label: 'Block 36', subtitle: 'Student Centre & Welfare', color: '#880e4f', pinText: '36' },
+  b37: { lat: 31.2542, lng: 75.7060, label: 'Block 37', subtitle: 'School of Law', color: '#5d4037', pinText: '37' },
+  b38: { lat: 31.2546, lng: 75.7065, label: 'Block 38', subtitle: 'Mittal School of Business', color: '#455a64', pinText: '38' },
+  b55: { lat: 31.2560, lng: 75.7040, label: 'Block 55', subtitle: 'Pharmaceutical Sciences', color: '#d32f2f', pinText: '55' },
+  b56: { lat: 31.2563, lng: 75.7044, label: 'Block 56', subtitle: 'Bio-Sciences & Research', color: '#c2185b', pinText: '56' },
+  unimall: { lat: 31.2546, lng: 75.7050, label: 'Uni-Mall', subtitle: 'Shopping & Dining Plaza', color: '#e65100', pinText: 'UM' },
+  unihospital: { lat: 31.2525, lng: 75.7034, label: 'Uni-Hospital', subtitle: '24/7 Campus Hospital', color: '#b71c1c', pinText: 'UH' },
+  unipolis: { lat: 31.2540, lng: 75.7045, label: 'Unipolis', subtitle: 'Baldev Raj Mittal Arena', color: '#7b1fa2', pinText: 'UP' },
+  indoorstadium: { lat: 31.2532, lng: 75.7062, label: 'Indoor Stadium', subtitle: 'Olympic Pool & Sports', color: '#00838f', pinText: 'IS' },
+  bhsouth: { lat: 31.2515, lng: 75.7040, label: 'Boys Hostel 1–4', subtitle: 'South Residential Complex', color: '#37474f', pinText: 'BH' },
+  bhnorth: { lat: 31.2570, lng: 75.7035, label: 'Boys Hostel 5–8', subtitle: 'North Residential Complex', color: '#455a64', pinText: 'BH' },
+  ghwest: { lat: 31.2520, lng: 75.7060, label: 'Girls Hostel 1–3', subtitle: 'West Residential Complex', color: '#ad1457', pinText: 'GH' },
+  gheast: { lat: 31.2565, lng: 75.7060, label: 'Girls Hostel 4–6', subtitle: 'East Residential Complex', color: '#880e4f', pinText: 'GH' }
+};
 
  // Key landmarks
  const LANDMARKS = [
@@ -247,7 +267,7 @@ const CampusMap = (() => {
  </div>`;
 
  const marker = L.marker([b.lat, b.lng], {
- icon: makeBuildingIcon(b.color, id === 'b32' ? '32' : id === 'b34' ? '34' : '36'),
+ icon: makeBuildingIcon(b.color, b.pinText || id.replace('b', '')),
  alt: `${b.label} – ${b.subtitle}. Lift: ${liftStatus}. Click for accessibility info.`,
  title: `${b.label} – ${b.subtitle}`,
  keyboard: true,

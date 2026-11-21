@@ -76,12 +76,43 @@
  <label for="from-select" class="form-label">
  Starting Point
  </label>
- <select id="from-select" class="form-control" required aria-required="true"
- aria-describedby="from-hint">
- <option value="">— Choose your start location —</option>
- <option value="b32-ground">Block 32 – Academic Block</option>
- <option value="b34-ground">Block 34 – Library Block</option>
- <option value="b36-ground">Block 36 – Student Centre</option>
+ <select id="from-select" class="form-control" required aria-required="true" aria-describedby="from-hint">
+ <option value="">— Choose location —</option>
+ <optgroup label="Academic Blocks">
+ <option value="b14-ground">Block 14 – Humanities &amp; Social Sciences</option>
+ <option value="b25-ground">Block 25 – Computer Applications &amp; IT</option>
+ <option value="b26-ground">Block 26 – Computer Science &amp; Engineering</option>
+ <option value="b27-ground">Block 27 – Electronics &amp; Communication</option>
+ <option value="b28-ground">Block 28 – Mechanical &amp; Aerospace</option>
+ <option value="b29-ground">Block 29 – Civil Engineering &amp; Biotech</option>
+ <option value="b32-ground">Block 32 – Academic Block (CSE &amp; Tech)</option>
+ <option value="b33-ground">Block 33 – Agriculture &amp; Food Technology</option>
+ <option value="b34-ground">Block 34 – Central Library (Shanti Devi Mittal)</option>
+ <option value="b35-ground">Block 35 – Architecture &amp; Design</option>
+ <option value="b36-ground">Block 36 – Student Centre &amp; Welfare</option>
+ <option value="b37-ground">Block 37 – School of Law</option>
+ <option value="b38-ground">Block 38 – Mittal School of Business (MSB)</option>
+ <option value="b55-ground">Block 55 – School of Pharmaceutical Sciences</option>
+ <option value="b56-ground">Block 56 – Bio-Sciences &amp; Research Labs</option>
+ </optgroup>
+ <optgroup label="Central Facilities &amp; Auditoriums">
+ <option value="uni-mall-entrance">Uni-Mall Shopping &amp; Dining Complex</option>
+ <option value="unipolis">Baldev Raj Mittal Unipolis Arena</option>
+ <option value="food-court">Central Food Court &amp; Plaza</option>
+ <option value="uni-hospital">Uni-Hospital (24/7 Medical Care)</option>
+ <option value="indoor-stadium">Shanti Devi Mittal Indoor Sports Stadium</option>
+ </optgroup>
+ <optgroup label="Residential Hostels">
+ <option value="bh-south">Boys Hostel Complex (BH 1–4)</option>
+ <option value="bh-north">Boys Hostel Complex (BH 5–8)</option>
+ <option value="gh-west">Girls Hostel Complex (GH 1–3)</option>
+ <option value="gh-east">Girls Hostel Complex (GH 4–6)</option>
+ </optgroup>
+ <optgroup label="Campus Gates &amp; Transit">
+ <option value="main-gate">Main Gate 1 (GT Road Entrance)</option>
+ <option value="gate-2">Gate 2 (West Gate - Law &amp; Business)</option>
+ <option value="gate-3">Gate 3 (South Sports Gate)</option>
+ </optgroup>
  </select>
  <span id="from-hint" class="form-hint">Select where you are now</span>
  </div>
@@ -91,12 +122,43 @@
  <label for="to-select" class="form-label">
  <span aria-hidden="true"></span> Destination
  </label>
- <select id="to-select" class="form-control" required aria-required="true"
- aria-describedby="to-hint">
- <option value="">— Choose your destination —</option>
- <option value="b32-ground">Block 32 – Academic Block</option>
- <option value="b34-ground">Block 34 – Library Block</option>
- <option value="b36-ground">Block 36 – Student Centre</option>
+ <select id="to-select" class="form-control" required aria-required="true" aria-describedby="to-hint">
+ <option value="">— Choose location —</option>
+ <optgroup label="Academic Blocks">
+ <option value="b14-ground">Block 14 – Humanities &amp; Social Sciences</option>
+ <option value="b25-ground">Block 25 – Computer Applications &amp; IT</option>
+ <option value="b26-ground">Block 26 – Computer Science &amp; Engineering</option>
+ <option value="b27-ground">Block 27 – Electronics &amp; Communication</option>
+ <option value="b28-ground">Block 28 – Mechanical &amp; Aerospace</option>
+ <option value="b29-ground">Block 29 – Civil Engineering &amp; Biotech</option>
+ <option value="b32-ground">Block 32 – Academic Block (CSE &amp; Tech)</option>
+ <option value="b33-ground">Block 33 – Agriculture &amp; Food Technology</option>
+ <option value="b34-ground">Block 34 – Central Library (Shanti Devi Mittal)</option>
+ <option value="b35-ground">Block 35 – Architecture &amp; Design</option>
+ <option value="b36-ground">Block 36 – Student Centre &amp; Welfare</option>
+ <option value="b37-ground">Block 37 – School of Law</option>
+ <option value="b38-ground">Block 38 – Mittal School of Business (MSB)</option>
+ <option value="b55-ground">Block 55 – School of Pharmaceutical Sciences</option>
+ <option value="b56-ground">Block 56 – Bio-Sciences &amp; Research Labs</option>
+ </optgroup>
+ <optgroup label="Central Facilities &amp; Auditoriums">
+ <option value="uni-mall-entrance">Uni-Mall Shopping &amp; Dining Complex</option>
+ <option value="unipolis">Baldev Raj Mittal Unipolis Arena</option>
+ <option value="food-court">Central Food Court &amp; Plaza</option>
+ <option value="uni-hospital">Uni-Hospital (24/7 Medical Care)</option>
+ <option value="indoor-stadium">Shanti Devi Mittal Indoor Sports Stadium</option>
+ </optgroup>
+ <optgroup label="Residential Hostels">
+ <option value="bh-south">Boys Hostel Complex (BH 1–4)</option>
+ <option value="bh-north">Boys Hostel Complex (BH 5–8)</option>
+ <option value="gh-west">Girls Hostel Complex (GH 1–3)</option>
+ <option value="gh-east">Girls Hostel Complex (GH 4–6)</option>
+ </optgroup>
+ <optgroup label="Campus Gates &amp; Transit">
+ <option value="main-gate">Main Gate 1 (GT Road Entrance)</option>
+ <option value="gate-2">Gate 2 (West Gate - Law &amp; Business)</option>
+ <option value="gate-3">Gate 3 (South Sports Gate)</option>
+ </optgroup>
  </select>
  <span id="to-hint" class="form-hint">Select where you want to go</span>
 
@@ -338,59 +400,250 @@
 
  <div class="buildings-grid" role="list">
 
- <!-- BLOCK 32 -->
- <article class="building-card" role="listitem" aria-labelledby="b32-title">
- <div class="building-card-header" style="background: linear-gradient(135deg, #1b5e20, #2e7d32);">
- <span class="building-number" aria-hidden="true">32</span>
+ <!-- BLOCK 14 -->
+ <article class="building-card" role="listitem" aria-labelledby="b14-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #283593, #3949ab);">
+ <span class="building-number" aria-hidden="true">14</span>
  <div>
- <h3 id="b32-title" class="building-title">Block 32</h3>
+ <h3 id="b14-title" class="building-title">Block 14</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Humanities &amp; Social Sciences</p>
  </div>
  </div>
  <div class="building-card-body">
  <div class="access-features">
  <h4 class="features-heading">Accessibility Features</h4>
- <ul class="feature-list" aria-label="Block 32 accessibility features">
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Passenger Lift <small>(Floors G–3)</small></span>
- <span class="feature-status" id="b32-lift-status" aria-live="polite"> Operational</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Wheelchair ramp at main entrance</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Accessible toilet on each floor</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Tactile floor path in corridors</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Audio announcement system in lift</span>
- </li>
- <li class="feature-item feature-no">
- <span aria-hidden="true"></span>
- <span>Stairs at north entrance <small>(avoid on step-free route)</small></span>
- </li>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–2)</span> <span class="feature-status" id="b14-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Wheelchair ramp at East entrance</span></li>
+ <li class="feature-item feature-yes"><span>Accessible ground-level washrooms</span></li>
  </ul>
  </div>
  <div class="building-floors">
  <h4 class="features-heading">Floor Guide</h4>
- <ul class="floor-list" aria-label="Block 32 floor directory">
+ <ul class="floor-list">
+ <li><strong>G:</strong> School of Languages, Faculty Lounge</li>
+ <li><strong>1:</strong> Social Sciences Lecture Theatres</li>
+ <li><strong>2:</strong> Research Seminar Rooms</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b14-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 25 -->
+ <article class="building-card" role="listitem" aria-labelledby="b25-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #0277bd, #0288d1);">
+ <span class="building-number" aria-hidden="true">25</span>
+ <div>
+ <h3 id="b25-title" class="building-title">Block 25</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Computer Applications &amp; IT</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–3)</span> <span class="feature-status" id="b25-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Wide ramp entrance with handrails</span></li>
+ <li class="feature-item feature-yes"><span>Wheelchair friendly computer workstations</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Web Development Labs, Helpdesk</li>
+ <li><strong>1:</strong> Database Systems &amp; AI Labs</li>
+ <li><strong>2:</strong> Cloud Computing &amp; Cybersecurity Labs</li>
+ <li><strong>3:</strong> Faculty Offices &amp; Conference Room</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b25-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 26 -->
+ <article class="building-card" role="listitem" aria-labelledby="b26-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #00838f, #0097a7);">
+ <span class="building-number" aria-hidden="true">26</span>
+ <div>
+ <h3 id="b26-title" class="building-title">Block 26</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">School of CSE</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Dual Passenger Lifts (Floors G–4)</span> <span class="feature-status" id="b26-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Braille signage &amp; voice lift alerts</span></li>
+ <li class="feature-item feature-yes"><span>Accessible ramp at central atrium</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> HOD Office, Supercomputing Lab, Ramp</li>
+ <li><strong>1:</strong> Software Engineering Lecture Halls</li>
+ <li><strong>2:</strong> Machine Learning &amp; Robotics Studio</li>
+ <li><strong>3:</strong> Data Science Research Center</li>
+ <li><strong>4:</strong> Innovation &amp; Incubation Hub</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b26-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 27 -->
+ <article class="building-card" role="listitem" aria-labelledby="b27-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #00695c, #00796b);">
+ <span class="building-number" aria-hidden="true">27</span>
+ <div>
+ <h3 id="b27-title" class="building-title">Block 27</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Electronics &amp; Comm (ECE)</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–3)</span> <span class="feature-status" id="b27-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Direct step-free corridor from Block 26</span></li>
+ <li class="feature-item feature-yes"><span>Accessible washroom on Floor 1</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> VLSI &amp; Embedded Systems Lab</li>
+ <li><strong>1:</strong> Communication Systems Laboratories</li>
+ <li><strong>2:</strong> Microwave &amp; Optical Fiber Tech</li>
+ <li><strong>3:</strong> Post-graduate Research Suites</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b27-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 28 -->
+ <article class="building-card" role="listitem" aria-labelledby="b28-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #2e7d32, #388e3c);">
+ <span class="building-number" aria-hidden="true">28</span>
+ <div>
+ <h3 id="b28-title" class="building-title">Block 28</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Mechanical &amp; Aerospace</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–3)</span> <span class="feature-status" id="b28-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Heavy equipment workshop ground ramp</span></li>
+ <li class="feature-item feature-yes"><span>Tactile guidance markers in workshop wing</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Automotive Labs &amp; Wind Tunnel</li>
+ <li><strong>1:</strong> Thermal &amp; Fluid Dynamics Lab</li>
+ <li><strong>2:</strong> CAD/CAM Simulation Centers</li>
+ <li><strong>3:</strong> Aerospace Modeling &amp; Avionics</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b28-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 29 -->
+ <article class="building-card" role="listitem" aria-labelledby="b29-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #558b2f, #689f38);">
+ <span class="building-number" aria-hidden="true">29</span>
+ <div>
+ <h3 id="b29-title" class="building-title">Block 29</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Civil Engg &amp; Biotech</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–2)</span> <span class="feature-status" id="b29-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Wide level pathway to Block 55 Pharmacy</span></li>
+ <li class="feature-item feature-yes"><span>Accessible ground-floor survey lab</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Concrete &amp; Geotech Testing Labs</li>
+ <li><strong>1:</strong> Environmental &amp; Structural Design</li>
+ <li><strong>2:</strong> Transportation Planning &amp; GIS</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b29-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 32 -->
+ <article class="building-card" role="listitem" aria-labelledby="b32-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #1a237e, #283593);">
+ <span class="building-number" aria-hidden="true">32</span>
+ <div>
+ <h3 id="b32-title" class="building-title">Block 32</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Academic Block (CSE &amp; Tech)</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–3)</span> <span class="feature-status" id="b32-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Wheelchair ramp at main south entrance</span></li>
+ <li class="feature-item feature-yes"><span>Accessible toilet on each floor</span></li>
+ <li class="feature-item feature-yes"><span>Tactile floor path in corridors</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
  <li><strong>G:</strong> Reception, Admin Office, Ramp Entry</li>
  <li><strong>1:</strong> Lecture Halls 101–110, Seminar Room A</li>
  <li><strong>2:</strong> Computer Labs, Faculty Offices</li>
  <li><strong>3:</strong> Conference Rooms, Research Labs</li>
  </ul>
  </div>
- <button class="btn btn-outline btn-sm" data-building="b32"
- aria-label="View route to Block 32 ground floor"
- onclick="quickNavigateTo('b32-ground')">
- Navigate Here
- </button>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b32-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 33 -->
+ <article class="building-card" role="listitem" aria-labelledby="b33-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #9e9d24, #afb42b);">
+ <span class="building-number" aria-hidden="true">33</span>
+ <div>
+ <h3 id="b33-title" class="building-title">Block 33</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Agriculture &amp; Food Tech</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–2)</span> <span class="feature-status" id="b33-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Direct ramped access from central avenue</span></li>
+ <li class="feature-item feature-yes"><span>Accessible food technology plant</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Agronomy &amp; Soil Science Labs</li>
+ <li><strong>1:</strong> Food Processing &amp; Quality Control</li>
+ <li><strong>2:</strong> Horticulture &amp; Plant Pathology</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b33-ground')">Navigate Here</button>
  </div>
  </article>
 
@@ -400,99 +653,329 @@
  <span class="building-number" aria-hidden="true">34</span>
  <div>
  <h3 id="b34-title" class="building-title">Block 34</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Central Library</p>
  </div>
  </div>
  <div class="building-card-body">
  <div class="access-features">
  <h4 class="features-heading">Accessibility Features</h4>
- <ul class="feature-list" aria-label="Block 34 accessibility features">
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Passenger Lift <small>(Floors G–2)</small></span>
- <span class="feature-status" id="b34-lift-status" aria-live="polite"> Operational</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Level entry — no steps at entrance</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Accessible toilet on Ground Floor</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Quiet study zones with good lighting</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Braille signage on lift buttons</span>
- </li>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–2)</span> <span class="feature-status" id="b34-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Level entry — zero steps at entrance</span></li>
+ <li class="feature-item feature-yes"><span>Accessible washroom on Ground Floor</span></li>
+ <li class="feature-item feature-yes"><span>Braille signage on lift controls</span></li>
  </ul>
  </div>
  <div class="building-floors">
  <h4 class="features-heading">Floor Guide</h4>
- <ul class="floor-list" aria-label="Block 34 floor directory">
- <li><strong>G:</strong> Library Entry, Issue Counter, Accessible Toilets</li>
- <li><strong>1:</strong> Reading Rooms, Reference Section</li>
- <li><strong>2:</strong> Digital Library, Study Carrels</li>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Library Entry, Issue Desk, Braille Section</li>
+ <li><strong>1:</strong> Reading Rooms, Periodicals Section</li>
+ <li><strong>2:</strong> Digital Library &amp; Quiet Carrels</li>
  </ul>
  </div>
- <button class="btn btn-outline btn-sm" data-building="b34"
- aria-label="View route to Block 34 ground floor library"
- onclick="quickNavigateTo('b34-ground')">
- Navigate Here
- </button>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b34-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 35 -->
+ <article class="building-card" role="listitem" aria-labelledby="b35-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #e65100, #f57c00);">
+ <span class="building-number" aria-hidden="true">35</span>
+ <div>
+ <h3 id="b35-title" class="building-title">Block 35</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Architecture &amp; Design</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–3)</span> <span class="feature-status" id="b35-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Wide automated glass double doors</span></li>
+ <li class="feature-item feature-yes"><span>Wheelchair accessible drafting tables</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Design Exhibition Gallery, Workshop</li>
+ <li><strong>1:</strong> Architectural Studios 101–108</li>
+ <li><strong>2:</strong> Interior Design &amp; Fashion Labs</li>
+ <li><strong>3:</strong> Master of Planning &amp; Thesis Halls</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b35-ground')">Navigate Here</button>
  </div>
  </article>
 
  <!-- BLOCK 36 -->
  <article class="building-card" role="listitem" aria-labelledby="b36-title">
- <div class="building-card-header" style="background: linear-gradient(135deg, #1b5e20, #2e7d32);">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #880e4f, #ad1457);">
  <span class="building-number" aria-hidden="true">36</span>
  <div>
  <h3 id="b36-title" class="building-title">Block 36</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Student Centre &amp; Welfare</p>
  </div>
  </div>
  <div class="building-card-body">
  <div class="access-features">
  <h4 class="features-heading">Accessibility Features</h4>
- <ul class="feature-list" aria-label="Block 36 accessibility features">
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Passenger Lift <small>(Floors G–2)</small></span>
- <span class="feature-status" id="b36-lift-status" aria-live="polite"> Operational</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Dedicated accessible entrance (East side)</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Accessible toilet on Floor 1</span>
- </li>
- <li class="feature-item feature-yes">
- <span aria-hidden="true"></span>
- <span>Wheelchair seating in Seminar Hall</span>
- </li>
- <li class="feature-item feature-no">
- <span aria-hidden="true"></span>
- <span>West entrance has 2 steps — use East entrance</span>
- </li>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–2)</span> <span class="feature-status" id="b36-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>EAST entrance has level ramp</span></li>
+ <li class="feature-item feature-yes"><span>Accessible seating in seminar hall</span></li>
  </ul>
  </div>
  <div class="building-floors">
  <h4 class="features-heading">Floor Guide</h4>
- <ul class="floor-list" aria-label="Block 36 floor directory">
- <li><strong>G:</strong> Reception, Cafeteria, Student Services</li>
- <li><strong>1:</strong> Seminar Hall, Club Rooms</li>
- <li><strong>2:</strong> Admin Offices, Counselling Centre</li>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Student Welfare Desk, Cafeteria</li>
+ <li><strong>1:</strong> Multipurpose Seminar Hall, Clubs</li>
+ <li><strong>2:</strong> Career Services &amp; Counseling Centre</li>
  </ul>
  </div>
- <button class="btn btn-outline btn-sm" data-building="b36"
- aria-label="View route to Block 36 ground floor student centre"
- onclick="quickNavigateTo('b36-ground')">
- Navigate Here
- </button>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b36-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 37 -->
+ <article class="building-card" role="listitem" aria-labelledby="b37-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #4e342e, #5d4037);">
+ <span class="building-number" aria-hidden="true">37</span>
+ <div>
+ <h3 id="b37-title" class="building-title">Block 37</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">School of Law</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–3)</span> <span class="feature-status" id="b37-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Accessible ramp to Moot Court Hall</span></li>
+ <li class="feature-item feature-yes"><span>Assistive listening in court halls</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Moot Court 1, Legal Aid Clinic</li>
+ <li><strong>1:</strong> Law Library &amp; Case Study Rooms</li>
+ <li><strong>2:</strong> International Law Lecture Halls</li>
+ <li><strong>3:</strong> Faculty Chambers &amp; Arbitration Room</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b37-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 38 -->
+ <article class="building-card" role="listitem" aria-labelledby="b38-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #37474f, #455a64);">
+ <span class="building-number" aria-hidden="true">38</span>
+ <div>
+ <h3 id="b38-title" class="building-title">Block 38</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Mittal School of Business (MSB)</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Dual High-Speed Lifts (Floors G–4)</span> <span class="feature-status" id="b38-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Step-free covered walkways from Gate 2</span></li>
+ <li class="feature-item feature-yes"><span>Accessible amphitheater seating</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Dean Office, Stock Trading Room</li>
+ <li><strong>1:</strong> Executive MBA Classrooms</li>
+ <li><strong>2:</strong> Marketing &amp; HR Analytics Labs</li>
+ <li><strong>3:</strong> Corporate Placement Wing</li>
+ <li><strong>4:</strong> International Student Lounge</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b38-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 55 -->
+ <article class="building-card" role="listitem" aria-labelledby="b55-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #b71c1c, #d32f2f);">
+ <span class="building-number" aria-hidden="true">55</span>
+ <div>
+ <h3 id="b55-title" class="building-title">Block 55</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">School of Pharmaceutical Sciences</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–2)</span> <span class="feature-status" id="b55-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Emergency safety ramps &amp; wide halls</span></li>
+ <li class="feature-item feature-yes"><span>Accessible medicinal chemistry labs</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Pharmacology &amp; Formulation Lab</li>
+ <li><strong>1:</strong> Medicinal Chemistry &amp; Analysis</li>
+ <li><strong>2:</strong> Drug Discovery &amp; Research Lab</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b55-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- BLOCK 56 -->
+ <article class="building-card" role="listitem" aria-labelledby="b56-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #880e4f, #c2185b);">
+ <span class="building-number" aria-hidden="true">56</span>
+ <div>
+ <h3 id="b56-title" class="building-title">Block 56</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Bio-Sciences &amp; Applied Tech</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Passenger Lift (Floors G–2)</span> <span class="feature-status" id="b56-lift-status">Operational</span></li>
+ <li class="feature-item feature-yes"><span>Level connection to Block 34 Library</span></li>
+ <li class="feature-item feature-yes"><span>Bio-safety level 2 accessible suites</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Microbiology &amp; Genetics Lab</li>
+ <li><strong>1:</strong> Bioinformatics &amp; Tissue Culture</li>
+ <li><strong>2:</strong> Nanotechnology Research Wing</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('b56-ground')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- UNI-MALL -->
+ <article class="building-card" role="listitem" aria-labelledby="unimall-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #e65100, #ff6f00);">
+ <span class="building-number" aria-hidden="true">UM</span>
+ <div>
+ <h3 id="unimall-title" class="building-title">Uni-Mall</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Central Shopping &amp; Dining</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Step-free level entrances &amp; wide corridors</span></li>
+ <li class="feature-item feature-yes"><span>Accessible ATM booths &amp; counters</span></li>
+ <li class="feature-item feature-yes"><span>Wheelchair accessible restrooms</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Supermarket, Stationery, Banks, Post Office</li>
+ <li><strong>1:</strong> Multi-brand Stores, Salon, Food Court</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('uni-mall-entrance')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- UNI-HOSPITAL -->
+ <article class="building-card" role="listitem" aria-labelledby="unihospital-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #b71c1c, #e53935);">
+ <span class="building-number" aria-hidden="true">UH</span>
+ <div>
+ <h3 id="unihospital-title" class="building-title">Uni-Hospital</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">24/7 Campus Hospital &amp; Trauma</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>100% Step-free hospital grade ramps</span></li>
+ <li class="feature-item feature-yes"><span>Stretcher / wheelchair passenger lifts</span></li>
+ <li class="feature-item feature-yes"><span>24/7 dedicated wheelchair assistance desk</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Emergency / Trauma, Pharmacy, OPD</li>
+ <li><strong>1:</strong> Pathology Labs, Dental &amp; Eye Clinic</li>
+ <li><strong>2:</strong> Inpatient Wards &amp; Physiotherapy</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('uni-hospital')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- UNIPOLIS -->
+ <article class="building-card" role="listitem" aria-labelledby="unipolis-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #4a148c, #7b1fa2);">
+ <span class="building-number" aria-hidden="true">UP</span>
+ <div>
+ <h3 id="unipolis-title" class="building-title">Unipolis Arena</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Baldev Raj Mittal Cultural Theatre</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Wheelchair viewing platforms on front tier</span></li>
+ <li class="feature-item feature-yes"><span>Gentle paved ramps around perimeter</span></li>
+ <li class="feature-item feature-yes"><span>Braille directional wayfinding</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Facility Info</h4>
+ <ul class="floor-list">
+ <li><strong>Capacity:</strong> 15,000+ Spectator Open Arena</li>
+ <li><strong>Events:</strong> Youth Fest, Global Convocation, Shows</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('unipolis')">Navigate Here</button>
+ </div>
+ </article>
+
+ <!-- INDOOR STADIUM -->
+ <article class="building-card" role="listitem" aria-labelledby="stadium-title">
+ <div class="building-card-header" style="background: linear-gradient(135deg, #006064, #00838f);">
+ <span class="building-number" aria-hidden="true">IS</span>
+ <div>
+ <h3 id="stadium-title" class="building-title">Indoor Stadium</h3>
+ <p class="building-desc" style="color:rgba(255,255,255,0.85);font-size:0.8rem;margin:0;">Olympic Pool &amp; Sports Complex</p>
+ </div>
+ </div>
+ <div class="building-card-body">
+ <div class="access-features">
+ <h4 class="features-heading">Accessibility Features</h4>
+ <ul class="feature-list">
+ <li class="feature-item feature-yes"><span>Wheelchair pool lift hoist for aquatic access</span></li>
+ <li class="feature-item feature-yes"><span>Level entrance to badminton &amp; gym halls</span></li>
+ <li class="feature-item feature-yes"><span>Accessible locker rooms and showers</span></li>
+ </ul>
+ </div>
+ <div class="building-floors">
+ <h4 class="features-heading">Floor Guide</h4>
+ <ul class="floor-list">
+ <li><strong>G:</strong> Swimming Pool, Gymnasium, Squash Courts</li>
+ <li><strong>1:</strong> Badminton Courts, Table Tennis, Yoga Hall</li>
+ </ul>
+ </div>
+ <button class="btn btn-outline btn-sm" onclick="quickNavigateTo('indoor-stadium')">Navigate Here</button>
  </div>
  </article>
 
@@ -518,11 +1001,31 @@
  <div class="form-group">
  <label for="report-building" class="form-label">Building</label>
  <select id="report-building" class="form-control" required aria-required="true">
- <option value="">Select building</option>
- <option value="b32">Block 32 – Academic Block</option>
- <option value="b34">Block 34 – Library Block</option>
- <option value="b36">Block 36 – Student Centre</option>
- <option value="outdoor">Outdoor / General Campus</option>
+ <option value="">— Select Building or Facility —</option>
+ <option value="b14">Block 14 – Humanities &amp; Social Sciences</option>
+ <option value="b25">Block 25 – Computer Applications &amp; IT</option>
+ <option value="b26">Block 26 – Computer Science &amp; Engineering</option>
+ <option value="b27">Block 27 – Electronics &amp; Communication</option>
+ <option value="b28">Block 28 – Mechanical &amp; Aerospace</option>
+ <option value="b29">Block 29 – Civil Engineering &amp; Biotech</option>
+ <option value="b32">Block 32 – Academic Block (CSE &amp; Tech)</option>
+ <option value="b33">Block 33 – Agriculture &amp; Food Technology</option>
+ <option value="b34">Block 34 – Central Library (Shanti Devi Mittal)</option>
+ <option value="b35">Block 35 – Architecture &amp; Design</option>
+ <option value="b36">Block 36 – Student Centre &amp; Welfare</option>
+ <option value="b37">Block 37 – School of Law</option>
+ <option value="b38">Block 38 – Mittal School of Business</option>
+ <option value="b55">Block 55 – Pharmaceutical Sciences</option>
+ <option value="b56">Block 56 – Bio-Sciences &amp; Research Labs</option>
+ <option value="unimall">Uni-Mall Shopping &amp; Dining Complex</option>
+ <option value="unihospital">Uni-Hospital (24/7 Medical Care)</option>
+ <option value="unipolis">Baldev Raj Mittal Unipolis Arena</option>
+ <option value="indoorstadium">Indoor Sports Stadium</option>
+ <option value="bhsouth">Boys Hostel 1–4 Complex</option>
+ <option value="bhnorth">Boys Hostel 5–8 Complex</option>
+ <option value="ghwest">Girls Hostel 1–3 Complex</option>
+ <option value="gheast">Girls Hostel 4–6 Complex</option>
+ <option value="outdoor">Outdoor Pathway / Campus Road</option>
  </select>
  </div>
 

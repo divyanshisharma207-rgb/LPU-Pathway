@@ -145,12 +145,21 @@ const CampusAutos = (() => {
 
   // CAMPUS PICKUP SPOTS
   const PICKUP_SPOTS = {
-    'b32-ground': { label: 'Block 32 – Academic Block (Ramp)', lat: 31.2545, lng: 75.7030 },
-    'b34-ground': { label: 'Block 34 – Library Block (Level Entry)', lat: 31.2552, lng: 75.7048 },
-    'b36-ground': { label: 'Block 36 – Student Centre (East Ramp)', lat: 31.2538, lng: 75.7055 },
-    'uni-mall':   { label: 'Uni-Mall Complex (Fountain Entry)', lat: 31.2546, lng: 75.7050 },
-    'main-gate':  { label: 'Main Gate Auto & Transit Stand', lat: 31.2536, lng: 75.7037 },
-    'food-court': { label: 'Central Food Court Auto Stop', lat: 31.2530, lng: 75.7042 }
+    'main-gate':        { label: 'Main Gate 1 Auto & Transit Stand', lat: 31.2536, lng: 75.7037 },
+    'b32-ground':       { label: 'Block 32 – Academic Block (Ramp Entry)', lat: 31.2545, lng: 75.7030 },
+    'b34-ground':       { label: 'Block 34 – Central Library (Level Entry)', lat: 31.2552, lng: 75.7048 },
+    'b36-ground':       { label: 'Block 36 – Student Centre (East Ramp)', lat: 31.2538, lng: 75.7055 },
+    'b26-ground':       { label: 'Block 26 – School of CSE Foyer', lat: 31.2543, lng: 75.7020 },
+    'b38-ground':       { label: 'Block 38 – Mittal School of Business', lat: 31.2546, lng: 75.7065 },
+    'uni-mall':         { label: 'Uni-Mall Complex (Fountain Plaza)', lat: 31.2546, lng: 75.7050 },
+    'unipolis':         { label: 'Unipolis Cultural Arena Entrance', lat: 31.2540, lng: 75.7045 },
+    'uni-hospital':     { label: 'Uni-Hospital Emergency Entry', lat: 31.2525, lng: 75.7034 },
+    'indoor-stadium':   { label: 'Indoor Sports Stadium Foyer', lat: 31.2532, lng: 75.7062 },
+    'bh-south':         { label: 'Boys Hostel 1–4 Main Gate', lat: 31.2515, lng: 75.7040 },
+    'bh-north':         { label: 'Boys Hostel 5–8 Transit Stop', lat: 31.2570, lng: 75.7035 },
+    'gh-west':          { label: 'Girls Hostel 1–3 Security Checkpost', lat: 31.2520, lng: 75.7060 },
+    'gh-east':          { label: 'Girls Hostel 4–6 Main Gate', lat: 31.2565, lng: 75.7060 },
+    'gate-2':           { label: 'Gate 2 (West Gate - Law & Business)', lat: 31.2548, lng: 75.7075 }
   };
 
   let currentPickup = 'b32-ground';
