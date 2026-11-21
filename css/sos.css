@@ -1,7 +1,24 @@
 /* ══════════════════════════════════════════════════════════════
    sos.css – Campus Emergency & Medical SOS + Covered Route Styles
+   Theme: Coral Pink Delight Palette
+   - Tomato:        #ef6351
+   - Sweet Salmon:  #f38375
+   - Powder Blush:  #f7a399
+   - Powder Light:  #fbc3bc
+   - Soft Blush:    #ffe3e0
    LPU Pathway – Accessible Campus Navigation
    ══════════════════════════════════════════════════════════════ */
+
+:root {
+  --coral-tomato: #ef6351;
+  --coral-sweet-salmon: #f38375;
+  --coral-powder-blush: #f7a399;
+  --coral-powder-light: #fbc3bc;
+  --coral-soft-blush: #ffe3e0;
+  --coral-dark-text: #2c1614;
+  --coral-dark-muted: #643f3b;
+  --coral-accent-deep: #c93b2a;
+}
 
 /* ── FLOATING 1-TAP EMERGENCY SOS BUTTON ─────────────────────── */
 .btn-emergency-sos {
@@ -9,20 +26,20 @@
   bottom: 84px;
   left: 18px;
   z-index: 999;
-  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  background: linear-gradient(135deg, var(--coral-tomato), var(--coral-sweet-salmon));
   color: #ffffff;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--coral-soft-blush);
   border-radius: 999px;
-  padding: 8px 16px;
+  padding: 8px 18px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   font-family: var(--font-sans, system-ui, sans-serif);
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   letter-spacing: 0.5px;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(211, 47, 47, 0.45);
+  box-shadow: 0 4px 16px rgba(239, 99, 81, 0.45);
   transition: all 0.2s ease;
   animation: sosPulse 2.5s infinite;
 }
@@ -30,9 +47,9 @@
 .btn-emergency-sos:hover,
 .btn-emergency-sos:focus-visible {
   transform: scale(1.06);
-  background: linear-gradient(135deg, #b71c1c, #880e4f);
-  box-shadow: 0 6px 18px rgba(211, 47, 47, 0.6);
-  outline: 3px solid #ffeb3b;
+  background: linear-gradient(135deg, #e05342, var(--coral-tomato));
+  box-shadow: 0 6px 20px rgba(239, 99, 81, 0.65);
+  outline: 3px solid var(--coral-powder-light);
   outline-offset: 2px;
 }
 
@@ -43,9 +60,9 @@
 }
 
 @keyframes sosPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.6), 0 4px 14px rgba(0,0,0,0.3); }
-  70%  { box-shadow: 0 0 0 12px rgba(211, 47, 47, 0), 0 4px 14px rgba(0,0,0,0.3); }
-  100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0), 0 4px 14px rgba(0,0,0,0.3); }
+  0%   { box-shadow: 0 0 0 0 rgba(239, 99, 81, 0.6), 0 4px 14px rgba(0,0,0,0.25); }
+  70%  { box-shadow: 0 0 0 12px rgba(239, 99, 81, 0), 0 4px 14px rgba(0,0,0,0.25); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 99, 81, 0), 0 4px 14px rgba(0,0,0,0.25); }
 }
 
 @keyframes sosShake {
@@ -61,8 +78,8 @@
 .sos-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(4px);
+  background: rgba(30, 15, 14, 0.72);
+  backdrop-filter: blur(5px);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -79,17 +96,17 @@
 }
 
 .sos-modal-card {
-  background: var(--clr-surface, #ffffff);
-  border-radius: var(--radius-lg, 12px);
+  background: #ffffff;
+  border-radius: var(--radius-lg, 14px);
   width: 100%;
   max-width: 540px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-  border: 2px solid #ef5350;
+  box-shadow: 0 24px 48px rgba(239, 99, 81, 0.28), 0 12px 24px rgba(0, 0, 0, 0.18);
+  border: 2.5px solid var(--coral-sweet-salmon);
   display: flex;
   flex-direction: column;
-  animation: sosModalPop 0.25s ease-out;
+  animation: sosModalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes sosModalPop {
@@ -98,104 +115,113 @@
 }
 
 .sos-modal-header {
-  background: linear-gradient(135deg, #b71c1c, #c62828);
+  background: linear-gradient(135deg, var(--coral-tomato), var(--coral-sweet-salmon));
   color: #ffffff;
-  padding: 1rem 1.25rem;
+  padding: 1.1rem 1.35rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #d32f2f;
+  border-bottom: 2px solid var(--coral-sweet-salmon);
+  box-shadow: 0 2px 8px rgba(239, 99, 81, 0.2);
 }
 
 .sos-modal-title {
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   font-weight: 800;
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 0;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .sos-close-btn {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   color: #ffffff;
   font-size: 1.2rem;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: all 0.15s ease;
 }
 
 .sos-close-btn:hover {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.42);
+  transform: rotate(90deg);
 }
 
 .sos-modal-body {
   padding: 1.25rem;
+  background: #ffffff;
 }
 
-/* ── CURRENT LOCATION BANNER ─────────────────────────────────── */
+/* ── CURRENT LOCATION BANNER (Coral Pink Delight) ────────────── */
 .sos-location-banner {
-  background: #fef2f2;
-  border: 1.5px solid #fecaca;
-  border-left: 5px solid #dc2626;
-  border-radius: var(--radius-md, 8px);
-  padding: 0.85rem 1rem;
+  background: var(--coral-soft-blush); /* #ffe3e0 - soft blush */
+  border: 1.5px solid var(--coral-powder-light); /* #fbc3bc - powder blush light */
+  border-left: 6px solid var(--coral-tomato); /* #ef6351 - tomato */
+  border-radius: var(--radius-md, 10px);
+  padding: 0.95rem 1.15rem;
   margin-bottom: 1.25rem;
+  box-shadow: 0 2px 8px rgba(239, 99, 81, 0.08);
 }
 
 .sos-loc-label {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
-  color: #991b1b;
-  letter-spacing: 0.5px;
-  margin-bottom: 2px;
+  color: var(--coral-accent-deep); /* #c93b2a - high contrast on soft blush */
+  letter-spacing: 0.6px;
+  margin-bottom: 3px;
 }
 
 .sos-loc-name {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #111827;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--coral-dark-text); /* #2c1614 - rich dark text for AAA contrast */
   margin-bottom: 4px;
 }
 
 .sos-loc-coords {
-  font-size: 0.8rem;
-  color: #6b7280;
+  font-size: 0.85rem;
+  color: var(--coral-dark-muted); /* #643f3b */
   font-family: monospace;
+  font-weight: 600;
 }
 
 .sos-copy-btn {
   background: #ffffff;
-  border: 1px solid #d1d5db;
-  color: #374151;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  border: 1.5px solid var(--coral-powder-blush); /* #f7a399 */
+  color: var(--coral-accent-deep);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 6px;
+  margin-top: 8px;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+  transition: all 0.15s ease;
 }
 
 .sos-copy-btn:hover {
-  background: #f3f4f6;
-  border-color: #9ca3af;
+  background: var(--coral-soft-blush);
+  border-color: var(--coral-tomato);
+  transform: translateY(-1px);
 }
 
-/* ── 1-CLICK CALL CARDS ──────────────────────────────────────── */
+/* ── 1-CLICK CALL CARDS (Coral Pink Delight) ─────────────────── */
 .sos-call-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.75rem;
+  gap: 0.85rem;
   margin-bottom: 1.25rem;
 }
 
@@ -203,70 +229,98 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 1rem;
-  border-radius: var(--radius-md, 8px);
+  padding: 0.95rem 1.15rem;
+  border-radius: var(--radius-md, 10px);
   text-decoration: none;
-  color: #ffffff !important;
   font-weight: 700;
-  transition: all 0.15s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 3px 8px rgba(239, 99, 81, 0.12);
+  border: 1.5px solid transparent;
 }
 
 .sos-call-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 6px 16px rgba(239, 99, 81, 0.22);
 }
 
+/* Ambulance - Vibrant Tomato (#ef6351) */
 .sos-call-card.ambulance {
-  background: linear-gradient(135deg, #b71c1c, #d32f2f);
+  background: linear-gradient(135deg, #e24937, var(--coral-tomato));
+  color: #ffffff !important;
+  border-color: var(--coral-sweet-salmon);
 }
 
+/* Security - Sweet Salmon (#f38375) */
 .sos-call-card.security {
-  background: linear-gradient(135deg, #0d47a1, #1976d2);
+  background: linear-gradient(135deg, var(--coral-sweet-salmon), #f69488);
+  color: #ffffff !important;
+  border-color: var(--coral-powder-blush);
 }
 
+/* Disability - Powder Blush to Sweet Salmon (#f7a399 -> #f38375) */
 .sos-call-card.disability {
-  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  background: linear-gradient(135deg, var(--coral-sweet-salmon), var(--coral-tomato));
+  color: #ffffff !important;
+  border-color: var(--coral-powder-light);
 }
 
+/* Women Helpline - Coral Rose / Tomato Accent */
 .sos-call-card.women {
-  background: linear-gradient(135deg, #880e4f, #c2185b);
+  background: linear-gradient(135deg, #e34863, var(--coral-tomato));
+  color: #ffffff !important;
+  border-color: var(--coral-sweet-salmon);
 }
 
 .sos-call-info {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .sos-call-icon {
-  font-size: 1.5rem;
-  width: 38px;
-  height: 38px;
-  background: rgba(255, 255, 255, 0.2);
+  font-size: 1.6rem;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .sos-call-title {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
+  font-weight: 800;
   margin-bottom: 2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
 .sos-call-sub {
-  font-size: 0.78rem;
-  opacity: 0.88;
+  font-size: 0.8rem;
+  opacity: 0.95;
   font-weight: 500;
 }
 
 .sos-call-action {
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--coral-soft-blush); /* #ffe3e0 */
+  color: var(--coral-accent-deep); /* #c93b2a - high contrast on soft blush */
+  border: 1px solid var(--coral-powder-light);
   border-radius: 999px;
-  padding: 4px 12px;
-  font-size: 0.8rem;
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  font-weight: 800;
   white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: all 0.15s ease;
+}
+
+.sos-call-card:hover .sos-call-action {
+  background: #ffffff;
+  color: var(--coral-tomato);
+  transform: scale(1.05);
 }
 
 /* ── WHATSAPP DISPATCH BUTTON ────────────────────────────────── */
@@ -274,32 +328,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 9px;
   background: #25d366;
   color: #ffffff !important;
   text-decoration: none;
   font-weight: 800;
   font-size: 0.95rem;
-  padding: 0.85rem 1rem;
-  border-radius: var(--radius-md, 8px);
-  box-shadow: 0 3px 8px rgba(37, 211, 102, 0.35);
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius-md, 10px);
+  border: 1.5px solid #20ba59;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.32);
   transition: all 0.15s ease;
-  margin-bottom: 1rem;
+  margin-bottom: 1.15rem;
 }
 
 .sos-whatsapp-btn:hover {
   background: #20ba59;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.42);
 }
 
+/* ── QUICK EMERGENCY TIPS (Soft Blush + Tomato Accent) ────────── */
 .sos-tips {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: var(--radius-sm, 6px);
-  padding: 0.75rem 1rem;
-  font-size: 0.8rem;
-  color: #64748b;
-  line-height: 1.4;
+  background: var(--coral-soft-blush); /* #ffe3e0 - soft blush */
+  border: 1.5px solid var(--coral-powder-light); /* #fbc3bc */
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.85rem 1.1rem;
+  font-size: 0.82rem;
+  color: var(--coral-dark-muted); /* #643f3b */
+  line-height: 1.45;
+}
+
+.sos-tips strong {
+  color: var(--coral-tomato); /* #ef6351 - tomato */
+  font-weight: 800;
 }
 
 /* ── COVERED ROUTE RADIO & BADGE ─────────────────────────────── */
