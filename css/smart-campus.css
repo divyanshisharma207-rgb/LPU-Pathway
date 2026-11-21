@@ -144,6 +144,85 @@
   border-color: var(--clr-primary, #1565c0);
 }
 
+.parking-showcase-banner {
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius-md, 12px);
+  overflow: hidden;
+  border: 1.5px solid var(--clr-border, #e2e8f0);
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+}
+
+.parking-showcase-image-box {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.parking-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.parking-showcase-banner:hover .parking-showcase-img {
+  transform: scale(1.02);
+}
+
+.parking-showcase-meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.82) 40%, rgba(15, 23, 42, 0.95) 100%);
+  padding: 1.25rem 1.25rem 0.85rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.parking-showcase-tag {
+  display: inline-block;
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.parking-showcase-name {
+  margin: 0 0 2px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.parking-showcase-desc {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+@media (max-width: 640px) {
+  .parking-showcase-image-box {
+    height: 190px;
+  }
+  .parking-showcase-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+}
+
 .parking-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -160,13 +239,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.parking-card.selected-showcase {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.35), 0 4px 12px rgba(2, 132, 199, 0.15);
 }
 
 .parking-image-wrapper {
   position: relative;
   width: 100%;
-  height: 160px;
+  height: 180px;
   background: #f1f5f9;
   overflow: hidden;
 }

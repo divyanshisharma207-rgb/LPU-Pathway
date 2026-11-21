@@ -13,6 +13,15 @@
 
 window.CampusSmartHub = (() => {
 
+  // ESCAPE HTML HELPER
+  function escapeHTML(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
   // ═════════════════════════════════════════════════════════════════
   // 1. PARKING AVAILABILITY SYSTEM
   // ═════════════════════════════════════════════════════════════════
@@ -597,11 +606,53 @@ window.CampusSmartHub = (() => {
   // UI RENDERERS
   // ─────────────────────────────────────────────────────────────────
 
+  function selectParkingShowcase(lotId) {
+    const lot = PARKING_LOTS.find(p => p.id === lotId) || PARKING_LOTS[0];
+    const imgEl = document.getElementById('parking-showcase-img');
+    const titleEl = document.getElementById('parking-showcase-title');
+    const descEl = document.getElementById('parking-showcase-desc');
+    const btnEl = document.getElementById('btn-showcase-route');
+    if (imgEl) {
+      imgEl.src = lot.image;
+      imgEl.alt = lot.imageAlt || lot.name;
+    }
+    if (titleEl) titleEl.textContent = lot.name;
+    const freeSlots = lot.totalSlots - lot.occupied;
+    if (descEl) descEl.textContent = `${lot.location} • ${freeSlots} Free Slots • ${lot.rates}`;
+    if (btnEl) {
+      btnEl.onclick = () => CampusSmartHub.navigateToNode(lot.nodeId, lot.name);
+      const shortId = lot.name.match(/\(P\d\)/) ? lot.name.match(/\(P\d\)/)[0].replace(/[()]/g, '') : 'Lot';
+      btnEl.textContent = `Navigate to ${shortId}`;
+    }
+    document.querySelectorAll('.parking-card').forEach(card => {
+      card.classList.toggle('selected-showcase', card.dataset.lotId === lot.id);
+    });
+  }
+
   function renderParkingSection() {
     const container = document.getElementById('parking-container');
     if (!container) return;
 
+    const featured = PARKING_LOTS[0];
+    const featFree = featured.totalSlots - featured.occupied;
+
     let html = `
+      <div class="parking-showcase-banner">
+        <div class="parking-showcase-image-box">
+          <img id="parking-showcase-img" src="${featured.image}" alt="${escapeHTML(featured.imageAlt || featured.name)}" class="parking-showcase-img" loading="eager" />
+          <div class="parking-showcase-meta">
+            <div class="parking-showcase-title-box">
+              <span class="parking-showcase-tag">Featured Campus Lot</span>
+              <h3 id="parking-showcase-title" class="parking-showcase-name">${featured.name}</h3>
+              <p id="parking-showcase-desc" class="parking-showcase-desc">${featured.location} • ${featFree} Free Slots • ${featured.rates}</p>
+            </div>
+            <button type="button" id="btn-showcase-route" class="btn btn-primary btn-sm" onclick="CampusSmartHub.navigateToNode('${featured.nodeId}', '${featured.name}')">
+              Navigate to P1
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div class="parking-filter-bar">
         <button class="filter-chip active" data-filter="all">All Lots (${PARKING_LOTS.length})</button>
         <button class="filter-chip" data-filter="student">Student Lots</button>
@@ -620,9 +671,9 @@ window.CampusSmartHub = (() => {
       const statusText = pctFree > 35 ? `${freeSlots} Slots Free` : (pctFree > 10 ? 'Filling Fast' : 'Almost Full');
 
       html += `
-        <div class="parking-card" data-lot-id="${lot.id}" data-category="${lot.category}" data-ev="${lot.evCharging}">
+        <div class="parking-card ${lot.id === 'lot-p1' ? 'selected-showcase' : ''}" data-lot-id="${lot.id}" data-category="${lot.category}" data-ev="${lot.evCharging}" onclick="CampusSmartHub.selectParkingShowcase('${lot.id}')" title="Click to focus on ${escapeHTML(lot.name)}">
           <div class="parking-image-wrapper">
-            <img src="${lot.image}" alt="${escapeHTML(lot.imageAlt || lot.name)}" class="parking-card-img" loading="lazy" />
+            <img src="${lot.image}" alt="${escapeHTML(lot.imageAlt || lot.name)}" class="parking-card-img" loading="eager" />
             <span class="parking-image-tag">${lot.evCharging ? 'EV Charging' : 'Standard Lot'}</span>
           </div>
           <div class="parking-card-body">
@@ -650,7 +701,7 @@ window.CampusSmartHub = (() => {
               </div>
               <p class="parking-access-note"><strong>Access:</strong> ${lot.rates}</p>
             </div>
-            <button type="button" class="btn-route-parking" onclick="CampusSmartHub.navigateToNode('${lot.nodeId}', '${lot.name}')">
+            <button type="button" class="btn-route-parking" onclick="event.stopPropagation(); CampusSmartHub.navigateToNode('${lot.nodeId}', '${lot.name}')">
               Navigate to Parking
             </button>
           </div>
@@ -3110,6 +3161,7 @@ Please proceed to the counter lounge.`);
   return {
     init,
     navigateToNode,
+    selectParkingShowcase,
     routeToExam,
     selectTour,
     jumpToTourStop,

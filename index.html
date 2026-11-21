@@ -1467,6 +1467,22 @@
             EV charging stations across LPU campus.</p>
         </header>
         <div id="parking-container">
+          <div class="parking-showcase-banner">
+            <div class="parking-showcase-image-box">
+              <img id="parking-showcase-img" src="images/parking/p1_gate1.jpg" alt="Gate 1 Faculty and Visitor Parking (P1)" class="parking-showcase-img" loading="eager" />
+              <div class="parking-showcase-meta">
+                <div class="parking-showcase-title-box">
+                  <span class="parking-showcase-tag">Featured Campus Lot</span>
+                  <h3 id="parking-showcase-title" class="parking-showcase-name">Gate 1 Faculty &amp; Visitor Parking (P1)</h3>
+                  <p id="parking-showcase-desc" class="parking-showcase-desc">Near Main Gate 1 &amp; University Admin Block • 42 Free Slots • Free for Faculty &amp; Registered Visitors</p>
+                </div>
+                <button type="button" id="btn-showcase-route" class="btn btn-primary btn-sm" onclick="CampusSmartHub.navigateToNode('main-gate', 'Gate 1 Faculty &amp; Visitor Parking (P1)')">
+                  Navigate to P1
+                </button>
+              </div>
+            </div>
+          </div>
+
           <div class="parking-filter-bar">
             <button class="filter-chip active" data-filter="all">All Lots (6)</button>
             <button class="filter-chip" data-filter="student">Student Lots</button>
@@ -1476,9 +1492,9 @@
             <button class="filter-chip" data-filter="4w">4-Wheeler</button>
           </div>
           <div class="parking-grid" id="parking-cards-grid">
-            <div class="parking-card" data-lot-id="lot-p1" data-category="staff" data-ev="true">
+            <div class="parking-card selected-showcase" data-lot-id="lot-p1" data-category="staff" data-ev="true" onclick="CampusSmartHub.selectParkingShowcase('lot-p1')" title="Click to focus on Gate 1 Faculty &amp; Visitor Parking (P1)">
               <div class="parking-image-wrapper">
-                <img src="images/parking/p1_gate1.jpg" alt="Gate 1 Faculty and Visitor Parking near University Admin Block" class="parking-card-img" loading="lazy" />
+                <img src="images/parking/p1_gate1.jpg" alt="Gate 1 Faculty and Visitor Parking near University Admin Block" class="parking-card-img" loading="eager" />
                 <span class="parking-image-tag">EV Charging</span>
               </div>
               <div class="parking-card-body">
@@ -1498,15 +1514,15 @@
                   <p class="parking-access-note"><strong>Access:</strong> Free for Faculty &amp; Registered Visitors</p>
                 </div>
                 <button type="button" class="btn-route-parking"
-                  onclick="CampusSmartHub.navigateToNode('main-gate', 'Gate 1 Faculty &amp; Visitor Parking (P1)')">
+                  onclick="event.stopPropagation(); CampusSmartHub.navigateToNode('main-gate', 'Gate 1 Faculty &amp; Visitor Parking (P1)')">
                   Navigate to Parking
                 </button>
               </div>
             </div>
 
-            <div class="parking-card" data-lot-id="lot-p2" data-category="student" data-ev="true">
+            <div class="parking-card" data-lot-id="lot-p2" data-category="student" data-ev="true" onclick="CampusSmartHub.selectParkingShowcase('lot-p2')" title="Click to focus on Central Multi-Level Parking Block 34-38 (P2)">
               <div class="parking-image-wrapper">
-                <img src="images/parking/p2_multilevel.jpg" alt="Central Multi-Level Parking structure near Block 34 Library and Block 38" class="parking-card-img" loading="lazy" />
+                <img src="images/parking/p2_multilevel.jpg" alt="Central Multi-Level Parking structure near Block 34 Library and Block 38" class="parking-card-img" loading="eager" />
                 <span class="parking-image-tag">EV Charging</span>
               </div>
               <div class="parking-card-body">
@@ -1526,15 +1542,15 @@
                   <p class="parking-access-note"><strong>Access:</strong> Student RFID &amp; Staff Access</p>
                 </div>
                 <button type="button" class="btn-route-parking"
-                  onclick="CampusSmartHub.navigateToNode('b34-ground', 'Central Multi-Level Parking Block 34-38 (P2)')">
+                  onclick="event.stopPropagation(); CampusSmartHub.navigateToNode('b34-ground', 'Central Multi-Level Parking Block 34-38 (P2)')">
                   Navigate to Parking
                 </button>
               </div>
             </div>
 
-            <div class="parking-card" data-lot-id="lot-p3" data-category="student" data-ev="true">
+            <div class="parking-card" data-lot-id="lot-p3" data-category="student" data-ev="true" onclick="CampusSmartHub.selectParkingShowcase('lot-p3')" title="Click to focus on Uni-Mall Shoppers &amp; Dining Parking (P3)">
               <div class="parking-image-wrapper">
-                <img src="images/parking/p3_unimall.jpg" alt="Uni-Mall Shoppers and Dining outdoor commercial parking plaza" class="parking-card-img" loading="lazy" />
+                <img src="images/parking/p3_unimall.jpg" alt="Uni-Mall Shoppers and Dining outdoor commercial parking plaza" class="parking-card-img" loading="eager" />
                 <span class="parking-image-tag">EV Charging</span>
               </div>
               <div class="parking-card-body">
@@ -1554,15 +1570,15 @@
                   <p class="parking-access-note"><strong>Access:</strong> Standard Campus Parking Rules</p>
                 </div>
                 <button type="button" class="btn-route-parking"
-                  onclick="CampusSmartHub.navigateToNode('uni-mall-entrance', 'Uni-Mall Shoppers &amp; Dining Parking (P3)')">
+                  onclick="event.stopPropagation(); CampusSmartHub.navigateToNode('uni-mall-entrance', 'Uni-Mall Shoppers &amp; Dining Parking (P3)')">
                   Navigate to Parking
                 </button>
               </div>
             </div>
 
-            <div class="parking-card" data-lot-id="lot-p4" data-category="student" data-ev="true">
+            <div class="parking-card" data-lot-id="lot-p4" data-category="student" data-ev="true" onclick="CampusSmartHub.selectParkingShowcase('lot-p4')" title="Click to focus on BH-South Student 2-Wheeler Lot (P4)">
               <div class="parking-image-wrapper">
-                <img src="images/parking/p4_two_wheeler.jpg" alt="BH-South Student 2-Wheeler scooter and motorcycle parking lot" class="parking-card-img" loading="lazy" />
+                <img src="images/parking/p4_two_wheeler.jpg" alt="BH-South Student 2-Wheeler scooter and motorcycle parking lot" class="parking-card-img" loading="eager" />
                 <span class="parking-image-tag">EV Charging</span>
               </div>
               <div class="parking-card-body">
@@ -1582,15 +1598,15 @@
                   <p class="parking-access-note"><strong>Access:</strong> Hostel Resident 2-Wheeler Permit</p>
                 </div>
                 <button type="button" class="btn-route-parking"
-                  onclick="CampusSmartHub.navigateToNode('bh-south', 'BH-South Student 2-Wheeler Lot (P4)')">
+                  onclick="event.stopPropagation(); CampusSmartHub.navigateToNode('bh-south', 'BH-South Student 2-Wheeler Lot (P4)')">
                   Navigate to Parking
                 </button>
               </div>
             </div>
 
-            <div class="parking-card" data-lot-id="lot-p5" data-category="staff" data-ev="true">
+            <div class="parking-card" data-lot-id="lot-p5" data-category="staff" data-ev="true" onclick="CampusSmartHub.selectParkingShowcase('lot-p5')" title="Click to focus on Gate 2 West Campus Parking (P5)">
               <div class="parking-image-wrapper">
-                <img src="images/parking/p5_west_campus.jpg" alt="Gate 2 West Campus open commuter parking area" class="parking-card-img" loading="lazy" />
+                <img src="images/parking/p5_west_campus.jpg" alt="Gate 2 West Campus open commuter parking area" class="parking-card-img" loading="eager" />
                 <span class="parking-image-tag">EV Charging</span>
               </div>
               <div class="parking-card-body">
@@ -1610,15 +1626,15 @@
                   <p class="parking-access-note"><strong>Access:</strong> Open for West Sector Commuters</p>
                 </div>
                 <button type="button" class="btn-route-parking"
-                  onclick="CampusSmartHub.navigateToNode('gate-2', 'Gate 2 West Campus Parking (P5)')">
+                  onclick="event.stopPropagation(); CampusSmartHub.navigateToNode('gate-2', 'Gate 2 West Campus Parking (P5)')">
                   Navigate to Parking
                 </button>
               </div>
             </div>
 
-            <div class="parking-card" data-lot-id="lot-p6" data-category="emergency" data-ev="false">
+            <div class="parking-card" data-lot-id="lot-p6" data-category="emergency" data-ev="false" onclick="CampusSmartHub.selectParkingShowcase('lot-p6')" title="Click to focus on Uni-Hospital Emergency Patient Lot (P6)">
               <div class="parking-image-wrapper">
-                <img src="images/parking/p6_hospital.jpg" alt="Uni-Hospital South Gate Emergency Patient and Ambulance Priority Parking" class="parking-card-img" loading="lazy" />
+                <img src="images/parking/p6_hospital.jpg" alt="Uni-Hospital South Gate Emergency Patient and Ambulance Priority Parking" class="parking-card-img" loading="eager" />
                 <span class="parking-image-tag">Standard Lot</span>
               </div>
               <div class="parking-card-body">
@@ -1638,7 +1654,7 @@
                   <p class="parking-access-note"><strong>Access:</strong> Emergency Patients &amp; Ambulance Priority</p>
                 </div>
                 <button type="button" class="btn-route-parking"
-                  onclick="CampusSmartHub.navigateToNode('uni-hospital', 'Uni-Hospital Emergency Patient Lot (P6)')">
+                  onclick="event.stopPropagation(); CampusSmartHub.navigateToNode('uni-hospital', 'Uni-Hospital Emergency Patient Lot (P6)')">
                   Navigate to Parking
                 </button>
               </div>
