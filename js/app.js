@@ -134,7 +134,7 @@
  exams: 'Exam Hall & Seat Finder',
  events: 'Campus Society Events & Fests',
  visitor: 'Visitor Guided Tours',
- emergency: 'Emergency Safe Havens',
+ emergency: 'Emergency Safe Haven',
  report: 'Report Issue',
  help: 'Help & Guide',
  };

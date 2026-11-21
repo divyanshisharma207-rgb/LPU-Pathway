@@ -939,14 +939,13 @@ window.CampusSmartHub = (() => {
     let html = `
       <div class="emergency-hub-banner">
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.4rem;">
-          <span style="font-size:1.6rem;">🚨</span>
           <h3 style="margin:0; font-size:1.25rem; font-weight:800; color:#991b1b;">Campus Safety, Emergency Posts &amp; Evacuation Assembly</h3>
         </div>
         <p style="font-size:0.85rem; color:#7f1d1d; margin:0 0 0.85rem;">
           In case of fire, medical trauma, or campus hazard, head immediately to the nearest designated Safe Haven below.
         </p>
         <button type="button" class="btn btn-outline" style="background:#fff; border-color:#ef6351; color:#ef6351; font-weight:800;" onclick="CampusSmartHub.routeToNearestEmergency()">
-          <span>📍</span> Find &amp; Route to Nearest Safe Haven From My Position
+          Find &amp; Route to Nearest Safe Haven From My Position
         </button>
       </div>
 
@@ -959,7 +958,7 @@ window.CampusSmartHub = (() => {
         <div class="emergency-post-card ${cardType}">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem;">
             <div style="display:flex; align-items:center; gap:8px;">
-              <span style="font-size:1.5rem;">${post.icon}</span>
+              <span style="font-size:1.5rem;">+</span>
               <h4 style="margin:0; font-size:1.05rem; font-weight:800;">${post.name}</h4>
             </div>
             <span class="parking-status-badge available" style="background:#fee2e2; color:#991b1b; border-color:#fca5a5;">
@@ -968,10 +967,10 @@ window.CampusSmartHub = (() => {
           </div>
           <p style="font-size:0.82rem; color:#475569; margin:0 0 0.75rem; line-height:1.4;">${post.desc}</p>
           <div style="font-size:0.78rem; color:#1e293b; font-weight:700; margin-bottom:0.5rem;">
-            📞 Direct Line: <a href="tel:${post.phone}" style="color:#ef6351;">${post.phone}</a>
+            Direct Line: <a href="tel:${post.phone}" style="color:#ef6351;">${post.phone}</a>
           </div>
           <button type="button" class="btn-emergency-route-safe" onclick="CampusSmartHub.navigateToNode('${post.nodeId}', '${post.name}')">
-            <span>🛡️</span> Route to This Safe Haven
+            Route to This Safe Haven
           </button>
         </div>
       `;
@@ -1114,7 +1113,7 @@ window.CampusSmartHub = (() => {
     if (!emergencyLayerGroup) {
       emergencyLayerGroup = L.layerGroup();
       EMERGENCY_POSTS.forEach(post => {
-        const iconHtml = `<div class="smart-map-marker emergency" title="${post.name}">${post.icon}</div>`;
+        const iconHtml = `<div class="smart-map-marker emergency" title="${post.name}">+</div>`;
         const icon = L.divIcon({
           html: iconHtml,
           className: '',
@@ -1125,7 +1124,7 @@ window.CampusSmartHub = (() => {
         const marker = L.marker([post.lat, post.lng], { icon });
         const popupContent = `
           <div class="smart-map-popup">
-            <h4 style="color:#ef6351;">🚨 ${post.name}</h4>
+            <h4 style="color:#ef6351;">${post.name}</h4>
             <p><strong>Type:</strong> ${post.badge}<br>
             <strong>24/7 Phone:</strong> <a href="tel:${post.phone}">${post.phone}</a><br>
             ${post.desc}</p>
