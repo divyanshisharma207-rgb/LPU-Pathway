@@ -338,20 +338,25 @@ const CampusMap = (() => {
  }
 
  // DRAW ROUTE ON MAP 
- function drawRoute(path, stepFree) {
- clearRoute();
+   function drawRoute(path, stepFree, liveGpsCoords = null) {
+  clearRoute();
 
- const { NODES } = window.CampusData;
- const { BUILDING_COORDS: BC } = { BUILDING_COORDS };
+  const { NODES } = window.CampusData;
+  const { BUILDING_COORDS: BC } = { BUILDING_COORDS };
 
- // Build coordinate list
- const coords = path.map(nodeId => {
- const node = NODES[nodeId];
- if (!node) return null;
- return [node.lat, node.lng];
- }).filter(Boolean);
+  // Build coordinate list
+  const coords = path.map(nodeId => {
+  const node = NODES[nodeId];
+  if (!node) return null;
+  return [node.lat, node.lng];
+  }).filter(Boolean);
 
- if (coords.length < 2) return;
+  // If live GPS coordinates provided, prepend them so route connects from current live position
+  if (liveGpsCoords && liveGpsCoords.lat && liveGpsCoords.lng) {
+    coords.unshift([liveGpsCoords.lat, liveGpsCoords.lng]);
+  }
+
+  if (coords.length < 2) return;
 
  const color = stepFree ? '#2e7d32' : '#1565c0';
  const label = stepFree ? ' Step-Free Route' : ' Fastest Route';

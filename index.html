@@ -10,6 +10,7 @@
  <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/directions.css" />
   <link rel="stylesheet" href="css/autos.css" />
+  <link rel="stylesheet" href="css/gps.css" />
  <!-- Leaflet.js for maps -->
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
@@ -71,12 +72,18 @@
 
  <!-- FROM -->
  <div class="form-group">
- <label for="from-select" class="form-label">
+ <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+ <label for="from-select" class="form-label" style="margin-bottom:0;">
  <span aria-hidden="true"></span> Starting Point
  </label>
+ <button type="button" id="btn-use-gps-start" class="btn btn-sm btn-outline" style="padding:2px 8px;font-size:0.75rem;display:inline-flex;align-items:center;gap:3px;" title="Use your current live GPS location">
+ 📍 Use Live GPS
+ </button>
+ </div>
  <select id="from-select" class="form-control" required aria-required="true"
  aria-describedby="from-hint">
  <option value="">— Choose your start location —</option>
+ <option value="live-gps">📍 My Live GPS Location</option>
  <option value="b32-ground">Block 32 – Academic Block</option>
  <option value="b34-ground">Block 34 – Library Block</option>
  <option value="b36-ground">Block 36 – Student Centre</option>
@@ -172,6 +179,9 @@
  <button class="map-ctrl-btn active" id="btn-toggle-autos" aria-pressed="true" aria-label="Toggle live autos and e-carts on map">
  🛺 Autos &amp; E-Carts
  </button>
+ <button class="map-ctrl-btn" id="btn-toggle-gps" aria-pressed="false" aria-label="Start live GPS tracking">
+ 📍 Live GPS
+ </button>
  <span id="map-issues-indicator" class="map-issues-indicator" hidden aria-live="polite" title="Active barriers currently marked on the map">
  <span class="issue-indicator-dot" aria-hidden="true"></span>
  <span id="map-issues-count">0 Barriers</span>
@@ -207,6 +217,54 @@
  tabindex="0"
  aria-roledescription="Campus map — press Enter to re-centre">
  </div>
+
+  <!-- LIVE GPS TRACKING HUD BAR -->
+  <div id="gps-hud" class="gps-hud-bar" hidden aria-live="polite">
+    <div class="gps-hud-inner">
+      <div class="gps-hud-status">
+        <span class="gps-status-beacon" aria-hidden="true"></span>
+        <div class="gps-status-info">
+          <div class="gps-status-title" id="gps-status-title">Live GPS Tracking</div>
+          <div class="gps-status-meta" id="gps-status-meta">Connecting to satellites...</div>
+        </div>
+      </div>
+      <div class="gps-hud-stats">
+        <div class="gps-stat-item">
+          <span class="gps-stat-label">Accuracy</span>
+          <span class="gps-stat-val" id="gps-stat-accuracy">±0m</span>
+        </div>
+        <div class="gps-stat-item">
+          <span class="gps-stat-label">Speed</span>
+          <span class="gps-stat-val" id="gps-stat-speed">0.0 km/h</span>
+        </div>
+        <div class="gps-stat-item">
+          <span class="gps-stat-label">Nearest Spot</span>
+          <span class="gps-stat-val" id="gps-stat-spot">—</span>
+        </div>
+      </div>
+      <div class="gps-hud-actions">
+        <button id="btn-gps-recenter" class="btn btn-sm btn-outline" title="Re-center map on your location">
+          🎯 Center
+        </button>
+        <button id="btn-gps-sim-walk" class="btn btn-sm btn-outline" title="Simulate a live walk across campus">
+          🚶 Demo Walk
+        </button>
+        <button id="btn-gps-route-from" class="btn btn-sm btn-primary" title="Plan route from current GPS position">
+          📍 Route From Here
+        </button>
+        <button id="btn-gps-stop" class="btn btn-sm btn-stop-aloud" title="Stop GPS tracking">
+          ✕ Stop
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE GPS TURN PROMPT BANNER -->
+  <div id="gps-turn-banner" class="gps-turn-banner" hidden role="status" aria-live="polite">
+    <span class="gps-turn-icon" aria-hidden="true">🧭</span>
+    <div class="gps-turn-text" id="gps-turn-text">Follow step-free path</div>
+    <div class="gps-turn-dist" id="gps-turn-dist"></div>
+  </div>
 
   <!-- READ ALOUD CONTROLS - below map -->
   <div class="read-aloud-bar" id="below-map-audio-controls" style="margin:0.75rem 0;">
@@ -761,6 +819,7 @@
  <script src="js/routeEngine.js"></script>
  <script src="js/map.js"></script>
  <script src="js/directions.js"></script>
+ <script src="js/gps.js"></script>
  <script src="js/autos.js"></script>
  <script src="js/report.js"></script>
  <script src="js/app.js"></script>

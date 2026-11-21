@@ -45,6 +45,8 @@
 
  // 10. Init Autos & E-Carts transit feature
  if (window.CampusAutos) CampusAutos.init();
+  // 11. Init Live GPS & Tracking feature
+  if (window.CampusGPS) CampusGPS.init();
 
  console.log('[LPU Pathway] Accessible navigation ready ');
  });
@@ -180,79 +182,89 @@
  });
  }
 
- function calculateAndDisplayRoute() {
- const fromId = document.getElementById('from-select').value;
- const toId = document.getElementById('to-select').value;
- const stepFree = document.getElementById('stepfree-route').checked;
- const btn = document.getElementById('find-route-btn');
+  function calculateAndDisplayRoute() {
+    const fromId = document.getElementById('from-select').value;
+    const toId = document.getElementById('to-select').value;
+    const stepFree = document.getElementById('stepfree-route').checked;
+    const btn = document.getElementById('find-route-btn');
 
- if (!fromId || !toId) {
- announce('Please select both a start location and a destination.', true);
- if (!fromId) document.getElementById('from-select').focus();
- else document.getElementById('to-select').focus();
- return;
- }
+    if (!fromId || !toId) {
+      announce('Please select both a start location and a destination.', true);
+      if (!fromId) document.getElementById('from-select').focus();
+      else document.getElementById('to-select').focus();
+      return;
+    }
 
- if (fromId === toId) {
- announce('Start and destination are the same location. Please choose different locations.', true);
- return;
- }
+    if (fromId === toId) {
+      announce('Start and destination are the same location. Please choose different locations.', true);
+      return;
+    }
 
- // Show loading state
- btn.innerHTML = '<span class="spinner" aria-hidden="true"></span> Finding route…';
- btn.disabled = true;
+    // Show loading state
+    btn.innerHTML = '<span class="spinner" aria-hidden="true"></span> Finding route…';
+    btn.disabled = true;
 
- // Small delay for UX (simulates async)
- setTimeout(() => {
- const { NODES } = window.CampusData;
+    // Small delay for UX (simulates async)
+    setTimeout(() => {
+      let resolvedFromId = fromId;
+      let liveGpsCoords = null;
 
- // Check if step-free is feasible
- if (stepFree && !RouteEngine.canFindStepFree(fromId, toId)) {
- // Fall back with warning
- announce(' No step-free route available right now (lift may be out of service). Showing fastest route instead.', true);
- performRouting(fromId, toId, false);
- } else {
- performRouting(fromId, toId, stepFree);
- }
+      if (fromId === 'live-gps') {
+        if (window.CampusGPS) {
+          liveGpsCoords = CampusGPS.getCurrentCoords();
+          resolvedFromId = CampusGPS.getNearestNodeId();
+        } else {
+          resolvedFromId = 'b32-ground';
+        }
+      }
 
- btn.innerHTML = '<span aria-hidden="true"></span> Find Route';
- btn.disabled = false;
- }, 300);
- }
+      // Check if step-free is feasible
+      if (stepFree && !RouteEngine.canFindStepFree(resolvedFromId, toId)) {
+        // Fall back with warning
+        announce('⚠️ No step-free route available right now (lift may be out of service). Showing fastest route instead.', true);
+        performRouting(fromId, resolvedFromId, toId, false, liveGpsCoords);
+      } else {
+        performRouting(fromId, resolvedFromId, toId, stepFree, liveGpsCoords);
+      }
 
- function performRouting(fromId, toId, stepFree) {
- const { NODES } = window.CampusData;
+      btn.innerHTML = '<span aria-hidden="true">🔍</span> Find Route';
+      btn.disabled = false;
+    }, 300);
+  }
 
- const route = RouteEngine.findRoute(fromId, toId, stepFree);
+  function performRouting(fromId, resolvedFromId, toId, stepFree, liveGpsCoords = null) {
+    const { NODES } = window.CampusData;
 
- if (!route) {
- DirectionsPanel.showPlaceholder('No route found between these locations. Please try different locations.');
- CampusMap.clearRoute();
- return;
- }
+    const route = RouteEngine.findRoute(resolvedFromId, toId, stepFree);
 
- currentRoute = route;
- currentFrom = fromId;
- currentTo = toId;
- currentMode = stepFree ? 'stepfree' : 'fastest';
+    if (!route) {
+      DirectionsPanel.showPlaceholder('No route found between these locations. Please try different locations.');
+      CampusMap.clearRoute();
+      return;
+    }
 
- const directions = RouteEngine.buildDirections(route, stepFree);
- const fromNode = NODES[fromId];
- const toNode = NODES[toId];
+    currentRoute = route;
+    currentFrom = fromId;
+    currentTo = toId;
+    currentMode = stepFree ? 'stepfree' : 'fastest';
 
- DirectionsPanel.render(directions, {
- totalTime: route.totalTime,
- stepFree,
- fromLabel: fromNode ? fromNode.label : fromId,
- toLabel: toNode ? toNode.label : toId,
- });
+    const directions = RouteEngine.buildDirections(route, stepFree);
+    const fromNode = NODES[fromId] || (fromId === 'live-gps' ? { label: '📍 My Live GPS Location' } : null);
+    const toNode = NODES[toId];
 
- // Draw on map
- CampusMap.drawRoute(route.path, stepFree);
+    DirectionsPanel.render(directions, {
+      totalTime: route.totalTime,
+      stepFree,
+      fromLabel: fromNode ? fromNode.label : fromId,
+      toLabel: toNode ? toNode.label : toId,
+    });
 
- // Update URL (shareable)
- updateURL(fromId, toId, stepFree);
- }
+    // Draw on map with live GPS coords if active
+    CampusMap.drawRoute(route.path, stepFree, liveGpsCoords);
+
+    // Update URL (shareable)
+    updateURL(fromId, toId, stepFree);
+  }
 
  // QUICK NAVIGATE (from building cards) 
  window.quickNavigateTo = function (destinationId) {
