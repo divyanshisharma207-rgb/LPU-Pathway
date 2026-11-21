@@ -72,18 +72,12 @@
 
  <!-- FROM -->
  <div class="form-group">
- <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
- <label for="from-select" class="form-label" style="margin-bottom:0;">
- <span aria-hidden="true"></span> Starting Point
+ <label for="from-select" class="form-label">
+ <span aria-hidden="true">📍</span> Starting Point
  </label>
- <button type="button" id="btn-use-gps-start" class="btn btn-sm btn-outline" style="padding:2px 8px;font-size:0.75rem;display:inline-flex;align-items:center;gap:3px;" title="Use your current live GPS location">
- 📍 Use Live GPS
- </button>
- </div>
  <select id="from-select" class="form-control" required aria-required="true"
  aria-describedby="from-hint">
  <option value="">— Choose your start location —</option>
- <option value="live-gps">📍 My Live GPS Location</option>
  <option value="b32-ground">Block 32 – Academic Block</option>
  <option value="b34-ground">Block 34 – Library Block</option>
  <option value="b36-ground">Block 36 – Student Centre</option>
@@ -179,9 +173,6 @@
  <button class="map-ctrl-btn active" id="btn-toggle-autos" aria-pressed="true" aria-label="Toggle live autos and e-carts on map">
  🛺 Autos &amp; E-Carts
  </button>
- <button class="map-ctrl-btn" id="btn-toggle-gps" aria-pressed="false" aria-label="Start live GPS tracking">
- 📍 Live GPS
- </button>
  <span id="map-issues-indicator" class="map-issues-indicator" hidden aria-live="polite" title="Active barriers currently marked on the map">
  <span class="issue-indicator-dot" aria-hidden="true"></span>
  <span id="map-issues-count">0 Barriers</span>
@@ -217,6 +208,11 @@
  tabindex="0"
  aria-roledescription="Campus map — press Enter to re-centre">
  </div>
+
+  <!-- FLOATING GPS FAB BUTTON ON MAP -->
+  <button id="btn-gps-fab" class="gps-fab-btn" aria-label="Toggle Live GPS Location Tracking" title="Locate me / Live GPS tracking">
+    <span class="gps-fab-icon" aria-hidden="true">📍</span>
+  </button>
 
   <!-- LIVE GPS TRACKING HUD BAR -->
   <div id="gps-hud" class="gps-hud-bar" hidden aria-live="polite">

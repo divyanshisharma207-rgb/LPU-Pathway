@@ -116,6 +116,11 @@ const CampusGPS = (() => {
       toggleBtn.classList.add('gps-active');
       toggleBtn.setAttribute('aria-pressed', 'true');
     }
+    const fabBtn = document.getElementById('btn-gps-fab');
+    if (fabBtn) {
+      fabBtn.classList.add('active');
+      fabBtn.setAttribute('aria-pressed', 'true');
+    }
 
     const hud = document.getElementById('gps-hud');
     if (hud) hud.hidden = false;
@@ -219,6 +224,11 @@ const CampusGPS = (() => {
       toggleBtn.classList.remove('gps-active');
       toggleBtn.setAttribute('aria-pressed', 'false');
     }
+    const fabBtn = document.getElementById('btn-gps-fab');
+    if (fabBtn) {
+      fabBtn.classList.remove('active');
+      fabBtn.setAttribute('aria-pressed', 'false');
+    }
 
     const hud = document.getElementById('gps-hud');
     if (hud) hud.hidden = true;
@@ -253,6 +263,11 @@ const CampusGPS = (() => {
     if (toggleBtn) {
       toggleBtn.classList.add('gps-active');
       toggleBtn.setAttribute('aria-pressed', 'true');
+    }
+    const fabBtn = document.getElementById('btn-gps-fab');
+    if (fabBtn) {
+      fabBtn.classList.add('active');
+      fabBtn.setAttribute('aria-pressed', 'true');
     }
 
     const hud = document.getElementById('gps-hud');
@@ -524,10 +539,20 @@ const CampusGPS = (() => {
 
   // INITIALIZE
   function init() {
-    // 1. Toggle GPS on Map Header
+    // 1. Toggle GPS on Map Header / Floating FAB
     const toggleBtn = document.getElementById('btn-toggle-gps');
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => {
+        if (isTracking) {
+          stopTracking();
+        } else {
+          startTracking(true);
+        }
+      });
+    }
+    const fabBtn = document.getElementById('btn-gps-fab');
+    if (fabBtn) {
+      fabBtn.addEventListener('click', () => {
         if (isTracking) {
           stopTracking();
         } else {
