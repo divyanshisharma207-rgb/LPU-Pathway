@@ -2078,7 +2078,9 @@
                   <div>Arrive at <strong>Room 502</strong> on your Right. Tactile Braille room plate is installed at 1.4m height beside the door.</div>
                 </li>
               </ul>
-              <div style="margin-top:1rem; display:flex; gap:0.5rem;">
+              <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <button type="button" class="btn btn-read-aloud btn-sm" id="btn-read-indoor-steps" onclick="CampusSmartHub.readIndoorDirections()" aria-label="Read indoor directions aloud using text-to-speech">Read Aloud</button>
+                <button type="button" class="btn btn-stop-aloud btn-sm" id="btn-stop-indoor-steps" style="display:none;" onclick="CampusSmartHub.stopIndoorSpeech()" aria-label="Stop reading indoor directions">Stop Reading</button>
                 <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.navigateToNode('b32-ground', 'Block 32')">Route Outside to Block 32</button>
                 <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.viewFloorPlan('b32', 5)">View Graphical Floor Plan</button>
               </div>

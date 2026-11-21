@@ -927,6 +927,36 @@
   border: 1px solid #e2e8f0;
   font-size: 0.88rem;
   line-height: 1.45;
+  transition: all 0.2s ease;
+}
+
+.indoor-step-item.reading-active {
+  background: #ecfdf5;
+  border-color: #059669;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.25);
+  transform: translateX(4px);
+}
+
+#btn-read-indoor-steps {
+  background: #059669;
+  color: #ffffff;
+  font-weight: 700;
+  border: none;
+}
+
+#btn-read-indoor-steps:hover {
+  background: #047857;
+}
+
+#btn-stop-indoor-steps {
+  background: #dc2626;
+  color: #ffffff;
+  font-weight: 700;
+  border: none;
+}
+
+#btn-stop-indoor-steps:hover {
+  background: #b91c1c;
 }
 
 .step-num-badge {

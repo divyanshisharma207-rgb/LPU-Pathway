@@ -1686,6 +1686,7 @@ window.CampusSmartHub = (() => {
   }
 
   function calculateIndoorGuidance(blockKey, targetFloor, roomCode, transitMode) {
+    stopIndoorSpeech();
     const output = document.getElementById('indoor-route-output');
     if (!output) return;
 
@@ -1742,7 +1743,13 @@ window.CampusSmartHub = (() => {
           `).join('')}
         </ul>
 
-        <div style="margin-top:1rem; display:flex; gap:0.5rem;">
+        <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button type="button" class="btn btn-read-aloud btn-sm" id="btn-read-indoor-steps" onclick="CampusSmartHub.readIndoorDirections()" aria-label="Read indoor directions aloud using text-to-speech">
+            Read Aloud
+          </button>
+          <button type="button" class="btn btn-stop-aloud btn-sm" id="btn-stop-indoor-steps" style="display:none;" onclick="CampusSmartHub.stopIndoorSpeech()" aria-label="Stop reading indoor directions">
+            Stop Reading
+          </button>
           <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.navigateToNode('${bld.nodeId}', '${bld.name}')">
             Route Outside to ${bld.name}
           </button>
@@ -1754,6 +1761,96 @@ window.CampusSmartHub = (() => {
     `;
 
     if (window.announce) announce(`Indoor guidance generated for Room ${room.code} on Floor ${targetFloor}`, false);
+  }
+
+  let isIndoorSpeaking = false;
+
+  function stopIndoorSpeech() {
+    isIndoorSpeaking = false;
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    const readBtn = document.getElementById('btn-read-indoor-steps');
+    const stopBtn = document.getElementById('btn-stop-indoor-steps');
+    if (readBtn) {
+      readBtn.textContent = 'Read Aloud';
+      readBtn.classList.remove('reading');
+      readBtn.style.display = '';
+    }
+    if (stopBtn) {
+      stopBtn.style.display = 'none';
+    }
+    document.querySelectorAll('.indoor-step-item').forEach(el => el.classList.remove('reading-active'));
+  }
+
+  function readIndoorDirections() {
+    if (!('speechSynthesis' in window)) {
+      alert('Text-to-speech is not supported in your browser.');
+      return;
+    }
+
+    stopIndoorSpeech();
+
+    const stepItems = document.querySelectorAll('.indoor-step-item');
+    if (!stepItems || stepItems.length === 0) {
+      alert('No indoor instructions found to read.');
+      return;
+    }
+
+    const sentences = [];
+    stepItems.forEach((item, idx) => {
+      const textDiv = item.querySelector('div') || item;
+      const cleanText = textDiv.textContent.replace(/\s+/g, ' ').trim();
+      sentences.push(`Step ${idx + 1}: ${cleanText}`);
+    });
+
+    const readBtn = document.getElementById('btn-read-indoor-steps');
+    const stopBtn = document.getElementById('btn-stop-indoor-steps');
+
+    isIndoorSpeaking = true;
+    if (readBtn) {
+      readBtn.textContent = 'Reading...';
+      readBtn.classList.add('reading');
+      readBtn.style.display = 'none';
+    }
+    if (stopBtn) {
+      stopBtn.style.display = '';
+    }
+
+    let currentIdx = 0;
+
+    function speakNextStep() {
+      if (!isIndoorSpeaking || currentIdx >= sentences.length) {
+        stopIndoorSpeech();
+        if (window.announce) announce('Finished reading indoor directions.', false);
+        return;
+      }
+
+      stepItems.forEach(el => el.classList.remove('reading-active'));
+      if (stepItems[currentIdx]) {
+        stepItems[currentIdx].classList.add('reading-active');
+        stepItems[currentIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      const utterance = new SpeechSynthesisUtterance(sentences[currentIdx]);
+      utterance.lang = 'en-IN';
+      utterance.rate = 0.92;
+      utterance.pitch = 1.0;
+
+      utterance.onend = () => {
+        currentIdx++;
+        speakNextStep();
+      };
+
+      utterance.onerror = () => {
+        stopIndoorSpeech();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    if (window.announce) announce('Reading indoor directions aloud.', false);
+    speakNextStep();
   }
 
   function viewFloorPlan(bldId, floorNum) {
@@ -2045,6 +2142,8 @@ Please proceed to the counter lounge.`);
     renderQueuesSection,
     renderStoriesSection,
     calculateIndoorGuidance,
+    readIndoorDirections,
+    stopIndoorSpeech,
     viewFloorPlan,
     takeVirtualToken,
     refreshQueues,
