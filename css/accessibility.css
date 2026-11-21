@@ -247,3 +247,527 @@ textarea:focus-visible {
   0%, 100% { border-color: #ef9a9a; }
   50% { border-color: #d32f2f; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   LOW VISION & WCAG 2.1 AA DISPLAY OPTIONS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── ACCESSIBILITY TOOLBAR ──────────────────────────────────── */
+.a11y-toolbar {
+  background: var(--clr-surface-alt, #e8eaf6);
+  border-bottom: 2px solid var(--clr-border, #c5cae9);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-sans, 'Segoe UI', system-ui, sans-serif);
+}
+
+.a11y-toolbar-inner {
+  max-width: var(--max-width, 1400px);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem 1.25rem;
+}
+
+.a11y-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.a11y-group-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-text, #1e293b);
+  white-space: nowrap;
+}
+
+.a11y-btn-group {
+  display: inline-flex;
+  border-radius: var(--radius-sm, 6px);
+  overflow: hidden;
+  border: 1.5px solid var(--clr-primary, #1565c0);
+}
+
+.a11y-btn {
+  background: #ffffff;
+  color: var(--clr-primary, #1565c0);
+  border: none;
+  border-right: 1px solid var(--clr-primary, #1565c0);
+  padding: 4px 12px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 36px;
+  min-width: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.a11y-btn:last-child {
+  border-right: none;
+}
+
+.a11y-btn:hover,
+.a11y-btn:focus-visible {
+  background: #bbdefb;
+}
+
+.a11y-btn.active {
+  background: var(--clr-primary, #1565c0);
+  color: #ffffff;
+}
+
+.a11y-toggle-btn {
+  background: #ffffff;
+  color: var(--clr-text, #1e293b);
+  border: 1.5px solid var(--clr-border, #94a3b8);
+  border-radius: var(--radius-sm, 6px);
+  padding: 5px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  min-height: 36px;
+}
+
+.a11y-toggle-btn:hover,
+.a11y-toggle-btn:focus-visible {
+  border-color: var(--clr-primary, #1565c0);
+  background: #f8fafc;
+}
+
+.a11y-toggle-btn.active,
+.a11y-toggle-btn[aria-pressed="true"] {
+  background: var(--clr-primary, #1565c0);
+  color: #ffffff;
+  border-color: var(--clr-primary-dark, #0d47a1);
+}
+
+/* ── TEXT SIZE SCALING (W3C WCAG 2.1 Resize Text 1.4.4) ──────── */
+html.text-size-large {
+  font-size: 125% !important; /* 20px base */
+}
+
+html.text-size-xlarge {
+  font-size: 150% !important; /* 24px base */
+}
+
+/* Layout resilience when text is enlarged */
+html.text-size-large .main-nav ul,
+html.text-size-xlarge .main-nav ul {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+html.text-size-large .nav-link,
+html.text-size-xlarge .nav-link {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+}
+
+html.text-size-large .btn,
+html.text-size-xlarge .btn {
+  min-height: 48px;
+  padding: 0.65rem 1.25rem;
+  font-size: 1.05rem;
+  white-space: normal;
+  text-align: center;
+}
+
+html.text-size-large .form-control,
+html.text-size-xlarge .form-control {
+  min-height: 52px;
+  font-size: 1.05rem;
+  padding: 0.6rem 0.9rem;
+}
+
+html.text-size-large .building-card,
+html.text-size-xlarge .building-card {
+  min-height: auto;
+}
+
+/* ── SWAP LOCATIONS BUTTON ──────────────────────────────────── */
+.btn-swap {
+  border: 2px dashed var(--clr-primary, #1565c0);
+  background: #f0f7ff;
+  color: var(--clr-primary, #1565c0);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-md, 8px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.btn-swap:hover,
+.btn-swap:focus-visible {
+  background: #e3f2fd;
+  border-style: solid;
+  transform: translateY(-1px);
+}
+
+/* ── HIGH CONTRAST THEME (AAA Strict Contrast 7:1+) ──────────── */
+body.theme-high-contrast {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.theme-high-contrast .site-header {
+  background: #000000 !important;
+  border-bottom: 3px solid #ffff00 !important;
+}
+
+body.theme-high-contrast .brand-name,
+body.theme-high-contrast .brand-name .brand-accent {
+  color: #ffff00 !important;
+}
+
+body.theme-high-contrast .brand-tagline {
+  color: #00e5ff !important;
+}
+
+body.theme-high-contrast .nav-link {
+  color: #ffffff !important;
+  border: 2px solid transparent !important;
+}
+
+body.theme-high-contrast .nav-link.active,
+body.theme-high-contrast .nav-link:hover {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  font-weight: 900 !important;
+  border-color: #ffff00 !important;
+}
+
+body.theme-high-contrast .a11y-toolbar {
+  background: #111111 !important;
+  border-bottom: 2px solid #ffff00 !important;
+}
+
+body.theme-high-contrast .a11y-group-label {
+  color: #ffff00 !important;
+}
+
+body.theme-high-contrast .a11y-btn {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffff00 !important;
+}
+
+body.theme-high-contrast .a11y-btn.active {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+body.theme-high-contrast .a11y-toggle-btn {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #00e5ff !important;
+}
+
+body.theme-high-contrast .a11y-toggle-btn.active,
+body.theme-high-contrast .a11y-toggle-btn[aria-pressed="true"] {
+  background: #00e5ff !important;
+  color: #000000 !important;
+  font-weight: 900 !important;
+}
+
+body.theme-high-contrast .route-panel,
+body.theme-high-contrast .map-container,
+body.theme-high-contrast .gps-panel-card,
+body.theme-high-contrast .building-card,
+body.theme-high-contrast .help-card,
+body.theme-high-contrast .report-card {
+  background: #000000 !important;
+  border: 2px solid #ffff00 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body.theme-high-contrast .panel-title,
+body.theme-high-contrast .section-title,
+body.theme-high-contrast .building-title,
+body.theme-high-contrast h2,
+body.theme-high-contrast h3,
+body.theme-high-contrast h4 {
+  color: #ffff00 !important;
+}
+
+body.theme-high-contrast .form-label {
+  color: #ffff00 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-high-contrast .form-control {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2.5px solid #00e5ff !important;
+}
+
+body.theme-high-contrast .form-control:focus {
+  border-color: #ffff00 !important;
+  outline: 3px solid #ffff00 !important;
+}
+
+body.theme-high-contrast .btn-primary {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  border: 3px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+body.theme-high-contrast .btn-outline {
+  background: #000000 !important;
+  color: #00e5ff !important;
+  border: 2.5px solid #00e5ff !important;
+}
+
+body.theme-high-contrast .btn-swap {
+  background: #000000 !important;
+  color: #ffff00 !important;
+  border: 2.5px solid #ffff00 !important;
+}
+
+body.theme-high-contrast .btn-swap:hover {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+body.theme-high-contrast .map-ctrl-btn {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #00e5ff !important;
+}
+
+body.theme-high-contrast .map-ctrl-btn.active,
+body.theme-high-contrast .map-ctrl-btn[aria-pressed="true"] {
+  background: #00e5ff !important;
+  color: #000000 !important;
+  font-weight: 900 !important;
+}
+
+body.theme-high-contrast .direction-step {
+  background: #0a0a0a !important;
+  border: 1.5px solid #333333 !important;
+  color: #ffffff !important;
+}
+
+body.theme-high-contrast .direction-step.active {
+  border-left: 6px solid #ffff00 !important;
+  background: #1a1a00 !important;
+}
+
+body.theme-high-contrast .step-instruction {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+body.theme-high-contrast .step-landmark {
+  color: #ffff00 !important;
+}
+
+body.theme-high-contrast .site-footer {
+  background: #000000 !important;
+  border-top: 2px solid #ffff00 !important;
+  color: #ffffff !important;
+}
+
+body.theme-high-contrast .mobile-bottom-nav {
+  background: #000000 !important;
+  border-top: 2px solid #ffff00 !important;
+}
+
+body.theme-high-contrast .mobile-bottom-nav a {
+  color: #ffffff !important;
+}
+
+body.theme-high-contrast .mobile-bottom-nav a.active {
+  color: #ffff00 !important;
+}
+
+/* ── SIMPLIFIED MAP MODE ─────────────────────────────────────── */
+body.simplified-map .leaflet-tile-pane {
+  filter: contrast(1.2) brightness(0.95);
+}
+
+body.simplified-map.theme-high-contrast .leaflet-tile-pane {
+  filter: grayscale(1) invert(0.95) contrast(2) brightness(0.85);
+}
+
+body.simplified-map .campus-boundary-poly {
+  opacity: 0.1 !important;
+}
+
+/* In simplified map, off-route decorative items are subdued */
+body.simplified-map .building-marker-icon {
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+
+body.simplified-map .building-marker-icon.on-route {
+  opacity: 1 !important;
+  transform: scale(1.15);
+  z-index: 1000 !important;
+}
+
+/* ── HIGH-VISIBILITY ROUTE SYMBOLS & LABELS ──────────────────── */
+/* Custom building label in high-visibility mode */
+.bld-map-label {
+  background: #000000;
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  border: 1.5px solid #ffffff;
+}
+
+body.theme-high-contrast .bld-map-label {
+  background: #000000 !important;
+  color: #ffff00 !important;
+  border: 2px solid #ffff00 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Route markers for start and destination */
+.route-endpoint-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 15px;
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+  border: 3px solid #ffffff;
+}
+
+.route-endpoint-marker.start {
+  background: #00c853;
+}
+
+.route-endpoint-marker.dest {
+  background: #d50000;
+}
+
+body.theme-high-contrast .route-endpoint-marker.start {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+body.theme-high-contrast .route-endpoint-marker.dest {
+  background: #ff1744 !important;
+  color: #ffffff !important;
+  border-color: #ffff00 !important;
+}
+
+/* ── TEXT-ONLY LANDMARK DIRECTIONS PANEL ─────────────────────── */
+.text-only-panel {
+  background: var(--clr-surface, #ffffff);
+  border: 2px solid var(--clr-border, #cbd5e1);
+  border-radius: var(--radius-md, 8px);
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.text-only-header {
+  border-bottom: 2px solid var(--clr-border, #e2e8f0);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.text-only-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--clr-primary, #1565c0);
+  margin-bottom: 4px;
+}
+
+.text-only-sub {
+  font-size: 0.9rem;
+  color: var(--clr-text-muted, #64748b);
+  margin: 0;
+}
+
+.text-only-step-card {
+  background: var(--clr-surface-alt, #f8fafc);
+  border: 2px solid var(--clr-border, #e2e8f0);
+  border-left: 6px solid var(--clr-primary, #1565c0);
+  border-radius: var(--radius-sm, 6px);
+  padding: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.text-only-step-num {
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: var(--clr-primary, #1565c0);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.text-only-step-inst {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-text, #0f172a);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.text-only-landmark-badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #f59e0b;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+body.theme-high-contrast .text-only-panel {
+  background: #000000 !important;
+  border-color: #ffff00 !important;
+}
+
+body.theme-high-contrast .text-only-title {
+  color: #ffff00 !important;
+}
+
+body.theme-high-contrast .text-only-step-card {
+  background: #0a0a0a !important;
+  border-color: #00e5ff !important;
+  border-left-color: #ffff00 !important;
+}
+
+body.theme-high-contrast .text-only-step-num {
+  color: #00e5ff !important;
+}
+
+body.theme-high-contrast .text-only-step-inst {
+  color: #ffffff !important;
+}
+
+body.theme-high-contrast .text-only-landmark-badge {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  font-weight: 900 !important;
+}

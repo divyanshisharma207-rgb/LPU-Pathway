@@ -358,85 +358,120 @@ const CampusMap = (() => {
  }
 
  // DRAW ROUTE ON MAP 
-   function drawRoute(path, stepFree, liveGpsCoords = null) {
-  clearRoute();
+  // DRAW ROUTE ON MAP (Low-Vision High-Visibility & Distinct Style Renderer)
+  function drawRoute(path, stepFree, liveGpsCoords = null) {
+    clearRoute();
 
-  const { NODES } = window.CampusData;
-  const { BUILDING_COORDS: BC } = { BUILDING_COORDS };
+    const { NODES } = window.CampusData;
 
-  // Build coordinate list
-  const coords = path.map(nodeId => {
-  const node = NODES[nodeId];
-  if (!node) return null;
-  return [node.lat, node.lng];
-  }).filter(Boolean);
+    // Build coordinate list
+    const coords = path.map(nodeId => {
+      const node = NODES[nodeId];
+      if (!node) return null;
+      return [node.lat, node.lng];
+    }).filter(Boolean);
 
-  // If live GPS coordinates provided, prepend them so route connects from current live position
-  if (liveGpsCoords && liveGpsCoords.lat && liveGpsCoords.lng) {
-    coords.unshift([liveGpsCoords.lat, liveGpsCoords.lng]);
+    // If live GPS coordinates provided, prepend them so route connects from current live position
+    if (liveGpsCoords && liveGpsCoords.lat && liveGpsCoords.lng) {
+      coords.unshift([liveGpsCoords.lat, liveGpsCoords.lng]);
+    }
+
+    if (coords.length < 2) return;
+
+    const isHighContrast = document.body.classList.contains('theme-high-contrast');
+
+    // 1. UNDERLAY HALO / CASING (Creates extreme edge contrast against any background tile)
+    const haloLine = L.polyline(coords, {
+      color: isHighContrast ? '#ffffff' : '#000000',
+      weight: isHighContrast ? 18 : 14,
+      opacity: 0.9,
+      lineJoin: 'round',
+      lineCap: 'round',
+    }).addTo(routeLayer);
+    currentRoutePolylines.push(haloLine);
+
+    // 2. MAIN ROUTE LINE (Distinct line styles: Solid for Step-Free, Dashed with symbols for Fastest)
+    // WCAG 2.1 1.4.1: Color is NOT the only visual indicator
+    let mainColor, routeDashArray, routeLabel, routeWeight;
+
+    if (stepFree) {
+      mainColor = isHighContrast ? '#ffff00' : '#00c853'; // Vivid yellow in high-contrast, bright green in standard
+      routeDashArray = null; // Solid line = continuous step-free accessible route
+      routeLabel = '♿ STEP-FREE ROUTE (Ramps & Lifts only — 0 stairs)';
+      routeWeight = isHighContrast ? 12 : 9;
+    } else {
+      mainColor = isHighContrast ? '#00e5ff' : '#0288d1'; // Neon cyan in high-contrast, blue in standard
+      routeDashArray = '16, 10'; // Distinct dashed line = fastest route
+      routeLabel = '⚡ FASTEST ROUTE (Includes direct pathways / may have stairs)';
+      routeWeight = isHighContrast ? 10 : 8;
+    }
+
+    const routeLine = L.polyline(coords, {
+      color: mainColor,
+      weight: routeWeight,
+      dashArray: routeDashArray,
+      opacity: 1.0,
+      lineJoin: 'round',
+      lineCap: 'round',
+    })
+    .addTo(routeLayer)
+    .bindTooltip(routeLabel, { sticky: true, className: `route-tooltip ${stepFree ? 'stepfree' : 'fastest'}` });
+
+    currentRoutePolylines.push(routeLine);
+
+    // 3. INNER CONTRAST STRIPE OR PATTERN
+    if (stepFree) {
+      // Solid white center stripe with directional chevrons for step-free
+      const centerStripe = L.polyline(coords, {
+        color: isHighContrast ? '#000000' : '#ffffff',
+        weight: 3,
+        opacity: 0.85,
+        lineJoin: 'round',
+      }).addTo(routeLayer);
+      currentRoutePolylines.push(centerStripe);
+    } else {
+      // Animated dash for fastest route
+      const animatedDash = L.polyline(coords, {
+        color: '#ffffff',
+        weight: 3,
+        opacity: 0.8,
+        dashArray: '10, 14',
+      }).addTo(routeLayer);
+      currentRoutePolylines.push(animatedDash);
+    }
+
+    // 4. DISTINCT START MARKER ('S' badge - large and high-contrast)
+    const startCoord = coords[0];
+    const startIcon = L.divIcon({
+      className: 'route-marker-icon',
+      html: `<div class="route-endpoint-marker start" title="Start Point: S" aria-label="Route Starting Point">S</div>`,
+      iconSize: [36, 36],
+      iconAnchor: [18, 18],
+    });
+    const startMarker = L.marker(startCoord, { icon: startIcon, zIndexOffset: 2000 })
+      .addTo(routeLayer)
+      .bindTooltip('<strong>START LOCATION</strong>', { permanent: false, direction: 'top' });
+    currentRoutePolylines.push(startMarker);
+
+    // 5. DISTINCT DESTINATION MARKER ('D' badge - large and high-contrast)
+    const endCoord = coords[coords.length - 1];
+    const destIcon = L.divIcon({
+      className: 'route-marker-icon',
+      html: `<div class="route-endpoint-marker dest" title="Destination: D" aria-label="Route Destination">D</div>`,
+      iconSize: [36, 36],
+      iconAnchor: [18, 18],
+    });
+    const endMarker = L.marker(endCoord, { icon: destIcon, zIndexOffset: 2000 })
+      .addTo(routeLayer)
+      .bindTooltip('<strong>DESTINATION</strong>', { permanent: false, direction: 'top' });
+    currentRoutePolylines.push(endMarker);
+
+    // Pan/zoom map to fit the route
+    const bounds = L.latLngBounds(coords);
+    map.fitBounds(bounds, { padding: [70, 70], maxZoom: 18, animate: true });
+
+    announce(`Route drawn on map. ${stepFree ? 'Step-free route with wheelchair symbols' : 'Fastest dashed route'} displayed.`);
   }
-
-  if (coords.length < 2) return;
-
- const color = stepFree ? '#2e7d32' : '#1565c0';
- const label = stepFree ? ' Step-Free Route' : ' Fastest Route';
- const weight = 7;
-
- // Main route line
- const routeLine = L.polyline(coords, {
- color,
- weight,
- opacity: 0.9,
- lineJoin: 'round',
- lineCap: 'round',
- })
- .addTo(routeLayer)
- .bindTooltip(label, { sticky: true, className: `route-tooltip ${stepFree ? 'stepfree' : ''}` });
-
- currentRoutePolylines.push(routeLine);
-
- // Animated moving dot (simulated navigation)
- const dashed = L.polyline(coords, {
- color: 'white',
- weight: 2.5,
- opacity: 0.6,
- dashArray: '10 8',
- }).addTo(routeLayer);
- currentRoutePolylines.push(dashed);
-
- // Start marker
- const startCoord = coords[0];
- const startMarker = L.circleMarker(startCoord, {
- radius: 10,
- fillColor: '#fff',
- color,
- weight: 3,
- fillOpacity: 1,
- })
- .addTo(routeLayer)
- .bindTooltip(' Start', { permanent: false });
- currentRoutePolylines.push(startMarker);
-
- // End marker
- const endCoord = coords[coords.length - 1];
- const endMarker = L.circleMarker(endCoord, {
- radius: 12,
- fillColor: color,
- color: '#fff',
- weight: 3,
- fillOpacity: 1,
- })
- .addTo(routeLayer)
- .bindTooltip(' Destination', { permanent: false });
- currentRoutePolylines.push(endMarker);
-
- // Pan/zoom map to fit the route
- const bounds = L.latLngBounds(coords);
- map.fitBounds(bounds, { padding: [60, 60], maxZoom: 18, animate: true });
-
- announce(`Route drawn on map. ${stepFree ? 'Step-free' : 'Fastest'} path shown.`);
- }
-
  function clearRoute() {
  routeLayer.clearLayers();
  currentRoutePolylines = [];
@@ -643,7 +678,29 @@ const CampusMap = (() => {
  if (el) { el.textContent = ''; setTimeout(() => { el.textContent = msg; }, 50); }
  }
 
- return { init, drawRoute, clearRoute, refreshLiftMarkers, updateIssueMarkers, focusIssue, flyToBuilding, resetView, BUILDING_COORDS, getMap: () => map, _map: null };
+ 
+  // SIMPLIFIED MAP MODE TOGGLE
+  let isSimplifiedMap = false;
+  function setSimplifiedMode(enabled) {
+    isSimplifiedMap = Boolean(enabled);
+    document.body.classList.toggle('simplified-map', isSimplifiedMap);
+
+    const btnToolbar = document.getElementById('btn-toggle-simplified');
+    if (btnToolbar) {
+      btnToolbar.classList.toggle('active', isSimplifiedMap);
+      btnToolbar.setAttribute('aria-pressed', String(isSimplifiedMap));
+    }
+
+    const btnA11y = document.getElementById('btn-simplified-map');
+    if (btnA11y) {
+      btnA11y.classList.toggle('active', isSimplifiedMap);
+      btnA11y.setAttribute('aria-pressed', String(isSimplifiedMap));
+    }
+
+    announce(isSimplifiedMap ? 'Simplified map mode enabled. Minor decorative details hidden.' : 'Simplified map mode disabled.');
+  }
+
+  return { init, setSimplifiedMode, drawRoute, clearRoute, refreshLiftMarkers, updateIssueMarkers, focusIssue, flyToBuilding, resetView, BUILDING_COORDS, getMap: () => map, _map: null };
 
 })();
 
