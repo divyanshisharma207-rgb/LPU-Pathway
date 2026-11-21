@@ -7,8 +7,10 @@
 
 const CampusAutos = (() => {
 
-  // GOLF CART SVG VECTOR ICON
+  // TRANSIT SVG VECTOR ICONS
   const GOLF_CART_SVG = `<svg class="golf-cart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1em" height="1em" aria-hidden="true"><path d="M7 5h17c1.1 0 2 .9 2 2v1.5H5V7c0-1.1.9-2 2-2z" fill="#2e7d32"/><line x1="8" y1="8" x2="8" y2="18" stroke="#2e7d32" stroke-width="2" stroke-linecap="round"/><line x1="23" y1="8" x2="20.5" y2="18" stroke="#2e7d32" stroke-width="2" stroke-linecap="round"/><polygon points="23,8 20.5,18 19.5,18 22,8" fill="#81d4fa" opacity="0.6"/><line x1="17.5" y1="18" x2="15.5" y2="13" stroke="#2e7d32" stroke-width="1.8" stroke-linecap="round"/><circle cx="15" cy="12" r="1.8" fill="none" stroke="#2e7d32" stroke-width="1.5"/><rect x="9" y="12.5" width="2.5" height="5.5" rx="1" fill="#2e7d32"/><rect x="9" y="16.5" width="6.5" height="2.5" rx="1" fill="#2e7d32"/><path d="M4 19h17.5l4 2.5v2H3v-2.5l1-2z" fill="#2e7d32"/><circle cx="8" cy="24.5" r="3.5" fill="#263238" stroke="#fff" stroke-width="1.2"/><circle cx="21" cy="24.5" r="3.5" fill="#263238" stroke="#fff" stroke-width="1.2"/><circle cx="8" cy="24.5" r="1.2" fill="#fff"/><circle cx="21" cy="24.5" r="1.2" fill="#fff"/></svg>`;
+  const ACCESSIBLE_SVG = `<svg class="transit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M19 13v-2c-1.54.02-3.09-.75-4.07-1.83l-1.29-1.43c-.17-.19-.38-.34-.61-.45-.01 0-.01-.01-.02-.01H13c-.35-.2-.75-.29-1.16-.28H7c-1.1 0-2 .9-2 2v5h2v-5h3.18l-1.39 6.94A5.002 5.002 0 0 0 13 21a5 5 0 0 0 5-5c0-.35-.04-.69-.11-1.02L19 13zm-6 6c-1.66 0-3-1.34-3-3 0-.58.17-1.13.46-1.59l1.49 1.49c.14.78.78 1.41 1.57 1.55l1.04 1.04c-.49.32-1.07.51-1.56.51z"/></svg>`;
+  const AUTO_SVG = `<svg class="transit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>`;
 
   // LPU CAMPUS AUTOS & E-CARTS FLEET
   const FLEET = [
@@ -31,7 +33,8 @@ const CampusAutos = (() => {
       wheelchairRamp: true,
       stepFree: true,
       capacity: '2 Wheelchairs + 4 Seats',
-      icon: '♿'
+      icon: ACCESSIBLE_SVG,
+      textIcon: 'Accessible'
     },
     {
       id: 'auto-ecart-1',
@@ -53,7 +56,7 @@ const CampusAutos = (() => {
       stepFree: true,
       capacity: '6 Passengers',
       icon: GOLF_CART_SVG,
-      textIcon: '⛳'
+      textIcon: 'Golf Cart'
     },
     {
       id: 'auto-access-2',
@@ -74,7 +77,8 @@ const CampusAutos = (() => {
       wheelchairRamp: true,
       stepFree: true,
       capacity: '1 Wheelchair + 3 Attendants',
-      icon: '♿'
+      icon: ACCESSIBLE_SVG,
+      textIcon: 'Accessible'
     },
     {
       id: 'auto-erickshaw-1',
@@ -95,7 +99,8 @@ const CampusAutos = (() => {
       wheelchairRamp: false,
       stepFree: true,
       capacity: '4 Passengers',
-      icon: '🛺'
+      icon: AUTO_SVG,
+      textIcon: 'E-Rickshaw'
     },
     {
       id: 'auto-cng-1',
@@ -117,7 +122,8 @@ const CampusAutos = (() => {
       stepFree: false,
       foldableBoot: true,
       capacity: '3 Passengers',
-      icon: '🛺'
+      icon: AUTO_SVG,
+      textIcon: 'Auto'
     },
     {
       id: 'auto-ecart-2',
@@ -139,7 +145,7 @@ const CampusAutos = (() => {
       stepFree: true,
       capacity: '8 Passengers',
       icon: GOLF_CART_SVG,
-      textIcon: '⛳'
+      textIcon: 'Golf Cart'
     }
   ];
 
@@ -242,11 +248,11 @@ const CampusAutos = (() => {
             </div>
 
             <div class="auto-badges-list">
-              ${item.wheelchairRamp ? '<span class="auto-badge ramp">♿ Wheelchair Ramp</span>' : ''}
-              ${item.stepFree && !item.wheelchairRamp ? '<span class="auto-badge">⬆ Level Step-Free</span>' : ''}
-              ${item.foldableBoot ? '<span class="auto-badge">🧳 Wheelchair Storage</span>' : ''}
-              <span class="auto-badge ${isFree ? 'free' : ''}">${isFree ? '★ Free Campus Assist' : '🌱 Eco Golf Cart'}</span>
-              <span class="auto-badge">★ ${item.rating} (${item.rides}+ trips)</span>
+              ${item.wheelchairRamp ? '<span class="auto-badge ramp">Wheelchair Ramp</span>' : ''}
+              ${item.stepFree && !item.wheelchairRamp ? '<span class="auto-badge">Level Step-Free</span>' : ''}
+              ${item.foldableBoot ? '<span class="auto-badge">Wheelchair Storage</span>' : ''}
+              <span class="auto-badge ${isFree ? 'free' : ''}">${isFree ? 'Free Campus Assist' : 'Eco Golf Cart'}</span>
+              <span class="auto-badge">Rating: ${item.rating} (${item.rides}+ trips)</span>
             </div>
 
             <div class="auto-details-meta">
@@ -265,7 +271,7 @@ const CampusAutos = (() => {
             </div>
             <div class="auto-card-actions">
               <button class="btn btn-outline btn-sm btn-auto-map" data-auto-id="${item.id}" title="View vehicle on map">
-                🗺️ Map
+                Map
               </button>
               <button class="btn btn-primary btn-sm btn-auto-book" data-auto-id="${item.id}">
                 ${isFree ? 'Request E-Cart' : 'Book Auto'}
@@ -353,9 +359,9 @@ const CampusAutos = (() => {
             </div>
           </div>
           <div style="font-size:0.8rem;color:#333;margin-bottom:6px;background:#f9f9f9;padding:4px 8px;border-radius:4px;">
-            <div><strong>Driver:</strong> ${escapeHTML(item.driver)} (★ ${item.rating})</div>
+            <div><strong>Driver:</strong> ${escapeHTML(item.driver)} (Rating: ${item.rating})</div>
             <div><strong>Fare:</strong> <span style="color:#2e7d32;font-weight:700;">${item.fare}</span> (${item.fareDesc})</div>
-            ${item.wheelchairRamp ? '<div style="color:#1b5e20;font-weight:700;">♿ Low-Floor Ramp Assistance</div>' : ''}
+            ${item.wheelchairRamp ? '<div style="color:#1b5e20;font-weight:700;">Low-Floor Ramp Assistance</div>' : ''}
           </div>
           <div style="display:flex;gap:4px;margin-top:6px;">
             <button onclick="CampusAutos.openBookingModal('${item.id}')"
@@ -364,7 +370,7 @@ const CampusAutos = (() => {
             </button>
             <a href="tel:${item.phone}"
                style="background:#f1f8e9;color:#2e7d32;border:1px solid #c5e1a5;border-radius:4px;padding:4px 8px;font-size:0.78rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;">
-              📞 Call
+              Call
             </a>
           </div>
         </div>
@@ -377,8 +383,7 @@ const CampusAutos = (() => {
       }).addTo(autosLayer);
 
       marker.bindPopup(popupHtml, { maxWidth: 260 });
-      const tipIcon = item.textIcon || item.icon;
-      marker.bindTooltip(`${tipIcon} ${item.name} (${item.fare})`, { direction: 'top', className: 'route-tooltip' });
+      marker.bindTooltip(`${item.name} (${item.fare})`, { direction: 'top', className: 'route-tooltip' });
 
       autoMarkers[item.id] = marker;
     });
@@ -461,11 +466,11 @@ const CampusAutos = (() => {
         </div>
 
         <div style="background:var(--clr-surface-alt);border:1px solid var(--clr-border);border-radius:var(--radius-md);padding:0.75rem 1rem;font-size:0.85rem;display:flex;flex-direction:column;gap:0.4rem;">
-          <div>📍 <strong>Pickup:</strong> ${escapeHTML(pickup.label)}</div>
-          <div>⏱️ <strong>ETA:</strong> <span style="color:var(--clr-primary-dark);font-weight:700;">${eta} mins</span> (${distance}m away)</div>
-          <div>👤 <strong>Driver:</strong> ${escapeHTML(item.driver)} · ★ ${item.rating}</div>
-          <div>💵 <strong>Fare:</strong> <strong style="color:${isFree ? 'var(--clr-success)' : 'var(--clr-text)'};">${item.fare}</strong> (${item.fareDesc})</div>
-          ${item.wheelchairRamp ? '<div style="color:var(--clr-success);font-weight:700;">♿ Ramp assistance confirmed</div>' : ''}
+          <div><strong>Pickup:</strong> ${escapeHTML(pickup.label)}</div>
+          <div><strong>ETA:</strong> <span style="color:var(--clr-primary-dark);font-weight:700;">${eta} mins</span> (${distance}m away)</div>
+          <div><strong>Driver:</strong> ${escapeHTML(item.driver)} · Rating: ${item.rating}</div>
+          <div><strong>Fare:</strong> <strong style="color:${isFree ? 'var(--clr-success)' : 'var(--clr-text)'};">${item.fare}</strong> (${item.fareDesc})</div>
+          ${item.wheelchairRamp ? '<div style="color:var(--clr-success);font-weight:700;">Ramp assistance confirmed</div>' : ''}
         </div>
       </div>
 
@@ -479,7 +484,7 @@ const CampusAutos = (() => {
       </div>
 
       <div id="auto-booking-stage-confirmed" hidden style="text-align:center;padding:0.5rem 0;">
-        <div style="font-size:2.5rem;color:var(--clr-success);margin-bottom:0.25rem;">✅</div>
+        <div style="font-size:1.5rem;color:var(--clr-success);margin-bottom:0.25rem;font-weight:700;">Booking Confirmed</div>
         <h4 style="margin:0 0 0.5rem;font-size:1.15rem;color:var(--clr-primary-dark);">Ride Dispatched!</h4>
         <p style="font-size:0.85rem;color:var(--clr-text-muted);margin:0 0 1rem;">
           ${escapeHTML(item.name)} is heading to <strong>${escapeHTML(pickup.label)}</strong>.
@@ -493,10 +498,10 @@ const CampusAutos = (() => {
 
         <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
           <a href="tel:${item.phone}" class="btn btn-primary btn-sm" style="text-decoration:none;">
-            📞 Call Driver
+            Call Driver
           </a>
           <button id="btn-track-auto-map" class="btn btn-outline btn-sm">
-            🗺️ Track on Map
+            Track on Map
           </button>
           <button id="btn-done-auto" class="btn btn-sm">
             Done
@@ -594,10 +599,10 @@ const CampusAutos = (() => {
     if (locateBtn) {
       locateBtn.addEventListener('click', () => {
         if ('geolocation' in navigator) {
-          locateBtn.textContent = '📍 Locating...';
+          locateBtn.textContent = 'Locating...';
           navigator.geolocation.getCurrentPosition(
             (pos) => {
-              locateBtn.textContent = '📍 Near You';
+              locateBtn.textContent = 'Near You';
               let closestKey = 'b32-ground';
               let minD = Infinity;
               Object.entries(PICKUP_SPOTS).forEach(([k, s]) => {
@@ -608,8 +613,8 @@ const CampusAutos = (() => {
               setPickup(closestKey);
             },
             () => {
-              locateBtn.textContent = '📍 GPS Unavailable';
-              setTimeout(() => { locateBtn.textContent = '📍 Use My Location'; }, 2000);
+              locateBtn.textContent = 'GPS Unavailable';
+              setTimeout(() => { locateBtn.textContent = 'Use My Location'; }, 2000);
             },
             { timeout: 8000 }
           );
