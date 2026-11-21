@@ -2052,55 +2052,105 @@
           <button type="button" id="btn-calculate-indoor" class="btn btn-primary" style="width:100%; padding:0.75rem; font-weight:800; font-size:0.95rem;">
             Get Indoor Turn-by-Turn Guidance
           </button>
-          <div id="indoor-route-output" style="margin-top:1.25rem;">
-            <div class="indoor-route-result">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-                <div>
-                  <strong style="font-size:1.05rem; color:#14532d;">Indoor Route: Block 32 – Academic Block · Floor 5 · Room 502</strong>
-                  <div style="font-size:0.8rem; color:#475569;">Destination: Advanced AI &amp; Deep Learning Lab (North Wing)</div>
-                </div>
-                <span style="background:#dcfce7; color:#166534; font-weight:800; font-size:0.75rem; padding:4px 10px; border-radius:999px;">
-                  Lift / Step-Free
-                </span>
+        </div>
+
+        <!-- GRAPHICAL FLOOR PLAN CARD -->
+        <div class="indoor-floor-plan-card" id="indoor-floor-plan-card">
+          <div class="indoor-floor-plan-header">
+            <div>
+              <h3 class="indoor-floor-title" id="indoor-floor-title">
+                Interactive Floor Blueprint · Block 32 · Floor 5
+              </h3>
+              <p class="indoor-floor-desc">
+                Visual 2D blueprint of this floor showing rooms, corridors, accessible lifts, stairs, and step-free walking route.
+              </p>
+            </div>
+            <div class="indoor-canvas-status-badge" id="indoor-canvas-status-badge">
+              Floor 5 · Lift Step-Free Route
+            </div>
+          </div>
+
+          <!-- Quick Floor Switcher Tabs Bar -->
+          <div class="indoor-canvas-toolbar">
+            <div class="indoor-floor-tabs-bar" id="indoor-floor-tabs-bar" role="tablist" aria-label="Floor selection tabs">
+              <span class="indoor-toolbar-label">Floors:</span>
+              <button type="button" class="indoor-floor-tab-btn" data-floor="0">Ground</button>
+              <button type="button" class="indoor-floor-tab-btn" data-floor="1">Floor 1</button>
+              <button type="button" class="indoor-floor-tab-btn" data-floor="2">Floor 2</button>
+              <button type="button" class="indoor-floor-tab-btn" data-floor="3">Floor 3</button>
+              <button type="button" class="indoor-floor-tab-btn" data-floor="4">Floor 4</button>
+              <button type="button" class="indoor-floor-tab-btn active" data-floor="5">Floor 5</button>
+            </div>
+          </div>
+
+          <!-- HTML5 Canvas Graphical Floor Layout -->
+          <div class="indoor-canvas-wrapper">
+            <canvas id="indoor-floor-canvas" width="820" height="440" class="indoor-floor-canvas" role="img" aria-label="Interactive Graphical Floor Plan"></canvas>
+          </div>
+
+          <div id="indoor-canvas-info" class="indoor-canvas-info">
+            Tip: Click any room directly on the blueprint to select it and update directions.
+          </div>
+
+          <!-- Blueprint Color Legend -->
+          <div class="indoor-canvas-legend">
+            <div class="legend-item"><span class="legend-swatch legend-target"></span> Target Destination</div>
+            <div class="legend-item"><span class="legend-swatch legend-room"></span> Classrooms &amp; Labs</div>
+            <div class="legend-item"><span class="legend-swatch legend-lift"></span> Accessible Lift</div>
+            <div class="legend-item"><span class="legend-swatch legend-stairs"></span> Staircase</div>
+            <div class="legend-item"><span class="legend-swatch legend-wc"></span> Accessible Restroom</div>
+            <div class="legend-item"><span class="legend-swatch legend-route"></span> Step-Free Route</div>
+          </div>
+        </div>
+
+        <div id="indoor-route-output" style="margin-top:1.25rem;">
+          <div class="indoor-route-result">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <div>
+                <strong style="font-size:1.05rem; color:#14532d;">Indoor Route: Block 32 – Academic Block · Floor 5 · Room 502</strong>
+                <div style="font-size:0.8rem; color:#475569;">Destination: Advanced AI &amp; Deep Learning Lab (North Wing)</div>
               </div>
-              <ul class="indoor-steps-list">
-                <li class="indoor-step-item">
-                  <span class="step-num-badge">1</span>
-                  <div>Enter Block 32 – Academic Block through the East Ramped Ground Entrance (equipped with automatic double doors).</div>
-                </li>
-                <li class="indoor-step-item">
-                  <span class="step-num-badge">2</span>
-                  <div>Proceed straight 20 metres down the central ground corridor past the reception security checkpoint.</div>
-                </li>
-                <li class="indoor-step-item">
-                  <span class="step-num-badge">3</span>
-                  <div>Take <strong>Lift L-32A (North Wing)</strong> on your left to <strong>Floor 5</strong>. (Operational • Voice announcements and Braille buttons).</div>
-                </li>
-                <li class="indoor-step-item">
-                  <span class="step-num-badge">4</span>
-                  <div>Exit at Floor 5 into the North Wing atrium.</div>
-                </li>
-                <li class="indoor-step-item">
-                  <span class="step-num-badge">5</span>
-                  <div>Follow the corridor signs towards <strong>Room 502</strong> (Advanced AI &amp; Deep Learning Lab).</div>
-                </li>
-                <li class="indoor-step-item">
-                  <span class="step-num-badge">6</span>
-                  <div>Arrive at <strong>Room 502</strong> on your Right. Tactile Braille room plate is installed at 1.4m height beside the door.</div>
-                </li>
-              </ul>
-              <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
-                <button type="button" class="btn btn-read-aloud btn-sm" id="btn-read-indoor-steps" onclick="CampusSmartHub.readIndoorDirections()" aria-label="Read indoor directions aloud using text-to-speech">Read Aloud</button>
-                <button type="button" class="btn btn-stop-aloud btn-sm" id="btn-stop-indoor-steps" style="display:none;" onclick="CampusSmartHub.stopIndoorSpeech()" aria-label="Stop reading indoor directions">Stop Reading</button>
-                <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.navigateToNode('b32-ground', 'Block 32')">Route Outside to Block 32</button>
-                <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.viewFloorPlan('b32', 5)">View Graphical Floor Plan</button>
-              </div>
+              <span style="background:#dcfce7; color:#166534; font-weight:800; font-size:0.75rem; padding:4px 10px; border-radius:999px;">
+                Lift / Step-Free
+              </span>
+            </div>
+            <ul class="indoor-steps-list">
+              <li class="indoor-step-item">
+                <span class="step-num-badge">1</span>
+                <div>Enter Block 32 – Academic Block through the East Ramped Ground Entrance (equipped with automatic double doors).</div>
+              </li>
+              <li class="indoor-step-item">
+                <span class="step-num-badge">2</span>
+                <div>Proceed straight 20 metres down the central ground corridor past the reception security checkpoint.</div>
+              </li>
+              <li class="indoor-step-item">
+                <span class="step-num-badge">3</span>
+                <div>Take <strong>Lift L-32A (North Wing)</strong> on your left to <strong>Floor 5</strong>. (Operational • Voice announcements and Braille buttons).</div>
+              </li>
+              <li class="indoor-step-item">
+                <span class="step-num-badge">4</span>
+                <div>Exit at Floor 5 into the North Wing atrium.</div>
+              </li>
+              <li class="indoor-step-item">
+                <span class="step-num-badge">5</span>
+                <div>Follow the corridor signs towards <strong>Room 502</strong> (Advanced AI &amp; Deep Learning Lab).</div>
+              </li>
+              <li class="indoor-step-item">
+                <span class="step-num-badge">6</span>
+                <div>Arrive at <strong>Room 502</strong> on your Right. Tactile Braille room plate is installed at 1.4m height beside the door.</div>
+              </li>
+            </ul>
+            <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <button type="button" class="btn btn-read-aloud btn-sm" id="btn-read-indoor-steps" onclick="CampusSmartHub.readIndoorDirections()" aria-label="Read indoor directions aloud using text-to-speech">Read Aloud</button>
+              <button type="button" class="btn btn-stop-aloud btn-sm" id="btn-stop-indoor-steps" style="display:none;" onclick="CampusSmartHub.stopIndoorSpeech()" aria-label="Stop reading indoor directions">Stop Reading</button>
+              <button type="button" class="btn btn-primary btn-sm" onclick="CampusSmartHub.navigateToNode('b32-ground', 'Block 32')">Route Outside to Block 32</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.viewFloorPlan('b32', 5)">Focus Floor Blueprint</button>
             </div>
           </div>
         </div>
-</div>
-   </div>
- </section>
+      </div>
+    </div>
+  </section>
 
  <!-- ══════════════════════════════════════════════════════════════
       QUEUE ESTIMATES (LIVE WAIT TIMES) SECTION

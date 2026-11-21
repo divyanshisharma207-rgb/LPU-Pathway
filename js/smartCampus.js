@@ -1354,21 +1354,27 @@ window.CampusSmartHub = (() => {
         { floor: 0, code: '001', name: 'Dean’s Secretariat & Executive Boardroom', wing: 'East Wing', side: 'Right' },
         { floor: 0, code: '004', name: 'Student Counseling & Faculty Advisors Cell', wing: 'West Wing', side: 'Left' },
         { floor: 0, code: '012', name: 'Central Academic Auditorium & Seminar Foyer', wing: 'Central Plaza', side: 'Straight' },
+        { floor: 0, code: '015', name: 'First-Aid & Medical Support Post', wing: 'East Wing', side: 'Right' },
         { floor: 1, code: '102', name: 'Robotics & Embedded Systems Laboratory', wing: 'North Wing', side: 'Right' },
         { floor: 1, code: '105', name: 'Faculty Cabins & Research Mentors', wing: 'East Wing', side: 'Left' },
         { floor: 1, code: '110', name: 'Smart Classroom & Audio-Visual Studio', wing: 'West Wing', side: 'Right' },
+        { floor: 1, code: '115', name: 'Lecture Hall 115 (Tiered Multimedia)', wing: 'South Wing', side: 'Left' },
         { floor: 2, code: '204', name: 'CSE Computer Lab 4 (High Performance Computing)', wing: 'North Wing', side: 'Left' },
         { floor: 2, code: '208', name: 'Database Management Systems Testing Lab', wing: 'East Wing', side: 'Right' },
         { floor: 2, code: '214', name: 'Lecture Hall 214 (Tiered Seating)', wing: 'South Wing', side: 'Left' },
+        { floor: 2, code: '218', name: 'Lecture Hall 218 & Tutorial Suites', wing: 'South Wing', side: 'Right' },
         { floor: 3, code: '302', name: 'Software Engineering Studio & Project Hub', wing: 'North Wing', side: 'Right' },
         { floor: 3, code: '305', name: 'Cloud Computing & Distributed Systems Lab', wing: 'East Wing', side: 'Left' },
         { floor: 3, code: '310', name: 'Lecture Hall 310 (Interactive Smart Board)', wing: 'South Wing', side: 'Right' },
+        { floor: 3, code: '315', name: 'Advanced Algorithms Seminar Suite', wing: 'South Wing', side: 'Left' },
         { floor: 4, code: '401', name: 'Data Science & Big Data Research Unit', wing: 'North Wing', side: 'Left' },
         { floor: 4, code: '406', name: 'Machine Learning & Cyber Security Lab', wing: 'East Wing', side: 'Right' },
         { floor: 4, code: '412', name: 'Lecture Hall 412', wing: 'South Wing', side: 'Left' },
+        { floor: 4, code: '416', name: 'Artificial Intelligence Research Pods', wing: 'South Wing', side: 'Right' },
         { floor: 5, code: '502', name: 'Advanced AI & Deep Learning Lab', wing: 'North Wing', side: 'Right' },
         { floor: 5, code: '505', name: 'Ph.D. Research Scholar Suites', wing: 'East Wing', side: 'Left' },
-        { floor: 5, code: '508', name: 'Executive Conference Room & Colloquium Hall', wing: 'South Wing', side: 'Right' }
+        { floor: 5, code: '508', name: 'Executive Conference Room & Colloquium Hall', wing: 'South Wing', side: 'Right' },
+        { floor: 5, code: '512', name: 'Dean’s Academic Annex & Board Foyer', wing: 'South Wing', side: 'Left' }
       ]
     },
     'b34': {
@@ -1384,10 +1390,20 @@ window.CampusSmartHub = (() => {
       ],
       rooms: [
         { floor: 0, code: '001', name: 'Circulation Desk & RFID Self-Checkout', wing: 'Ground Lobby', side: 'Straight' },
+        { floor: 0, code: '004', name: 'Braille & Accessible Reader Station', wing: 'Ground Foyer', side: 'Right' },
+        { floor: 0, code: '008', name: 'Quiet Periodicals & Magazine Reading Room', wing: 'West Wing', side: 'Left' },
         { floor: 1, code: '101', name: 'Undergraduate Sciences & Engineering Stacks', wing: 'Main Reading Floor', side: 'Left' },
+        { floor: 1, code: '105', name: 'Braille, Audio & Large Print Media Section', wing: 'East Wing', side: 'Right' },
+        { floor: 1, code: '112', name: 'Collaborative Study Workstations', wing: 'South Wing', side: 'Left' },
         { floor: 2, code: '201', name: 'Quiet Study Pods & Research Archives', wing: 'Quiet Zone', side: 'Right' },
+        { floor: 2, code: '205', name: 'Bound Periodicals & Faculty Research Desks', wing: 'East Wing', side: 'Left' },
+        { floor: 2, code: '210', name: 'Silent Individual Study Carrels', wing: 'South Wing', side: 'Right' },
         { floor: 3, code: '301', name: 'Digital Library & International Journal Lab', wing: 'Tech Wing', side: 'Left' },
-        { floor: 4, code: '401', name: 'Post-Graduate Scholars & Theses Repository', wing: 'Silent Zone', side: 'Right' }
+        { floor: 3, code: '305', name: 'E-Resource Workstations & Database Terminal', wing: 'East Wing', side: 'Right' },
+        { floor: 3, code: '310', name: 'Video Lecture & MOOC Streaming Pods', wing: 'South Wing', side: 'Left' },
+        { floor: 4, code: '401', name: 'Post-Graduate Scholars & Theses Repository', wing: 'Silent Zone', side: 'Right' },
+        { floor: 4, code: '405', name: 'Rare Manuscripts & University Archives', wing: 'East Wing', side: 'Left' },
+        { floor: 4, code: '410', name: 'Doctoral Scholars Dissertation Suites', wing: 'South Wing', side: 'Right' }
       ]
     },
     'b36': {
@@ -1404,9 +1420,17 @@ window.CampusSmartHub = (() => {
       rooms: [
         { floor: 0, code: '001', name: 'Fee Accounts & Student Billing Counter', wing: 'Front Lobby', side: 'Left' },
         { floor: 0, code: '005', name: 'Examination Transcript & Migration Cell', wing: 'Front Lobby', side: 'Right' },
+        { floor: 0, code: '008', name: 'Student Cafeteria & Food Court', wing: 'East Wing', side: 'Right' },
+        { floor: 0, code: '012', name: 'Reception & Lost-and-Found Desk', wing: 'Central Foyer', side: 'Straight' },
         { floor: 1, code: '102', name: 'Division of Student Welfare & Clubs Office', wing: 'Cultural Wing', side: 'Left' },
+        { floor: 1, code: '106', name: 'Cultural Affairs & Student Organizations Cell', wing: 'East Wing', side: 'Right' },
+        { floor: 1, code: '112', name: 'Student Activity Seminar Hall', wing: 'South Wing', side: 'Left' },
         { floor: 2, code: '201', name: 'Student Council Secretariat & NSS Office', wing: 'Activity Floor', side: 'Right' },
-        { floor: 3, code: '301', name: 'Multi-Purpose Rehearsal Hall & Club Studios', wing: 'Top Auditorium', side: 'Straight' }
+        { floor: 2, code: '205', name: 'NCC Directorate & Community Service Unit', wing: 'East Wing', side: 'Left' },
+        { floor: 2, code: '210', name: 'Career Development & Mentorship Lounge', wing: 'South Wing', side: 'Right' },
+        { floor: 3, code: '301', name: 'Multi-Purpose Rehearsal Hall & Club Studios', wing: 'Top Auditorium', side: 'Straight' },
+        { floor: 3, code: '305', name: 'Music, Theatre & Fine Arts Studio', wing: 'East Wing', side: 'Left' },
+        { floor: 3, code: '310', name: 'Student Council Executive Chambers', wing: 'South Wing', side: 'Right' }
       ]
     }
   };
@@ -1577,8 +1601,474 @@ window.CampusSmartHub = (() => {
   let storyAutoTimer = null;
 
   // ─────────────────────────────────────────────────────────────────
-  // INDOOR NAVIGATION HANDLERS & RENDERER
+  // INDOOR NAVIGATION HANDLERS, GRAPHICAL BLUEPRINT & RENDERER
   // ─────────────────────────────────────────────────────────────────
+  function getIndoorFloorPlanData(blockKey, floorNum) {
+    const bld = INDOOR_BLOCKS[blockKey] || INDOOR_BLOCKS.b32;
+    const allRooms = bld.rooms.filter(r => r.floor === floorNum);
+
+    // Split rooms between north wing (top row) and south wing (bottom row) symmetrically
+    const half = Math.ceil(allRooms.length / 2);
+    const topList = allRooms.slice(0, half);
+    const bottomList = allRooms.slice(half);
+
+    const rooms = [];
+    const topStartX = 100;
+    const topEndX = 715;
+    const topTotalW = topEndX - topStartX;
+    const topGap = 12;
+    const topCount = Math.max(1, topList.length);
+    const topRoomW = Math.max(120, (topTotalW - (topCount - 1) * topGap) / topCount);
+
+    topList.forEach((r, idx) => {
+      rooms.push({
+        code: r.code,
+        name: r.name,
+        wing: r.wing,
+        side: r.side,
+        floor: r.floor,
+        x: topStartX + idx * (topRoomW + topGap),
+        y: 45,
+        w: topRoomW,
+        h: 125,
+        row: 'top'
+      });
+    });
+
+    const botStartX = 100;
+    // On ground floor, reserve right side for the ramp entrance
+    const botEndX = (floorNum === 0) ? 655 : 715;
+    const botTotalW = botEndX - botStartX;
+    const botGap = 12;
+    const botCount = Math.max(1, bottomList.length);
+    const botRoomW = Math.max(120, (botTotalW - (botCount - 1) * botGap) / botCount);
+
+    bottomList.forEach((r, idx) => {
+      rooms.push({
+        code: r.code,
+        name: r.name,
+        wing: r.wing,
+        side: r.side,
+        floor: r.floor,
+        x: botStartX + idx * (botRoomW + botGap),
+        y: 265,
+        w: botRoomW,
+        h: 135,
+        row: 'bottom'
+      });
+    });
+
+    return {
+      building: bld,
+      floor: floorNum,
+      rooms: rooms
+    };
+  }
+
+  function drawIndoorFloorLayout(canvas, blockKey, floorNum, targetRoomCode, transitMode) {
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = 820;
+    const H = 440;
+    canvas.width = W;
+    canvas.height = H;
+
+    const bld = INDOOR_BLOCKS[blockKey] || INDOOR_BLOCKS.b32;
+    const plan = getIndoorFloorPlanData(blockKey, floorNum);
+
+    // 1. Dark Blueprint Background
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle Architectural Grid
+    ctx.strokeStyle = '#1e293b';
+    ctx.lineWidth = 1;
+    for (let x = 0; x < W; x += 30) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, H);
+      ctx.stroke();
+    }
+    for (let y = 0; y < H; y += 30) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(W, y);
+      ctx.stroke();
+    }
+
+    // Blueprint Watermark Header
+    ctx.fillStyle = '#64748b';
+    ctx.font = 'bold 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    const floorLabel = floorNum === 0 ? 'GROUND FLOOR' : `FLOOR ${floorNum}`;
+    ctx.fillText(`ARCHITECTURAL BLUEPRINT · ${bld.name.toUpperCase()} · ${floorLabel}`, 25, 14);
+
+    // 2. Building Outer Perimeter Walls
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(20, 32, 780, 380);
+
+    // 3. Central Step-Free Corridor
+    const corrY = 185;
+    const corrH = 60;
+    const corrCenterY = corrY + corrH / 2; // 215
+
+    ctx.fillStyle = '#172554';
+    ctx.fillRect(25, corrY, 770, corrH);
+    ctx.strokeStyle = '#3b82f6';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(25, corrY, 770, corrH);
+
+    // Corridor Tactile Center Guidance Line
+    ctx.strokeStyle = '#38bdf8';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([8, 8]);
+    ctx.beginPath();
+    ctx.moveTo(90, corrCenterY);
+    ctx.lineTo(730, corrCenterY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = '#60a5fa';
+    ctx.font = 'bold 10px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('CENTRAL STEP-FREE CORRIDOR (ACCESSIBLE TACTILE ROUTE)', 410, corrCenterY - 18);
+
+    // 4. Core Facilities: Lifts, Stairs, Restrooms
+    // West Staircase
+    ctx.fillStyle = 'rgba(217, 119, 6, 0.25)';
+    ctx.fillRect(30, corrY + 2, 55, 56);
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(30, corrY + 2, 55, 56);
+    // Draw stair tread lines
+    ctx.strokeStyle = '#d97706';
+    ctx.lineWidth = 1;
+    for (let sy = corrY + 12; sy < corrY + 54; sy += 10) {
+      ctx.beginPath();
+      ctx.moveTo(34, sy);
+      ctx.lineTo(81, sy);
+      ctx.stroke();
+    }
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = 'bold 9px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('STAIRS 1', 57, corrCenterY + 18);
+
+    // East Staircase
+    ctx.fillStyle = 'rgba(217, 119, 6, 0.25)';
+    ctx.fillRect(735, corrY + 2, 55, 56);
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(735, corrY + 2, 55, 56);
+    for (let sy = corrY + 12; sy < corrY + 54; sy += 10) {
+      ctx.beginPath();
+      ctx.moveTo(739, sy);
+      ctx.lineTo(786, sy);
+      ctx.stroke();
+    }
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = 'bold 9px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('STAIRS 2', 762, corrCenterY + 18);
+
+    // Lift L-A (North/West)
+    const liftAX = 220, liftAW = 60, liftAH = 74, liftAY = corrY - 7;
+    ctx.fillStyle = 'rgba(37, 99, 235, 0.28)';
+    ctx.fillRect(liftAX, liftAY, liftAW, liftAH);
+    ctx.strokeStyle = '#3b82f6';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(liftAX, liftAY, liftAW, liftAH);
+    // Center elevator door split
+    ctx.strokeStyle = '#93c5fd';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(liftAX + liftAW / 2, liftAY);
+    ctx.lineTo(liftAX + liftAW / 2, liftAY + liftAH);
+    ctx.stroke();
+    ctx.fillStyle = '#bfdbfe';
+    ctx.font = 'bold 10px sans-serif';
+    ctx.fillText('LIFT A', liftAX + liftAW / 2, liftAY + 15);
+    ctx.font = '8px sans-serif';
+    ctx.fillStyle = '#60a5fa';
+    ctx.fillText('Accessible', liftAX + liftAW / 2, liftAY + 28);
+
+    // Accessible Restroom (WC)
+    const wcX = 400, wcW = 65, wcH = 74, wcY = corrY - 7;
+    ctx.fillStyle = 'rgba(13, 148, 136, 0.28)';
+    ctx.fillRect(wcX, wcY, wcW, wcH);
+    ctx.strokeStyle = '#14b8a6';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(wcX, wcY, wcW, wcH);
+    ctx.fillStyle = '#2dd4bf';
+    ctx.font = 'bold 10px sans-serif';
+    ctx.fillText('WC', wcX + wcW / 2, wcY + 15);
+    ctx.font = '8px sans-serif';
+    ctx.fillStyle = '#5eead4';
+    ctx.fillText('Accessible', wcX + wcW / 2, wcY + 28);
+
+    // Lift L-B (East)
+    const liftBX = 580, liftBW = 60, liftBH = 74, liftBY = corrY - 7;
+    ctx.fillStyle = 'rgba(37, 99, 235, 0.28)';
+    ctx.fillRect(liftBX, liftBY, liftBW, liftBH);
+    ctx.strokeStyle = '#3b82f6';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(liftBX, liftBY, liftBW, liftBH);
+    ctx.strokeStyle = '#93c5fd';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(liftBX + liftBW / 2, liftBY);
+    ctx.lineTo(liftBX + liftBW / 2, liftBY + liftBH);
+    ctx.stroke();
+    ctx.fillStyle = '#bfdbfe';
+    ctx.font = 'bold 10px sans-serif';
+    ctx.fillText('LIFT B', liftBX + liftBW / 2, liftBY + 15);
+    ctx.font = '8px sans-serif';
+    ctx.fillStyle = '#60a5fa';
+    ctx.fillText('Accessible', liftBX + liftBW / 2, liftBY + 28);
+
+    // Ground Entrance Ramp (if Floor 0)
+    if (floorNum === 0) {
+      const rampX = 675, rampY = 265, rampW = 100, rampH = 135;
+      ctx.fillStyle = 'rgba(16, 185, 129, 0.2)';
+      ctx.fillRect(rampX, rampY, rampW, rampH);
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(rampX, rampY, rampW, rampH);
+      // Draw ramp slope dashes
+      ctx.strokeStyle = '#34d399';
+      ctx.lineWidth = 1;
+      for (let rx = rampX + 15; rx < rampX + rampW; rx += 18) {
+        ctx.beginPath();
+        ctx.moveTo(rx, rampY + 20);
+        ctx.lineTo(rx - 10, rampY + rampH - 20);
+        ctx.stroke();
+      }
+      ctx.fillStyle = '#a7f3d0';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.fillText('RAMP ENTRY', rampX + rampW / 2, rampY + 20);
+      ctx.font = '8px sans-serif';
+      ctx.fillStyle = '#6ee7b7';
+      ctx.fillText('East Automatic', rampX + rampW / 2, rampY + 34);
+    }
+
+    // 5. Draw Rooms on Floor
+    let targetRoomObj = null;
+
+    plan.rooms.forEach(r => {
+      const isTarget = String(r.code) === String(targetRoomCode);
+      if (isTarget) targetRoomObj = r;
+
+      if (isTarget) {
+        // Highlighted Destination Room
+        ctx.fillStyle = 'rgba(6, 78, 59, 0.9)';
+        ctx.fillRect(r.x, r.y, r.w, r.h);
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(r.x, r.y, r.w, r.h);
+
+        // Destination Badge in top right corner
+        ctx.fillStyle = '#059669';
+        ctx.fillRect(r.x + r.w - 82, r.y + 6, 76, 18);
+        ctx.strokeStyle = '#34d399';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(r.x + r.w - 82, r.y + 6, 76, 18);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 8px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('DESTINATION', r.x + r.w - 44, r.y + 18);
+
+        // Room number and name
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`ROOM ${r.code}`, r.x + r.w / 2, r.y + (r.h > 100 ? 42 : 30));
+
+        ctx.fillStyle = '#a7f3d0';
+        ctx.font = 'bold 10px sans-serif';
+        const displayName = r.name.length > 28 ? r.name.substring(0, 26) + '...' : r.name;
+        ctx.fillText(displayName, r.x + r.w / 2, r.y + (r.h > 100 ? 64 : 48));
+
+        ctx.fillStyle = '#6ee7b7';
+        ctx.font = '9px sans-serif';
+        ctx.fillText(`(${r.wing})`, r.x + r.w / 2, r.y + (r.h > 100 ? 82 : 62));
+
+        // Door marker at corridor edge
+        const doorY = r.row === 'top' ? r.y + r.h : r.y;
+        ctx.fillStyle = '#10b981';
+        ctx.fillRect(r.x + r.w / 2 - 16, doorY - (r.row === 'top' ? 3 : 0), 32, 4);
+      } else {
+        // Standard Classroom / Lab
+        ctx.fillStyle = '#1e293b';
+        ctx.fillRect(r.x, r.y, r.w, r.h);
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(r.x, r.y, r.w, r.h);
+
+        // Room number & name
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Room ${r.code}`, r.x + r.w / 2, r.y + (r.h > 100 ? 40 : 28));
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '10px sans-serif';
+        const displayName = r.name.length > 26 ? r.name.substring(0, 24) + '...' : r.name;
+        ctx.fillText(displayName, r.x + r.w / 2, r.y + (r.h > 100 ? 62 : 46));
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '8px sans-serif';
+        ctx.fillText(r.wing, r.x + r.w / 2, r.y + (r.h > 100 ? 80 : 60));
+
+        // Subtle door outline at corridor edge
+        const doorY = r.row === 'top' ? r.y + r.h : r.y;
+        ctx.fillStyle = '#334155';
+        ctx.fillRect(r.x + r.w / 2 - 14, doorY - (r.row === 'top' ? 2 : 0), 28, 3);
+      }
+    });
+
+    if (!targetRoomObj && plan.rooms.length > 0) {
+      targetRoomObj = plan.rooms[0];
+    }
+
+    // 6. Draw Step-Free Nav Walking Route
+    if (targetRoomObj) {
+      // Determine Start Coordinates
+      let startX, startY = corrCenterY, startTitle;
+      if (transitMode === 'lift') {
+        const distA = Math.abs(targetRoomObj.x - (liftAX + liftAW / 2));
+        const distB = Math.abs(targetRoomObj.x - (liftBX + liftBW / 2));
+        if (distA <= distB) {
+          startX = liftAX + liftAW / 2;
+          startTitle = 'Lift L-A (Step-Free)';
+        } else {
+          startX = liftBX + liftBW / 2;
+          startTitle = 'Lift L-B (Step-Free)';
+        }
+      } else {
+        const distS1 = Math.abs(targetRoomObj.x - 57);
+        const distS2 = Math.abs(targetRoomObj.x - 762);
+        if (distS1 <= distS2) {
+          startX = 57;
+          startTitle = 'Staircase 1';
+        } else {
+          startX = 762;
+          startTitle = 'Staircase 2';
+        }
+      }
+
+      if (floorNum === 0 && transitMode !== 'lift' && targetRoomObj.x > 450) {
+        startX = 725;
+        startTitle = 'East Ramp Entry';
+      }
+
+      const doorX = targetRoomObj.x + targetRoomObj.w / 2;
+      const doorY = targetRoomObj.row === 'top' ? targetRoomObj.y + targetRoomObj.h : targetRoomObj.y;
+
+      // Outer glowing green halo
+      ctx.strokeStyle = 'rgba(16, 185, 129, 0.35)';
+      ctx.lineWidth = 12;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.beginPath();
+      ctx.moveTo(startX, corrCenterY);
+      ctx.lineTo(doorX, corrCenterY);
+      ctx.lineTo(doorX, doorY);
+      ctx.stroke();
+
+      // Inner dashed neon green path line
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 3.5;
+      ctx.setLineDash([8, 6]);
+      ctx.beginPath();
+      ctx.moveTo(startX, corrCenterY);
+      ctx.lineTo(doorX, corrCenterY);
+      ctx.lineTo(doorX, doorY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Draw Direction Chevrons along horizontal corridor
+      const dirX = doorX > startX ? 1 : -1;
+      const stepDist = 45;
+      const totalDist = Math.abs(doorX - startX);
+      for (let d = stepDist; d < totalDist - 15; d += stepDist) {
+        const cx = startX + d * dirX;
+        ctx.fillStyle = '#34d399';
+        ctx.beginPath();
+        ctx.moveTo(cx - 5 * dirX, corrCenterY - 4);
+        ctx.lineTo(cx + 4 * dirX, corrCenterY);
+        ctx.lineTo(cx - 5 * dirX, corrCenterY + 4);
+        ctx.fill();
+      }
+
+      // Draw Chevron into doorway
+      const dirY = doorY > corrCenterY ? 1 : -1;
+      ctx.fillStyle = '#34d399';
+      ctx.beginPath();
+      ctx.moveTo(doorX - 4, corrCenterY + 12 * dirY - 4 * dirY);
+      ctx.lineTo(doorX, corrCenterY + 12 * dirY + 4 * dirY);
+      ctx.lineTo(doorX + 4, corrCenterY + 12 * dirY - 4 * dirY);
+      ctx.fill();
+
+      // Start Beacon
+      ctx.fillStyle = 'rgba(16, 185, 129, 0.35)';
+      ctx.beginPath();
+      ctx.arc(startX, corrCenterY, 13, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#10b981';
+      ctx.beginPath();
+      ctx.arc(startX, corrCenterY, 7, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(startX, corrCenterY, 3, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Start Label Pill
+      ctx.fillStyle = '#065f46';
+      ctx.fillRect(startX - 50, corrCenterY + 16, 100, 18);
+      ctx.strokeStyle = '#34d399';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(startX - 50, corrCenterY + 16, 100, 18);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 8.5px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(`START: ${startTitle.toUpperCase()}`, startX, corrCenterY + 28);
+
+      // Destination Arrival Beacon
+      ctx.fillStyle = 'rgba(52, 211, 153, 0.45)';
+      ctx.beginPath();
+      ctx.arc(doorX, doorY, 14, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#059669';
+      ctx.beginPath();
+      ctx.arc(doorX, doorY, 8, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(doorX, doorY, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Arrival Label Pill
+      const pillY = targetRoomObj.row === 'top' ? doorY - 26 : doorY + 10;
+      ctx.fillStyle = '#065f46';
+      ctx.fillRect(doorX - 45, pillY, 90, 18);
+      ctx.strokeStyle = '#34d399';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(doorX - 45, pillY, 90, 18);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 8.5px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(`GOAL: ROOM ${targetRoomObj.code}`, doorX, pillY + 12);
+    }
+  }
+
   function renderIndoorSection() {
     const container = document.getElementById('indoor-container');
     if (!container) return;
@@ -1631,9 +2121,53 @@ window.CampusSmartHub = (() => {
         <button type="button" id="btn-calculate-indoor" class="btn btn-primary" style="width:100%; padding:0.75rem; font-weight:800; font-size:0.95rem;">
           Get Indoor Turn-by-Turn Guidance
         </button>
-
-        <div id="indoor-route-output" style="margin-top:1.25rem;"></div>
       </div>
+
+      <!-- GRAPHICAL FLOOR PLAN CARD -->
+      <div class="indoor-floor-plan-card" id="indoor-floor-plan-card">
+        <div class="indoor-floor-plan-header">
+          <div>
+            <h3 class="indoor-floor-title" id="indoor-floor-title">
+              Interactive Floor Blueprint · Block 32 · Floor 5
+            </h3>
+            <p class="indoor-floor-desc">
+              Visual 2D blueprint of this floor showing rooms, corridors, accessible lifts, stairs, and step-free walking route.
+            </p>
+          </div>
+          <div class="indoor-canvas-status-badge" id="indoor-canvas-status-badge">
+            Floor 5 · Lift Step-Free Route
+          </div>
+        </div>
+
+        <!-- Quick Floor Switcher Tabs Bar -->
+        <div class="indoor-canvas-toolbar">
+          <div class="indoor-floor-tabs-bar" id="indoor-floor-tabs-bar" role="tablist" aria-label="Floor selection tabs">
+            <!-- Dynamically populated buttons -->
+          </div>
+        </div>
+
+        <!-- HTML5 Canvas Graphical Floor Layout -->
+        <div class="indoor-canvas-wrapper">
+          <canvas id="indoor-floor-canvas" width="820" height="440" class="indoor-floor-canvas" role="img" aria-label="Interactive Graphical Floor Plan"></canvas>
+        </div>
+
+        <div id="indoor-canvas-info" class="indoor-canvas-info">
+          Tip: Click any room directly on the blueprint to select it and update directions.
+        </div>
+
+        <!-- Blueprint Color Legend -->
+        <div class="indoor-canvas-legend">
+          <div class="legend-item"><span class="legend-swatch legend-target"></span> Target Destination</div>
+          <div class="legend-item"><span class="legend-swatch legend-room"></span> Classrooms &amp; Labs</div>
+          <div class="legend-item"><span class="legend-swatch legend-lift"></span> Accessible Lift</div>
+          <div class="legend-item"><span class="legend-swatch legend-stairs"></span> Staircase</div>
+          <div class="legend-item"><span class="legend-swatch legend-wc"></span> Accessible Restroom</div>
+          <div class="legend-item"><span class="legend-swatch legend-route"></span> Step-Free Route</div>
+        </div>
+      </div>
+
+      <!-- TURN-BY-TURN INSTRUCTIONS OUTPUT -->
+      <div id="indoor-route-output" style="margin-top:1.25rem;"></div>
     `;
 
     const bldSelect = container.querySelector('#indoor-block-select');
@@ -1642,8 +2176,38 @@ window.CampusSmartHub = (() => {
     const chipLift = container.querySelector('#chip-lift');
     const chipStairs = container.querySelector('#chip-stairs');
     const calcBtn = container.querySelector('#btn-calculate-indoor');
+    const floorTabsBar = container.querySelector('#indoor-floor-tabs-bar');
+    const floorCanvas = container.querySelector('#indoor-floor-canvas');
 
     let currentTransit = 'lift';
+
+    function updateFloorTabs() {
+      const bldKey = bldSelect.value;
+      const bld = INDOOR_BLOCKS[bldKey] || INDOOR_BLOCKS.b32;
+      const currentFloor = parseInt(floorSelect.value, 10);
+
+      if (floorTabsBar) {
+        floorTabsBar.innerHTML = `
+          <span class="indoor-toolbar-label">Floors:</span>
+          ${bld.floors.map(f => `
+            <button type="button" class="indoor-floor-tab-btn ${f === currentFloor ? 'active' : ''}" data-floor="${f}">
+              ${f === 0 ? 'Ground' : 'Floor ' + f}
+            </button>
+          `).join('')}
+        `;
+
+        if (floorTabsBar.querySelectorAll) {
+          floorTabsBar.querySelectorAll('.indoor-floor-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const chosenFloor = parseInt(btn.getAttribute('data-floor'), 10);
+              floorSelect.value = chosenFloor;
+              populateRooms();
+              calculateIndoorGuidance(bldSelect.value, chosenFloor, roomSelect.value, currentTransit);
+            });
+          });
+        }
+      }
+    }
 
     function populateRooms() {
       const bldKey = bldSelect.value;
@@ -1660,34 +2224,71 @@ window.CampusSmartHub = (() => {
     }
 
     bldSelect.addEventListener('change', () => {
-      // update floors
       const bld = INDOOR_BLOCKS[bldSelect.value];
       if (bld) {
         floorSelect.innerHTML = bld.floors.map(f => `<option value="${f}">${f === 0 ? 'Ground Floor' : 'Floor ' + f}</option>`).join('');
         floorSelect.value = bld.floors[bld.floors.length - 1]; // pick top floor default
+        updateFloorTabs();
         populateRooms();
+        calculateIndoorGuidance(bldSelect.value, parseInt(floorSelect.value, 10), roomSelect.value, currentTransit);
       }
     });
 
-    floorSelect.addEventListener('change', populateRooms);
+    floorSelect.addEventListener('change', () => {
+      updateFloorTabs();
+      populateRooms();
+      calculateIndoorGuidance(bldSelect.value, parseInt(floorSelect.value, 10), roomSelect.value, currentTransit);
+    });
+
+    roomSelect.addEventListener('change', () => {
+      calculateIndoorGuidance(bldSelect.value, parseInt(floorSelect.value, 10), roomSelect.value, currentTransit);
+    });
 
     chipLift.addEventListener('click', () => {
       chipLift.classList.add('active');
       chipStairs.classList.remove('active');
       currentTransit = 'lift';
+      calculateIndoorGuidance(bldSelect.value, parseInt(floorSelect.value, 10), roomSelect.value, currentTransit);
     });
 
     chipStairs.addEventListener('click', () => {
       chipStairs.classList.add('active');
       chipLift.classList.remove('active');
       currentTransit = 'stairs';
+      calculateIndoorGuidance(bldSelect.value, parseInt(floorSelect.value, 10), roomSelect.value, currentTransit);
     });
 
     calcBtn.addEventListener('click', () => {
       calculateIndoorGuidance(bldSelect.value, parseInt(floorSelect.value, 10), roomSelect.value, currentTransit);
     });
 
+    // Interactive Canvas Click Handling
+    if (floorCanvas) {
+      floorCanvas.addEventListener('click', (e) => {
+        const rect = floorCanvas.getBoundingClientRect();
+        const scaleX = floorCanvas.width / rect.width;
+        const scaleY = floorCanvas.height / rect.height;
+        const clickX = (e.clientX - rect.left) * scaleX;
+        const clickY = (e.clientY - rect.top) * scaleY;
+
+        const bldKey = bldSelect.value;
+        const floorNum = parseInt(floorSelect.value, 10);
+        const plan = getIndoorFloorPlanData(bldKey, floorNum);
+
+        const hitRoom = plan.rooms.find(r => clickX >= r.x && clickX <= r.x + r.w && clickY >= r.y && clickY <= r.y + r.h);
+        if (hitRoom) {
+          roomSelect.value = hitRoom.code;
+          calculateIndoorGuidance(bldKey, floorNum, hitRoom.code, currentTransit);
+          const info = document.getElementById('indoor-canvas-info');
+          if (info) {
+            info.textContent = `Selected: Room ${hitRoom.code} – ${hitRoom.name}. Updated navigation route.`;
+          }
+        }
+      });
+    }
+
     // Initial populate & run
+    updateFloorTabs();
     populateRooms();
     calculateIndoorGuidance('b32', 5, '502', 'lift');
   }
@@ -1711,6 +2312,35 @@ window.CampusSmartHub = (() => {
 
     const transitName = transitMode === 'lift' ? lift.name : stairs.name;
     const transitNotes = transitMode === 'lift' ? lift.notes : stairs.notes;
+
+    // Update Graphical Floor Plan Header & Status
+    const floorTitleEl = document.getElementById('indoor-floor-title');
+    const canvasStatusBadge = document.getElementById('indoor-canvas-status-badge');
+    if (floorTitleEl) {
+      floorTitleEl.textContent = `Interactive Floor Blueprint · ${bld.name.split('–')[0].trim()} · ${targetFloor === 0 ? 'Ground Floor' : 'Floor ' + targetFloor}`;
+    }
+    if (canvasStatusBadge) {
+      canvasStatusBadge.textContent = `${targetFloor === 0 ? 'Ground Floor' : 'Floor ' + targetFloor} · ${transitMode === 'lift' ? 'Lift Step-Free Route' : 'Staircase Route'}`;
+    }
+
+    // Sync Floor Tabs Active Class
+    const floorTabs = document.querySelectorAll('.indoor-floor-tab-btn');
+    if (floorTabs) {
+      floorTabs.forEach(btn => {
+        const f = parseInt(btn.getAttribute('data-floor'), 10);
+        if (f === targetFloor) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // Draw Floor Layout Canvas
+    const canvas = document.getElementById('indoor-floor-canvas');
+    if (canvas) {
+      drawIndoorFloorLayout(canvas, blockKey, targetFloor, room.code, transitMode);
+    }
 
     const steps = [
       `Enter ${bld.name} through the East Ramped Ground Entrance (equipped with automatic double doors).`,
@@ -1761,7 +2391,7 @@ window.CampusSmartHub = (() => {
             Route Outside to ${bld.name}
           </button>
           <button type="button" class="btn btn-outline btn-sm" onclick="CampusSmartHub.viewFloorPlan('${bld.id}', ${targetFloor})">
-            View Graphical Floor Plan
+            Focus Floor Blueprint
           </button>
         </div>
       </div>
@@ -1864,24 +2494,25 @@ window.CampusSmartHub = (() => {
   }
 
   function viewFloorPlan(bldId, floorNum) {
-    const navTab = document.querySelector('[data-tab="navigate"]');
-    if (navTab) navTab.click();
+    const indoorTab = document.querySelector('[data-tab="indoor"]');
+    if (indoorTab) indoorTab.click();
 
     setTimeout(() => {
-      const btnIndoor = document.getElementById('btn-indoor');
-      if (btnIndoor) btnIndoor.click();
-
-      const bldSel = document.getElementById('building-select');
-      const floorSel = document.getElementById('floor-select');
-      if (bldSel) {
+      const bldSel = document.getElementById('indoor-block-select');
+      const floorSel = document.getElementById('indoor-floor-select');
+      if (bldSel && bldId && bldSel.value !== bldId) {
         bldSel.value = bldId;
         bldSel.dispatchEvent(new Event('change'));
       }
-      if (floorSel) {
-        floorSel.value = floorNum.toString();
+      if (floorSel && typeof floorNum !== 'undefined') {
+        floorSel.value = String(floorNum);
         floorSel.dispatchEvent(new Event('change'));
       }
-    }, 200);
+      const card = document.getElementById('indoor-floor-plan-card');
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 150);
   }
 
   // ─────────────────────────────────────────────────────────────────
