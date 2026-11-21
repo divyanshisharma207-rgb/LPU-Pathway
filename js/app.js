@@ -74,6 +74,11 @@
 
  window.switchTabTo = switchTab;
   function switchTab(tabId, triggerEl) {
+    if (tabId === 'sos') {
+      if (window.CampusSOS) window.CampusSOS.openModal();
+      return;
+    }
+
     if (tabId === 'gps') {
       switchTab('navigate');
       setTimeout(() => {

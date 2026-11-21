@@ -20,6 +20,28 @@
   --coral-accent-deep: #c93b2a;
 }
 
+/* ── TOP NAVBAR SOS EMERGENCY BUTTON ────────────────────────── */
+.nav-link--sos {
+  background: var(--coral-tomato, #ef6351) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border-radius: var(--radius-sm, 6px);
+  padding: 0.4rem 0.85rem !important;
+  margin-left: 0.25rem;
+  box-shadow: 0 2px 8px rgba(239, 99, 81, 0.4);
+  transition: all 0.2s ease !important;
+  cursor: pointer;
+}
+
+.nav-link--sos:hover,
+.nav-link--sos:focus-visible {
+  background: #e05342 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 99, 81, 0.6);
+  outline: 2px solid #ffffff !important;
+  outline-offset: 1px;
+}
+
 /* ── FLOATING 1-TAP EMERGENCY SOS BUTTON ─────────────────────── */
 .btn-emergency-sos {
   position: fixed;

@@ -169,6 +169,14 @@ const CampusSOS = (() => {
       triggerBtn.addEventListener('click', openModal);
     }
 
+    const navBtn = document.getElementById('nav-btn-sos');
+    if (navBtn) {
+      navBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    }
+
     const closeBtn = document.getElementById('btn-close-sos');
     if (closeBtn) {
       closeBtn.addEventListener('click', closeModal);
