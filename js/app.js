@@ -67,6 +67,16 @@
  const allPages = document.querySelectorAll('.page-section');
 
  function switchTab(tabId, triggerEl) {
+    if (tabId === 'gps') {
+      switchTab('navigate');
+      setTimeout(() => {
+        if (window.CampusGPS) window.CampusGPS.startTracking(true);
+        const panel = document.getElementById('gps-panel') || document.getElementById('gps-hud');
+        if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 150);
+      return;
+    }
+
  // 1. Hide all pages
  allPages.forEach(page => {
  page.classList.remove('active-page');

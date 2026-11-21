@@ -41,6 +41,7 @@
  <li><a href="#" class="nav-link active" aria-current="page" data-tab="navigate"> Navigate</a></li>
  <li><a href="#" class="nav-link" data-tab="buildings"> Buildings</a></li>
  <li><a href="#" class="nav-link" data-tab="autos">🛺 Autos &amp; E-Carts</a></li>
+ <li><a href="#" class="nav-link" data-tab="gps">📍 Live GPS</a></li>
  <li><a href="#" class="nav-link" data-tab="report"> Report Issue</a></li>
  <li><a href="#" class="nav-link" data-tab="help"> Help</a></li>
  </ul>
@@ -129,6 +130,11 @@
  </fieldset>
 
  <!-- SUBMIT -->
+ <div class="route-gps-shortcut" style="margin-bottom: 0.85rem;">
+ <button type="button" id="btn-use-gps-start" class="btn btn-outline" style="width:100%; display:inline-flex; align-items:center; justify-content:center; gap:6px; font-weight:600; padding:0.55rem 0.75rem; border:1.5px solid var(--clr-primary, #1565c0); color:var(--clr-primary, #1565c0);" title="Use your current live location as the starting point">
+ <span aria-hidden="true">📍</span> Use My Live GPS as Starting Point
+ </button>
+ </div>
  <button type="submit" id="find-route-btn" class="btn btn-primary btn-large"
  aria-label="Find route between selected locations">
  <span aria-hidden="true"></span> Find Route
@@ -214,43 +220,64 @@
     <span class="gps-fab-icon" aria-hidden="true">📍</span>
   </button>
 
-  <!-- LIVE GPS TRACKING HUD BAR -->
-  <div id="gps-hud" class="gps-hud-bar" hidden aria-live="polite">
-    <div class="gps-hud-inner">
-      <div class="gps-hud-status">
-        <span class="gps-status-beacon" aria-hidden="true"></span>
-        <div class="gps-status-info">
-          <div class="gps-status-title" id="gps-status-title">Live GPS Tracking</div>
-          <div class="gps-status-meta" id="gps-status-meta">Connecting to satellites...</div>
+  <!-- LIVE GPS OPTION & TRACKING PANEL -->
+  <div id="gps-panel" class="gps-panel-card" role="region" aria-label="Live GPS Location Tracking">
+    <div class="gps-panel-idle" id="gps-panel-idle">
+      <div class="gps-panel-idle-content">
+        <div class="gps-panel-icon-wrap" aria-hidden="true">📍</div>
+        <div class="gps-panel-text">
+          <div class="gps-panel-title">Live GPS Location Tracking</div>
+          <div class="gps-panel-desc">Track your real-time position on campus pathways with turn-by-turn step-free guidance.</div>
         </div>
       </div>
-      <div class="gps-hud-stats">
-        <div class="gps-stat-item">
-          <span class="gps-stat-label">Accuracy</span>
-          <span class="gps-stat-val" id="gps-stat-accuracy">±0m</span>
-        </div>
-        <div class="gps-stat-item">
-          <span class="gps-stat-label">Speed</span>
-          <span class="gps-stat-val" id="gps-stat-speed">0.0 km/h</span>
-        </div>
-        <div class="gps-stat-item">
-          <span class="gps-stat-label">Nearest Spot</span>
-          <span class="gps-stat-val" id="gps-stat-spot">—</span>
-        </div>
+      <div class="gps-panel-idle-actions">
+        <button type="button" id="btn-gps-start-main" class="btn btn-primary btn-sm" title="Start real-time GPS tracking">
+          <span aria-hidden="true">📡</span> Start Live GPS
+        </button>
+        <button type="button" id="btn-gps-sim-main" class="btn btn-outline btn-sm" title="Simulate a live walk across campus">
+          <span aria-hidden="true">🚶</span> Demo Walk
+        </button>
       </div>
-      <div class="gps-hud-actions">
-        <button id="btn-gps-recenter" class="btn btn-sm btn-outline" title="Re-center map on your location">
-          🎯 Center
-        </button>
-        <button id="btn-gps-sim-walk" class="btn btn-sm btn-outline" title="Simulate a live walk across campus">
-          🚶 Demo Walk
-        </button>
-        <button id="btn-gps-route-from" class="btn btn-sm btn-primary" title="Plan route from current GPS position">
-          📍 Route From Here
-        </button>
-        <button id="btn-gps-stop" class="btn btn-sm btn-stop-aloud" title="Stop GPS tracking">
-          ✕ Stop
-        </button>
+    </div>
+
+    <!-- Active HUD state -->
+    <div class="gps-hud-bar" id="gps-hud" hidden aria-live="polite">
+      <div class="gps-hud-inner">
+        <div class="gps-hud-status">
+          <span class="gps-status-beacon" aria-hidden="true"></span>
+          <div class="gps-status-info">
+            <div class="gps-status-title" id="gps-status-title">Live GPS Tracking Active</div>
+            <div class="gps-status-meta" id="gps-status-meta">Locating satellites...</div>
+          </div>
+        </div>
+        <div class="gps-hud-stats">
+          <div class="gps-stat-item">
+            <span class="gps-stat-label">Accuracy</span>
+            <span class="gps-stat-val" id="gps-stat-accuracy">±0m</span>
+          </div>
+          <div class="gps-stat-item">
+            <span class="gps-stat-label">Speed</span>
+            <span class="gps-stat-val" id="gps-stat-speed">0.0 km/h</span>
+          </div>
+          <div class="gps-stat-item">
+            <span class="gps-stat-label">Nearest Spot</span>
+            <span class="gps-stat-val" id="gps-stat-spot">—</span>
+          </div>
+        </div>
+        <div class="gps-hud-actions">
+          <button id="btn-gps-recenter" class="btn btn-sm btn-outline" title="Re-center map on your location">
+            🎯 Center
+          </button>
+          <button id="btn-gps-sim-walk" class="btn btn-sm btn-outline" title="Simulate a live walk across campus">
+            🚶 Demo Walk
+          </button>
+          <button id="btn-gps-route-from" class="btn btn-sm btn-primary" title="Plan route from current GPS position">
+            📍 Route From Here
+          </button>
+          <button id="btn-gps-stop" class="btn btn-sm btn-stop-aloud" title="Stop GPS tracking">
+            ✕ Stop
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -796,6 +823,10 @@
  <a href="#" data-tab="autos" aria-label="Nearest Autos and E-Carts page">
  <span class="mob-icon" aria-hidden="true">🛺</span>
  <span>Autos</span>
+ </a>
+ <a href="#" data-tab="gps" aria-label="Live GPS location and tracking">
+ <span class="mob-icon" aria-hidden="true">📍</span>
+ <span>Live GPS</span>
  </a>
  <a href="#" data-tab="report" aria-label="Report Issue page">
  <span class="mob-icon" aria-hidden="true"></span>

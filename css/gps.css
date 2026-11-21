@@ -1,3 +1,69 @@
+
+/* ── PERMANENT LIVE GPS PANEL CARD ──────────────────────────── */
+.gps-panel-card {
+  background: var(--clr-surface, #ffffff);
+  border: 1.5px solid var(--clr-border, #e0e0e0);
+  border-radius: var(--radius-md, 8px);
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+  overflow: hidden;
+}
+
+.gps-panel-idle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, rgba(21, 101, 192, 0.04) 0%, rgba(25, 118, 210, 0.08) 100%);
+  border-left: 4px solid var(--clr-primary, #1565c0);
+}
+
+.gps-panel-idle[hidden] {
+  display: none !important;
+}
+
+.gps-panel-idle-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.gps-panel-icon-wrap {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(21, 101, 192, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gps-panel-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--clr-text, #1e293b);
+  margin-bottom: 2px;
+}
+
+.gps-panel-desc {
+  font-size: 0.8rem;
+  color: var(--clr-text-muted, #64748b);
+  line-height: 1.3;
+}
+
+.gps-panel-idle-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 /* ══════════════════════════════════════════════════════════════
    gps.css – Live Location & GPS Tracking System Styles
    LPU Pathway – Accessible Campus Navigation

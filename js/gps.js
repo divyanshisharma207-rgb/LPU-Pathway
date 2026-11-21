@@ -124,6 +124,8 @@ const CampusGPS = (() => {
 
     const hud = document.getElementById('gps-hud');
     if (hud) hud.hidden = false;
+    const idlePanel = document.getElementById('gps-panel-idle');
+    if (idlePanel) idlePanel.hidden = true;
 
     updateHudStatus('Connecting to GPS...', 'Locating satellites...');
 
@@ -232,6 +234,8 @@ const CampusGPS = (() => {
 
     const hud = document.getElementById('gps-hud');
     if (hud) hud.hidden = true;
+    const idlePanel = document.getElementById('gps-panel-idle');
+    if (idlePanel) idlePanel.hidden = false;
 
     const turnBanner = document.getElementById('gps-turn-banner');
     if (turnBanner) turnBanner.hidden = true;
@@ -272,6 +276,8 @@ const CampusGPS = (() => {
 
     const hud = document.getElementById('gps-hud');
     if (hud) hud.hidden = false;
+    const idlePanel = document.getElementById('gps-panel-idle');
+    if (idlePanel) idlePanel.hidden = true;
 
     updateHudStatus('🚶 Campus Walk Simulation', 'Simulating step-free walk across LPU campus...');
 
@@ -559,6 +565,16 @@ const CampusGPS = (() => {
           startTracking(true);
         }
       });
+    }
+
+    // 1b. Main Panel Buttons
+    const startMainBtn = document.getElementById('btn-gps-start-main');
+    if (startMainBtn) {
+      startMainBtn.addEventListener('click', () => startTracking(true));
+    }
+    const simMainBtn = document.getElementById('btn-gps-sim-main');
+    if (simMainBtn) {
+      simMainBtn.addEventListener('click', startSimulatedWalk);
     }
 
     // 2. HUD Buttons
