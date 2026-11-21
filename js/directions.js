@@ -69,8 +69,6 @@ const DirectionsPanel = (() => {
     list.scrollTo({ top: 0, behavior: 'smooth' });
 
     // Announce to screen reader
-    renderTextOnlyDirections(directions, routeMeta);
-
     announceAssertive(
       `Route ready: ${directions.length} steps. ${routeMeta ? RouteEngine.formatTime(routeMeta.totalTime) : ''}.`
     );
@@ -234,53 +232,7 @@ const DirectionsPanel = (() => {
     if (el) { el.textContent = ''; setTimeout(() => { el.textContent = msg; }, 50); }
   }
 
-  
-  // ── REPEAT ALOUD (Re-reads from beginning) ────────────────
-  function repeatAloud() {
-    stopSpeech();
-    setTimeout(() => {
-      readAloud();
-    }, 150);
-  }
-
-  // ── RENDER TEXT-ONLY LANDMARK DIRECTIONS ──────────────────
-  function renderTextOnlyDirections(directions, routeMeta) {
-    const container = document.getElementById('text-only-steps');
-    if (!container) return;
-
-    container.innerHTML = '';
-    directions.forEach((step, idx) => {
-      const card = document.createElement('div');
-      card.className = 'text-only-step-card';
-      card.innerHTML = `
-        <div class="text-only-step-num">Step ${step.step} of ${directions.length}</div>
-        <div class="text-only-step-inst">${escapeHTML(step.instruction)}</div>
-        ${step.landmark ? `<div class="text-only-landmark-badge">📌 Landmark: ${escapeHTML(step.landmark)}</div>` : ''}
-        ${step.distance ? `<div style="font-size:0.85rem;color:var(--clr-text-muted);margin-top:4px;">Distance: ${escapeHTML(step.distance)}</div>` : ''}
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // ── TOGGLE TEXT-ONLY MODE ─────────────────────────────────
-  let isTextOnly = false;
-  function toggleTextOnlyMode(force = null) {
-    isTextOnly = force !== null ? force : !isTextOnly;
-    const panel = document.getElementById('text-only-directions-panel');
-    const normalList = document.getElementById('directions-list');
-    const toggleBtn = document.getElementById('btn-toggle-text-only');
-
-    if (panel) panel.hidden = !isTextOnly;
-    if (normalList) normalList.hidden = isTextOnly;
-    if (toggleBtn) {
-      toggleBtn.classList.toggle('active', isTextOnly);
-      toggleBtn.setAttribute('aria-pressed', String(isTextOnly));
-    }
-
-    announceAssertive(isTextOnly ? 'Switched to text-only landmark directions mode.' : 'Switched to standard directions mode.');
-  }
-
-  return { render, repeatAloud, toggleTextOnlyMode, showPlaceholder, readAloud, stopSpeech, shareRoute };
+  return { render, showPlaceholder, readAloud, stopSpeech, shareRoute };
 
 })();
 

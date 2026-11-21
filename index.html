@@ -57,48 +57,6 @@
  </div>
  </header>
 
-  <!-- ══════════════════════════════════════════════════════════════
-       LOW VISION & ACCESSIBILITY TOOLBAR (WCAG 2.1 AA Compliant)
-       ══════════════════════════════════════════════════════════════ -->
-  <aside class="a11y-toolbar" id="a11y-toolbar" aria-label="Accessibility and display settings">
-    <div class="a11y-toolbar-inner">
-      <!-- TEXT SIZE CONTROLS -->
-      <div class="a11y-group" role="group" aria-labelledby="txt-size-lbl">
-        <span class="a11y-group-label" id="txt-size-lbl">Text Size:</span>
-        <div class="a11y-btn-group" role="radiogroup" aria-labelledby="txt-size-lbl">
-          <button type="button" id="btn-text-normal" class="a11y-btn active" role="radio" aria-checked="true" aria-label="Standard text size (100%)">A</button>
-          <button type="button" id="btn-text-large" class="a11y-btn" role="radio" aria-checked="false" aria-label="Large text size (125%)">A+</button>
-          <button type="button" id="btn-text-xlarge" class="a11y-btn" role="radio" aria-checked="false" aria-label="Extra-large text size (150%)">A++</button>
-        </div>
-      </div>
-
-      <!-- HIGH CONTRAST THEME -->
-      <div class="a11y-group">
-        <button type="button" id="btn-high-contrast" class="a11y-toggle-btn" aria-pressed="false" aria-label="Toggle high contrast black and yellow display">
-          <span aria-hidden="true">🌓</span>
-          <span>High Contrast</span>
-        </button>
-      </div>
-
-      <!-- SIMPLIFIED MAP MODE -->
-      <div class="a11y-group">
-        <button type="button" id="btn-simplified-map" class="a11y-toggle-btn" aria-pressed="false" aria-label="Toggle simplified map mode without decorative details">
-          <span aria-hidden="true">👓</span>
-          <span>Simplified Map</span>
-        </button>
-      </div>
-
-      <!-- HIGH-VISIBILITY DISTINCT ROUTE SYMBOLS -->
-      <div class="a11y-group">
-        <button type="button" id="btn-distinct-routes" class="a11y-toggle-btn active" aria-pressed="true" aria-label="Toggle thick route lines with distinct line styles and symbols">
-          <span aria-hidden="true">♿</span>
-          <span>Distinct Routes</span>
-        </button>
-      </div>
-    </div>
-  </aside>
-
-
  <!-- 
  MAIN CONTENT
  -->
@@ -159,16 +117,7 @@
  <span id="from-hint" class="form-hint">Select where you are now</span>
  </div>
 
- 
-    <!-- SWAP LOCATIONS BUTTON (Large, easy-to-find control) -->
-    <div class="swap-locations-container" style="display:flex;justify-content:center;margin:0.25rem 0 0.5rem;">
-      <button type="button" id="btn-swap-locations" class="btn btn-outline btn-swap" aria-label="Swap starting point and destination locations" title="Swap start and destination">
-        <span aria-hidden="true" style="font-size:1.2rem;font-weight:900;">⇅</span>
-        <span><strong>Swap Start &amp; Destination</strong></span>
-      </button>
-    </div>
-
-    <!-- TO -->
+ <!-- TO -->
  <div class="form-group">
  <label for="to-select" class="form-label">
  <span aria-hidden="true"></span> Destination
@@ -268,15 +217,6 @@
     <ol id="directions-list" class="directions-list-inline"
         aria-label="Step-by-step route directions">
     </ol>
-
-    <!-- TEXT-ONLY LANDMARK DIRECTIONS (High Contrast, Large Typography) -->
-    <div id="text-only-directions-panel" class="text-only-panel" hidden aria-label="Text-only landmark directions">
-      <div class="text-only-header">
-        <h3 class="text-only-title">📄 Step-by-Step Landmark Directions</h3>
-        <p class="text-only-sub">Large-print accessible instructions with key physical campus landmarks and ramp positions.</p>
-      </div>
-      <div id="text-only-steps" class="text-only-steps-list"></div>
-    </div>
   </div>
 
 
@@ -300,9 +240,6 @@
  </button>
  <button class="map-ctrl-btn" id="btn-toggle-gps" aria-pressed="false" aria-label="Toggle live GPS location tracking">
  Live Location
- </button>
- <button class="map-ctrl-btn" id="btn-toggle-simplified" aria-pressed="false" aria-label="Toggle simplified minimalist map mode">
- Simplified Map
  </button>
  <button class="map-ctrl-btn active" id="btn-toggle-autos" aria-pressed="true" aria-label="Toggle live autos and e-carts on map">
  🛺 Autos &amp; E-Carts
@@ -413,22 +350,19 @@
   </div>
 
   <!-- READ ALOUD CONTROLS - below map -->
-  <div class="read-aloud-bar" id="below-map-audio-controls" style="margin:0.75rem 0;display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
-    <button id="read-aloud-btn" class="btn btn-read-aloud" aria-label="Read directions aloud using text-to-speech">
-      🔊 Read Aloud
-    </button>
-    <button id="repeat-speech-btn" class="btn btn-outline" style="border-width:2px;font-weight:700;" aria-label="Repeat the directions from the beginning aloud" title="Repeat directions aloud">
-      🔁 Repeat Aloud
-    </button>
-    <button id="stop-speech-btn" class="btn btn-stop-aloud" hidden aria-label="Stop reading directions">
-      ⏹️ Stop Reading
-    </button>
-    <button id="btn-toggle-text-only" class="btn btn-outline" style="border-width:2px;font-weight:700;" aria-pressed="false" aria-label="Toggle high-contrast text-only landmark directions">
-      📄 Text-Only Mode
-    </button>
-    <button id="share-route-btn" class="btn btn-outline btn-sm" aria-label="Share this route link">
-      Share Route
-    </button>
+  <div class="read-aloud-bar" id="below-map-audio-controls" style="margin:0.75rem 0;">
+   <button id="read-aloud-btn" class="btn btn-read-aloud"
+           aria-label="Read directions aloud using text-to-speech">
+    Read Aloud
+   </button>
+   <button id="stop-speech-btn" class="btn btn-stop-aloud" hidden
+           aria-label="Stop reading directions">
+    Stop Reading
+   </button>
+   <button id="share-route-btn" class="btn btn-outline btn-sm"
+           aria-label="Share this route link">
+    Share Route
+   </button>
   </div>
 
  <!-- INDOOR FLOOR PLAN OVERLAY -->
